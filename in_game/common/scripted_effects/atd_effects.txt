@@ -74,7 +74,7 @@ atd_improve_subjects = {
 						has_variable = atd_min_diplomat_gain
 						var:atd_min_diplomat_gain > 0
 					}
-					modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+						modifier:monthly_diplomats >= var:atd_min_diplomat_gain
 				}
 				any_subject = { NOT = { has_variable = atd_auto_target } }
 			}
@@ -218,16 +218,20 @@ atd_improve_outraged = {
 					}
 					modifier:monthly_diplomats >= var:atd_min_diplomat_gain
 				}
-				any_country_with_antagonism_against_us = {
+				any_country = {
+					antagonism = { target = root value > 0 }
 					NOT = { has_variable = atd_auto_target }
 					NOT = { is_subject_of = root }
 				}
 			}
-			random_country_with_antagonism_against_us = {
+			ordered_country = {
 				limit = {
+					antagonism = { target = root value > 0 }
 					NOT = { has_variable = atd_auto_target }
 					NOT = { is_subject_of = root }
 				}
+				order_by = this_antagonism_towards_prev
+				max = 1
 				save_scope_as = atd_send_target
 				set_variable = { name = atd_auto_target value = 3 }
 			}
