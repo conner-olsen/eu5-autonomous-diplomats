@@ -1,0 +1,70 @@
+﻿# Register Autonomous Diplomats settings with Community Mod Menu.
+# Scope: country
+atd_cmm_register = {
+	# Reserve - minimum diplomat stock
+	cmm_register_slider_setting = {
+		mod_id = atd
+		setting_id = min_diplomats
+		tab_id = general
+		group_id = reserve
+		default_value = 0
+		min_value = 0
+		max_value = 10
+		step_value = 1
+	}
+
+	# Ordered list - player reorders to set priority
+	# Stable item numbers: 1=neighbors, 2=subjects, 3=outraged, 4=allies, 5=threatened
+	cmm_begin_settings_list = {
+		mod_id = atd
+		setting_id = improve_relations
+		tab_id = general
+		is_ordered = 1
+	}
+	cmm_add_settings_list_item = { mod_id = atd setting_id = improve_relations value = root name = atd_list_neighbors }
+	cmm_add_settings_list_item = { mod_id = atd setting_id = improve_relations value = root name = atd_list_subjects }
+	cmm_add_settings_list_item = { mod_id = atd setting_id = improve_relations value = root name = atd_list_outraged }
+	cmm_add_settings_list_item = { mod_id = atd setting_id = improve_relations value = root name = atd_list_allies }
+	cmm_add_settings_list_item = { mod_id = atd setting_id = improve_relations value = root name = atd_list_threatened }
+	cmm_finish_settings_list = { mod_id = atd setting_id = improve_relations }
+
+	cmm_register_list_slider_field = {
+		mod_id = atd
+		setting_id = improve_relations
+		field_id = count
+		default_value = 0
+		min_value = 0
+		max_value = 10
+		step_value = 1
+	}
+
+	# Reserve - minimum monthly diplomat gain to maintain
+	cmm_register_slider_setting = {
+		mod_id = atd
+		setting_id = min_diplomat_gain
+		tab_id = general
+		group_id = reserve
+		default_value = 0
+		min_value = 0
+		max_value = 1
+		step_value = 0.1
+	}
+
+	# Only sync reserve aliases at registration (list fields not populated yet)
+	cmm_sync_setting_alias = { setting = atd__min_diplomats alias = atd_min_diplomats }
+	cmm_sync_setting_alias = { setting = atd__min_diplomat_gain alias = atd_min_diplomat_gain }
+}
+
+# Called when any ATD setting changes (reserve sliders or list fields).
+# Syncs all aliases and fires the auto-improve logic immediately.
+# Scope: country
+atd_cmm_handle_callback = {
+	cmm_sync_setting_alias = { setting = atd__min_diplomats alias = atd_min_diplomats }
+	cmm_sync_setting_alias = { setting = atd__min_diplomat_gain alias = atd_min_diplomat_gain }
+	cmm_sync_setting_alias = { setting = atd__improve_relations_i1_f1 alias = atd_improve_neighbors_count }
+	cmm_sync_setting_alias = { setting = atd__improve_relations_i2_f1 alias = atd_improve_relations_count }
+	cmm_sync_setting_alias = { setting = atd__improve_relations_i3_f1 alias = atd_improve_outraged_count }
+	cmm_sync_setting_alias = { setting = atd__improve_relations_i4_f1 alias = atd_improve_allies_count }
+	cmm_sync_setting_alias = { setting = atd__improve_relations_i5_f1 alias = atd_improve_threatened_count }
+	atd_auto_improve = yes
+}

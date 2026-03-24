@@ -1,0 +1,49 @@
+﻿# CMM registration hook - fires on game start for human players and when mod menu opens
+cmf_on_mod_registration = {
+	on_actions = {
+		atd_on_register
+	}
+}
+
+atd_on_register = {
+	effect = {
+		atd_cmm_register = yes
+	}
+}
+
+# CMM callback hook - fires when any CMM setting changes
+cmf_on_callback = {
+	on_actions = {
+		atd_on_callback
+	}
+}
+
+atd_on_callback = {
+	effect = {
+		# Only reserve sliders use cmf_on_callback.
+		# List fields use the scripted GUI callback (atd_guis.txt).
+		if = {
+			limit = {
+				OR = {
+					var:cmf_callback = flag:atd__min_diplomats
+					var:cmf_callback = flag:atd__min_diplomat_gain
+				}
+			}
+			atd_cmm_handle_callback = yes
+		}
+	}
+}
+
+# Monthly pulse for re-sending recalled diplomats
+monthly_country_pulse = {
+	on_actions = {
+		atd_on_monthly
+	}
+}
+
+atd_on_monthly = {
+	effect = {
+		atd_auto_improve = yes
+	}
+}
+

@@ -1,0 +1,402 @@
+﻿# Autonomous diplomat effects. Called on setting change and monthly pulse.
+# Uses while + random_* to process one target at a time (every_* pre-evaluates
+# all limits before running effects, breaking counters).
+# Uses unified atd_auto_target variable (1=subject, 2=neighbor, 3=outraged,
+# 4=ally, 5=threatened) to prevent double-targeting across categories.
+# Scope: country (the player)
+
+# Master effect - processes categories in player-defined display order.
+atd_auto_improve = {
+	cmm_for_each_list_item = {
+		setting = atd__improve_relations
+		effect = atd_dispatch_item
+	}
+}
+
+# Dispatches to the correct category effect based on stable item number.
+# $i$ is substituted by cmm_for_each_list_item to the stable item number.
+# $setting$ is the composite setting key (required parameter).
+# Stable: 1=neighbors, 2=subjects, 3=outraged, 4=allies, 5=threatened.
+atd_dispatch_item = {
+	set_local_variable = { name = atd_item value = $i$ }
+	if = { limit = { local_var:atd_item = 1 } atd_improve_neighbors = yes }
+	else_if = { limit = { local_var:atd_item = 2 } atd_improve_subjects = yes }
+	else_if = { limit = { local_var:atd_item = 3 } atd_improve_outraged = yes }
+	else_if = { limit = { local_var:atd_item = 4 } atd_improve_allies = yes }
+	else_if = { limit = { local_var:atd_item = 5 } atd_improve_threatened = yes }
+
+	# Dead branch — references $setting$ so the engine recognizes this as a
+	# parameterized effect (required by cmm_for_each_list_item).
+	if = {
+		limit = { always = no }
+		set_local_variable = { name = atd_setting_key value = flag:$setting$ }
+	}
+}
+
+# ── Subjects (atd_auto_target = 1) ──────────────────────────────────────────
+atd_improve_subjects = {
+	if = {
+		limit = {
+			has_variable = atd_improve_relations_count
+			var:atd_improve_relations_count > 0
+		}
+		set_variable = { name = atd_remaining value = var:atd_improve_relations_count }
+
+		every_subject = {
+			limit = { has_variable = atd_auto_target var:atd_auto_target = 1 }
+			root = { change_variable = { name = atd_remaining subtract = 1 } }
+		}
+
+		while = {
+			count = 10
+			limit = {
+				var:atd_remaining < 0
+				any_subject = { has_variable = atd_auto_target var:atd_auto_target = 1 }
+			}
+			random_subject = {
+				limit = { has_variable = atd_auto_target var:atd_auto_target = 1 }
+				remove_variable = atd_auto_target
+			}
+			change_variable = { name = atd_remaining add = 1 }
+		}
+
+		while = {
+			count = 10
+			limit = {
+				var:atd_remaining > 0
+				trigger_if = {
+					limit = { has_variable = atd_min_diplomats }
+					num_of_diplomats > var:atd_min_diplomats
+				}
+				trigger_else = { num_of_diplomats >= 1 }
+				trigger_if = {
+					limit = {
+						has_variable = atd_min_diplomat_gain
+						var:atd_min_diplomat_gain > 0
+					}
+					modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+				}
+				any_subject = { NOT = { has_variable = atd_auto_target } }
+			}
+			random_subject = {
+				limit = { NOT = { has_variable = atd_auto_target } }
+				save_scope_as = atd_send_target
+				set_variable = { name = atd_auto_target value = 1 }
+			}
+			perform_diplomatic_action = {
+				type = improve_relation
+				actor = root
+				recipient = scope:atd_send_target
+			}
+			change_variable = { name = atd_remaining subtract = 1 }
+		}
+		remove_variable = atd_remaining
+	}
+	else_if = {
+		limit = { has_variable = atd_improve_relations_count }
+		every_subject = {
+			limit = { has_variable = atd_auto_target var:atd_auto_target = 1 }
+			remove_variable = atd_auto_target
+		}
+	}
+}
+
+# ── Neighbors (atd_auto_target = 2) ─────────────────────────────────────────
+atd_improve_neighbors = {
+	if = {
+		limit = {
+			has_variable = atd_improve_neighbors_count
+			var:atd_improve_neighbors_count > 0
+		}
+		set_variable = { name = atd_remaining value = var:atd_improve_neighbors_count }
+
+		every_country = {
+			limit = { has_variable = atd_auto_target var:atd_auto_target = 2 }
+			root = { change_variable = { name = atd_remaining subtract = 1 } }
+		}
+
+		while = {
+			count = 10
+			limit = {
+				var:atd_remaining < 0
+				any_country = { has_variable = atd_auto_target var:atd_auto_target = 2 }
+			}
+			random_country = {
+				limit = { has_variable = atd_auto_target var:atd_auto_target = 2 }
+				remove_variable = atd_auto_target
+			}
+			change_variable = { name = atd_remaining add = 1 }
+		}
+
+		while = {
+			count = 10
+			limit = {
+				var:atd_remaining > 0
+				trigger_if = {
+					limit = { has_variable = atd_min_diplomats }
+					num_of_diplomats > var:atd_min_diplomats
+				}
+				trigger_else = { num_of_diplomats >= 1 }
+				trigger_if = {
+					limit = {
+						has_variable = atd_min_diplomat_gain
+						var:atd_min_diplomat_gain > 0
+					}
+					modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+				}
+				any_neighbor_country = {
+					NOT = { has_variable = atd_auto_target }
+					NOT = { is_subject_of = root }
+				}
+			}
+			random_neighbor_country = {
+				limit = {
+					NOT = { has_variable = atd_auto_target }
+					NOT = { is_subject_of = root }
+				}
+				save_scope_as = atd_send_target
+				set_variable = { name = atd_auto_target value = 2 }
+			}
+			perform_diplomatic_action = {
+				type = improve_relation
+				actor = root
+				recipient = scope:atd_send_target
+			}
+			change_variable = { name = atd_remaining subtract = 1 }
+		}
+		remove_variable = atd_remaining
+	}
+	else_if = {
+		limit = { has_variable = atd_improve_neighbors_count }
+		every_country = {
+			limit = { has_variable = atd_auto_target var:atd_auto_target = 2 }
+			remove_variable = atd_auto_target
+		}
+	}
+}
+
+# ── Outraged / High Antagonism (atd_auto_target = 3) ────────────────────────
+atd_improve_outraged = {
+	if = {
+		limit = {
+			has_variable = atd_improve_outraged_count
+			var:atd_improve_outraged_count > 0
+		}
+		set_variable = { name = atd_remaining value = var:atd_improve_outraged_count }
+
+		every_country = {
+			limit = { has_variable = atd_auto_target var:atd_auto_target = 3 }
+			root = { change_variable = { name = atd_remaining subtract = 1 } }
+		}
+
+		while = {
+			count = 10
+			limit = {
+				var:atd_remaining < 0
+				any_country = { has_variable = atd_auto_target var:atd_auto_target = 3 }
+			}
+			random_country = {
+				limit = { has_variable = atd_auto_target var:atd_auto_target = 3 }
+				remove_variable = atd_auto_target
+			}
+			change_variable = { name = atd_remaining add = 1 }
+		}
+
+		while = {
+			count = 10
+			limit = {
+				var:atd_remaining > 0
+				trigger_if = {
+					limit = { has_variable = atd_min_diplomats }
+					num_of_diplomats > var:atd_min_diplomats
+				}
+				trigger_else = { num_of_diplomats >= 1 }
+				trigger_if = {
+					limit = {
+						has_variable = atd_min_diplomat_gain
+						var:atd_min_diplomat_gain > 0
+					}
+					modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+				}
+				any_country_with_antagonism_against_us = {
+					NOT = { has_variable = atd_auto_target }
+					NOT = { is_subject_of = root }
+				}
+			}
+			random_country_with_antagonism_against_us = {
+				limit = {
+					NOT = { has_variable = atd_auto_target }
+					NOT = { is_subject_of = root }
+				}
+				save_scope_as = atd_send_target
+				set_variable = { name = atd_auto_target value = 3 }
+			}
+			perform_diplomatic_action = {
+				type = improve_relation
+				actor = root
+				recipient = scope:atd_send_target
+			}
+			change_variable = { name = atd_remaining subtract = 1 }
+		}
+		remove_variable = atd_remaining
+	}
+	else_if = {
+		limit = { has_variable = atd_improve_outraged_count }
+		every_country = {
+			limit = { has_variable = atd_auto_target var:atd_auto_target = 3 }
+			remove_variable = atd_auto_target
+		}
+	}
+}
+
+# ── Allies (atd_auto_target = 4) ────────────────────────────────────────────
+atd_improve_allies = {
+	if = {
+		limit = {
+			has_variable = atd_improve_allies_count
+			var:atd_improve_allies_count > 0
+		}
+		set_variable = { name = atd_remaining value = var:atd_improve_allies_count }
+
+		every_country = {
+			limit = { has_variable = atd_auto_target var:atd_auto_target = 4 }
+			root = { change_variable = { name = atd_remaining subtract = 1 } }
+		}
+
+		while = {
+			count = 10
+			limit = {
+				var:atd_remaining < 0
+				any_country = { has_variable = atd_auto_target var:atd_auto_target = 4 }
+			}
+			random_country = {
+				limit = { has_variable = atd_auto_target var:atd_auto_target = 4 }
+				remove_variable = atd_auto_target
+			}
+			change_variable = { name = atd_remaining add = 1 }
+		}
+
+		while = {
+			count = 10
+			limit = {
+				var:atd_remaining > 0
+				trigger_if = {
+					limit = { has_variable = atd_min_diplomats }
+					num_of_diplomats > var:atd_min_diplomats
+				}
+				trigger_else = { num_of_diplomats >= 1 }
+				trigger_if = {
+					limit = {
+						has_variable = atd_min_diplomat_gain
+						var:atd_min_diplomat_gain > 0
+					}
+					modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+				}
+				any_country = {
+					is_allied_with = { target = root }
+					NOT = { has_variable = atd_auto_target }
+					NOT = { is_subject_of = root }
+				}
+			}
+			random_country = {
+				limit = {
+					is_allied_with = { target = root }
+					NOT = { has_variable = atd_auto_target }
+					NOT = { is_subject_of = root }
+				}
+				save_scope_as = atd_send_target
+				set_variable = { name = atd_auto_target value = 4 }
+			}
+			perform_diplomatic_action = {
+				type = improve_relation
+				actor = root
+				recipient = scope:atd_send_target
+			}
+			change_variable = { name = atd_remaining subtract = 1 }
+		}
+		remove_variable = atd_remaining
+	}
+	else_if = {
+		limit = { has_variable = atd_improve_allies_count }
+		every_country = {
+			limit = { has_variable = atd_auto_target var:atd_auto_target = 4 }
+			remove_variable = atd_auto_target
+		}
+	}
+}
+
+# ── Threatening (atd_auto_target = 5) ────────────────────────────────────────
+atd_improve_threatened = {
+	if = {
+		limit = {
+			has_variable = atd_improve_threatened_count
+			var:atd_improve_threatened_count > 0
+		}
+		set_variable = { name = atd_remaining value = var:atd_improve_threatened_count }
+
+		every_country = {
+			limit = { has_variable = atd_auto_target var:atd_auto_target = 5 }
+			root = { change_variable = { name = atd_remaining subtract = 1 } }
+		}
+
+		while = {
+			count = 10
+			limit = {
+				var:atd_remaining < 0
+				any_country = { has_variable = atd_auto_target var:atd_auto_target = 5 }
+			}
+			random_country = {
+				limit = { has_variable = atd_auto_target var:atd_auto_target = 5 }
+				remove_variable = atd_auto_target
+			}
+			change_variable = { name = atd_remaining add = 1 }
+		}
+
+		while = {
+			count = 10
+			limit = {
+				var:atd_remaining > 0
+				trigger_if = {
+					limit = { has_variable = atd_min_diplomats }
+					num_of_diplomats > var:atd_min_diplomats
+				}
+				trigger_else = { num_of_diplomats >= 1 }
+				trigger_if = {
+					limit = {
+						has_variable = atd_min_diplomat_gain
+						var:atd_min_diplomat_gain > 0
+					}
+					modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+				}
+				any_country = {
+					is_threat_to = root
+					NOT = { has_variable = atd_auto_target }
+					NOT = { is_subject_of = root }
+				}
+			}
+			random_country = {
+				limit = {
+					is_threat_to = root
+					NOT = { has_variable = atd_auto_target }
+					NOT = { is_subject_of = root }
+				}
+				save_scope_as = atd_send_target
+				set_variable = { name = atd_auto_target value = 5 }
+			}
+			perform_diplomatic_action = {
+				type = improve_relation
+				actor = root
+				recipient = scope:atd_send_target
+			}
+			change_variable = { name = atd_remaining subtract = 1 }
+		}
+		remove_variable = atd_remaining
+	}
+	else_if = {
+		limit = { has_variable = atd_improve_threatened_count }
+		every_country = {
+			limit = { has_variable = atd_auto_target var:atd_auto_target = 5 }
+			remove_variable = atd_auto_target
+		}
+	}
+}
