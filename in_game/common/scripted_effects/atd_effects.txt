@@ -5,12 +5,74 @@
 # 4=ally, 5=threatened) to prevent double-targeting across categories.
 # Scope: country (the player)
 
+# Count existing assignments across all categories in a single pass.
+# Sets atd_assigned_* variables for use by individual category handlers.
+atd_count_assignments = {
+	set_variable = { name = atd_assigned_subjects value = 0 }
+	set_variable = { name = atd_assigned_neighbors value = 0 }
+	set_variable = { name = atd_assigned_outraged value = 0 }
+	set_variable = { name = atd_assigned_allies value = 0 }
+	set_variable = { name = atd_assigned_threatened value = 0 }
+
+	every_country = {
+		limit = { has_variable = atd_auto_target }
+		if = { limit = { var:atd_auto_target = 1 } root = { change_variable = { name = atd_assigned_subjects add = 1 } } }
+		else_if = { limit = { var:atd_auto_target = 2 } root = { change_variable = { name = atd_assigned_neighbors add = 1 } } }
+		else_if = { limit = { var:atd_auto_target = 3 } root = { change_variable = { name = atd_assigned_outraged add = 1 } } }
+		else_if = { limit = { var:atd_auto_target = 4 } root = { change_variable = { name = atd_assigned_allies add = 1 } } }
+		else_if = { limit = { var:atd_auto_target = 5 } root = { change_variable = { name = atd_assigned_threatened add = 1 } } }
+	}
+}
+
 # Master effect - processes categories in player-defined display order.
 atd_auto_improve = {
-	cmm_for_each_list_item = {
-		setting = atd__improve_relations
-		effect = atd_dispatch_item
+	atd_count_assignments = yes
+
+	# Early exit: skip dispatch if no spare diplomats and no existing assignments
+	set_local_variable = { name = atd_has_diplomats value = 0 }
+	if = {
+		limit = {
+			trigger_if = {
+				limit = { has_variable = atd_min_diplomats }
+				num_of_diplomats > var:atd_min_diplomats
+			}
+			trigger_else = { num_of_diplomats >= 1 }
+		}
+		set_local_variable = { name = atd_has_diplomats value = 1 }
 	}
+
+	if = {
+		limit = {
+			OR = {
+				local_var:atd_has_diplomats = 1
+				var:atd_assigned_subjects > 0
+				var:atd_assigned_neighbors > 0
+				var:atd_assigned_outraged > 0
+				var:atd_assigned_allies > 0
+				var:atd_assigned_threatened > 0
+			}
+		}
+
+		# [TEST] Clean up any outraged assignments while category is disabled
+		if = {
+			limit = { var:atd_assigned_outraged > 0 }
+			every_country = {
+				limit = { has_variable = atd_auto_target var:atd_auto_target = 3 }
+				remove_variable = atd_auto_target
+			}
+		}
+
+		cmm_for_each_list_item = {
+			setting = atd__improve_relations
+			effect = atd_dispatch_item
+		}
+	}
+
+	remove_variable = atd_assigned_subjects
+	remove_variable = atd_assigned_neighbors
+	remove_variable = atd_assigned_outraged
+	remove_variable = atd_assigned_allies
+	remove_variable = atd_assigned_threatened
 }
 
 # Dispatches to the correct category effect based on stable item number.
@@ -21,7 +83,8 @@ atd_dispatch_item = {
 	set_local_variable = { name = atd_item value = $i$ }
 	if = { limit = { local_var:atd_item = 1 } atd_improve_neighbors = yes }
 	else_if = { limit = { local_var:atd_item = 2 } atd_improve_subjects = yes }
-	else_if = { limit = { local_var:atd_item = 3 } atd_improve_outraged = yes }
+	# [TEST] Outraged disabled for performance testing
+	# else_if = { limit = { local_var:atd_item = 3 } atd_improve_outraged = yes }
 	else_if = { limit = { local_var:atd_item = 4 } atd_improve_allies = yes }
 	else_if = { limit = { local_var:atd_item = 5 } atd_improve_threatened = yes }
 
@@ -36,11 +99,7 @@ atd_improve_subjects = {
 			var:atd_improve_relations_count > 0
 		}
 		set_variable = { name = atd_remaining value = var:atd_improve_relations_count }
-
-		every_subject = {
-			limit = { has_variable = atd_auto_target var:atd_auto_target = 1 }
-			root = { change_variable = { name = atd_remaining subtract = 1 } }
-		}
+		change_variable = { name = atd_remaining subtract = var:atd_assigned_subjects }
 
 		while = {
 			count = 10
@@ -88,7 +147,10 @@ atd_improve_subjects = {
 		remove_variable = atd_remaining
 	}
 	else_if = {
-		limit = { has_variable = atd_improve_relations_count }
+		limit = {
+			has_variable = atd_improve_relations_count
+			var:atd_assigned_subjects > 0
+		}
 		every_subject = {
 			limit = { has_variable = atd_auto_target var:atd_auto_target = 1 }
 			remove_variable = atd_auto_target
@@ -104,11 +166,7 @@ atd_improve_neighbors = {
 			var:atd_improve_neighbors_count > 0
 		}
 		set_variable = { name = atd_remaining value = var:atd_improve_neighbors_count }
-
-		every_country = {
-			limit = { has_variable = atd_auto_target var:atd_auto_target = 2 }
-			root = { change_variable = { name = atd_remaining subtract = 1 } }
-		}
+		change_variable = { name = atd_remaining subtract = var:atd_assigned_neighbors }
 
 		while = {
 			count = 10
@@ -164,7 +222,10 @@ atd_improve_neighbors = {
 		remove_variable = atd_remaining
 	}
 	else_if = {
-		limit = { has_variable = atd_improve_neighbors_count }
+		limit = {
+			has_variable = atd_improve_neighbors_count
+			var:atd_assigned_neighbors > 0
+		}
 		every_country = {
 			limit = { has_variable = atd_auto_target var:atd_auto_target = 2 }
 			remove_variable = atd_auto_target
@@ -172,85 +233,86 @@ atd_improve_neighbors = {
 	}
 }
 
+# [TEST] Outraged category disabled for performance testing
 # ── Outraged / High Antagonism (atd_auto_target = 3) ────────────────────────
-atd_improve_outraged = {
-	if = {
-		limit = {
-			has_variable = atd_improve_outraged_count
-			var:atd_improve_outraged_count > 0
-		}
-		set_variable = { name = atd_remaining value = var:atd_improve_outraged_count }
-
-		every_country = {
-			limit = { has_variable = atd_auto_target var:atd_auto_target = 3 }
-			root = { change_variable = { name = atd_remaining subtract = 1 } }
-		}
-
-		while = {
-			count = 10
-			limit = {
-				var:atd_remaining < 0
-				any_country = { has_variable = atd_auto_target var:atd_auto_target = 3 }
-			}
-			random_country = {
-				limit = { has_variable = atd_auto_target var:atd_auto_target = 3 }
-				remove_variable = atd_auto_target
-			}
-			change_variable = { name = atd_remaining add = 1 }
-		}
-
-		while = {
-			count = 10
-			limit = {
-				var:atd_remaining > 0
-				trigger_if = {
-					limit = { has_variable = atd_min_diplomats }
-					num_of_diplomats > var:atd_min_diplomats
-				}
-				trigger_else = { num_of_diplomats >= 1 }
-				trigger_if = {
-					limit = {
-						has_variable = atd_min_diplomat_gain
-						var:atd_min_diplomat_gain > 0
-					}
-					modifier:monthly_diplomats >= var:atd_min_diplomat_gain
-				}
-				any_country = {
-					is_discovered_by = root
-					antagonism = { target = root value > 0 }
-					NOT = { has_variable = atd_auto_target }
-					NOT = { is_subject_of = root }
-				}
-			}
-			ordered_country = {
-				limit = {
-					is_discovered_by = root
-					antagonism = { target = root value > 0 }
-					NOT = { has_variable = atd_auto_target }
-					NOT = { is_subject_of = root }
-				}
-				order_by = this_antagonism_towards_prev
-				max = 1
-				save_scope_as = atd_send_target
-				set_variable = { name = atd_auto_target value = 3 }
-			}
-			perform_diplomatic_action = {
-				type = improve_relation
-				actor = root
-				recipient = scope:atd_send_target
-			}
-			change_variable = { name = atd_remaining subtract = 1 }
-		}
-		remove_variable = atd_remaining
-	}
-	else_if = {
-		limit = { has_variable = atd_improve_outraged_count }
-		every_country = {
-			limit = { has_variable = atd_auto_target var:atd_auto_target = 3 }
-			remove_variable = atd_auto_target
-		}
-	}
-}
+# atd_improve_outraged = {
+# 	if = {
+# 		limit = {
+# 			has_variable = atd_improve_outraged_count
+# 			var:atd_improve_outraged_count > 0
+# 		}
+# 		set_variable = { name = atd_remaining value = var:atd_improve_outraged_count }
+#
+# 		every_country = {
+# 			limit = { has_variable = atd_auto_target var:atd_auto_target = 3 }
+# 			root = { change_variable = { name = atd_remaining subtract = 1 } }
+# 		}
+#
+# 		while = {
+# 			count = 10
+# 			limit = {
+# 				var:atd_remaining < 0
+# 				any_country = { has_variable = atd_auto_target var:atd_auto_target = 3 }
+# 			}
+# 			random_country = {
+# 				limit = { has_variable = atd_auto_target var:atd_auto_target = 3 }
+# 				remove_variable = atd_auto_target
+# 			}
+# 			change_variable = { name = atd_remaining add = 1 }
+# 		}
+#
+# 		while = {
+# 			count = 10
+# 			limit = {
+# 				var:atd_remaining > 0
+# 				trigger_if = {
+# 					limit = { has_variable = atd_min_diplomats }
+# 					num_of_diplomats > var:atd_min_diplomats
+# 				}
+# 				trigger_else = { num_of_diplomats >= 1 }
+# 				trigger_if = {
+# 					limit = {
+# 						has_variable = atd_min_diplomat_gain
+# 						var:atd_min_diplomat_gain > 0
+# 					}
+# 					modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+# 				}
+# 				any_country = {
+# 					is_discovered_by = root
+# 					antagonism = { target = root value > 0 }
+# 					NOT = { has_variable = atd_auto_target }
+# 					NOT = { is_subject_of = root }
+# 				}
+# 			}
+# 			ordered_country = {
+# 				limit = {
+# 					is_discovered_by = root
+# 					antagonism = { target = root value > 0 }
+# 					NOT = { has_variable = atd_auto_target }
+# 					NOT = { is_subject_of = root }
+# 				}
+# 				order_by = this_antagonism_towards_prev
+# 				max = 1
+# 				save_scope_as = atd_send_target
+# 				set_variable = { name = atd_auto_target value = 3 }
+# 			}
+# 			perform_diplomatic_action = {
+# 				type = improve_relation
+# 				actor = root
+# 				recipient = scope:atd_send_target
+# 			}
+# 			change_variable = { name = atd_remaining subtract = 1 }
+# 		}
+# 		remove_variable = atd_remaining
+# 	}
+# 	else_if = {
+# 		limit = { has_variable = atd_improve_outraged_count }
+# 		every_country = {
+# 			limit = { has_variable = atd_auto_target var:atd_auto_target = 3 }
+# 			remove_variable = atd_auto_target
+# 		}
+# 	}
+# }
 
 # ── Allies (atd_auto_target = 4) ────────────────────────────────────────────
 atd_improve_allies = {
@@ -260,11 +322,7 @@ atd_improve_allies = {
 			var:atd_improve_allies_count > 0
 		}
 		set_variable = { name = atd_remaining value = var:atd_improve_allies_count }
-
-		every_country = {
-			limit = { has_variable = atd_auto_target var:atd_auto_target = 4 }
-			root = { change_variable = { name = atd_remaining subtract = 1 } }
-		}
+		change_variable = { name = atd_remaining subtract = var:atd_assigned_allies }
 
 		while = {
 			count = 10
@@ -322,7 +380,10 @@ atd_improve_allies = {
 		remove_variable = atd_remaining
 	}
 	else_if = {
-		limit = { has_variable = atd_improve_allies_count }
+		limit = {
+			has_variable = atd_improve_allies_count
+			var:atd_assigned_allies > 0
+		}
 		every_country = {
 			limit = { has_variable = atd_auto_target var:atd_auto_target = 4 }
 			remove_variable = atd_auto_target
@@ -338,11 +399,7 @@ atd_improve_threatened = {
 			var:atd_improve_threatened_count > 0
 		}
 		set_variable = { name = atd_remaining value = var:atd_improve_threatened_count }
-
-		every_country = {
-			limit = { has_variable = atd_auto_target var:atd_auto_target = 5 }
-			root = { change_variable = { name = atd_remaining subtract = 1 } }
-		}
+		change_variable = { name = atd_remaining subtract = var:atd_assigned_threatened }
 
 		while = {
 			count = 10
@@ -400,7 +457,10 @@ atd_improve_threatened = {
 		remove_variable = atd_remaining
 	}
 	else_if = {
-		limit = { has_variable = atd_improve_threatened_count }
+		limit = {
+			has_variable = atd_improve_threatened_count
+			var:atd_assigned_threatened > 0
+		}
 		every_country = {
 			limit = { has_variable = atd_auto_target var:atd_auto_target = 5 }
 			remove_variable = atd_auto_target
