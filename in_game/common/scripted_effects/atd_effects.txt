@@ -140,12 +140,14 @@ atd_improve_neighbors = {
 					modifier:monthly_diplomats >= var:atd_min_diplomat_gain
 				}
 				any_neighbor_country = {
+					is_discovered_by = root
 					NOT = { has_variable = atd_auto_target }
 					NOT = { is_subject_of = root }
 				}
 			}
 			random_neighbor_country = {
 				limit = {
+					is_discovered_by = root
 					NOT = { has_variable = atd_auto_target }
 					NOT = { is_subject_of = root }
 				}
@@ -214,6 +216,7 @@ atd_improve_outraged = {
 					modifier:monthly_diplomats >= var:atd_min_diplomat_gain
 				}
 				any_country = {
+					is_discovered_by = root
 					antagonism = { target = root value > 0 }
 					NOT = { has_variable = atd_auto_target }
 					NOT = { is_subject_of = root }
@@ -221,6 +224,7 @@ atd_improve_outraged = {
 			}
 			ordered_country = {
 				limit = {
+					is_discovered_by = root
 					antagonism = { target = root value > 0 }
 					NOT = { has_variable = atd_auto_target }
 					NOT = { is_subject_of = root }
@@ -292,6 +296,7 @@ atd_improve_allies = {
 					modifier:monthly_diplomats >= var:atd_min_diplomat_gain
 				}
 				any_country = {
+					is_discovered_by = root
 					is_allied_with = { target = root }
 					NOT = { has_variable = atd_auto_target }
 					NOT = { is_subject_of = root }
@@ -299,6 +304,7 @@ atd_improve_allies = {
 			}
 			random_country = {
 				limit = {
+					is_discovered_by = root
 					is_allied_with = { target = root }
 					NOT = { has_variable = atd_auto_target }
 					NOT = { is_subject_of = root }
@@ -368,6 +374,7 @@ atd_improve_threatened = {
 					modifier:monthly_diplomats >= var:atd_min_diplomat_gain
 				}
 				any_country = {
+					is_discovered_by = root
 					is_threat_to = root
 					NOT = { has_variable = atd_auto_target }
 					NOT = { is_subject_of = root }
@@ -375,6 +382,7 @@ atd_improve_threatened = {
 			}
 			random_country = {
 				limit = {
+					is_discovered_by = root
 					is_threat_to = root
 					NOT = { has_variable = atd_auto_target }
 					NOT = { is_subject_of = root }
