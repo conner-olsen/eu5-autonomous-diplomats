@@ -25,12 +25,7 @@ atd_dispatch_item = {
 	else_if = { limit = { local_var:atd_item = 4 } atd_improve_allies = yes }
 	else_if = { limit = { local_var:atd_item = 5 } atd_improve_threatened = yes }
 
-	# Dead branch — references $setting$ so the engine recognizes this as a
-	# parameterized effect (required by cmm_for_each_list_item).
-	if = {
-		limit = { always = no }
-		set_local_variable = { name = atd_setting_key value = flag:$setting$ }
-	}
+	cmf_suppress = { v = $setting$ }
 }
 
 # ── Subjects (atd_auto_target = 1) ──────────────────────────────────────────
