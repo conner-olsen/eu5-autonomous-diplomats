@@ -1,56 +1,33 @@
-﻿# Autonomous diplomat effects. Called on setting change and monthly pulse.
-# Uses while + random_* to process one target at a time (every_* pre-evaluates
-# all limits before running effects, breaking counters).
-# Uses unified atd_auto_target variable (1=subject, 2=neighbor, 3=outraged,
-# 4=ally, 5=threatened) to prevent double-targeting across categories.
+﻿# Autonomous diplomat effects — debug build (neighbors only).
+# Uses variable lists (atd_targets, atd_decaying) on root instead of every_country scans.
 # Scope: country (the player)
 
 # Monthly tick: track improvement progress and decay.
-# Uses atd_months_remaining (countdown) instead of comparing two variables.
 atd_monthly_tick = {
 	# Decrement countdown for all active targets
-	every_country = {
-		limit = { has_variable = atd_auto_target }
+	every_in_list = {
+		variable = atd_targets
 		change_variable = { name = atd_months_remaining subtract = 1 }
 	}
 
-	# Clear outraged targets where antagonism reached 0
-	every_country = {
-		limit = {
-			has_variable = atd_auto_target
-			var:atd_auto_target = 3
-			NOT = { antagonism = { target = root value > 0 } }
-		}
-		# Remaining months = room left for future re-improvement
-		set_variable = { name = atd_room value = var:atd_months_remaining }
-		if = {
-			limit = { var:atd_room < 0 }
-			set_variable = { name = atd_room value = 0 }
-		}
-		remove_variable = atd_months_remaining
-		remove_variable = atd_auto_target
-		set_variable = { name = atd_decay_sub value = 0 }
-	}
-
-	# Clear non-outraged targets that hit the opinion cap
-	every_country = {
-		limit = {
-			has_variable = atd_auto_target
-			NOT = { var:atd_auto_target = 3 }
-			var:atd_months_remaining <= 0
-		}
+	# Clear targets that hit the opinion cap
+	every_in_list = {
+		variable = atd_targets
+		limit = { var:atd_months_remaining <= 0 }
+		save_scope_as = atd_finished
 		remove_variable = atd_months_remaining
 		remove_variable = atd_auto_target
 		set_variable = { name = atd_room value = 0 }
 		set_variable = { name = atd_decay_sub value = 0 }
+		root = {
+			remove_list_variable = { name = atd_targets target = scope:atd_finished }
+			add_to_variable_list = { name = atd_decaying target = scope:atd_finished }
+		}
 	}
 
 	# Tick decay: each month adds 1 to sub-counter, every 12 = 1 opinion point of room
-	every_country = {
-		limit = {
-			has_variable = atd_decay_sub
-			NOT = { has_variable = atd_auto_target }
-		}
+	every_in_list = {
+		variable = atd_decaying
 		change_variable = { name = atd_decay_sub add = 1 }
 		if = {
 			limit = { var:atd_decay_sub >= 12 }
@@ -59,175 +36,38 @@ atd_monthly_tick = {
 		}
 		if = {
 			limit = { var:atd_room >= 100 }
+			save_scope_as = atd_decayed
 			remove_variable = atd_room
 			remove_variable = atd_decay_sub
+			root = { remove_list_variable = { name = atd_decaying target = scope:atd_decayed } }
 		}
 	}
 }
 
-# Count existing assignments across all categories in a single pass.
-# Sets atd_assigned_* variables for use by individual category handlers.
+# Count existing neighbor assignments.
 atd_count_assignments = {
 	atd_monthly_tick = yes
-
-	set_variable = { name = atd_assigned_subjects value = 0 }
 	set_variable = { name = atd_assigned_neighbors value = 0 }
-	set_variable = { name = atd_assigned_outraged value = 0 }
-	set_variable = { name = atd_assigned_allies value = 0 }
-	set_variable = { name = atd_assigned_threatened value = 0 }
-
-	every_country = {
-		limit = { has_variable = atd_auto_target }
-		if = { limit = { var:atd_auto_target = 1 } root = { change_variable = { name = atd_assigned_subjects add = 1 } } }
-		else_if = { limit = { var:atd_auto_target = 2 } root = { change_variable = { name = atd_assigned_neighbors add = 1 } } }
-		else_if = { limit = { var:atd_auto_target = 3 } root = { change_variable = { name = atd_assigned_outraged add = 1 } } }
-		else_if = { limit = { var:atd_auto_target = 4 } root = { change_variable = { name = atd_assigned_allies add = 1 } } }
-		else_if = { limit = { var:atd_auto_target = 5 } root = { change_variable = { name = atd_assigned_threatened add = 1 } } }
+	every_in_list = {
+		variable = atd_targets
+		limit = { var:atd_auto_target = 2 }
+		root = { change_variable = { name = atd_assigned_neighbors add = 1 } }
 	}
 }
 
-# Master effect - processes categories in player-defined display order.
+# Master effect — neighbors only for debugging.
 atd_auto_improve = {
 	atd_count_assignments = yes
-
-	# Early exit: skip dispatch if no spare diplomats and no existing assignments
-	set_local_variable = { name = atd_has_diplomats value = 0 }
-	if = {
-		limit = {
-			num_of_diplomats > var:atd_min_diplomats
-		}
-		set_local_variable = { name = atd_has_diplomats value = 1 }
-	}
-
-	if = {
-		limit = {
-			OR = {
-				local_var:atd_has_diplomats = 1
-				var:atd_assigned_subjects > 0
-				var:atd_assigned_neighbors > 0
-				var:atd_assigned_outraged > 0
-				var:atd_assigned_allies > 0
-				var:atd_assigned_threatened > 0
-			}
-		}
-
-		cmm_for_each_list_item = {
-			setting = atd__improve_relations
-			effect = atd_dispatch_item
-		}
-	}
-
-	remove_variable = atd_assigned_subjects
+	atd_improve_neighbors = yes
 	remove_variable = atd_assigned_neighbors
-	remove_variable = atd_assigned_outraged
-	remove_variable = atd_assigned_allies
-	remove_variable = atd_assigned_threatened
 }
 
-# Dispatches to the correct category effect based on stable item number.
-# $i$ is substituted by cmm_for_each_list_item to the stable item number.
-# $setting$ is the composite setting key (required parameter).
-# Stable: 1=neighbors, 2=subjects, 3=outraged, 4=allies, 5=threatened.
-atd_dispatch_item = {
-	set_local_variable = { name = atd_item value = $i$ }
-	if = { limit = { local_var:atd_item = 1 } atd_improve_neighbors = yes }
-	else_if = { limit = { local_var:atd_item = 2 } atd_improve_subjects = yes }
-	else_if = { limit = { local_var:atd_item = 3 } atd_improve_outraged = yes }
-	else_if = { limit = { local_var:atd_item = 4 } atd_improve_allies = yes }
-	else_if = { limit = { local_var:atd_item = 5 } atd_improve_threatened = yes }
-
-	cmf_suppress = { v = $setting$ }
-}
-
-# ── Subjects (atd_auto_target = 1) ──────────────────────────────────────────
-atd_improve_subjects = {
-	if = {
-		limit = {
-			has_variable = atd_improve_relations_count
-			var:atd_improve_relations_count > 0
-		}
-		set_variable = { name = atd_remaining value = var:atd_improve_relations_count }
-		change_variable = { name = atd_remaining subtract = var:atd_assigned_subjects }
-
-		while = {
-			count = 10
-			limit = {
-				var:atd_remaining < 0
-				any_subject = { has_variable = atd_auto_target var:atd_auto_target = 1 }
-			}
-			random_subject = {
-				limit = { has_variable = atd_auto_target var:atd_auto_target = 1 }
-				if = {
-					limit = { has_variable = atd_months_remaining }
-					set_variable = { name = atd_room value = var:atd_months_remaining }
-					remove_variable = atd_months_remaining
-				}
-				remove_variable = atd_auto_target
-				set_variable = { name = atd_decay_sub value = 0 }
-			}
-			change_variable = { name = atd_remaining add = 1 }
-		}
-
-		while = {
-			count = 10
-			limit = {
-				var:atd_remaining > 0
-				num_of_diplomats > var:atd_min_diplomats
-				modifier:monthly_diplomats >= var:atd_min_diplomat_gain
-				any_subject = {
-					NOT = { has_variable = atd_auto_target }
-					OR = {
-						NOT = { has_variable = atd_decay_sub }
-						var:atd_room >= 12
-					}
-				}
-			}
-			random_subject = {
-				limit = {
-					NOT = { has_variable = atd_auto_target }
-					OR = {
-						NOT = { has_variable = atd_decay_sub }
-						var:atd_room >= 12
-					}
-				}
-				save_scope_as = atd_send_target
-				set_variable = { name = atd_auto_target value = 1 }
-				set_variable = { name = atd_months_remaining value = 100 }
-				if = {
-					limit = { has_variable = atd_room }
-					set_variable = { name = atd_months_remaining value = var:atd_room }
-				}
-				if = {
-					limit = { has_variable = atd_decay_sub }
-					remove_variable = atd_decay_sub
-				}
-			}
-			perform_diplomatic_action = {
-				type = improve_relation
-				actor = root
-				recipient = scope:atd_send_target
-			}
-			change_variable = { name = atd_remaining subtract = 1 }
-		}
-		remove_variable = atd_remaining
-	}
-	else_if = {
-		limit = {
-			has_variable = atd_improve_relations_count
-			var:atd_assigned_subjects > 0
-		}
-		every_subject = {
-			limit = { has_variable = atd_auto_target var:atd_auto_target = 1 }
-			if = {
-				limit = { has_variable = atd_months_remaining }
-				set_variable = { name = atd_room value = var:atd_months_remaining }
-				remove_variable = atd_months_remaining
-			}
-			remove_variable = atd_auto_target
-			set_variable = { name = atd_decay_sub value = 0 }
-		}
-	}
-}
+# Stub dispatchers so cmm_for_each_list_item doesn't break.
+atd_dispatch_item = { cmf_suppress = { v = $setting$ } }
+atd_improve_subjects = { }
+atd_improve_outraged = { }
+atd_improve_allies = { }
+atd_improve_threatened = { }
 
 # ── Neighbors (atd_auto_target = 2) ─────────────────────────────────────────
 atd_improve_neighbors = {
@@ -239,6 +79,7 @@ atd_improve_neighbors = {
 		set_variable = { name = atd_remaining value = var:atd_improve_neighbors_count }
 		change_variable = { name = atd_remaining subtract = var:atd_assigned_neighbors }
 
+		# Recall excess targets
 		while = {
 			count = 10
 			limit = {
@@ -247,6 +88,7 @@ atd_improve_neighbors = {
 			}
 			random_country = {
 				limit = { has_variable = atd_auto_target var:atd_auto_target = 2 }
+				save_scope_as = atd_recall_target
 				if = {
 					limit = { has_variable = atd_months_remaining }
 					set_variable = { name = atd_room value = var:atd_months_remaining }
@@ -255,9 +97,12 @@ atd_improve_neighbors = {
 				remove_variable = atd_auto_target
 				set_variable = { name = atd_decay_sub value = 0 }
 			}
+			remove_list_variable = { name = atd_targets target = scope:atd_recall_target }
+			add_to_variable_list = { name = atd_decaying target = scope:atd_recall_target }
 			change_variable = { name = atd_remaining add = 1 }
 		}
 
+		# Dispatch new targets
 		while = {
 			count = 10
 			limit = {
@@ -296,6 +141,8 @@ atd_improve_neighbors = {
 					remove_variable = atd_decay_sub
 				}
 			}
+			remove_list_variable = { name = atd_decaying target = scope:atd_send_target }
+			add_to_variable_list = { name = atd_targets target = scope:atd_send_target }
 			perform_diplomatic_action = {
 				type = improve_relation
 				actor = root
@@ -310,8 +157,11 @@ atd_improve_neighbors = {
 			has_variable = atd_improve_neighbors_count
 			var:atd_assigned_neighbors > 0
 		}
-		every_country = {
-			limit = { has_variable = atd_auto_target var:atd_auto_target = 2 }
+		# Full recall of all neighbor targets
+		every_in_list = {
+			variable = atd_targets
+			limit = { var:atd_auto_target = 2 }
+			save_scope_as = atd_recalled
 			if = {
 				limit = { has_variable = atd_months_remaining }
 				set_variable = { name = atd_room value = var:atd_months_remaining }
@@ -319,296 +169,10 @@ atd_improve_neighbors = {
 			}
 			remove_variable = atd_auto_target
 			set_variable = { name = atd_decay_sub value = 0 }
-		}
-	}
-}
-
-# ── Outraged / High Antagonism (atd_auto_target = 3) ────────────────────────
-atd_improve_outraged = {
-	if = {
-		limit = {
-			has_variable = atd_improve_outraged_count
-			var:atd_improve_outraged_count > 0
-		}
-		set_variable = { name = atd_remaining value = var:atd_improve_outraged_count }
-		change_variable = { name = atd_remaining subtract = var:atd_assigned_outraged }
-
-		while = {
-			count = 10
-			limit = {
-				var:atd_remaining < 0
-				any_country_in_diplomatic_range = { has_variable = atd_auto_target var:atd_auto_target = 3 }
+			root = {
+				remove_list_variable = { name = atd_targets target = scope:atd_recalled }
+				add_to_variable_list = { name = atd_decaying target = scope:atd_recalled }
 			}
-			random_country_in_diplomatic_range = {
-				limit = { has_variable = atd_auto_target var:atd_auto_target = 3 }
-				if = {
-					limit = { has_variable = atd_months_remaining }
-					set_variable = { name = atd_room value = var:atd_months_remaining }
-					remove_variable = atd_months_remaining
-				}
-				remove_variable = atd_auto_target
-				set_variable = { name = atd_decay_sub value = 0 }
-			}
-			change_variable = { name = atd_remaining add = 1 }
-		}
-
-		while = {
-			count = 10
-			limit = {
-				var:atd_remaining > 0
-				num_of_diplomats > var:atd_min_diplomats
-				modifier:monthly_diplomats >= var:atd_min_diplomat_gain
-				any_country_in_diplomatic_range = {
-					is_discovered_by = root
-					antagonism = { target = root value > 0 }
-					NOT = { has_variable = atd_auto_target }
-					NOT = { is_subject_of = root }
-					OR = {
-						NOT = { has_variable = atd_decay_sub }
-						var:atd_room >= 12
-					}
-				}
-			}
-			ordered_country_in_diplomatic_range = {
-				limit = {
-					is_discovered_by = root
-					antagonism = { target = root value > 0 }
-					NOT = { has_variable = atd_auto_target }
-					NOT = { is_subject_of = root }
-					OR = {
-						NOT = { has_variable = atd_decay_sub }
-						var:atd_room >= 12
-					}
-				}
-				order_by = this_antagonism_towards_prev
-				max = 1
-				save_scope_as = atd_send_target
-				set_variable = { name = atd_auto_target value = 3 }
-				set_variable = { name = atd_months_remaining value = 100 }
-				if = {
-					limit = { has_variable = atd_room }
-					set_variable = { name = atd_months_remaining value = var:atd_room }
-				}
-				if = {
-					limit = { has_variable = atd_decay_sub }
-					remove_variable = atd_decay_sub
-				}
-			}
-			perform_diplomatic_action = {
-				type = improve_relation
-				actor = root
-				recipient = scope:atd_send_target
-			}
-			change_variable = { name = atd_remaining subtract = 1 }
-		}
-		remove_variable = atd_remaining
-	}
-	else_if = {
-		limit = {
-			has_variable = atd_improve_outraged_count
-			var:atd_assigned_outraged > 0
-		}
-		every_country = {
-			limit = { has_variable = atd_auto_target var:atd_auto_target = 3 }
-			if = {
-				limit = { has_variable = atd_months_remaining }
-				set_variable = { name = atd_room value = var:atd_months_remaining }
-				remove_variable = atd_months_remaining
-			}
-			remove_variable = atd_auto_target
-			set_variable = { name = atd_decay_sub value = 0 }
-		}
-	}
-}
-
-# ── Allies (atd_auto_target = 4) ────────────────────────────────────────────
-atd_improve_allies = {
-	if = {
-		limit = {
-			has_variable = atd_improve_allies_count
-			var:atd_improve_allies_count > 0
-		}
-		set_variable = { name = atd_remaining value = var:atd_improve_allies_count }
-		change_variable = { name = atd_remaining subtract = var:atd_assigned_allies }
-
-		while = {
-			count = 10
-			limit = {
-				var:atd_remaining < 0
-				any_country_in_diplomatic_range = { has_variable = atd_auto_target var:atd_auto_target = 4 }
-			}
-			random_country_in_diplomatic_range = {
-				limit = { has_variable = atd_auto_target var:atd_auto_target = 4 }
-				if = {
-					limit = { has_variable = atd_months_remaining }
-					set_variable = { name = atd_room value = var:atd_months_remaining }
-					remove_variable = atd_months_remaining
-				}
-				remove_variable = atd_auto_target
-				set_variable = { name = atd_decay_sub value = 0 }
-			}
-			change_variable = { name = atd_remaining add = 1 }
-		}
-
-		while = {
-			count = 10
-			limit = {
-				var:atd_remaining > 0
-				num_of_diplomats > var:atd_min_diplomats
-				modifier:monthly_diplomats >= var:atd_min_diplomat_gain
-				any_country_in_diplomatic_range = {
-					is_discovered_by = root
-					is_allied_with = { target = root }
-					NOT = { has_variable = atd_auto_target }
-					NOT = { is_subject_of = root }
-					OR = {
-						NOT = { has_variable = atd_decay_sub }
-						var:atd_room >= 12
-					}
-				}
-			}
-			random_country_in_diplomatic_range = {
-				limit = {
-					is_discovered_by = root
-					is_allied_with = { target = root }
-					NOT = { has_variable = atd_auto_target }
-					NOT = { is_subject_of = root }
-					OR = {
-						NOT = { has_variable = atd_decay_sub }
-						var:atd_room >= 12
-					}
-				}
-				save_scope_as = atd_send_target
-				set_variable = { name = atd_auto_target value = 4 }
-				set_variable = { name = atd_months_remaining value = 100 }
-				if = {
-					limit = { has_variable = atd_room }
-					set_variable = { name = atd_months_remaining value = var:atd_room }
-				}
-				if = {
-					limit = { has_variable = atd_decay_sub }
-					remove_variable = atd_decay_sub
-				}
-			}
-			perform_diplomatic_action = {
-				type = improve_relation
-				actor = root
-				recipient = scope:atd_send_target
-			}
-			change_variable = { name = atd_remaining subtract = 1 }
-		}
-		remove_variable = atd_remaining
-	}
-	else_if = {
-		limit = {
-			has_variable = atd_improve_allies_count
-			var:atd_assigned_allies > 0
-		}
-		every_country = {
-			limit = { has_variable = atd_auto_target var:atd_auto_target = 4 }
-			if = {
-				limit = { has_variable = atd_months_remaining }
-				set_variable = { name = atd_room value = var:atd_months_remaining }
-				remove_variable = atd_months_remaining
-			}
-			remove_variable = atd_auto_target
-			set_variable = { name = atd_decay_sub value = 0 }
-		}
-	}
-}
-
-# ── Threatening (atd_auto_target = 5) ────────────────────────────────────────
-atd_improve_threatened = {
-	if = {
-		limit = {
-			has_variable = atd_improve_threatened_count
-			var:atd_improve_threatened_count > 0
-		}
-		set_variable = { name = atd_remaining value = var:atd_improve_threatened_count }
-		change_variable = { name = atd_remaining subtract = var:atd_assigned_threatened }
-
-		while = {
-			count = 10
-			limit = {
-				var:atd_remaining < 0
-				any_country_in_diplomatic_range = { has_variable = atd_auto_target var:atd_auto_target = 5 }
-			}
-			random_country_in_diplomatic_range = {
-				limit = { has_variable = atd_auto_target var:atd_auto_target = 5 }
-				if = {
-					limit = { has_variable = atd_months_remaining }
-					set_variable = { name = atd_room value = var:atd_months_remaining }
-					remove_variable = atd_months_remaining
-				}
-				remove_variable = atd_auto_target
-				set_variable = { name = atd_decay_sub value = 0 }
-			}
-			change_variable = { name = atd_remaining add = 1 }
-		}
-
-		while = {
-			count = 10
-			limit = {
-				var:atd_remaining > 0
-				num_of_diplomats > var:atd_min_diplomats
-				modifier:monthly_diplomats >= var:atd_min_diplomat_gain
-				any_country_in_diplomatic_range = {
-					is_discovered_by = root
-					is_threat_to = root
-					NOT = { has_variable = atd_auto_target }
-					NOT = { is_subject_of = root }
-					OR = {
-						NOT = { has_variable = atd_decay_sub }
-						var:atd_room >= 12
-					}
-				}
-			}
-			random_country_in_diplomatic_range = {
-				limit = {
-					is_discovered_by = root
-					is_threat_to = root
-					NOT = { has_variable = atd_auto_target }
-					NOT = { is_subject_of = root }
-					OR = {
-						NOT = { has_variable = atd_decay_sub }
-						var:atd_room >= 12
-					}
-				}
-				save_scope_as = atd_send_target
-				set_variable = { name = atd_auto_target value = 5 }
-				set_variable = { name = atd_months_remaining value = 100 }
-				if = {
-					limit = { has_variable = atd_room }
-					set_variable = { name = atd_months_remaining value = var:atd_room }
-				}
-				if = {
-					limit = { has_variable = atd_decay_sub }
-					remove_variable = atd_decay_sub
-				}
-			}
-			perform_diplomatic_action = {
-				type = improve_relation
-				actor = root
-				recipient = scope:atd_send_target
-			}
-			change_variable = { name = atd_remaining subtract = 1 }
-		}
-		remove_variable = atd_remaining
-	}
-	else_if = {
-		limit = {
-			has_variable = atd_improve_threatened_count
-			var:atd_assigned_threatened > 0
-		}
-		every_country = {
-			limit = { has_variable = atd_auto_target var:atd_auto_target = 5 }
-			if = {
-				limit = { has_variable = atd_months_remaining }
-				set_variable = { name = atd_room value = var:atd_months_remaining }
-				remove_variable = atd_months_remaining
-			}
-			remove_variable = atd_auto_target
-			set_variable = { name = atd_decay_sub value = 0 }
 		}
 	}
 }
