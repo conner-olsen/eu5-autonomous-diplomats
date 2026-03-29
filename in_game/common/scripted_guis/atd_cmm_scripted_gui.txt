@@ -27,6 +27,6 @@ atd__improve_relations_on_changed = {
 			setting = atd__improve_relations_i5_f1
 			alias = atd_improve_threatened_count
 		}
-		atd_auto_improve = yes
+		atd_improve_relations = yes
 	}
 }

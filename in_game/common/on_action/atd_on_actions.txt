@@ -7,6 +7,6 @@ cmf_monthly_human_country_pulse = {
 
 atd_on_monthly = {
 	effect = {
-		atd_auto_improve = yes
+		atd_improve_relations = yes
 	}
 }
