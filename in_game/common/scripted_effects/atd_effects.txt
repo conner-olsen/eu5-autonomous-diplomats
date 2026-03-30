@@ -44,11 +44,7 @@ atd_update_improved_with = {
 							add = 1
 						}
 					}
-					remove_from_variable_map = {
-						name = atd_improved_with
-						key = scope:nation_improved_with
-					}
-					add_to_variable_map = {
+					cmf_change_variable_map = {
 						name = atd_improved_with
 						key = scope:nation_improved_with
 						value = var:temp_new_improved_amount
@@ -93,11 +89,7 @@ atd_update_improved_with = {
 							subtract = 0.1
 						}
 					}
-					remove_from_variable_map = {
-						name = atd_improved_with
-						key = scope:nation_improved_with
-					}
-					add_to_variable_map = {
+					cmf_change_variable_map = {
 						name = atd_improved_with
 						key = scope:nation_improved_with
 						value = var:temp_new_improved_amount
@@ -138,47 +130,54 @@ atd_improve_relations_each_item = {
 	cmf_suppress = { v = $setting$ }
 }
 
+# Starts improving relations with scope:target_country if not already improving.
+# Must be called inside scope:actor_scope.
+# Params: type (type flag name), counter (counter variable name)
+atd_start_improving_with = {
+	if = {
+		limit = {
+			OR = {
+				NOT = { has_variable_map = atd_improving_with }
+				NOT = {
+					is_key_in_variable_map = {
+						name = atd_improving_with
+						target = scope:target_country
+					}
+				}
+			}
+		}
+		perform_diplomatic_action = {
+			type = improve_relation
+			actor = scope:actor_scope
+			recipient = scope:target_country
+		}
+		add_to_variable_map = {
+			name = atd_improving_with
+			key = scope:target_country
+			value = 1
+		}
+		add_to_variable_map = {
+			name = atd_improved_with
+			key = scope:target_country
+			value = 1
+		}
+		add_to_variable_map = {
+			name = atd_improving_type
+			key = scope:target_country
+			value = flag:$type$
+		}
+		change_variable = { name = $counter$ add = 1 }
+	}
+}
+
 atd_improve_neighbors = {
 	while = {
 		limit = { var:atd_n_neighbors_improving_with < var:atd_improve_neighbors_count }
 		count = 10
 		random_neighbor_country = {
-			save_scope_as = target_neighbor
+			save_scope_as = target_country
 			scope:actor_scope = {
-				if = {
-					limit = {
-						OR = {
-							NOT = { has_variable_map = atd_improving_with }
-							NOT = {
-								is_key_in_variable_map = {
-									name = atd_improving_with
-									target = scope:target_neighbor
-								}
-							}
-						}
-					}
-					perform_diplomatic_action = {
-						type = improve_relation
-						actor = scope:actor_scope
-						recipient = scope:target_neighbor
-					}
-					add_to_variable_map = {
-						name = atd_improving_with
-						key = scope:target_neighbor
-						value = 1
-					}
-					add_to_variable_map = {
-						name = atd_improved_with
-						key = scope:target_neighbor
-						value = 1
-					}
-					add_to_variable_map = {
-						name = atd_improving_type
-						key = scope:target_neighbor
-						value = flag:neighbor
-					}
-					change_variable = { name = atd_n_neighbors_improving_with add = 1 }
-				}
+				atd_start_improving_with = { type = neighbor counter = atd_n_neighbors_improving_with }
 			}
 		}
 	}
@@ -191,40 +190,7 @@ atd_improve_subjects = {
 		random_subject = {
 			save_scope_as = target_country
 			scope:actor_scope = {
-				if = {
-					limit = {
-						OR = {
-							NOT = { has_variable_map = atd_improving_with }
-							NOT = {
-								is_key_in_variable_map = {
-									name = atd_improving_with
-									target = scope:target_country
-								}
-							}
-						}
-					}
-					perform_diplomatic_action = {
-						type = improve_relation
-						actor = scope:actor_scope
-						recipient = scope:target_country
-					}
-					add_to_variable_map = {
-						name = atd_improving_with
-						key = scope:target_country
-						value = 1
-					}
-					add_to_variable_map = {
-						name = atd_improved_with
-						key = scope:target_country
-						value = 1
-					}
-					add_to_variable_map = {
-						name = atd_improving_type
-						key = scope:target_country
-						value = flag:subject
-					}
-					change_variable = { name = atd_n_subjects_improving_with add = 1 }
-				}
+				atd_start_improving_with = { type = subject counter = atd_n_subjects_improving_with }
 			}
 		}
 	}
@@ -255,27 +221,7 @@ atd_improve_outraged = {
 			max = 1
 			save_scope_as = target_country
 			scope:actor_scope = {
-				perform_diplomatic_action = {
-					type = improve_relation
-					actor = scope:actor_scope
-					recipient = scope:target_country
-				}
-				add_to_variable_map = {
-					name = atd_improving_with
-					key = scope:target_country
-					value = 1
-				}
-				add_to_variable_map = {
-					name = atd_improved_with
-					key = scope:target_country
-					value = 1
-				}
-				add_to_variable_map = {
-					name = atd_improving_type
-					key = scope:target_country
-					value = flag:outraged
-				}
-				change_variable = { name = atd_n_outraged_improving_with add = 1 }
+				atd_start_improving_with = { type = outraged counter = atd_n_outraged_improving_with }
 			}
 		}
 	}
@@ -288,40 +234,7 @@ atd_improve_allies = {
 		random_ally = {
 			save_scope_as = target_country
 			scope:actor_scope = {
-				if = {
-					limit = {
-						OR = {
-							NOT = { has_variable_map = atd_improving_with }
-							NOT = {
-								is_key_in_variable_map = {
-									name = atd_improving_with
-									target = scope:target_country
-								}
-							}
-						}
-					}
-					perform_diplomatic_action = {
-						type = improve_relation
-						actor = scope:actor_scope
-						recipient = scope:target_country
-					}
-					add_to_variable_map = {
-						name = atd_improving_with
-						key = scope:target_country
-						value = 1
-					}
-					add_to_variable_map = {
-						name = atd_improved_with
-						key = scope:target_country
-						value = 1
-					}
-					add_to_variable_map = {
-						name = atd_improving_type
-						key = scope:target_country
-						value = flag:ally
-					}
-					change_variable = { name = atd_n_allies_improving_with add = 1 }
-				}
+				atd_start_improving_with = { type = ally counter = atd_n_allies_improving_with }
 			}
 		}
 	}
@@ -339,40 +252,7 @@ atd_improve_threatened = {
 			}
 			save_scope_as = target_country
 			scope:actor_scope = {
-				if = {
-					limit = {
-						OR = {
-							NOT = { has_variable_map = atd_improving_with }
-							NOT = {
-								is_key_in_variable_map = {
-									name = atd_improving_with
-									target = scope:target_country
-								}
-							}
-						}
-					}
-					perform_diplomatic_action = {
-						type = improve_relation
-						actor = scope:actor_scope
-						recipient = scope:target_country
-					}
-					add_to_variable_map = {
-						name = atd_improving_with
-						key = scope:target_country
-						value = 1
-					}
-					add_to_variable_map = {
-						name = atd_improved_with
-						key = scope:target_country
-						value = 1
-					}
-					add_to_variable_map = {
-						name = atd_improving_type
-						key = scope:target_country
-						value = flag:threatened
-					}
-					change_variable = { name = atd_n_threatened_improving_with add = 1 }
-				}
+				atd_start_improving_with = { type = threatened counter = atd_n_threatened_improving_with }
 			}
 		}
 	}
