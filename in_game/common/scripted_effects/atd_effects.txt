@@ -1,9 +1,15 @@
 ﻿atd_improve_relations = {
 	save_scope_as = actor_scope
-	atd_update_improved_with = yes
-	cmm_for_each_list_item = {
-		setting = atd__improve_relations
-		effect = atd_improve_relations_each_item
+	if = {
+		limit = {
+			num_of_diplomats >= var:atd_min_diplomats
+			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+		}
+		atd_update_improved_with = yes
+		cmm_for_each_list_item = {
+			setting = atd__improve_relations
+			effect = atd_improve_relations_each_item
+		}
 	}
 }
 
