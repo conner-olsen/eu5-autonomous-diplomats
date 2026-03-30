@@ -168,6 +168,16 @@ atd_start_improving_with = {
 		}
 		change_variable = { name = $counter$ add = 1 }
 	}
+
+	# Suppress "used but never set" warnings for type flags passed via $type$
+	if = {
+		limit = { always = no }
+		cmf_suppress = { v = neighbor }
+		cmf_suppress = { v = subject }
+		cmf_suppress = { v = outraged }
+		cmf_suppress = { v = ally }
+		cmf_suppress = { v = threatened }
+	}
 }
 
 atd_improve_neighbors = {
@@ -231,7 +241,10 @@ atd_improve_allies = {
 	while = {
 		limit = { var:atd_n_allies_improving_with < var:atd_improve_allies_count }
 		count = 10
-		random_ally = {
+		random_country_in_diplomatic_range = {
+			limit = {
+				is_allied_with = { target = scope:actor_scope }
+			}
 			save_scope_as = target_country
 			scope:actor_scope = {
 				atd_start_improving_with = { type = ally counter = atd_n_allies_improving_with }
