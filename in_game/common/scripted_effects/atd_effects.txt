@@ -1,22 +1,14 @@
 ﻿atd_improve_relations = {
+	save_scope_as = actor_scope
+	atd_update_improved_with = yes
 	cmm_for_each_list_item = {
 		setting = atd__improve_relations
 		effect = atd_improve_relations_each_item
 	}
 }
 
-atd_improve_relations_each_item = {
-	# $i$ is the resolved item number (1-5)
-	# scope:cmm_list_current_item_value  (attached game object)
-	# "variable_map(cmm|flag:$setting$_i$i$_f1)"  (count, slider)
-	# Per-item aliases for count:
-	#   Neighboring Countries: var:atd_improve_neighbors_count
-	#   Own Subject Countries: var:atd_improve_relations_count
-	#   Outraged Countries: var:atd_improve_outraged_count
-	#   Allies: var:atd_improve_allies_count
-	#   Threatening Countries: var:atd_improve_threatened_count
-	save_scope_as = actor_scope
-
+# Runs ONCE per tick. Iterates atd_improved_with to update progress and count active entries per type.
+atd_update_improved_with = {
 	set_variable = { name = atd_n_neighbors_improving_with value = 0 }
 
 	if = {
@@ -99,6 +91,17 @@ atd_improve_relations_each_item = {
 			}
 		}
 	}
+}
+
+atd_improve_relations_each_item = {
+	# $i$ is the resolved item number (1-5)
+	# scope:cmm_list_current_item_value  (attached game object)
+	# Per-item aliases for count:
+	#   Neighboring Countries: var:atd_improve_neighbors_count
+	#   Own Subject Countries: var:atd_improve_relations_count
+	#   Outraged Countries: var:atd_improve_outraged_count
+	#   Allies: var:atd_improve_allies_count
+	#   Threatening Countries: var:atd_improve_threatened_count
 
 	switch = {
 		trigger = scope:cmm_list_current_item_value
