@@ -29,6 +29,7 @@ atd_improve_relations_each_item = {
 			scope:actor_scope = {
 				if = {
 					limit = {
+						has_variable_map = atd_improving_with
 						is_key_in_variable_map = {
 							name = atd_improving_with
 							target = scope:nation_improved_with
