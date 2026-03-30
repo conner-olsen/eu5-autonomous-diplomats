@@ -16,6 +16,10 @@
 # Runs ONCE per tick. Iterates atd_improved_with to update progress and count active entries per type.
 atd_update_improved_with = {
 	set_variable = { name = atd_n_neighbors_improving_with value = 0 }
+	set_variable = { name = atd_n_subjects_improving_with value = 0 }
+	set_variable = { name = atd_n_outraged_improving_with value = 0 }
+	set_variable = { name = atd_n_allies_improving_with value = 0 }
+	set_variable = { name = atd_n_threatened_improving_with value = 0 }
 
 	if = {
 		limit = {
@@ -66,6 +70,18 @@ atd_update_improved_with = {
 							flag:neighbor = {
 								change_variable = { name = atd_n_neighbors_improving_with add = 1 }
 							}
+							flag:subject = {
+								change_variable = { name = atd_n_subjects_improving_with add = 1 }
+							}
+							flag:outraged = {
+								change_variable = { name = atd_n_outraged_improving_with add = 1 }
+							}
+							flag:ally = {
+								change_variable = { name = atd_n_allies_improving_with add = 1 }
+							}
+							flag:threatened = {
+								change_variable = { name = atd_n_threatened_improving_with add = 1 }
+							}
 						}
 					}
 				}
@@ -112,6 +128,10 @@ atd_improve_relations_each_item = {
 	switch = {
 		trigger = scope:cmm_list_current_item_value
 		flag:neighbors = { atd_improve_neighbors = yes }
+		flag:subjects = { atd_improve_subjects = yes }
+		flag:outraged = { atd_improve_outraged = yes }
+		flag:allies = { atd_improve_allies = yes }
+		flag:threatening = { atd_improve_threatened = yes }
 	}
 
 	cmf_suppress = { v = $i$ }
@@ -158,6 +178,200 @@ atd_improve_neighbors = {
 						value = flag:neighbor
 					}
 					change_variable = { name = atd_n_neighbors_improving_with add = 1 }
+				}
+			}
+		}
+	}
+}
+
+atd_improve_subjects = {
+	while = {
+		limit = { var:atd_n_subjects_improving_with < var:atd_improve_relations_count }
+		count = 10
+		random_subject = {
+			save_scope_as = target_country
+			scope:actor_scope = {
+				if = {
+					limit = {
+						OR = {
+							NOT = { has_variable_map = atd_improving_with }
+							NOT = {
+								is_key_in_variable_map = {
+									name = atd_improving_with
+									target = scope:target_country
+								}
+							}
+						}
+					}
+					perform_diplomatic_action = {
+						type = improve_relation
+						actor = scope:actor_scope
+						recipient = scope:target_country
+					}
+					add_to_variable_map = {
+						name = atd_improving_with
+						key = scope:target_country
+						value = 1
+					}
+					add_to_variable_map = {
+						name = atd_improved_with
+						key = scope:target_country
+						value = 1
+					}
+					add_to_variable_map = {
+						name = atd_improving_type
+						key = scope:target_country
+						value = flag:subject
+					}
+					change_variable = { name = atd_n_subjects_improving_with add = 1 }
+				}
+			}
+		}
+	}
+}
+
+atd_improve_outraged = {
+	while = {
+		limit = { var:atd_n_outraged_improving_with < var:atd_improve_outraged_count }
+		count = 10
+		ordered_country_in_diplomatic_range = {
+			limit = {
+				is_discovered_by = scope:actor_scope
+				antagonism = { target = scope:actor_scope value > 0 }
+				NOT = { is_subject_of = scope:actor_scope }
+				scope:actor_scope = {
+					OR = {
+						NOT = { has_variable_map = atd_improving_with }
+						NOT = {
+							is_key_in_variable_map = {
+								name = atd_improving_with
+								target = PREV
+							}
+						}
+					}
+				}
+			}
+			order_by = this_antagonism_towards_prev
+			max = 1
+			save_scope_as = target_country
+			scope:actor_scope = {
+				perform_diplomatic_action = {
+					type = improve_relation
+					actor = scope:actor_scope
+					recipient = scope:target_country
+				}
+				add_to_variable_map = {
+					name = atd_improving_with
+					key = scope:target_country
+					value = 1
+				}
+				add_to_variable_map = {
+					name = atd_improved_with
+					key = scope:target_country
+					value = 1
+				}
+				add_to_variable_map = {
+					name = atd_improving_type
+					key = scope:target_country
+					value = flag:outraged
+				}
+				change_variable = { name = atd_n_outraged_improving_with add = 1 }
+			}
+		}
+	}
+}
+
+atd_improve_allies = {
+	while = {
+		limit = { var:atd_n_allies_improving_with < var:atd_improve_allies_count }
+		count = 10
+		random_ally = {
+			save_scope_as = target_country
+			scope:actor_scope = {
+				if = {
+					limit = {
+						OR = {
+							NOT = { has_variable_map = atd_improving_with }
+							NOT = {
+								is_key_in_variable_map = {
+									name = atd_improving_with
+									target = scope:target_country
+								}
+							}
+						}
+					}
+					perform_diplomatic_action = {
+						type = improve_relation
+						actor = scope:actor_scope
+						recipient = scope:target_country
+					}
+					add_to_variable_map = {
+						name = atd_improving_with
+						key = scope:target_country
+						value = 1
+					}
+					add_to_variable_map = {
+						name = atd_improved_with
+						key = scope:target_country
+						value = 1
+					}
+					add_to_variable_map = {
+						name = atd_improving_type
+						key = scope:target_country
+						value = flag:ally
+					}
+					change_variable = { name = atd_n_allies_improving_with add = 1 }
+				}
+			}
+		}
+	}
+}
+
+atd_improve_threatened = {
+	while = {
+		limit = { var:atd_n_threatened_improving_with < var:atd_improve_threatened_count }
+		count = 10
+		random_country_in_diplomatic_range = {
+			limit = {
+				is_discovered_by = scope:actor_scope
+				is_threat_to = scope:actor_scope
+				NOT = { is_subject_of = scope:actor_scope }
+			}
+			save_scope_as = target_country
+			scope:actor_scope = {
+				if = {
+					limit = {
+						OR = {
+							NOT = { has_variable_map = atd_improving_with }
+							NOT = {
+								is_key_in_variable_map = {
+									name = atd_improving_with
+									target = scope:target_country
+								}
+							}
+						}
+					}
+					perform_diplomatic_action = {
+						type = improve_relation
+						actor = scope:actor_scope
+						recipient = scope:target_country
+					}
+					add_to_variable_map = {
+						name = atd_improving_with
+						key = scope:target_country
+						value = 1
+					}
+					add_to_variable_map = {
+						name = atd_improved_with
+						key = scope:target_country
+						value = 1
+					}
+					add_to_variable_map = {
+						name = atd_improving_type
+						key = scope:target_country
+						value = flag:threatened
+					}
+					change_variable = { name = atd_n_threatened_improving_with add = 1 }
 				}
 			}
 		}
