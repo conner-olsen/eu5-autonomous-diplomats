@@ -41,10 +41,7 @@ atd_update_improved_with = {
 						name = temp_new_improved_amount
 						value = {
 							value = "variable_map(atd_improved_with|scope:nation_improved_with)"
-							add = {
-								value = 1
-								add = modifier:improve_relation_impact
-							}
+							add = 1
 						}
 					}
 					cmf_change_variable_map = {
