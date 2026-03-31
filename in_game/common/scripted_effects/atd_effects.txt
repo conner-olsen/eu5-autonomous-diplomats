@@ -2,7 +2,7 @@
 	save_scope_as = actor_scope
 	if = {
 		limit = {
-			num_of_diplomats >= var:atd_min_diplomats
+			num_of_diplomats > var:atd_min_diplomats
 			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
 		}
 		atd_update_improved_with = yes
@@ -136,6 +136,8 @@ atd_improve_relations_each_item = {
 atd_start_improving_with = {
 	if = {
 		limit = {
+			num_of_diplomats > var:atd_min_diplomats
+			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
 			OR = {
 				NOT = { has_variable_map = atd_improving_with }
 				NOT = {
@@ -182,7 +184,11 @@ atd_start_improving_with = {
 
 atd_improve_neighbors = {
 	while = {
-		limit = { var:atd_n_neighbors_improving_with < var:atd_improve_neighbors_count }
+		limit = {
+			var:atd_n_neighbors_improving_with < var:atd_improve_neighbors_count
+			num_of_diplomats > var:atd_min_diplomats
+			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+		}
 		count = 10
 		random_neighbor_country = {
 			save_scope_as = target_country
@@ -195,7 +201,11 @@ atd_improve_neighbors = {
 
 atd_improve_subjects = {
 	while = {
-		limit = { var:atd_n_subjects_improving_with < var:atd_improve_relations_count }
+		limit = {
+			var:atd_n_subjects_improving_with < var:atd_improve_relations_count
+			num_of_diplomats > var:atd_min_diplomats
+			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+		}
 		count = 10
 		random_subject = {
 			save_scope_as = target_country
@@ -208,7 +218,11 @@ atd_improve_subjects = {
 
 atd_improve_outraged = {
 	while = {
-		limit = { var:atd_n_outraged_improving_with < var:atd_improve_outraged_count }
+		limit = {
+			var:atd_n_outraged_improving_with < var:atd_improve_outraged_count
+			num_of_diplomats > var:atd_min_diplomats
+			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+		}
 		count = 10
 		ordered_country_in_diplomatic_range = {
 			limit = {
@@ -237,7 +251,11 @@ atd_improve_outraged = {
 
 atd_improve_allies = {
 	while = {
-		limit = { var:atd_n_allies_improving_with < var:atd_improve_allies_count }
+		limit = {
+			var:atd_n_allies_improving_with < var:atd_improve_allies_count
+			num_of_diplomats > var:atd_min_diplomats
+			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+		}
 		count = 10
 		ordered_country_in_diplomatic_range = {
 			limit = {
@@ -274,7 +292,11 @@ atd_improve_allies = {
 
 atd_improve_threatened = {
 	while = {
-		limit = { var:atd_n_threatened_improving_with < var:atd_improve_threatened_count }
+		limit = {
+			var:atd_n_threatened_improving_with < var:atd_improve_threatened_count
+			num_of_diplomats > var:atd_min_diplomats
+			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+		}
 		count = 10
 		ordered_country_in_diplomatic_range = {
 			limit = {
