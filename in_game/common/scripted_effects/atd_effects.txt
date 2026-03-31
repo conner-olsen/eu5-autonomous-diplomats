@@ -147,6 +147,16 @@ atd_start_improving_with = {
 					}
 				}
 			}
+			OR = {
+				NOT = { has_variable_map = atd_improved_with }
+				NOT = {
+					is_key_in_variable_map = {
+						name = atd_improved_with
+						target = scope:target_country
+					}
+				}
+				"variable_map(atd_improved_with|scope:target_country)" < 90
+			}
 		}
 		perform_diplomatic_action = {
 			type = improve_relation
