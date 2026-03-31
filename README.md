@@ -1,21 +1,29 @@
-# \[Insert Mod Repo Name\]
+# Autonomous Diplomats
 
-\[Insert Mod Repo Description\]
+An EU5 mod that automates diplomatic relation improvement. Configure priority categories and diplomat limits, and the mod handles sending your diplomats to improve relations each month.
 
-For a full current and upcoming feature list, see the steam page below.
-[![Steam Workshop](https://img.shields.io/badge/Steam%20Workshop-Subscribe-blue)](\[Insert Mod Workshop Link\])
+Requires [Community Mod Framework (CMF)](https://github.com/conner-olsen/community-mod-framework).
+
+## Features
+
+- **Automatic diplomat dispatch** -- sends idle diplomats to improve relations with target countries each month
+- **5 target categories** -- Neighboring Countries, Own Subjects, Outraged Countries, Allies, and Threatening Countries
+- **Drag-to-reorder priority list** -- set which categories get diplomats first via the Community Mod Menu
+- **Per-category diplomat limits** -- control how many diplomats each category can use (0-10)
+- **Diplomat reserves** -- set a minimum number of free diplomats and minimum monthly diplomat gain to keep in reserve
+- **Progress tracking** -- won't re-target countries already at +90 relations; decays tracking over time
 
 ## Installation
 
 ### Steam Workshop (Recommended)
 
-Subscribe on the [Steam Workshop](\[Insert Mod Workshop Link\]).
+Subscribe on the Steam Workshop (link coming soon).
 
 ### Manual Installation
 
 1. Clone or download this repository
 2. Copy it to `Documents\Paradox Interactive\Europa Universalis V\mod`
-3. Enable as normal in game
+3. Enable in the launcher along with Community Mod Framework
 
 ## License
 
