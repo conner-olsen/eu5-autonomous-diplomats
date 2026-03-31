@@ -1,0 +1,66 @@
+===WORKSHOP_TITLE===
+Diplomatas Autônomos / Autonomous Diplomats
+===WORKSHOP_DESCRIPTION===
+[i]You are on the DeepL-Generated Portuguese (Brazil) Page. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=$item-id$&l=english]Click here for the Native English Page.[/url][/i]
+
+[h1]Visão Geral:[/h1]
+Autonomous Diplomats traz de volta o sistema de diplomatas automatizados do EU4. Seus diplomatas ociosos são enviados para melhorar relações com países-alvo a cada mês. Configure categorias de prioridade, limites de diplomatas e reservas através do Community Mod Menu — chega de microgerenciar ações de melhorar relações.
+
+Requer [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Community Mod Framework (CMF)[/url].
+
+[h1]Funcionalidades:[/h1]
+[olist]
+ [*][b]Envio Automático de Diplomatas:[/b] Envia diplomatas ociosos para melhorar relações com países-alvo em cada ciclo mensal.
+ [*][b]5 Categorias de Alvos:[/b] Países Vizinhos, Próprios Súditos, Países Indignados, Aliados e Países Ameaçadores.
+  [list]
+   [*][b]Prioridade Arrastar-para-Reordenar:[/b] Defina quais categorias recebem diplomatas primeiro através do Community Mod Menu.
+   [*][b]Limites de Diplomatas por Categoria:[/b] Controle quantos diplomatas cada categoria pode usar (0-10).
+  [/list]
+ [*][b]Reservas de Diplomatas:[/b] Defina um número mínimo de diplomatas livres e um ganho mensal mínimo de diplomatas para manter em reserva. Ações autônomas não ultrapassarão esses limites.
+ [*][b]Rastreamento de Progresso:[/b] Rastreia o progresso de melhoria por alvo. Não redirecionará diplomatas para países que já possuem +90 de relações. O progresso diminui naturalmente com o tempo quando os diplomatas são reatribuídos.
+[/olist]
+
+[h1]Planejado/Em Breve:[/h1]
+[olist]
+ [*][b]Mais Ações Diplomáticas:[/b] Automatizar outras ações diplomáticas além de melhorar relações.
+[/olist]
+
+[h1]Localizações Nativas:[/h1]
+[list]
+ [*][b]Inglês:[/b] Primário
+[/list]
+
+[h1]Localizações traduzidas pelo DeepL:[/h1]
+[list]
+ [*][b]Chinese / 中文[/b]
+ [*][b]French / Français[/b]
+ [*][b]German / Deutsch[/b]
+ [*][b]Japanese / 日本語[/b]
+ [*][b]Korean / 한국어[/b]
+ [*][b]Polish / Polski[/b]
+ [*][b]Portuguese (Brazil) / Português (Brasil)[/b]
+ [*][b]Russian / Русский[/b]
+ [*][b]Spanish / Español[/b]
+ [*][b]Turkish / Türkçe[/b]
+[/list]
+
+[h1]Registro de Alterações:[/h1]
+Veja as [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]Notas de Alteração na página da oficina[/url].
+
+[h1]Problemas Conhecidos:[/h1]
+[list]
+ [*]O mod usa seu próprio rastreamento interno para identificar quais diplomatas foram enviados. Se você cancelar manualmente uma ação de melhorar relações, o mod não detectará o cancelamento imediatamente. No entanto, ele sempre se ressincronizará por conta própria eventualmente.
+[/list]
+
+[h1]Compatibilidade:[/h1]
+[list]
+ [*]Não compatível com Ironman/Conquistas.
+ [*]Totalmente compatível com jogos salvos (save games).
+ [*]Deve funcionar com qualquer mod.
+ [*]Posso adicionar patches de compatibilidade mediante solicitação.
+[/list]
+
+Além da seção de comentários, você também pode tirar dúvidas, relatar bugs ou fazer sugestões marcando @arealconner no [url=https://discord.gg/zeQ6x9wrPq]canal #utility-mods do servidor de Discord da Comunidade de EU5[/url]. E se você tiver interesse em participar do desenvolvimento deste ou de um dos meus outros mods, você pode me marcar ou adicionar no Discord @arealconner. Todas as contribuições são bem-vindas.
+
+As versões de código-fonte e de desenvolvimento do mod estão disponíveis no [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub.[/url]
+

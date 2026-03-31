@@ -1,0 +1,66 @@
+===WORKSHOP_TITLE===
+自动外交官 / Autonomous Diplomats
+===WORKSHOP_DESCRIPTION===
+[i]You are on the DeepL-Generated Simplified Chinese Page. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=$item-id$&l=english]Click here for the Native English Page.[/url][/i]
+
+[h1]概述：[/h1]
+Autonomous Diplomats（自动外交官）带回了来自 EU4 的自动外交官系统。您的空闲外交官每月都会被派往目标国家改善关系。通过社区模组菜单配置优先级类别、外交官限制和预留数量——不再需要繁琐地微操改善关系行动。
+
+需要 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Community Mod Framework (CMF)[/url]。
+
+[h1]特色：[/h1]
+[olist]
+ [*][b]自动外交官派遣：[/b] 在每月结算时自动派遣空闲外交官去改善与目标国家的关系。
+ [*][b]5 种目标类别：[/b] 邻国、自家附庸、愤怒的国家、盟友以及威胁国家。
+  [list]
+   [*][b]拖拽重排优先级：[/b] 通过社区模组菜单设置哪些类别优先获得外交官。
+   [*][b]各类别外交官限制：[/b] 控制每个类别可以使用多少名外交官（0-10）。
+  [/list]
+ [*][b]外交官预留：[/b] 设置预留的最少空闲外交官数量和每月最少外交官增长量。自动操作不会低于您设定的阈值。
+ [*][b]进度追踪：[/b] 追踪每个目标的改善进度。不会重新指向关系已达 +90 的国家。当外交官被重新分配时，进度会随时间自然衰减。
+[/olist]
+
+[h1]计划中/即将推出：[/h1]
+[olist]
+ [*][b]更多外交行动：[/b] 除了改善关系外，自动执行其他外交行动。
+[/olist]
+
+[h1]原生本地化：[/h1]
+[list]
+ [*][b]English:[/b] Primary
+[/list]
+
+[h1]DeepL 翻译本地化：[/h1]
+[list]
+ [*][b]Chinese / 中文[/b]
+ [*][b]French / Français[/b]
+ [*][b]German / Deutsch[/b]
+ [*][b]Japanese / 日本語[/b]
+ [*][b]Korean / 한국어[/b]
+ [*][b]Polish / Polski[/b]
+ [*][b]Portuguese (Brazil) / Português (Brasil)[/b]
+ [*][b]Russian / Русский[/b]
+ [*][b]Spanish / Español[/b]
+ [*][b]Turkish / Türkçe[/b]
+[/list]
+
+[h1]更新日志：[/h1]
+请参阅[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]创意工坊页面的更改说明[/url]。
+
+[h1]已知问题：[/h1]
+[list]
+ [*]该模组使用内部追踪来记录哪些外交官已被派出。如果您手动取消改善关系行动，模组不会立即检测到取消。但它最终总会自动重新同步。
+[/list]
+
+[h1]兼容性：[/h1]
+[list]
+ [*]不兼容铁人模式/成就。
+ [*]完全兼容存档。
+ [*]应该兼容任何模组。
+ [*]我可以根据要求添加兼容性补丁。
+[/list]
+
+除了评论区外，您还可以在 [url=https://discord.gg/zeQ6x9wrPq]EU5 社区 Discord 服务器的 #utility-mods 频道[/url]中 ping @arealconner 来提问、报告错误或提出建议。如果您有兴趣参与本模组或我其他模组的开发，可以在 Discord 上 ping 或添加我 @arealconner。欢迎所有贡献。
+
+模组的源码和开发版本可在 [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub[/url] 上获取。
+

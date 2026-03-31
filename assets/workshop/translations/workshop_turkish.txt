@@ -1,0 +1,66 @@
+===WORKSHOP_TITLE===
+Otonom Diplomatlar / Autonomous Diplomats
+===WORKSHOP_DESCRIPTION===
+[i]You are on the DeepL-Generated Turkish Page. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=$item-id$&l=english]Click here for the Native English Page.[/url][/i]
+
+[h1]Genel Bakış:[/h1]
+Autonomous Diplomats, EU4'teki otomatik diplomat sistemini geri getiriyor. Boşta kalan diplomatlarınız her ay hedef ülkelerle ilişkileri geliştirmek üzere gönderilir. Topluluk Mod Menüsü (Community Mod Menu) aracılığıyla öncelik kategorilerini, diplomat limitlerini ve rezervlerini yapılandırın; artık ilişkileri geliştirme eylemlerini mikro yönetmekle uğraşmayın.
+
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Community Mod Framework (CMF)[/url] gereklidir.
+
+[h1]Özellikler:[/h1]
+[olist]
+ [*][b]Otomatik Diplomat Gönderimi:[/b] Boşta kalan diplomatları aylık döngüde hedef ülkelerle ilişkileri geliştirmek üzere gönderir.
+ [*][b]5 Hedef Kategorisi:[/b] Komşu Ülkeler, Kendi Tabileriniz, Öfkeli Ülkeler, Müttefikler ve Tehditkar Ülkeler.
+  [list]
+   [*][b]Sürükle-Bırak Öncelik Sıralaması:[/b] Topluluk Mod Menüsü üzerinden hangi kategorilerin diplomat alımında öncelikli olacağını belirleyin.
+   [*][b]Kategori Başına Diplomat Sınırı:[/b] Her kategorinin kaç diplomat kullanabileceğini kontrol edin (0-10).
+  [/list]
+ [*][b]Diplomat Rezervleri:[/b] Rezervde tutulacak minimum boş diplomat sayısını ve minimum aylık diplomat artışını belirleyin. Otonom eylemler belirlediğiniz eşiklerin altına düşmeyecektir.
+ [*][b]İlerleme Takibi:[/b] Her hedef için ilişki geliştirme ilerlemesini takip eder. İlişkileri zaten +90 olan ülkeleri tekrar hedeflemez. Diplomatlar başka göreve atandığında ilerleme zamanla doğal olarak azalır.
+[/olist]
+
+[h1]Planlanan/Gelecek Özellikler:[/h1]
+[olist]
+ [*][b]Daha Fazla Diplomatik Eylem:[/b] İlişkileri geliştirme dışındaki diğer diplomatik eylemleri de otomatikleştirin.
+[/olist]
+
+[h1]Yerel Dil Destekleri:[/h1]
+[list]
+ [*][b]İngilizce:[/b] Birincil
+[/list]
+
+[h1]DeepL ile Çevrilen Diller:[/h1]
+[list]
+ [*][b]Çince / 中文[/b]
+ [*][b]Fransızca / Français[/b]
+ [*][b]Almanca / Deutsch[/b]
+ [*][b]Japonca / 日本語[/b]
+ [*][b]Korece / 한국어[/b]
+ [*][b]Lehçe / Polski[/b]
+ [*][b]Portekizce (Brezilya) / Português (Brasil)[/b]
+ [*][b]Rusça / Русский[/b]
+ [*][b]İspanyolca / Español[/b]
+ [*][b]Türkçe / Türkçe[/b]
+[/list]
+
+[h1]Değişiklik Kaydı:[/h1]
+[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]Workshop sayfasındaki Değişiklik Notlarına[/url] göz atın.
+
+[h1]Bilinen Sorunlar:[/h1]
+[list]
+ [*]Mod, hangi diplomatların dışarı gönderildiğini takip etmek için kendi dahili sistemini kullanır. Bir ilişkileri geliştirme eylemini manuel olarak iptal ederseniz, mod bu iptali anında algılamayabilir. Ancak en sonunda her zaman kendi kendine yeniden senkronize olacaktır.
+[/list]
+
+[h1]Uyumluluk:[/h1]
+[list]
+ [*]Ironman/Başarım uyumlu değildir.
+ [*]Kayıtlı oyunlarla (save game) tam uyumludur.
+ [*]Herhangi bir modla çalışmalıdır.
+ [*]İstek üzerine uyumluluk yamaları ekleyebilirim.
+[/list]
+
+Yorumlar bölümüne ek olarak, [url=https://discord.gg/zeQ6x9wrPq]EU5 Topluluğu discord sunucusundaki #utility-mods kanalı[/url] üzerinden @arealconner kullanıcısına seslenerek soru sorabilir, hata bildirebilir veya öneride bulunabilirsiniz. Ayrıca bu modun veya diğer modlarımdan birinin geliştirilmesine katılmak isterseniz, beni Discord'da @arealconner olarak ekleyebilir veya mesaj atabilirsiniz. Tüm katkılara açığım.
+
+Modun kaynak ve geliştirme sürümleri [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub[/url] üzerinde mevcuttur.
+

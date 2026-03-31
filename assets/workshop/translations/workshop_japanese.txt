@@ -1,0 +1,66 @@
+===WORKSHOP_TITLE===
+自律的外交官 / Autonomous Diplomats
+===WORKSHOP_DESCRIPTION===
+[i]You are on the DeepL-Generated Japanese Page. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=$item-id$&l=english]Click here for the Native English Page.[/url][/i]
+
+[h1]概要:[/h1]
+Autonomous Diplomatsは、EU4の自動外交官システムを復活させます。待機中の外交官は、毎月のティックごとに対象国との関係を改善するために自動的に派遣されます。Community Mod Menuを通じて、優先カテゴリー、外交官の制限数、および予備の設定が可能です。関係改善アクションをマイクロマネジメントする必要はもうありません。
+
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Community Mod Framework (CMF)[/url]が必要です。
+
+[h1]特徴:[/h1]
+[olist]
+ [*][b]外交官の自動派遣:[/b] 毎月のティックで、待機中の外交官を対象国に派遣し、関係を改善します。
+ [*][b]5つの対象カテゴリー:[/b] 隣接国、自国の従属国、激怒している国、同盟国、脅威を感じている国。
+  [list]
+   [*][b]ドラッグによる優先順位の並べ替え:[/b] Community Mod Menuから、どのカテゴリーに優先的に外交官を割り当てるか設定できます。
+   [*][b]カテゴリーごとの外交官制限:[/b] 各カテゴリーで使用できる外交官の数（0～10）を制御します。
+  [/list]
+ [*][b]外交官の予備設定:[/b] 予備として残しておくフリーの外交官の最小数と、毎月の外交官増加量の最小値を設定できます。自動化されたアクションがこのしきい値を下回ることはありません。
+ [*][b]進捗トラッキング:[/b] 対象ごとの改善の進捗を追跡します。関係がすでに+90に達している国は対象外となります。外交官が再割り当てされると、進捗は時間の経過とともに自然に減少します。
+[/olist]
+
+[h1]計画中/今後予定されている内容:[/h1]
+[olist]
+ [*][b]その他の外交アクション:[/b] 関係改善以外の外交アクションも自動化します。
+[/olist]
+
+[h1]ネイティブによる翻訳:[/h1]
+[list]
+ [*][b]English:[/b] Primary
+[/list]
+
+[h1]DeepLによる翻訳:[/h1]
+[list]
+ [*][b]Chinese / 中文[/b]
+ [*][b]French / Français[/b]
+ [*][b]German / Deutsch[/b]
+ [*][b]Japanese / 日本語[/b]
+ [*][b]Korean / 한국어[/b]
+ [*][b]Polish / Polski[/b]
+ [*][b]Portuguese (Brazil) / Português (Brasil)[/b]
+ [*][b]Russian / Русский[/b]
+ [*][b]Spanish / Español[/b]
+ [*][b]Turkish / Türkçe[/b]
+[/list]
+
+[h1]更新履歴:[/h1]
+[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]ワークショップページの更新履歴[/url]をご覧ください。
+
+[h1]既知の問題:[/h1]
+[list]
+ [*]このModは、どの外交官が派遣されたかを独自に内部で追跡しています。手動で関係改善アクションをキャンセルした場合、Modは即座にはそのキャンセルを検知できませんが、最終的には常に自動で同期されます。
+[/list]
+
+[h1]互換性:[/h1]
+[list]
+ [*]アイアンマン/実績非対応。
+ [*]セーブデータとの完全な互換性あり。
+ [*]あらゆるModと動作するはずです。
+ [*]リクエストに応じて互換性パッチを追加する場合があります。
+[/list]
+
+コメント欄に加えて、[url=https://discord.gg/zeQ6x9wrPq]EU5 Community Discordサーバーの#utility-modsチャネル[/url]で @arealconner をメンションすることで、質問、バグ報告、提案を行うこともできます。また、このModや他のModの開発に参加することに興味がある場合は、Discordで @arealconner をメンションするかフレンドに追加してください。あらゆる貢献を歓迎します。
+
+Modのソースコードおよび開発版は [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub[/url] で公開されています。
+

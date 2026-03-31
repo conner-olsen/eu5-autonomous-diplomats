@@ -1,0 +1,66 @@
+===WORKSHOP_TITLE===
+자율적인 외교관 / Autonomous Diplomats
+===WORKSHOP_DESCRIPTION===
+[i]You are on the DeepL-Generated Korean Page. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=$item-id$&l=english]Click here for the Native English Page.[/url][/i]
+
+[h1]개요:[/h1]
+Autonomous Diplomats는 EU4의 외교관 자동화 시스템을 다시 도입합니다. 유휴 외교관들이 매달 대상 국가로 파견되어 관계 개선을 수행합니다. 커뮤니티 모드 메뉴(Community Mod Menu)를 통해 우선순위 카테고리, 외교관 제한 및 예비군 설정을 구성할 수 있어 더 이상 관계 개선 작업을 일일이 관리할 필요가 없습니다.
+
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Community Mod Framework (CMF)[/url]가 필요합니다.
+
+[h1]주요 기능:[/h1]
+[olist]
+ [*][b]외교관 자동 파견:[/b] 매월 유휴 외교관을 대상 국가로 파견하여 관계를 개선합니다.
+ [*][b]5가지 대상 카테고리:[/b] 인접 국가, 자국 종속국, 분노한 국가, 동맹국, 위협적인 국가.
+  [list]
+   [*][b]드래그로 우선순위 재정렬:[/b] 커뮤니티 모드 메뉴를 통해 어떤 카테고리에 외교관을 먼저 배치할지 설정할 수 있습니다.
+   [*][b]카테고리별 외교관 제한:[/b] 각 카테고리에서 사용할 외교관 수를 조절할 수 있습니다 (0-10).
+  [/list]
+ [*][b]외교관 예비군:[/b] 예비로 남겨둘 최소 유휴 외교관 수와 최소 월간 외교관 획득량을 설정합니다. 자동화 작업은 설정한 임계값 이하로 떨어지지 않도록 작동합니다.
+ [*][b]진행 상황 추적:[/b] 대상별 관계 개선 진행 상황을 추적합니다. 이미 관계도가 +90인 국가에는 다시 파견하지 않습니다. 외교관이 해제되면 시간이 지남에 따라 관계도가 자연스럽게 감소합니다.
+[/olist]
+
+[h1]계획됨/예정 사항:[/h1]
+[olist]
+ [*][b]더 많은 외교 행동:[/b] 관계 개선 이외의 다른 외교 행동들도 자동화할 예정입니다.
+[/olist]
+
+[h1]기본 로컬라이징:[/h1]
+[list]
+ [*][b]English:[/b] Primary
+[/list]
+
+[h1]DeepL 번역 로컬라이징:[/h1]
+[list]
+ [*][b]Chinese / 中文[/b]
+ [*][b]French / Français[/b]
+ [*][b]German / Deutsch[/b]
+ [*][b]Japanese / 日本語[/b]
+ [*][b]Korean / 한국어[/b]
+ [*][b]Polish / Polski[/b]
+ [*][b]Portuguese (Brazil) / Português (Brasil)[/b]
+ [*][b]Russian / Русский[/b]
+ [*][b]Spanish / Español[/b]
+ [*][b]Turkish / Türkçe[/b]
+[/list]
+
+[h1]변경 로그:[/h1]
+[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]창작마당 페이지의 변경 사항[/url]을 확인하세요.
+
+[h1]알려진 문제:[/h1]
+[list]
+ [*]이 모드는 어떤 외교관이 파견되었는지 추적하기 위해 자체적인 내부 시스템을 사용합니다. 수동으로 관계 개선 작업을 취소할 경우, 모드가 즉각적으로 취소를 감지하지 못할 수 있습니다. 하지만 결국에는 항상 자동으로 동기화됩니다.
+[/list]
+
+[h1]호환성:[/h1]
+[list]
+ [*]아이언맨/업적 달성 비호환.
+ [*]세이브 파일과 완벽히 호환됩니다.
+ [*]모든 모드와 호환되어야 합니다.
+ [*]요청 시 호환성 패치를 추가할 수 있습니다.
+[/list]
+
+댓글 섹션 외에도, [url=https://discord.gg/zeQ6x9wrPq]EU5 커뮤니티 디스코드 서버의 #utility-mods 채널[/url]에서 @arealconner를 호출하여 질문, 버그 제보 또는 제안을 할 수 있습니다. 이 모드나 다른 모드의 개발에 참여하고 싶으시다면 디스코드 @arealconner로 메시지를 보내거나 친구 추가를 해주세요. 모든 기여를 환영합니다.
+
+모드의 소스 및 개발 버전은 [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub[/url]에서 확인할 수 있습니다.
+
