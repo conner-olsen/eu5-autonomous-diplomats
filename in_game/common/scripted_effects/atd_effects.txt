@@ -41,7 +41,10 @@ atd_update_improved_with = {
 						name = temp_new_improved_amount
 						value = {
 							value = "variable_map(atd_improved_with|scope:nation_improved_with)"
-							add = 1
+							add = {
+								value = 1
+								add = modifier:improve_relation_impact
+							}
 						}
 					}
 					cmf_change_variable_map = {
@@ -236,6 +239,7 @@ atd_improve_outraged = {
 		count = 10
 		ordered_country_in_diplomatic_range = {
 			limit = {
+				is_discovered_by = scope:actor_scope
 				antagonism = { target = scope:actor_scope value > 0 }
 				scope:actor_scope = {
 					OR = {
