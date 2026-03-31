@@ -212,9 +212,7 @@ atd_improve_outraged = {
 		count = 10
 		ordered_country_in_diplomatic_range = {
 			limit = {
-				is_discovered_by = scope:actor_scope
 				antagonism = { target = scope:actor_scope value > 0 }
-				NOT = { is_subject_of = scope:actor_scope }
 				scope:actor_scope = {
 					OR = {
 						NOT = { has_variable_map = atd_improving_with }
@@ -241,10 +239,31 @@ atd_improve_allies = {
 	while = {
 		limit = { var:atd_n_allies_improving_with < var:atd_improve_allies_count }
 		count = 10
-		random_country_in_diplomatic_range = {
+		ordered_country_in_diplomatic_range = {
 			limit = {
-				is_allied_with = { target = scope:actor_scope }
+				OR = {
+					is_allied_with = { target = scope:actor_scope }
+					any_international_organizations_member_of = {
+						international_organization_type = international_organization_type:defensive_league
+						scope:actor_scope = {
+							is_member_of_international_organization = PREV
+						}
+					}
+				}
+				scope:actor_scope = {
+					OR = {
+						NOT = { has_variable_map = atd_improving_with }
+						NOT = {
+							is_key_in_variable_map = {
+								name = atd_improving_with
+								target = PREV
+							}
+						}
+					}
+				}
 			}
+			order_by = { value = 0 }
+			max = 1
 			save_scope_as = target_country
 			scope:actor_scope = {
 				atd_start_improving_with = { type = ally counter = atd_n_allies_improving_with }
@@ -257,12 +276,23 @@ atd_improve_threatened = {
 	while = {
 		limit = { var:atd_n_threatened_improving_with < var:atd_improve_threatened_count }
 		count = 10
-		random_country_in_diplomatic_range = {
+		ordered_country_in_diplomatic_range = {
 			limit = {
-				is_discovered_by = scope:actor_scope
-				is_threat_to = scope:actor_scope
-				NOT = { is_subject_of = scope:actor_scope }
+				scope:actor_scope = { is_a_threat_for_us = PREV }
+				scope:actor_scope = {
+					OR = {
+						NOT = { has_variable_map = atd_improving_with }
+						NOT = {
+							is_key_in_variable_map = {
+								name = atd_improving_with
+								target = PREV
+							}
+						}
+					}
+				}
 			}
+			order_by = "threat_level_to(scope:actor_scope)"
+			max = 1
 			save_scope_as = target_country
 			scope:actor_scope = {
 				atd_start_improving_with = { type = threatened counter = atd_n_threatened_improving_with }
