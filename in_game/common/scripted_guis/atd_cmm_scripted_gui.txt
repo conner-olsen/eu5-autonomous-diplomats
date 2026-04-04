@@ -1,5 +1,4 @@
-﻿# General (general) Tab
-## Improve Relations (improve_relations) Group
+﻿# Improve Relations (improve_relations) Tab
 atd__improve_relations_on_changed = {
 	scope = country
 

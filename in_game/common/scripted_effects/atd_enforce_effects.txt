@@ -1,0 +1,55 @@
+﻿atd_enforce_on_subjects = {
+	save_scope_as = actor_scope
+	# Enforce Religion
+	if = {
+		limit = {
+			var:atd_enforce_religion >= 1
+			num_of_diplomats > var:atd_min_diplomats
+			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+		}
+		every_subject = {
+			limit = {
+				NOT = { religion = scope:actor_scope.religion }
+				subject_loyalty >= 50
+				liberty_desire < 50
+				trigger_if = {
+					limit = {
+						modifier:blocked_from_conversion = yes
+						has_reform = government_reform:military_order_reform
+					}
+					scope:actor_scope = { has_reform = government_reform:military_order_reform }
+				}
+				trigger_else = {
+					modifier:blocked_from_conversion = no
+				}
+			}
+			save_scope_as = atd_target_subject
+			enforce_religion_effect = {
+				actor = scope:actor_scope
+				target = scope:atd_target_subject
+			}
+			add_liberty_desire = liberty_desire_ultimate_plus
+		}
+	}
+	# Enforce Culture
+	if = {
+		limit = {
+			var:atd_enforce_culture >= 1
+			num_of_diplomats > var:atd_min_diplomats
+			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+		}
+		every_subject = {
+			limit = {
+				NOT = { culture = scope:actor_scope.culture }
+				subject_loyalty >= 50
+				liberty_desire < 50
+			}
+			save_scope_as = atd_target_subject
+			enforce_culture_effect = {
+				actor = scope:actor_scope
+				target = scope:atd_target_subject
+			}
+			add_liberty_desire = liberty_desire_ultimate_plus
+		}
+	}
+}
