@@ -77,29 +77,43 @@ atd_register_cmf_mod = {
 	}
 
 	# Subjects (subjects) Tab
-	## Enforce (enforce) Group
-	cmm_register_bool_setting = {
+	cmm_register_settings_list = {
 		mod_id = atd
-		setting_id = enforce_religion
+		setting_id = enforce
 		tab_id = subjects
-		group_id = enforce
-		default_value = 0
-	}
-	cmm_sync_setting_alias = {
-		setting = atd__enforce_religion
-		alias = atd_enforce_religion
+		item_count = 2
+		is_ordered = 1
 	}
 
-	cmm_register_bool_setting = {
+	cmm_set_list_item_value = {
 		mod_id = atd
-		setting_id = enforce_culture
-		tab_id = subjects
-		group_id = enforce
+		setting_id = enforce
+		item = 1
+		value = flag:religion
+	}
+
+	cmm_set_list_item_value = {
+		mod_id = atd
+		setting_id = enforce
+		item = 2
+		value = flag:culture
+	}
+
+	cmm_register_list_bool_field = {
+		mod_id = atd
+		setting_id = enforce
+		field_id = enabled
 		default_value = 0
 	}
-	cmm_sync_setting_alias = {
-		setting = atd__enforce_culture
-		alias = atd_enforce_culture
+
+	# Sync list field alias: enabled
+	cmm_sync_bool_alias = {
+		setting = atd__enforce_i1_f1
+		alias = atd_enforce_religion_enabled
+	}
+	cmm_sync_bool_alias = {
+		setting = atd__enforce_i2_f1
+		alias = atd_enforce_culture_enabled
 	}
 
 	# Settings (settings) Tab
@@ -153,20 +167,6 @@ atd_handle_cmf_callback = {
 			cmm_sync_setting_alias = {
 				setting = atd__min_diplomat_gain
 				alias = atd_min_diplomat_gain
-			}
-		}
-		# Subjects (subjects) Tab
-		## Enforce (enforce) Group
-		flag:atd__enforce_religion = {
-			cmm_sync_setting_alias = {
-				setting = atd__enforce_religion
-				alias = atd_enforce_religion
-			}
-		}
-		flag:atd__enforce_culture = {
-			cmm_sync_setting_alias = {
-				setting = atd__enforce_culture
-				alias = atd_enforce_culture
 			}
 		}
 	}

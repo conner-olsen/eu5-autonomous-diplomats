@@ -5,6 +5,7 @@
 
  # Improve Relations (improve_relations) Tab
  atd__improve_relations_name: "Improve Relations"
+ atd__improve_relations__improve_relations_name: "Improve Relations"
  atd__improve_relations_item_column_name: "Category"
  atd__improve_relations_i1_name: "Neighboring Countries"
  atd__improve_relations_i2_name: "Own Subject Countries"
@@ -15,13 +16,11 @@
 
  # Subjects (subjects) Tab
  atd__subjects_name: "Subjects"
- ## Enforce (enforce) Group
  atd__subjects__enforce_name: "Enforce"
- atd__subjects__enforce_desc: "Automatic enforcement actions on subject countries."
- atd__enforce_religion_name: "Enforce Religion"
- atd__enforce_religion_desc: "Automatically enforce your state religion on subjects when conditions allow. Subjects must have loyalty >= 50 and liberty desire < 50. Adds 100 liberty desire."
- atd__enforce_culture_name: "Enforce Culture"
- atd__enforce_culture_desc: "Automatically enforce your primary culture on subjects when conditions allow. Subjects must have loyalty >= 50 and liberty desire < 50. Adds 100 liberty desire."
+ atd__enforce_item_column_name: "Action"
+ atd__enforce_i1_name: "Enforce Religion"
+ atd__enforce_i2_name: "Enforce Culture"
+ atd__enforce__enabled_name: "Enabled"
 
  # Settings (settings) Tab
  atd__settings_name: "Settings"
@@ -36,11 +35,12 @@
  # Optional: self-referencing flag keys to suppress IDE warnings (safe to remove if you want)
  atd: "atd"
  atd__improve_relations: "atd__improve_relations"
+ atd__improve_relations__improve_relations: "atd__improve_relations__improve_relations"
  atd__improve_relations__count: "atd__improve_relations__count"
  atd__subjects: "atd__subjects"
  atd__subjects__enforce: "atd__subjects__enforce"
- atd__enforce_religion: "atd__enforce_religion"
- atd__enforce_culture: "atd__enforce_culture"
+ atd__enforce: "atd__enforce"
+ atd__enforce__enabled: "atd__enforce__enabled"
  atd__settings: "atd__settings"
  atd__settings__reserve: "atd__settings__reserve"
  atd__min_diplomats: "atd__min_diplomats"

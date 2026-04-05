@@ -28,3 +28,22 @@ atd__improve_relations_on_changed = {
 		}
 	}
 }
+
+# Subjects (subjects) Tab
+atd__enforce_on_changed = {
+	scope = country
+
+	effect = {
+		cmm_apply_list_change = {
+			setting = atd__enforce
+		}
+		cmm_sync_bool_alias = {
+			setting = atd__enforce_i1_f1
+			alias = atd_enforce_religion_enabled
+		}
+		cmm_sync_bool_alias = {
+			setting = atd__enforce_i2_f1
+			alias = atd_enforce_culture_enabled
+		}
+	}
+}
