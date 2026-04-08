@@ -21,6 +21,8 @@ atd_update_improved_with = {
 	set_variable = { name = atd_n_outraged_improving_with value = 0 }
 	set_variable = { name = atd_n_allies_improving_with value = 0 }
 	set_variable = { name = atd_n_threatened_improving_with value = 0 }
+	set_variable = { name = atd_n_hre_members_improving_with value = 0 }
+	set_variable = { name = atd_n_hre_electors_improving_with value = 0 }
 
 	if = {
 		limit = {
@@ -90,6 +92,12 @@ atd_update_improved_with = {
 							flag:threatened = {
 								change_variable = { name = atd_n_threatened_improving_with add = 1 }
 							}
+							flag:hre_member = {
+								change_variable = { name = atd_n_hre_members_improving_with add = 1 }
+							}
+							flag:hre_elector = {
+								change_variable = { name = atd_n_hre_electors_improving_with add = 1 }
+							}
 						}
 					}
 				}
@@ -120,7 +128,7 @@ atd_update_improved_with = {
 }
 
 atd_improve_relations_each_item = {
-	# $i$ is the resolved item number (1-5)
+	# $i$ is the resolved item number (1-7)
 	# scope:cmm_list_current_item_value  (attached game object)
 	# Per-item aliases for count:
 	#   Neighboring Countries: var:atd_improve_neighbors_count
@@ -128,6 +136,8 @@ atd_improve_relations_each_item = {
 	#   Outraged Countries: var:atd_improve_outraged_count
 	#   Allies: var:atd_improve_allies_count
 	#   Threatening Countries: var:atd_improve_threatened_count
+	#   HRE Members: var:atd_improve_hre_members_count
+	#   HRE Electors: var:atd_improve_hre_electors_count
 
 	switch = {
 		trigger = scope:cmm_list_current_item_value
@@ -136,6 +146,8 @@ atd_improve_relations_each_item = {
 		flag:outraged = { atd_improve_outraged = yes }
 		flag:allies = { atd_improve_allies = yes }
 		flag:threatening = { atd_improve_threatened = yes }
+		flag:hre_members = { atd_improve_hre_members = yes }
+		flag:hre_electors = { atd_improve_hre_electors = yes }
 	}
 
 	cmf_suppress = { v = $i$ }
@@ -201,6 +213,8 @@ atd_start_improving_with = {
 		cmf_suppress = { v = outraged }
 		cmf_suppress = { v = ally }
 		cmf_suppress = { v = threatened }
+		cmf_suppress = { v = hre_member }
+		cmf_suppress = { v = hre_elector }
 	}
 }
 
@@ -342,6 +356,123 @@ atd_improve_threatened = {
 			scope:actor_scope = {
 				atd_start_improving_with = { type = threatened counter = atd_n_threatened_improving_with skip_threshold = 90 }
 			}
+		}
+	}
+}
+
+atd_improve_hre_members = {
+	if = {
+		limit = {
+			is_member_of_international_organization = international_organization:hre
+		}
+		while = {
+			limit = {
+				var:atd_n_hre_members_improving_with < var:atd_improve_hre_members_count
+				num_of_diplomats >= var:atd_action_threshold
+				modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+			}
+			count = 10
+			ordered_country_in_diplomatic_range = {
+				limit = {
+					is_member_of_international_organization = international_organization:hre
+					scope:actor_scope = {
+						OR = {
+							NOT = { has_variable_map = atd_improving_with }
+							NOT = {
+								is_key_in_variable_map = {
+									name = atd_improving_with
+									target = PREV
+								}
+							}
+						}
+					}
+				}
+				order_by = { value = 0 }
+				max = 1
+				save_scope_as = target_country
+				scope:actor_scope = {
+					atd_start_improving_with = { type = hre_member counter = atd_n_hre_members_improving_with skip_threshold = 90 }
+				}
+			}
+		}
+	}
+}
+
+atd_improve_hre_electors = {
+	if = {
+		limit = {
+			is_member_of_international_organization = international_organization:hre
+		}
+		while = {
+			limit = {
+				var:atd_n_hre_electors_improving_with < var:atd_improve_hre_electors_count
+				num_of_diplomats >= var:atd_action_threshold
+				modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+			}
+			count = 10
+			ordered_country_in_diplomatic_range = {
+				limit = {
+					is_elector = yes
+					scope:actor_scope = {
+						OR = {
+							NOT = { has_variable_map = atd_improving_with }
+							NOT = {
+								is_key_in_variable_map = {
+									name = atd_improving_with
+									target = PREV
+								}
+							}
+						}
+					}
+				}
+				order_by = { value = 0 }
+				max = 1
+				save_scope_as = target_country
+				scope:actor_scope = {
+					atd_start_improving_with = { type = hre_elector counter = atd_n_hre_electors_improving_with skip_threshold = 90 }
+				}
+			}
+		}
+	}
+}
+
+# Show/hide HRE items based on eligibility.
+# Item 6 (HRE Electors): visible if you are an HRE member.
+# Item 7 (HRE Members): visible if you are an HRE member.
+# Scope: country
+atd_update_hre_visibility = {
+	if = {
+		limit = {
+			is_member_of_international_organization = international_organization:hre
+		}
+		cmm_show_list_item = {
+			mod_id = atd
+			setting_id = improve_relations
+			item = 6
+		}
+	}
+	else = {
+		cmm_hide_list_item = {
+			mod_id = atd
+			setting_id = improve_relations
+			item = 6
+		}
+	}
+	if = {
+		limit = {
+			is_member_of_international_organization = international_organization:hre
+		}
+		cmm_show_list_item = {
+			mod_id = atd
+			setting_id = improve_relations
+			item = 7
+		}
+	}
+	else = {
+		cmm_hide_list_item = {
+			mod_id = atd
+			setting_id = improve_relations
+			item = 7
 		}
 	}
 }

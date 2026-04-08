@@ -5,7 +5,7 @@ atd_register_cmf_mod = {
 		mod_id = atd
 		setting_id = improve_relations
 		tab_id = improve_relations
-		item_count = 5
+		item_count = 7
 		is_ordered = 1
 	}
 
@@ -44,6 +44,20 @@ atd_register_cmf_mod = {
 		value = flag:threatening
 	}
 
+	cmm_set_list_item_value = {
+		mod_id = atd
+		setting_id = improve_relations
+		item = 6
+		value = flag:hre_electors
+	}
+
+	cmm_set_list_item_value = {
+		mod_id = atd
+		setting_id = improve_relations
+		item = 7
+		value = flag:hre_members
+	}
+
 	cmm_register_list_slider_field = {
 		mod_id = atd
 		setting_id = improve_relations
@@ -75,6 +89,17 @@ atd_register_cmf_mod = {
 		setting = atd__improve_relations_i5_f1
 		alias = atd_improve_threatened_count
 	}
+	cmm_sync_setting_alias = {
+		setting = atd__improve_relations_i6_f1
+		alias = atd_improve_hre_electors_count
+	}
+	cmm_sync_setting_alias = {
+		setting = atd__improve_relations_i7_f1
+		alias = atd_improve_hre_members_count
+	}
+
+	# Hide HRE items based on eligibility
+	atd_update_hre_visibility = yes
 
 	# Subjects (subjects) Tab
 	cmm_register_settings_list = {

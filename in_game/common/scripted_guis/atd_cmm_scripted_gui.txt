@@ -26,6 +26,14 @@ atd__improve_relations_on_changed = {
 			setting = atd__improve_relations_i5_f1
 			alias = atd_improve_threatened_count
 		}
+		cmm_sync_setting_alias = {
+			setting = atd__improve_relations_i6_f1
+			alias = atd_improve_hre_electors_count
+		}
+		cmm_sync_setting_alias = {
+			setting = atd__improve_relations_i7_f1
+			alias = atd_improve_hre_members_count
+		}
 	}
 }
 

@@ -12,6 +12,8 @@
  atd__improve_relations_i3_name: "Outraged Countries"
  atd__improve_relations_i4_name: "Allies"
  atd__improve_relations_i5_name: "Threatening Countries"
+ atd__improve_relations_i6_name: "HRE Electors"
+ atd__improve_relations_i7_name: "HRE Members"
  atd__improve_relations__count_name: "Diplomats"
 
  # Subjects (subjects) Tab
