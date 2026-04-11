@@ -6,14 +6,22 @@
  # Improve Relations (improve_relations) Tab
  atd__improve_relations_name: "Improve Relations"
  atd__improve_relations__improve_relations_name: "Improve Relations"
+ atd__improve_relations__improve_relations_desc: "Automatically send diplomats to improve relations with countries in each category. Categories higher in the list are prioritized first."
  atd__improve_relations_item_column_name: "Category"
  atd__improve_relations_i1_name: "Neighboring Countries"
+ atd__improve_relations_i1_desc: "Improve relations with countries that border you."
  atd__improve_relations_i2_name: "Own Subject Countries"
+ atd__improve_relations_i2_desc: "Improve relations with your subject countries."
  atd__improve_relations_i3_name: "Outraged Countries"
+ atd__improve_relations_i3_desc: "Improve relations with countries that have a negative opinion of you, targeting the most outraged first."
  atd__improve_relations_i4_name: "Allies"
+ atd__improve_relations_i4_desc: "Improve relations with your allies and defensive league members."
  atd__improve_relations_i5_name: "Threatening Countries"
+ atd__improve_relations_i5_desc: "Improve relations with countries that threaten you, targeting the greatest threats first."
  atd__improve_relations_i6_name: "HRE Electors"
+ atd__improve_relations_i6_desc: "Improve relations with Holy Roman Empire electors."
  atd__improve_relations_i7_name: "HRE Members"
+ atd__improve_relations_i7_desc: "Improve relations with Holy Roman Empire members."
  atd__improve_relations__count_name: "Diplomats"
 
  # Subjects (subjects) Tab

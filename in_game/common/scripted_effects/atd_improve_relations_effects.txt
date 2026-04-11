@@ -7,6 +7,14 @@
 			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
 		}
 		atd_update_improved_with = yes
+		# Pass 1: prefer targets below +200 opinion
+		set_variable = { name = atd_skip_high_relations value = 1 }
+		cmm_for_each_list_item = {
+			setting = atd__improve_relations
+			effect = atd_improve_relations_each_item
+		}
+		# Pass 2: fallback to any remaining targets
+		remove_variable = atd_skip_high_relations
 		cmm_for_each_list_item = {
 			setting = atd__improve_relations
 			effect = atd_improve_relations_each_item
@@ -180,6 +188,12 @@ atd_start_improving_with = {
 					}
 				}
 				"variable_map(atd_improved_with|scope:target_country)" < $skip_threshold$
+			}
+			trigger_if = {
+				limit = { has_variable = atd_skip_high_relations }
+				scope:target_country = {
+					NOT = { opinion = { target = scope:actor_scope value >= 200 } }
+				}
 			}
 		}
 		perform_diplomatic_action = {
