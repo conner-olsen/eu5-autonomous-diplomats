@@ -3,64 +3,73 @@ Autonomiczni Dyplomaci / Autonomous Diplomats
 ===WORKSHOP_DESCRIPTION===
 [i]You are on the DeepL-Generated Polish Page. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=$item-id$&l=english]Click here for the Native English Page.[/url][/i]
 
-[h1]Przegląd:[/h1]
-Autonomous Diplomats przywraca zautomatyzowany system dyplomatów znany z EU4. Twoi bezczynni dyplomaci są co miesiąc wysyłani do poprawy relacji z krajami docelowymi. Skonfiguruj kategorie priorytetów, limity dyplomatów oraz rezerwy za pomocą Community Mod Menu – koniec z mikrozarządzaniem akcjami poprawy relacji.
+[h1]Overview:[/h1]
+Autonomous Diplomats przywraca system zautomatyzowanych dyplomatów znany z EU4. Twoi bezczynni dyplomaci są co miesiąc wysyłani, aby poprawiać relacje z krajami docelowymi. Skonfiguruj kategorie priorytetów, limity dyplomatów oraz rezerwy za pomocą Community Mod Menu – koniec z uciążliwym mikrozarządzaniem poprawą relacji.
 
 Wymaga [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Community Mod Framework (CMF)[/url].
 
-[h1]Funkcje:[/h1]
+[h1]Features:[/h1]
 [olist]
- [*][b]Automatyczne wysyłanie dyplomatów:[/b] Wysyła bezczynnych dyplomatów do poprawy relacji z krajami docelowymi w każdym miesięcznym cyklu.
- [*][b]5 kategorii docelowych:[/b] Sąsiednie kraje, Własne kraje podległe, Oburzone kraje, Sojusznicy oraz Zagrażające kraje.
+ [*][b]Automatyczne wysyłanie dyplomatów:[/b] Wysyła bezczynnych dyplomatów do poprawy relacji z krajami docelowymi przy comiesięcznym ticku.
+ [*][b]7 kategorii celów:[/b]
   [list]
-   [*][b]Priorytet przez przeciąganie:[/b] Ustaw, które kategorie otrzymują dyplomatów w pierwszej kolejności za pomocą Community Mod Menu.
-   [*][b]Limity dyplomatów na kategorię:[/b] Kontroluj, ilu dyplomatów może zostać przydzielonych do danej kategorii (0-10).
+   [*][b]Kraje sąsiednie:[/b] Poprawia relacje z losowymi narodami graniczącymi.
+   [*][b]Własni poddani:[/b] Poprawia relacje z losowymi narodami podległymi.
+   [*][b]Kraje oburzone:[/b] Poprawia relacje w pierwszej kolejności z narodami o najwyższym poziomie wrogości wobec Ciebie.
+   [*][b]Sojusznicy:[/b] Poprawia relacje z sojusznikami i członkami lig obronnych.
+   [*][b]Kraje zagrażające:[/b] Poprawia relacje w pierwszej kolejności z narodami, które stanowią dla Ciebie najwyższy poziom zagrożenia.
+   [*][b]Elektorzy Cesarstwa:[/b] Poprawia relacje z elektorami Świętego Cesarstwa Rzymskiego. Widoczne tylko dla członków ŚCR.
+   [*][b]Członkowie Cesarstwa:[/b] Poprawia relacje z pozostałymi członkami Świętego Cesarstwa Rzymskiego. Widoczne tylko dla członków ŚCR.
   [/list]
- [*][b]Rezerwy dyplomatów:[/b] Ustaw minimalną liczbę wolnych dyplomatów oraz minimalny miesięczny przyrost dyplomatów, których chcesz trzymać w rezerwie. Autonomiczne działania nie spowodują spadku zasobów poniżej Twoich progów.
- [*][b]Śledzenie postępów:[/b] Śledzi postęp poprawy relacji dla każdego celu. Mod nie będzie ponownie wybierać krajów, które mają już +90 relacji. Postęp naturalnie zanika z czasem, gdy dyplomaci zostaną oddelegowani.
+  [list]
+   [*][b]Zmiana priorytetów metodą przeciągnij i upuść:[/b] Ustal w Community Mod Menu, które kategorie mają otrzymywać dyplomatów w pierwszej kolejności.
+   [*][b]Limity dyplomatów na kategorię:[/b] Kontroluj, ilu dyplomatów może być przypisanych do danej kategorii (0-10).
+  [/list]
+ [*][b]Interakcje z poddanymi:[/b] Automatycznie wykonuje akcje wobec poddanych, gdy tylko jest to możliwe.
+  [list]
+   [*][b]Wymuś religię:[/b] Narzuca Twoją religię państwową poddanym.
+   [*][b]Wymuś kulturę:[/b] Narzuca Twoją kulturę główną poddanym.
+  [/list]
+ [*][b]Rezerwy dyplomatów:[/b] Ustal minimalną liczbę wolnych dyplomatów oraz minimalny miesięczny przyrost dyplomatów, który ma pozostać w rezerwie. Autonomiczne działania nie spowodują spadku poniżej tych progów.
+ [*][b]Śledzenie postępów:[/b] Monitoruje postęp poprawy relacji dla każdego celu. Mod nie będzie wybierać krajów, które mają już +90 relacji. Postęp naturalnie spada z czasem, gdy dyplomaci zostają oddelegowani.
 [/olist]
 
-[h1]Planowane/Wkrótce:[/h1]
-[olist]
- [*][b]Więcej akcji dyplomatycznych:[/b] Automatyzacja innych działań dyplomatycznych poza poprawą relacji.
-[/olist]
-
-[h1]Rodzime lokalizacje:[/h1]
+[h1]Native Localizations:[/h1]
 [list]
- [*][b]Angielski:[/b] Główny
+ [*][b]English:[/b] Primary
 [/list]
 
-[h1]Lokalizacje przetłumaczone przez DeepL:[/h1]
+[h1]DeepL-Translated Localizations:[/h1]
 [list]
- [*][b]Chiński / 中文[/b]
- [*][b]Francuski / Français[/b]
- [*][b]Niemiecki / Deutsch[/b]
- [*][b]Japoński / 日本語[/b]
- [*][b]Koreański / 한국어[/b]
- [*][b]Polski / Polski[/b]
- [*][b]Portugalski (Brazylia) / Português (Brasil)[/b]
- [*][b]Rosyjski / Русский[/b]
- [*][b]Hiszpański / Español[/b]
- [*][b]Turecki / Türkçe[/b]
+ [*][b]Chinese / 中文[/b]
+ [*][b]French / Français[/b]
+ [*][b]German / Deutsch[/b]
+ [*][b]Japanese / 日本語[/b]
+ [*][b]Korean / 한국어[/b]
+ [*][b]Polish / Polski[/b]
+ [*][b]Portuguese (Brazil) / Português (Brasil)[/b]
+ [*][b]Russian / Русский[/b]
+ [*][b]Spanish / Español[/b]
+ [*][b]Turkish / Türkçe[/b]
 [/list]
 
-[h1]Rejestr zmian:[/h1]
+[h1]Change Log:[/h1]
 Zobacz [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]Change Notes na stronie warsztatu[/url].
 
-[h1]Znane problemy:[/h1]
+[h1]Known Issues:[/h1]
 [list]
- [*]Mod używa własnego wewnętrznego systemu śledzenia wysłanych dyplomatów. Jeśli ręcznie anulujesz akcję poprawy relacji, mod nie wykryje tego natychmiastowo. Zawsze jednak zsynchronizuje się automatycznie po pewnym czasie.
+ [*]Mod używa własnego wewnętrznego systemu śledzenia wysłanych dyplomatów. Jeśli ręcznie anulujesz akcję poprawy relacji, mod nie wykryje tego natychmiast. Z czasem jednak zawsze nastąpi automatyczna synchronizacja.
 [/list]
 
-[h1]Kompatybilność:[/h1]
+[h1]Compatibility:[/h1]
 [list]
- [*]Niekompatybilny z trybem Ironman/Osiągnięciami.
- [*]W pełni kompatybilny z zapisami gry (save game).
- [*]Powinien działać z każdym modem.
- [*]Mogę dodać patche kompatybilności na prośbę użytkowników.
+ [*]Niekompatybilny z trybem Ironman/osiągnięciami.
+ [*]W pełni kompatybilny z zapisanymi stanami gry.
+ [*]Powinien działać z każdym innym modem.
+ [*]Na prośbę mogę przygotować patche kompatybilności.
 [/list]
 
-Oprócz sekcji komentarzy, możesz również zadawać pytania, zgłaszać błędy lub sugerować zmiany, oznaczając @arealconner na [url=https://discord.gg/zeQ6x9wrPq]kanale #utility-mods na serwerze Discord społeczności EU5[/url]. Jeśli jesteś zainteresowany udziałem w rozwoju tego lub innych moich modów, możesz oznaczyć mnie lub dodać na Discordzie: @arealconner. Każda pomoc jest mile widziana.
+Oprócz sekcji komentarzy, możesz również zadawać pytania, zgłaszać błędy lub przesyłać sugestie, oznaczając @arealconner na kanale [url=https://discord.gg/zeQ6x9wrPq]#utility-mods na serwerze Discord społeczności EU5[/url]. Jeśli jesteś zainteresowany udziałem w pracach nad tym lub innymi moimi modami, możesz oznaczyć mnie lub dodać do znajomych na Discordzie: @arealconner. Każda pomoc jest mile widziana.
 
 Kod źródłowy oraz wersje deweloperskie moda są dostępne na [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub.[/url]
 
