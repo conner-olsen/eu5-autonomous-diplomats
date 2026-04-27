@@ -5,10 +5,17 @@ cmf_monthly_human_country_pulse = {
 	}
 }
 
+# Monthly tick is decoupled from the actual mod logic so that the GUI sync has
+# a chance to refresh atd_improving_with before we make decisions. The hidden
+# window's end phase decrements atd_pending_action_countdown each cycle and runs
+# atd_enforce_on_subjects + atd_improve_relations once it hits 0, guaranteeing
+# the cycle that processes the pending action ran a full begin -> iter -> end
+# pass with the latest engine state. Without this defer, fast-forward speeds can
+# fire a monthly tick before sync notices a player cancellation, so the mod
+# inconsistently misses the retarget.
 atd_on_monthly = {
 	effect = {
 		atd_update_hre_visibility = yes
-		atd_enforce_on_subjects = yes
-		atd_improve_relations = yes
+		set_variable = { name = atd_pending_action_countdown value = 1 }
 	}
 }
