@@ -10,39 +10,13 @@
 	}
 	blockoverride "content" {
 		vbox = {
-			# Gated by atd_should_run. atd_on_monthly sets atd_pending_action,
-			# the gate flips true, this vbox becomes visible, the driver state
-			# below instantiates and fires once 0.5s later. atd_gui_sync_step
-			# removes atd_pending_action at the end of that single tick, the
-			# gate flips false, this vbox disappears, the driver state dies.
-			# Result: one tick per monthly pulse, zero work between monthly ticks.
+			# Gated by atd_should_run: visible only between atd_on_monthly setting
+			# atd_pending_action and atd_gui_sync_step clearing it.
 			visible = "[And(GetPlayer.Exists, GetScriptedGui('atd_should_run').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
 			datacontext = "[GetQuickTemporaryCountryRelations(Player.Self)]"
 
-			# Driver: single-fire 0.5s state. atd_on_monthly already ran
-			# atd_gui_sync_begin (populating atd_sync_check_list and clearing
-			# atd_improving_seen) before the gate flipped, so by the time this
-			# state fires its on_finish chain the iter widgets below have
-			# already been instantiated by the datamodel. The chain order
-			# matters:
-			#   1. Trigger atd_gui_sync_iter - synchronously walks the iter
-			#      widgets, each calls atd_gui_sync_track to add its country
-			#      to atd_improving_seen (only if currently IsImprovingOpinion).
-			#   2. Run atd_gui_sync_step - reconciles atd_improving_with
-			#      against the just-populated atd_improving_seen, runs mod
-			#      logic (atd_enforce_on_subjects + atd_improve_relations),
-			#      removes atd_pending_action.
-			#   3. Trigger atd_do_auto_cancel - mod logic may have set
-			#      atd_pending_cancel on countries at the opinion cap; this
-			#      fires the outliner widgets so they call OnRightClick.
-			#   4. Trigger atd_do_auto_confirm - polled fallback for the popup
-			#      widget's trigger_on_create, in case the popup spawned this
-			#      frame and its trigger_on_create didn't fire.
-			# After step 2, atd_should_run is false and the parent vbox is
-			# becoming invisible, but on_finish actions 3-4 still run on the
-			# already-triggered animations (they target widgets in
-			# outliner_entries.gui and ingame_dialogs.gui, not children of
-			# this hidden window).
+			# Single-fire driver. Iter trigger must come before sync_step so
+			# atd_improving_seen is populated before reconcile reads it.
 			overlappingitembox = {
 				state = {
 					name = atd_hidden_window_driver
@@ -55,29 +29,18 @@
 				}
 			}
 
-			# Iter section: walks atd_sync_check_list (populated by atd_on_monthly
-			# from every_country_in_diplomatic_range plus already-tracked
-			# countries). For each country currently being improved per the
-			# diplomatic engine (filtered by OngoingRelationCountry.IsImprovingOpinion),
-			# fires the tracking call. Visibility is inherited from the parent
-			# vbox - no separate flag needed because the parent is only visible
-			# during the single monthly tick window.
+			# Iter widgets: one per country in atd_sync_check_list, fire tracking
+			# only if currently IsImprovingOpinion.
 			vbox = {
 				datamodel = "[GetPlayer.MakeScope.GetList('atd_sync_check_list')]"
 				item = {
-					# Items in a variable_list iterated from GUI come through as a
-					# generic Scope wrapper, not the underlying typed object.
-					# Scope.GetCountry pulls the Country out so Country.Self below
-					# resolves correctly. Same pattern lsq_hidden_window uses with
-					# Scope.GetLocation / Scope.GetBuildingType.
+					# Scope.GetCountry unwraps the variable_list's generic Scope
+					# wrapper into a Country. Same pattern lsq_hidden_window uses.
 					widget = {
 						datacontext = "[Scope.GetCountry]"
-						# Outer guard: HasTemporaryRelation is safe to call on any
-						# country (no OngoingRelationCountry context required).
-						# Countries with no ongoing relations to the player are
-						# filtered out here so the inner widget never references
-						# OngoingRelationCountry on a null context (which would spam
-						# 'FetchData failed' warnings to the log).
+						# HasTemporaryRelation guard avoids 'FetchData failed' spam
+						# from the inner widget dereferencing a null
+						# OngoingRelationCountry on countries with no ongoing relations.
 						widget = {
 							visible = "[QuickTemporaryCountryRelations.HasTemporaryRelation(Country.Self)]"
 							widget = {

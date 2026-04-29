@@ -40,13 +40,9 @@ atd_clear_pending_confirm = {
 	}
 }
 
-# Single-tick driver step. atd_on_monthly already ran atd_gui_sync_begin and
-# populated atd_sync_check_list, so the iter widgets exist with the right
-# datamodel by the time the driver fires. The driver's on_finish chain calls
-# atd_gui_sync_iter first - that synchronously populates atd_improving_seen
-# via the iter widgets - then this scripted_gui reconciles and runs mod logic.
-# Removing atd_pending_action flips atd_should_run false, the hidden window
-# disappears, and the driver state dies until the next monthly tick.
+# Runs from the hidden window driver after the iter trigger has populated
+# atd_improving_seen. Removing atd_pending_action drops atd_should_run, which
+# tears the hidden window down until the next monthly tick.
 # Root: player country.
 atd_gui_sync_step = {
 	effect = {
@@ -57,12 +53,8 @@ atd_gui_sync_step = {
 	}
 }
 
-# Visibility gate for the entire atd_hidden_window. atd_on_monthly sets
-# atd_pending_action to flip this true; atd_gui_sync_step removes it after the
-# single driver tick completes. While unset, the hidden window content is
-# invisible, no widgets are instantiated, and no polling occurs. Same shape as
-# smart_taxes' smart_taxes_should_recalculate gate.
-# Root: player country.
+# Visibility gate for atd_hidden_window. Set by atd_on_monthly, cleared by
+# atd_gui_sync_step. Root: player country.
 atd_should_run = {
 	is_shown = {
 		has_variable = atd_pending_action
