@@ -51,30 +51,40 @@
 		# confirmation popup open at the exact moment auto-cancel fires, this
 		# could hijack it. Acceptable tradeoff: at most one accidental confirm
 		# per cancel, and the flag is cleared on first fire so it doesn't repeat.
+		# Outer wrapper: visibility-gated. PDX gui doesn't instantiate hidden
+		# widgets, so when atd_pending_confirm is unset this whole subtree is
+		# absent and trigger_on_create below stays inert.
 		widget = {
 			size = { 0 0 }
-			visible_at_creation = no
 			visible = "[GetGlobalVariable('atd_pending_confirm').IsSet]"
-			# _show fires the moment the widget transitions from hidden to
-			# visible. With visible_at_creation=no and the visibility gate
-			# already set when the popup spawns (atd_clear_pending_cancel
-			# sets the flag before OnRightClick's resulting popup appears),
-			# this fires in the same frame as the popup, so the user sees
-			# at most a single-frame flash rather than the popup sitting
-			# until the next 0.5s poll.
-			state = {
-				name = _show
-				on_start = "[DialogConfig.OnAccept]"
-				on_start = "[GetScriptedGui('atd_clear_pending_confirm').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-			}
-			# Polled fallback - if _show didn't fire (engine sometimes skips
-			# the transition for nested widgets) the hidden window driver's
-			# PdxGuiTriggerAllAnimations('atd_do_auto_confirm') still picks
-			# this up within 0.5s.
-			state = {
-				name = atd_do_auto_confirm
-				on_finish = "[DialogConfig.OnAccept]"
-				on_finish = "[GetScriptedGui('atd_clear_pending_confirm').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+			# Inner widget fires its state the moment it's CREATED rather
+			# than waiting for a visibility transition or a poll. The outer
+			# widget's visibility check determines whether this inner gets
+			# instantiated at all - so when the popup spawns with the global
+			# flag already set (atd_clear_pending_cancel sets it before
+			# OutlinerDiplomacyEntry.OnRightClick produces the popup), the
+			# inner widget is created in the same frame and its state fires
+			# DialogConfig.OnAccept before the engine renders the popup.
+			# Result: the popup is dismissed in the frame it appears, so
+			# nothing visible flashes.
+			widget = {
+				size = { 0 0 }
+				state = {
+					name = atd_auto_confirm_on_create
+					trigger_on_create = yes
+					on_start = "[DialogConfig.OnAccept]"
+					on_start = "[GetScriptedGui('atd_clear_pending_confirm').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				}
+				# Polled fallback - if trigger_on_create didn't fire (engine
+				# sometimes skips state init under nested visibility gates),
+				# the hidden window driver's
+				# PdxGuiTriggerAllAnimations('atd_do_auto_confirm') still
+				# picks this up within 0.5s.
+				state = {
+					name = atd_do_auto_confirm
+					on_finish = "[DialogConfig.OnAccept]"
+					on_finish = "[GetScriptedGui('atd_clear_pending_confirm').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				}
 			}
 		}
 
