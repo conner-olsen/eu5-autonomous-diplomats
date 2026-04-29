@@ -90,20 +90,10 @@ atd_check_max_opinion_for_cancel = {
 				}
 				# Drop below 150 is silent (avoid spam).
 
-				# Threshold for auto-cancel: 185, NOT 200. The diplomacy panel
-				# can show "+200" (the displayed cap) while the script's
-				# opinion trigger reads ~185-189. The two values disagree
-				# because the script trigger appears to exclude or transform
-				# some modifier categories that the UI sums in. A real-world
-				# Castile/Portugal test at UI +200 had the script reading
-				# 185-189 over many monthly ticks. 185 is the lowest point
-				# of that observed band, so it fires reliably at the cap.
-				# Side effect: the mod cancels a bit earlier than the literal
-				# cap on borderline cases. Acceptable: at +185 script the
-				# action is already very close to its own modifier cap.
+				# Cancel at 200 (opinion cap).
 				if = {
 					limit = {
-						opinion = { target = scope:actor_scope value >= 185 }
+						opinion = { target = scope:actor_scope value >= 200 }
 					}
 					if = {
 						limit = { NOT = { has_variable = atd_pending_cancel } }
@@ -461,14 +451,9 @@ atd_start_improving_with = {
 				}
 				"variable_map(atd_improved_with|scope:target_country)" < $skip_threshold$
 			}
-			# Skip targets near the opinion cap. Matches the auto-cancel
-			# threshold in atd_check_max_opinion_for_cancel (185) - see that
-			# comment for why 185 instead of 200. The two thresholds must
-			# match: if cancel fires at script-185 but skip uses 200, the
-			# mod immediately re-picks the country it just freed and churns
-			# between start and cancel.
+			# Skip below 190 opinion.
 			scope:target_country = {
-				NOT = { opinion = { target = scope:actor_scope value >= 185 } }
+				NOT = { opinion = { target = scope:actor_scope value >= 190 } }
 			}
 		}
 		perform_diplomatic_action = {
