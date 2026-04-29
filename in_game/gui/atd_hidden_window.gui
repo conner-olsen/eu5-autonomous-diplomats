@@ -15,8 +15,11 @@
 			visible = "[And(GetPlayer.Exists, GetScriptedGui('atd_should_run').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
 			datacontext = "[GetQuickTemporaryCountryRelations(Player.Self)]"
 
-			# Single-fire driver. Iter trigger must come before sync_step so
-			# atd_improving_seen is populated before reconcile reads it.
+			# Iter trigger before sync_step so atd_improving_seen is populated
+			# before reconcile reads it. Self-re-trigger keeps the state firing
+			# every 0.5s while the gate is up - trigger_on_create is one-shot
+			# per widget creation, and the widget isn't recreated when the gate
+			# flips false then true again.
 			overlappingitembox = {
 				state = {
 					name = atd_hidden_window_driver
@@ -26,6 +29,7 @@
 					on_finish = "[GetScriptedGui('atd_gui_sync_step').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 					on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_cancel')]"
 					on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_confirm')]"
+					on_finish = "[PdxGuiWidget.TriggerAnimation('atd_hidden_window_driver')]"
 				}
 			}
 
