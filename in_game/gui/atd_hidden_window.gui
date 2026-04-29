@@ -27,6 +27,13 @@
 					duration = 0.5
 					on_finish = "[GetScriptedGui('atd_gui_sync_step').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 					on_finish = "[PdxGuiTriggerAllAnimations('atd_gui_sync_iter')]"
+					# Polls the auto-cancel widgets in outliner_entries.gui each
+					# cycle. We trigger explicitly rather than relying on the
+					# widget's _show state transitioning when atd_pending_cancel
+					# flips - the latter wasn't firing reliably (likely because
+					# Country.MakeScope.GetVariable doesn't push reactive
+					# visibility updates), so we just poll every 0.5s instead.
+					on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_cancel')]"
 					on_finish = "[PdxGuiWidget.TriggerAnimation('atd_hidden_window_driver')]"
 				}
 			}
@@ -64,7 +71,7 @@
 								visible = "[OngoingRelationCountry.IsImprovingOpinion]"
 								state = {
 									name = atd_gui_sync_iter
-									on_finish = "[GetScriptedGui('atd_gui_sync_track').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('country', Country.MakeScope).AddScope('progress', MakeScopeValue(OngoingRelationCountry.GetOpinionImprovementProgress)).End)]"
+									on_finish = "[GetScriptedGui('atd_gui_sync_track').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('country', Country.MakeScope).End)]"
 								}
 							}
 						}

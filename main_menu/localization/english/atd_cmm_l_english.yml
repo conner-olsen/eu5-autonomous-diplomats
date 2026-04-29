@@ -55,3 +55,14 @@
  atd__settings__reserve: "atd__settings__reserve"
  atd__min_diplomats: "atd__min_diplomats"
  atd__min_diplomat_gain: "atd__min_diplomat_gain"
+
+ # Auto-cancel debug log entries (cmf_log actions)
+ # Visible via Mod Menu > General > Session > Mod Action Log.
+ # Square brackets are reserved for data bindings in PDX localization,
+ # so prefixes use plain text.
+ atd_log_opinion_195_plus: "ATD: opinion >= 195"
+ atd_log_opinion_180_to_195: "ATD: opinion 180-194"
+ atd_log_opinion_150_to_180: "ATD: opinion 150-179"
+ atd_log_setting_flag: "ATD: setting atd_pending_cancel"
+ atd_log_clearing_flag: "ATD: clearing atd_pending_cancel"
+ atd_log_cancel_fired: "ATD: OnRightClick fired (auto-cancel ran)"

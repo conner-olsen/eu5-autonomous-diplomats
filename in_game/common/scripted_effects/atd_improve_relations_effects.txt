@@ -1,23 +1,93 @@
 ﻿atd_improve_relations = {
 	save_scope_as = actor_scope
 	set_variable = { name = atd_action_threshold value = { value = var:atd_min_diplomats add = 1 } }
+	atd_check_max_opinion_for_cancel = yes
 	if = {
 		limit = {
 			num_of_diplomats >= var:atd_action_threshold
 			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
 		}
 		atd_update_improved_with = yes
-		# Pass 1: prefer targets below +200 opinion
-		set_variable = { name = atd_skip_high_relations value = 1 }
 		cmm_for_each_list_item = {
 			setting = atd__improve_relations
 			effect = atd_improve_relations_each_item
 		}
-		# Pass 2: fallback to any remaining targets
-		remove_variable = atd_skip_high_relations
-		cmm_for_each_list_item = {
-			setting = atd__improve_relations
-			effect = atd_improve_relations_each_item
+	}
+}
+
+# Walks every mod-initiated improve_relations target and flips the
+# atd_pending_cancel variable on the target country based on whether the
+# target's opinion of the player has reached the +200 cap. The auto-cancel
+# widget in outliner_entries.gui watches for that flag (via
+# Country.MakeScope.GetVariable('atd_pending_cancel').IsSet) and fires
+# OutlinerDiplomacyEntry.OnRightClick when set.
+#
+# The check is on the script side because GUI-side visibility expressions
+# evaluating GreaterThanOrEqualTo_CFixedPoint against
+# Country.GetDiplomacy.GetOpinionOf(GetPlayer) didn't reactively re-trigger
+# the _show state when opinion crossed 200 - whether due to caching of
+# nested scripted_gui IsShown calls or some other quirk, the widget never
+# saw the visibility transition and OnRightClick never fired. A direct
+# country variable gets us a simple, stable signal the GUI can read.
+# Scope: player country (atd_improve_relations saves actor_scope).
+atd_check_max_opinion_for_cancel = {
+	if = {
+		limit = { has_variable_map = atd_improving_type }
+		every_key_in_variable_map = {
+			variable = atd_improving_type
+			save_scope_as = atd_max_opinion_target
+			save_scope_as = cmf_log_arg2
+			scope:atd_max_opinion_target = {
+				# Diagnostic: log roughly where the target's opinion sits.
+				# Each tier logs once per monthly tick, so we can see if the
+				# value is actually climbing toward 200 and where it tops out.
+				if = {
+					limit = { opinion = { target = scope:actor_scope value >= 195 } }
+					scope:actor_scope = {
+						cmf_log_with_scope_arg = { action = atd_log_opinion_195_plus }
+					}
+				}
+				else_if = {
+					limit = { opinion = { target = scope:actor_scope value >= 180 } }
+					scope:actor_scope = {
+						cmf_log_with_scope_arg = { action = atd_log_opinion_180_to_195 }
+					}
+				}
+				else_if = {
+					limit = { opinion = { target = scope:actor_scope value >= 150 } }
+					scope:actor_scope = {
+						cmf_log_with_scope_arg = { action = atd_log_opinion_150_to_180 }
+					}
+				}
+				# Drop below 150 is silent (avoid spam).
+
+				# Threshold for auto-cancel: 195 instead of 200. The displayed
+				# UI value can be 200 while the engine's internal CFixedPoint
+				# is just under it (or capping logic is lazy). Pulling the
+				# trigger at 195 saves a handful of extra months at the cap
+				# but avoids the "stuck waiting for the cap forever" failure.
+				if = {
+					limit = {
+						opinion = { target = scope:actor_scope value >= 195 }
+					}
+					if = {
+						limit = { NOT = { has_variable = atd_pending_cancel } }
+						scope:actor_scope = {
+							cmf_log_with_scope_arg = { action = atd_log_setting_flag }
+						}
+						set_variable = atd_pending_cancel
+					}
+				}
+				else = {
+					if = {
+						limit = { has_variable = atd_pending_cancel }
+						scope:actor_scope = {
+							cmf_log_with_scope_arg = { action = atd_log_clearing_flag }
+						}
+						remove_variable = atd_pending_cancel
+					}
+				}
+			}
 		}
 	}
 }
@@ -55,29 +125,45 @@ atd_update_improved_with = {
 					# Active branch: country is currently being improved (per GUI).
 					# Increment the per-type counter for entries the mod owns.
 					# Player-initiated entries have no atd_improving_type and fall
-					# through the switch without incrementing anything, by design.
-					switch = {
-						trigger = "variable_map(atd_improving_type|scope:nation_improved_with)"
-						flag:neighbor = {
-							change_variable = { name = atd_n_neighbors_improving_with add = 1 }
+					# through the outer if without incrementing anything, by design.
+					#
+					# The has_variable_map / is_key_in_variable_map guard is required:
+					# a country can land in atd_improving_with (player-initiated, or
+					# after auto-cancel cleanup re-detects it) without ever having an
+					# atd_improving_type entry, and once atd_improving_type loses its
+					# last key the engine drops the map entirely. Reading the switch
+					# trigger against an unset map raises "Failed to fetch map".
+					if = {
+						limit = {
+							has_variable_map = atd_improving_type
+							is_key_in_variable_map = {
+								name = atd_improving_type
+								target = scope:nation_improved_with
+							}
 						}
-						flag:subject = {
-							change_variable = { name = atd_n_subjects_improving_with add = 1 }
-						}
-						flag:outraged = {
-							change_variable = { name = atd_n_outraged_improving_with add = 1 }
-						}
-						flag:ally = {
-							change_variable = { name = atd_n_allies_improving_with add = 1 }
-						}
-						flag:threatened = {
-							change_variable = { name = atd_n_threatened_improving_with add = 1 }
-						}
-						flag:hre_member = {
-							change_variable = { name = atd_n_hre_members_improving_with add = 1 }
-						}
-						flag:hre_elector = {
-							change_variable = { name = atd_n_hre_electors_improving_with add = 1 }
+						switch = {
+							trigger = "variable_map(atd_improving_type|scope:nation_improved_with)"
+							flag:neighbor = {
+								change_variable = { name = atd_n_neighbors_improving_with add = 1 }
+							}
+							flag:subject = {
+								change_variable = { name = atd_n_subjects_improving_with add = 1 }
+							}
+							flag:outraged = {
+								change_variable = { name = atd_n_outraged_improving_with add = 1 }
+							}
+							flag:ally = {
+								change_variable = { name = atd_n_allies_improving_with add = 1 }
+							}
+							flag:threatened = {
+								change_variable = { name = atd_n_threatened_improving_with add = 1 }
+							}
+							flag:hre_member = {
+								change_variable = { name = atd_n_hre_members_improving_with add = 1 }
+							}
+							flag:hre_elector = {
+								change_variable = { name = atd_n_hre_electors_improving_with add = 1 }
+							}
 						}
 					}
 				}
@@ -234,6 +320,17 @@ atd_gui_sync_end = {
 					}
 				}
 			}
+			# Clear the auto-cancel flag from the target country so a later
+			# re-targeting doesn't get cancelled immediately by stale state.
+			# atd_check_max_opinion_for_cancel can't clean these up after the
+			# country leaves atd_improving_type because it only iterates
+			# entries that ARE in atd_improving_type.
+			scope:atd_nation_to_remove = {
+				if = {
+					limit = { has_variable = atd_pending_cancel }
+					remove_variable = atd_pending_cancel
+				}
+			}
 		}
 		clear_variable_list = atd_improving_to_remove
 	}
@@ -327,11 +424,13 @@ atd_start_improving_with = {
 				}
 				"variable_map(atd_improved_with|scope:target_country)" < $skip_threshold$
 			}
-			trigger_if = {
-				limit = { has_variable = atd_skip_high_relations }
-				scope:target_country = {
-					NOT = { opinion = { target = scope:actor_scope value >= 200 } }
-				}
+			# Skip targets already at the +200 opinion cap. The auto-cancel
+			# hook in atd_outliner_overrides.gui ends in-flight actions when
+			# they reach this cap; without an unconditional skip here, the
+			# next monthly tick would just re-target the same country and
+			# trigger another cancel, churning forever.
+			scope:target_country = {
+				NOT = { opinion = { target = scope:actor_scope value >= 200 } }
 			}
 		}
 		perform_diplomatic_action = {

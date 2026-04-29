@@ -1,4 +1,19 @@
-﻿# Driver step. Toggles between begin (cycle 1) and end (cycle 2) phases, and
+﻿# Clears the atd_pending_cancel variable on the country in scope. Called from
+# the auto-cancel widget's state in outliner_entries.gui right after firing
+# OutlinerDiplomacyEntry.OnRightClick, so the same widget doesn't keep firing
+# the cancel during the window before sync removes the entry from tracking.
+# Root: target country (set via SetRoot).
+atd_clear_pending_cancel = {
+	effect = {
+		cmf_log = { action = atd_log_cancel_fired }
+		if = {
+			limit = { has_variable = atd_pending_cancel }
+			remove_variable = atd_pending_cancel
+		}
+	}
+}
+
+# Driver step. Toggles between begin (cycle 1) and end (cycle 2) phases, and
 # also runs deferred monthly mod logic so it sees fresh sync state.
 #
 # Cycle 1 (no flag): decrements atd_pending_action_countdown if monthly tick set
@@ -48,18 +63,20 @@ atd_gui_sync_is_collecting = {
 }
 
 # Per-country tracking call. Fired once per ongoing improve_opinion country
-# during the begin phase via PdxGuiTriggerAllAnimations. Refreshes the GUI
-# progress value into atd_improved_with and adds the country to the seen list
-# so the end phase knows this entry is still active.
-# Root: player country. Saved scopes: country (target), progress (0-100).
+# during the begin phase via PdxGuiTriggerAllAnimations. Adds the country to
+# the seen list so the end phase knows this entry is still active.
+#
+# We don't pull GUI progress into atd_improved_with anymore: passing
+# OngoingRelationCountry.GetOpinionImprovementProgress through MakeScopeValue
+# in the on_finish chain made the GUI engine error with "Promote 'AddScope'
+# returned nullptr". The skip_threshold cooldown that depended on progress is
+# now redundant anyway - atd_start_improving_with unconditionally skips
+# targets at opinion >= 200, which covers the only case we actually needed
+# the cooldown for (the auto-cancel-at-+200 retarget loop).
+# Root: player country. Saved scopes: country (target).
 atd_gui_sync_track = {
-	saved_scopes = { country progress }
+	saved_scopes = { country }
 	effect = {
-		cmf_change_variable_map = {
-			name = atd_improved_with
-			key = scope:country
-			value = scope:progress
-		}
 		if = {
 			limit = {
 				OR = {
