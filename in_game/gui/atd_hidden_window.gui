@@ -15,28 +15,28 @@
 			visible = "[And(GetPlayer.Exists, GetScriptedGui('atd_should_run').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
 			datacontext = "[GetQuickTemporaryCountryRelations(Player.Self)]"
 
-			# Iter trigger before sync_step so atd_improving_seen is populated
-			# before reconcile reads it. Self-re-trigger keeps the state firing
-			# every 0.5s while the gate is up - trigger_on_create is one-shot
-			# per widget creation, and the widget isn't recreated when the gate
-			# flips false then true again.
+			# Three-state chain. on_finish actions inside a single state fire
+			# concurrently, so each step that depends on a prior step needs
+			# its own state. iter populates atd_improving_seen; sync_step
+			# reads it and runs mod logic (which may set atd_pending_cancel);
+			# cancel fires the outliner widgets and closes the gate.
 			overlappingitembox = {
 				state = {
-					name = atd_hidden_window_driver
+					name = atd_hidden_window_iter
 					trigger_on_create = yes
 					duration = 0.5
 					on_finish = "[PdxGuiTriggerAllAnimations('atd_gui_sync_iter')]"
-					on_finish = "[GetScriptedGui('atd_gui_sync_step').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-					on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_cancel')]"
-					on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_confirm')]"
-					next = atd_hidden_window_driver2
+					next = atd_hidden_window_sync
 				}
 				state = {
-					name = atd_hidden_window_driver2
-					on_finish = "[PdxGuiTriggerAllAnimations('atd_gui_sync_iter')]"
+					name = atd_hidden_window_sync
 					on_finish = "[GetScriptedGui('atd_gui_sync_step').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+					next = atd_hidden_window_cancel
+				}
+				state = {
+					name = atd_hidden_window_cancel
 					on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_cancel')]"
-					on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_confirm')]"
+					on_finish = "[GetScriptedGui('atd_close_hidden_window').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 				}
 			}
 

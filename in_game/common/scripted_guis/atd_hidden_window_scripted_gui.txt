@@ -41,20 +41,29 @@ atd_clear_pending_confirm = {
 }
 
 # Runs from the hidden window driver after the iter trigger has populated
-# atd_improving_seen. Removing atd_pending_action drops atd_should_run, which
-# tears the hidden window down until the next monthly tick.
+# atd_improving_seen. Reconciles, runs mod logic. Does NOT clear
+# atd_pending_action - that happens in atd_close_hidden_window after the
+# auto-cancel state has had its turn.
 # Root: player country.
 atd_gui_sync_step = {
 	effect = {
 		atd_gui_sync_end = yes
 		atd_enforce_on_subjects = yes
 		atd_improve_relations = yes
+	}
+}
+
+# Final state of the driver chain. Drops atd_pending_action so the gate
+# closes and the widget tears down until the next monthly tick.
+# Root: player country.
+atd_close_hidden_window = {
+	effect = {
 		remove_variable = atd_pending_action
 	}
 }
 
 # Visibility gate for atd_hidden_window. Set by atd_on_monthly, cleared by
-# atd_gui_sync_step. Root: player country.
+# atd_close_hidden_window. Root: player country.
 atd_should_run = {
 	is_shown = {
 		has_variable = atd_pending_action
