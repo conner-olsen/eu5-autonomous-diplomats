@@ -31,10 +31,21 @@
 # country variable gets us a simple, stable signal the GUI can read.
 # Scope: player country (atd_improve_relations saves actor_scope).
 atd_check_max_opinion_for_cancel = {
+	cmf_log = { action = atd_log_check_called }
+	# Iterates atd_improving_with (NOT atd_improving_type). Covers BOTH
+	# mod-initiated and player-initiated improvements - if the action is
+	# ongoing (per the diplomatic engine, via sync) and the target is at
+	# the opinion cap, the diplomat is wasted regardless of who started
+	# the action. Earlier this iterated atd_improving_type to limit cancel
+	# to mod-initiated only, but that left a hole: after a cancel popup
+	# the player dismisses (or any flicker in IsImprovingOpinion that the
+	# sync momentarily picks up as gone-then-back), the country gets
+	# re-added to atd_improving_with by sync but NOT to atd_improving_type,
+	# so the auto-cancel goes silent forever for that country.
 	if = {
-		limit = { has_variable_map = atd_improving_type }
+		limit = { has_variable_map = atd_improving_with }
 		every_key_in_variable_map = {
-			variable = atd_improving_type
+			variable = atd_improving_with
 			save_scope_as = atd_max_opinion_target
 			save_scope_as = cmf_log_arg2
 			scope:atd_max_opinion_target = {
@@ -79,14 +90,20 @@ atd_check_max_opinion_for_cancel = {
 				}
 				# Drop below 150 is silent (avoid spam).
 
-				# Threshold for auto-cancel: 195 instead of 200. The displayed
-				# UI value can be 200 while the engine's internal CFixedPoint
-				# is just under it (or capping logic is lazy). Pulling the
-				# trigger at 195 saves a handful of extra months at the cap
-				# but avoids the "stuck waiting for the cap forever" failure.
+				# Threshold for auto-cancel: 185, NOT 200. The diplomacy panel
+				# can show "+200" (the displayed cap) while the script's
+				# opinion trigger reads ~185-189. The two values disagree
+				# because the script trigger appears to exclude or transform
+				# some modifier categories that the UI sums in. A real-world
+				# Castile/Portugal test at UI +200 had the script reading
+				# 185-189 over many monthly ticks. 185 is the lowest point
+				# of that observed band, so it fires reliably at the cap.
+				# Side effect: the mod cancels a bit earlier than the literal
+				# cap on borderline cases. Acceptable: at +185 script the
+				# action is already very close to its own modifier cap.
 				if = {
 					limit = {
-						opinion = { target = scope:actor_scope value >= 195 }
+						opinion = { target = scope:actor_scope value >= 185 }
 					}
 					if = {
 						limit = { NOT = { has_variable = atd_pending_cancel } }
@@ -342,7 +359,9 @@ atd_gui_sync_end = {
 			# re-targeting doesn't get cancelled immediately by stale state.
 			# atd_check_max_opinion_for_cancel can't clean these up after the
 			# country leaves atd_improving_type because it only iterates
-			# entries that ARE in atd_improving_type.
+			# entries that ARE in atd_improving_type. (atd_pending_confirm is
+			# a GLOBAL variable now, not per-country, so it doesn't need
+			# per-country cleanup here.)
 			scope:atd_nation_to_remove = {
 				if = {
 					limit = { has_variable = atd_pending_cancel }
@@ -442,13 +461,14 @@ atd_start_improving_with = {
 				}
 				"variable_map(atd_improved_with|scope:target_country)" < $skip_threshold$
 			}
-			# Skip targets already at the +200 opinion cap. The auto-cancel
-			# hook in atd_outliner_overrides.gui ends in-flight actions when
-			# they reach this cap; without an unconditional skip here, the
-			# next monthly tick would just re-target the same country and
-			# trigger another cancel, churning forever.
+			# Skip targets near the opinion cap. Matches the auto-cancel
+			# threshold in atd_check_max_opinion_for_cancel (185) - see that
+			# comment for why 185 instead of 200. The two thresholds must
+			# match: if cancel fires at script-185 but skip uses 200, the
+			# mod immediately re-picks the country it just freed and churns
+			# between start and cancel.
 			scope:target_country = {
-				NOT = { opinion = { target = scope:actor_scope value >= 200 } }
+				NOT = { opinion = { target = scope:actor_scope value >= 185 } }
 			}
 		}
 		perform_diplomatic_action = {

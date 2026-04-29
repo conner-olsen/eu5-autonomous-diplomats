@@ -34,6 +34,12 @@
 					# Country.MakeScope.GetVariable doesn't push reactive
 					# visibility updates), so we just poll every 0.5s instead.
 					on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_cancel')]"
+					# Polls the diplomacy_dialog auto-confirm widget. When
+					# atd_pending_confirm is set on a country whose diplomacy
+					# dialog is open, the widget fires OnAction('OptionA') to
+					# auto-accept the cancellation popup that OnRightClick
+					# puts up.
+					on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_confirm')]"
 					on_finish = "[PdxGuiWidget.TriggerAnimation('atd_hidden_window_driver')]"
 				}
 			}

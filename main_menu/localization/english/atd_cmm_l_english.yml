@@ -60,6 +60,7 @@
  # Visible via Mod Menu > General > Session > Mod Action Log.
  # Square brackets are reserved for data bindings in PDX localization,
  # so prefixes use plain text.
+ atd_log_check_called: "ATD: check_max_opinion_for_cancel called"
  atd_log_opinion_200_plus: "ATD: opinion >= 200"
  atd_log_opinion_195_to_199: "ATD: opinion 195-199"
  atd_log_opinion_190_to_194: "ATD: opinion 190-194"
