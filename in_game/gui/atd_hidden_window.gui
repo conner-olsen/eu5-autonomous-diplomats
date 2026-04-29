@@ -29,7 +29,14 @@
 					on_finish = "[GetScriptedGui('atd_gui_sync_step').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 					on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_cancel')]"
 					on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_confirm')]"
-					on_finish = "[PdxGuiWidget.TriggerAnimation('atd_hidden_window_driver')]"
+					next = atd_hidden_window_driver2
+				}
+				state = {
+					name = atd_hidden_window_driver2
+					on_finish = "[PdxGuiTriggerAllAnimations('atd_gui_sync_iter')]"
+					on_finish = "[GetScriptedGui('atd_gui_sync_step').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+					on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_cancel')]"
+					on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_confirm')]"
 				}
 			}
 
