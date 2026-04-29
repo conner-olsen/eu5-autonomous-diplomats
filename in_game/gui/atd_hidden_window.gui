@@ -30,13 +30,13 @@
 			}
 			state = {
 				name = atd_hidden_window_sync
-				on_finish = "[GetScriptedGui('atd_gui_sync_step').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				on_start = "[GetScriptedGui('atd_gui_sync_step').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 				next = atd_hidden_window_cancel
 			}
 			state = {
 				name = atd_hidden_window_cancel
-				on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_cancel')]"
-				on_finish = "[GetScriptedGui('atd_close_hidden_window').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				on_start = "[PdxGuiTriggerAllAnimations('atd_do_auto_cancel')]"
+				on_start = "[GetScriptedGui('atd_close_hidden_window').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 			}
 
 			# Iter widgets: one per country in atd_sync_check_list, fire tracking
