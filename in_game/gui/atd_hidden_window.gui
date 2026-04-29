@@ -20,24 +20,23 @@
 			# its own state. iter populates atd_improving_seen; sync_step
 			# reads it and runs mod logic (which may set atd_pending_cancel);
 			# cancel fires the outliner widgets and closes the gate.
-			overlappingitembox = {
-				state = {
-					name = atd_hidden_window_iter
-					trigger_on_create = yes
-					duration = 0.5
-					on_finish = "[PdxGuiTriggerAllAnimations('atd_gui_sync_iter')]"
-					next = atd_hidden_window_sync
-				}
-				state = {
-					name = atd_hidden_window_sync
-					on_finish = "[GetScriptedGui('atd_gui_sync_step').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-					next = atd_hidden_window_cancel
-				}
-				state = {
-					name = atd_hidden_window_cancel
-					on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_cancel')]"
-					on_finish = "[GetScriptedGui('atd_close_hidden_window').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-				}
+			# _show fires on this vbox when the visible gate above flips
+			# false->true, which is the entry point for the chain.
+			state = {
+				name = _show
+				duration = 0.5
+				on_start = "[PdxGuiTriggerAllAnimations('atd_gui_sync_iter')]"
+				next = atd_hidden_window_sync
+			}
+			state = {
+				name = atd_hidden_window_sync
+				on_finish = "[GetScriptedGui('atd_gui_sync_step').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				next = atd_hidden_window_cancel
+			}
+			state = {
+				name = atd_hidden_window_cancel
+				on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_cancel')]"
+				on_finish = "[GetScriptedGui('atd_close_hidden_window').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 			}
 
 			# Iter widgets: one per country in atd_sync_check_list, fire tracking
