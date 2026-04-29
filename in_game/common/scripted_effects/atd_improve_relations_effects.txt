@@ -725,43 +725,18 @@ atd_improve_hre_electors = {
 	}
 }
 
-# Show/hide HRE items based on eligibility.
-# Item 6 (HRE Electors): visible if you are an HRE member.
-# Item 7 (HRE Members): visible if you are an HRE member.
+# Show/hide HRE Electors (item 6) and HRE Members (item 7) based on eligibility.
 # Scope: country
 atd_update_hre_visibility = {
 	if = {
 		limit = {
 			is_member_of_international_organization = international_organization:hre
 		}
-		cmm_show_list_item = {
-			mod_id = atd
-			setting_id = improve_relations
-			item = 6
-		}
+		cmm_show_list_item = { mod_id = atd setting_id = improve_relations item = 6 }
+		cmm_show_list_item = { mod_id = atd setting_id = improve_relations item = 7 }
 	}
 	else = {
-		cmm_hide_list_item = {
-			mod_id = atd
-			setting_id = improve_relations
-			item = 6
-		}
-	}
-	if = {
-		limit = {
-			is_member_of_international_organization = international_organization:hre
-		}
-		cmm_show_list_item = {
-			mod_id = atd
-			setting_id = improve_relations
-			item = 7
-		}
-	}
-	else = {
-		cmm_hide_list_item = {
-			mod_id = atd
-			setting_id = improve_relations
-			item = 7
-		}
+		cmm_hide_list_item = { mod_id = atd setting_id = improve_relations item = 6 }
+		cmm_hide_list_item = { mod_id = atd setting_id = improve_relations item = 7 }
 	}
 }
