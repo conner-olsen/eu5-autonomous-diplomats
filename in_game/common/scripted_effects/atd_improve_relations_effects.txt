@@ -38,19 +38,37 @@ atd_check_max_opinion_for_cancel = {
 			save_scope_as = atd_max_opinion_target
 			save_scope_as = cmf_log_arg2
 			scope:atd_max_opinion_target = {
-				# Diagnostic: log roughly where the target's opinion sits.
-				# Each tier logs once per monthly tick, so we can see if the
-				# value is actually climbing toward 200 and where it tops out.
+				# Diagnostic: log a fine-grained tier each monthly tick so we
+				# can see exactly where opinion plateaus when the cancel
+				# threshold isn't being crossed.
 				if = {
+					limit = { opinion = { target = scope:actor_scope value >= 200 } }
+					scope:actor_scope = {
+						cmf_log_with_scope_arg = { action = atd_log_opinion_200_plus }
+					}
+				}
+				else_if = {
 					limit = { opinion = { target = scope:actor_scope value >= 195 } }
 					scope:actor_scope = {
-						cmf_log_with_scope_arg = { action = atd_log_opinion_195_plus }
+						cmf_log_with_scope_arg = { action = atd_log_opinion_195_to_199 }
+					}
+				}
+				else_if = {
+					limit = { opinion = { target = scope:actor_scope value >= 190 } }
+					scope:actor_scope = {
+						cmf_log_with_scope_arg = { action = atd_log_opinion_190_to_194 }
+					}
+				}
+				else_if = {
+					limit = { opinion = { target = scope:actor_scope value >= 185 } }
+					scope:actor_scope = {
+						cmf_log_with_scope_arg = { action = atd_log_opinion_185_to_189 }
 					}
 				}
 				else_if = {
 					limit = { opinion = { target = scope:actor_scope value >= 180 } }
 					scope:actor_scope = {
-						cmf_log_with_scope_arg = { action = atd_log_opinion_180_to_195 }
+						cmf_log_with_scope_arg = { action = atd_log_opinion_180_to_184 }
 					}
 				}
 				else_if = {
