@@ -5,17 +5,18 @@ cmf_monthly_human_country_pulse = {
 	}
 }
 
-# Monthly tick is decoupled from the actual mod logic so that the GUI sync has
-# a chance to refresh atd_improving_with before we make decisions. The hidden
-# window's end phase decrements atd_pending_action_countdown each cycle and runs
-# atd_enforce_on_subjects + atd_improve_relations once it hits 0, guaranteeing
-# the cycle that processes the pending action ran a full begin -> iter -> end
-# pass with the latest engine state. Without this defer, fast-forward speeds can
-# fire a monthly tick before sync notices a player cancellation, so the mod
-# inconsistently misses the retarget.
+# Monthly tick. Pre-populates atd_sync_check_list (the set of countries the GUI
+# iter widgets walk) and sets atd_pending_action - the gate variable that flips
+# the hidden window visible. The hidden window's single driver tick fires the
+# iter trigger first, populating atd_improving_seen synchronously from the
+# diplomatic engine, then runs reconcile + mod logic in atd_gui_sync_step.
+# Pre-populating the list here means the GUI's datamodel has entries the moment
+# the gate flips visible, so the iter widgets are instantiated and ready by the
+# time the driver fires 0.5s later. The whole chain runs in one tick per month.
 atd_on_monthly = {
 	effect = {
 		atd_update_hre_visibility = yes
-		set_variable = { name = atd_pending_action_countdown value = 1 }
+		atd_gui_sync_begin = yes
+		set_variable = atd_pending_action
 	}
 }

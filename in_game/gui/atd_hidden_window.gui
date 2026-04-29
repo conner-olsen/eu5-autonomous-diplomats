@@ -10,51 +10,59 @@
 	}
 	blockoverride "content" {
 		vbox = {
-			visible = "[GetPlayer.Exists]"
+			# Gated by atd_should_run. atd_on_monthly sets atd_pending_action,
+			# the gate flips true, this vbox becomes visible, the driver state
+			# below instantiates and fires once 0.5s later. atd_gui_sync_step
+			# removes atd_pending_action at the end of that single tick, the
+			# gate flips false, this vbox disappears, the driver state dies.
+			# Result: one tick per monthly pulse, zero work between monthly ticks.
+			visible = "[And(GetPlayer.Exists, GetScriptedGui('atd_should_run').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
 			datacontext = "[GetQuickTemporaryCountryRelations(Player.Self)]"
 
-			# Driver: every 2 seconds, advance the sync state machine, then fan out
-			# to the iter widgets. Cycle 1 (no flag) populates atd_sync_check_list
-			# from every_country_in_diplomatic_range, clears atd_improving_seen,
-			# and sets atd_gui_sync_collecting so the iter widgets become visible.
-			# Cycle 2 (flag set) reconciles atd_improving_with against
-			# atd_improving_seen: drops canceled/completed entries and adds newly
-			# discovered player-initiated improvements. Then clears the flag.
+			# Driver: single-fire 0.5s state. atd_on_monthly already ran
+			# atd_gui_sync_begin (populating atd_sync_check_list and clearing
+			# atd_improving_seen) before the gate flipped, so by the time this
+			# state fires its on_finish chain the iter widgets below have
+			# already been instantiated by the datamodel. The chain order
+			# matters:
+			#   1. Trigger atd_gui_sync_iter - synchronously walks the iter
+			#      widgets, each calls atd_gui_sync_track to add its country
+			#      to atd_improving_seen (only if currently IsImprovingOpinion).
+			#   2. Run atd_gui_sync_step - reconciles atd_improving_with
+			#      against the just-populated atd_improving_seen, runs mod
+			#      logic (atd_enforce_on_subjects + atd_improve_relations),
+			#      removes atd_pending_action.
+			#   3. Trigger atd_do_auto_cancel - mod logic may have set
+			#      atd_pending_cancel on countries at the opinion cap; this
+			#      fires the outliner widgets so they call OnRightClick.
+			#   4. Trigger atd_do_auto_confirm - polled fallback for the popup
+			#      widget's trigger_on_create, in case the popup spawned this
+			#      frame and its trigger_on_create didn't fire.
+			# After step 2, atd_should_run is false and the parent vbox is
+			# becoming invisible, but on_finish actions 3-4 still run on the
+			# already-triggered animations (they target widgets in
+			# outliner_entries.gui and ingame_dialogs.gui, not children of
+			# this hidden window).
 			overlappingitembox = {
 				state = {
 					name = atd_hidden_window_driver
 					trigger_on_create = yes
 					duration = 0.5
-					on_finish = "[GetScriptedGui('atd_gui_sync_step').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 					on_finish = "[PdxGuiTriggerAllAnimations('atd_gui_sync_iter')]"
-					# Polls the auto-cancel widgets in outliner_entries.gui each
-					# cycle. We trigger explicitly rather than relying on the
-					# widget's _show state transitioning when atd_pending_cancel
-					# flips - the latter wasn't firing reliably (likely because
-					# Country.MakeScope.GetVariable doesn't push reactive
-					# visibility updates), so we just poll every 0.5s instead.
+					on_finish = "[GetScriptedGui('atd_gui_sync_step').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 					on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_cancel')]"
-					# Polls the diplomacy_dialog auto-confirm widget. When
-					# atd_pending_confirm is set on a country whose diplomacy
-					# dialog is open, the widget fires OnAction('OptionA') to
-					# auto-accept the cancellation popup that OnRightClick
-					# puts up.
 					on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_confirm')]"
-					on_finish = "[PdxGuiWidget.TriggerAnimation('atd_hidden_window_driver')]"
 				}
 			}
 
-			# Iter section: walks atd_sync_check_list, which the script populates
-			# in begin phase from every_country_in_diplomatic_range plus any
-			# already-tracked countries. For each country currently being improved
-			# (per the diplomatic engine), fires the tracking call to refresh
-			# progress and mark as seen. The end phase reconciles atd_improving_with
-			# against atd_improving_seen, so this picks up both mod-initiated and
-			# player-initiated improve_relations actions.
-			# Visibility is gated by the collecting flag so animations only fire
-			# during cycle 1.
+			# Iter section: walks atd_sync_check_list (populated by atd_on_monthly
+			# from every_country_in_diplomatic_range plus already-tracked
+			# countries). For each country currently being improved per the
+			# diplomatic engine (filtered by OngoingRelationCountry.IsImprovingOpinion),
+			# fires the tracking call. Visibility is inherited from the parent
+			# vbox - no separate flag needed because the parent is only visible
+			# during the single monthly tick window.
 			vbox = {
-				visible = "[GetScriptedGui('atd_gui_sync_is_collecting').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 				datamodel = "[GetPlayer.MakeScope.GetList('atd_sync_check_list')]"
 				item = {
 					# Items in a variable_list iterated from GUI come through as a

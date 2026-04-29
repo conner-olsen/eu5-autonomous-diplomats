@@ -40,52 +40,32 @@ atd_clear_pending_confirm = {
 	}
 }
 
-# Driver step. Toggles between begin (cycle 1) and end (cycle 2) phases, and
-# also runs deferred monthly mod logic so it sees fresh sync state.
-#
-# Cycle 1 (no flag): decrements atd_pending_action_countdown if monthly tick set
-# it; clears the per-cycle "seen" marker; sets the collecting flag so the iter
-# widgets become visible and fire tracking calls.
-# Cycle 2 (flag set): reconciles via atd_gui_sync_end; if the countdown hit 0
-# this cycle, runs atd_enforce_on_subjects + atd_improve_relations against the
-# now-fresh atd_improving_with. Then clears the flag.
+# Single-tick driver step. atd_on_monthly already ran atd_gui_sync_begin and
+# populated atd_sync_check_list, so the iter widgets exist with the right
+# datamodel by the time the driver fires. The driver's on_finish chain calls
+# atd_gui_sync_iter first - that synchronously populates atd_improving_seen
+# via the iter widgets - then this scripted_gui reconciles and runs mod logic.
+# Removing atd_pending_action flips atd_should_run false, the hidden window
+# disappears, and the driver state dies until the next monthly tick.
 # Root: player country.
 atd_gui_sync_step = {
 	effect = {
-		if = {
-			limit = { has_variable = atd_gui_sync_collecting }
-			atd_gui_sync_end = yes
-			remove_variable = atd_gui_sync_collecting
-			# Run deferred monthly logic if the begin phase brought the countdown
-			# to 0 this cycle. This means a full begin -> iter -> end pass just
-			# completed with the latest engine state, so atd_improving_with
-			# reflects player cancellations and natural completions.
-			if = {
-				limit = {
-					has_variable = atd_pending_action_countdown
-					var:atd_pending_action_countdown <= 0
-				}
-				atd_enforce_on_subjects = yes
-				atd_improve_relations = yes
-				remove_variable = atd_pending_action_countdown
-			}
-		}
-		else = {
-			atd_gui_sync_begin = yes
-			set_variable = atd_gui_sync_collecting
-			if = {
-				limit = { has_variable = atd_pending_action_countdown }
-				change_variable = { name = atd_pending_action_countdown subtract = 1 }
-			}
-		}
+		atd_gui_sync_end = yes
+		atd_enforce_on_subjects = yes
+		atd_improve_relations = yes
+		remove_variable = atd_pending_action
 	}
 }
 
-# Visibility gate for the iter section. Only true between begin and end phases.
+# Visibility gate for the entire atd_hidden_window. atd_on_monthly sets
+# atd_pending_action to flip this true; atd_gui_sync_step removes it after the
+# single driver tick completes. While unset, the hidden window content is
+# invisible, no widgets are instantiated, and no polling occurs. Same shape as
+# smart_taxes' smart_taxes_should_recalculate gate.
 # Root: player country.
-atd_gui_sync_is_collecting = {
+atd_should_run = {
 	is_shown = {
-		has_variable = atd_gui_sync_collecting
+		has_variable = atd_pending_action
 	}
 }
 
