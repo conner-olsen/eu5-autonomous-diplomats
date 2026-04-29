@@ -7332,7 +7332,17 @@ OutlinerEntryBase = {
 			state = {
 				name = atd_do_auto_cancel
 				on_finish = "[OutlinerDiplomacyEntry.OnRightClick]"
+				# Order matters: atd_clear_pending_cancel sets the global
+				# atd_pending_confirm flag BEFORE we trigger the auto-confirm
+				# animation, so when the popup widget evaluates its visibility,
+				# the flag is already set and the state fires in the same
+				# frame as the popup creation. PdxGuiTriggerAllAnimations only
+				# reaches currently-visible widgets, so any popup that was
+				# rendered synchronously by OnRightClick gets confirmed now;
+				# anything that takes a frame to appear gets caught by the
+				# 0.5s polling fallback in atd_hidden_window.gui.
 				on_finish = "[GetScriptedGui('atd_clear_pending_cancel').Execute(GuiScope.SetRoot(Country.MakeScope).End)]"
+				on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_confirm')]"
 			}
 		}
 	}

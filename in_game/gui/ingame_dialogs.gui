@@ -53,7 +53,24 @@
 		# per cancel, and the flag is cleared on first fire so it doesn't repeat.
 		widget = {
 			size = { 0 0 }
+			visible_at_creation = no
 			visible = "[GetGlobalVariable('atd_pending_confirm').IsSet]"
+			# _show fires the moment the widget transitions from hidden to
+			# visible. With visible_at_creation=no and the visibility gate
+			# already set when the popup spawns (atd_clear_pending_cancel
+			# sets the flag before OnRightClick's resulting popup appears),
+			# this fires in the same frame as the popup, so the user sees
+			# at most a single-frame flash rather than the popup sitting
+			# until the next 0.5s poll.
+			state = {
+				name = _show
+				on_start = "[DialogConfig.OnAccept]"
+				on_start = "[GetScriptedGui('atd_clear_pending_confirm').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+			}
+			# Polled fallback - if _show didn't fire (engine sometimes skips
+			# the transition for nested widgets) the hidden window driver's
+			# PdxGuiTriggerAllAnimations('atd_do_auto_confirm') still picks
+			# this up within 0.5s.
 			state = {
 				name = atd_do_auto_confirm
 				on_finish = "[DialogConfig.OnAccept]"
