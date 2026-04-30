@@ -117,11 +117,8 @@ atd_check_max_opinion_for_cancel = {
 	}
 }
 
-# Runs ONCE per monthly tick. Recomputes the per-type active counters and decays
-# atd_improved_with for entries no longer being improved (per GUI sync).
-# Active state and progress values are populated by the hidden window's GUI sync;
-# this effect only handles the script-side bookkeeping that needs to run on the
-# monthly cadence.
+# Recomputes per-type active counters from atd_improving_type and decays
+# atd_improved_with for inactive entries. Runs once per monthly tick.
 atd_update_improved_with = {
 	set_variable = { name = atd_n_neighbors_improving_with value = 0 }
 	set_variable = { name = atd_n_subjects_improving_with value = 0 }
@@ -133,6 +130,43 @@ atd_update_improved_with = {
 
 	if = {
 		limit = {
+			has_variable_map = atd_improving_type
+		}
+		every_key_in_variable_map = {
+			variable = atd_improving_type
+			save_scope_as = nation_improving
+			scope:actor_scope = {
+				switch = {
+					trigger = "variable_map(atd_improving_type|scope:nation_improving)"
+					flag:neighbor = {
+						change_variable = { name = atd_n_neighbors_improving_with add = 1 }
+					}
+					flag:subject = {
+						change_variable = { name = atd_n_subjects_improving_with add = 1 }
+					}
+					flag:outraged = {
+						change_variable = { name = atd_n_outraged_improving_with add = 1 }
+					}
+					flag:ally = {
+						change_variable = { name = atd_n_allies_improving_with add = 1 }
+					}
+					flag:threatened = {
+						change_variable = { name = atd_n_threatened_improving_with add = 1 }
+					}
+					flag:hre_member = {
+						change_variable = { name = atd_n_hre_members_improving_with add = 1 }
+					}
+					flag:hre_elector = {
+						change_variable = { name = atd_n_hre_electors_improving_with add = 1 }
+					}
+				}
+			}
+		}
+	}
+
+	# Decay 0.1/month while inactive; remove below 1.
+	if = {
+		limit = {
 			has_variable_map = atd_improved_with
 		}
 		every_key_in_variable_map = {
@@ -141,60 +175,16 @@ atd_update_improved_with = {
 			scope:actor_scope = {
 				if = {
 					limit = {
-						has_variable_map = atd_improving_with
-						is_key_in_variable_map = {
-							name = atd_improving_with
-							target = scope:nation_improved_with
-						}
-					}
-					# Active branch: country is currently being improved (per GUI).
-					# Increment the per-type counter for entries the mod owns.
-					# Player-initiated entries have no atd_improving_type and fall
-					# through the outer if without incrementing anything, by design.
-					#
-					# The has_variable_map / is_key_in_variable_map guard is required:
-					# a country can land in atd_improving_with (player-initiated, or
-					# after auto-cancel cleanup re-detects it) without ever having an
-					# atd_improving_type entry, and once atd_improving_type loses its
-					# last key the engine drops the map entirely. Reading the switch
-					# trigger against an unset map raises "Failed to fetch map".
-					if = {
-						limit = {
-							has_variable_map = atd_improving_type
-							is_key_in_variable_map = {
-								name = atd_improving_type
-								target = scope:nation_improved_with
-							}
-						}
-						switch = {
-							trigger = "variable_map(atd_improving_type|scope:nation_improved_with)"
-							flag:neighbor = {
-								change_variable = { name = atd_n_neighbors_improving_with add = 1 }
-							}
-							flag:subject = {
-								change_variable = { name = atd_n_subjects_improving_with add = 1 }
-							}
-							flag:outraged = {
-								change_variable = { name = atd_n_outraged_improving_with add = 1 }
-							}
-							flag:ally = {
-								change_variable = { name = atd_n_allies_improving_with add = 1 }
-							}
-							flag:threatened = {
-								change_variable = { name = atd_n_threatened_improving_with add = 1 }
-							}
-							flag:hre_member = {
-								change_variable = { name = atd_n_hre_members_improving_with add = 1 }
-							}
-							flag:hre_elector = {
-								change_variable = { name = atd_n_hre_electors_improving_with add = 1 }
+						OR = {
+							NOT = { has_variable_map = atd_improving_with }
+							NOT = {
+								is_key_in_variable_map = {
+									name = atd_improving_with
+									target = scope:nation_improved_with
+								}
 							}
 						}
 					}
-				}
-				else = {
-					# Inactive branch: country is not currently being improved.
-					# Decay the cooldown value by 0.1/month and drop below 1.
 					set_variable = {
 						name = temp_new_improved_amount
 						value = {
@@ -278,17 +268,13 @@ atd_gui_sync_begin = {
 	}
 }
 
-# End phase of GUI sync. Reconciles atd_improving_with against atd_improving_seen:
-#   - Entries in atd_improving_with not seen this pass (canceled or completed)
-#     are dropped from atd_improving_with and atd_improving_type. atd_improved_with
-#     retains its last seen progress value and decays via atd_update_improved_with.
-#   - Entries in atd_improving_seen not yet in atd_improving_with are player-
-#     initiated improvements the mod just discovered; add them to atd_improving_with.
-#     atd_improving_type stays unset for these so they don't count toward mod budgets.
-#
-# Stale entries are collected into atd_improving_to_remove first, then processed in
-# a separate pass so we never mutate atd_improving_with map keys during their own
-# iteration. Called by atd_gui_sync_step (cycle 2). Scope: player country.
+# Reconciles atd_improving_with against atd_improving_seen. Mod-tracked
+# entries (atd_improving_type set) require 2 consecutive iter misses before
+# eviction, tracked via atd_n_misses; player-tracked entries evict on the
+# first miss. Newly seen entries not yet tracked are added as player-tracked
+# (no atd_improving_type, atd_n_misses=0). Stale entries collected into
+# atd_improving_to_remove first to avoid mutating atd_improving_with keys
+# during iteration. Called by atd_gui_sync_step. Scope: player country.
 atd_gui_sync_end = {
 	save_scope_as = atd_sync_actor
 	if = {
@@ -313,9 +299,75 @@ atd_gui_sync_end = {
 							}
 						}
 					}
-					add_to_variable_list = {
-						name = atd_improving_to_remove
-						target = scope:atd_nation_to_check
+					# Not seen this sync.
+					if = {
+						limit = {
+							has_variable_map = atd_improving_type
+							is_key_in_variable_map = {
+								name = atd_improving_type
+								target = scope:atd_nation_to_check
+							}
+						}
+						# Mod-tracked: hysteresis.
+						set_variable = {
+							name = temp_miss
+							value = 1
+						}
+						if = {
+							limit = {
+								has_variable_map = atd_n_misses
+								is_key_in_variable_map = {
+									name = atd_n_misses
+									target = scope:atd_nation_to_check
+								}
+							}
+							set_variable = {
+								name = temp_miss
+								value = {
+									value = "variable_map(atd_n_misses|scope:atd_nation_to_check)"
+									add = 1
+								}
+							}
+						}
+						if = {
+							limit = { var:temp_miss >= 2 }
+							add_to_variable_list = {
+								name = atd_improving_to_remove
+								target = scope:atd_nation_to_check
+							}
+						}
+						else = {
+							cmf_change_variable_map = {
+								name = atd_n_misses
+								key = scope:atd_nation_to_check
+								value = var:temp_miss
+							}
+						}
+					}
+					else = {
+						# Player-tracked: evict immediately.
+						add_to_variable_list = {
+							name = atd_improving_to_remove
+							target = scope:atd_nation_to_check
+						}
+					}
+				}
+				else = {
+					# Seen this sync.
+					if = {
+						limit = {
+							has_variable_map = atd_n_misses
+							is_key_in_variable_map = {
+								name = atd_n_misses
+								target = scope:atd_nation_to_check
+							}
+							"variable_map(atd_n_misses|scope:atd_nation_to_check)" > 0
+						}
+						cmf_change_variable_map = {
+							name = atd_n_misses
+							key = scope:atd_nation_to_check
+							value = 0
+						}
 					}
 				}
 			}
@@ -341,6 +393,19 @@ atd_gui_sync_end = {
 					}
 					remove_from_variable_map = {
 						name = atd_improving_type
+						key = scope:atd_nation_to_remove
+					}
+				}
+				if = {
+					limit = {
+						has_variable_map = atd_n_misses
+						is_key_in_variable_map = {
+							name = atd_n_misses
+							target = scope:atd_nation_to_remove
+						}
+					}
+					remove_from_variable_map = {
+						name = atd_n_misses
 						key = scope:atd_nation_to_remove
 					}
 				}
@@ -475,6 +540,11 @@ atd_start_improving_with = {
 			name = atd_improving_type
 			key = scope:target_country
 			value = flag:$type$
+		}
+		add_to_variable_map = {
+			name = atd_n_misses
+			key = scope:target_country
+			value = 0
 		}
 		change_variable = { name = $counter$ add = 1 }
 	}

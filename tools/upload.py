@@ -577,7 +577,8 @@ def ensure_submod_item_id(steam, mod_id, workshop_id, config_path):
 
     return new_id
 
-def upload_submods(steam, config, version_gate_enabled=False, force_upload=False, version_cache=None, upload_change_notes=False):
+def upload_submods(steam, config, test, version_gate_enabled=False, force_upload=False, version_cache=None,
+                   upload_change_notes=False):
     submods_root = os.path.join(ROOT_DIR, SUBMODS_DIR_NAME)
     if not os.path.isdir(submods_root):
         print(f"Warning: submods folder not found: {submods_root}")
@@ -1308,14 +1309,10 @@ def main():
                 save_upload_versions(UPLOAD_VERSIONS_PATH, version_cache)
 
         if upload_submods_selected:
-            submods_ok, submod_cache_changed = upload_submods(
-                steam,
-                config,
-                version_gate_enabled=upload_only_on_version_change,
-                force_upload=force_upload,
-                version_cache=version_cache,
-                upload_change_notes=upload_change_notes
-            )
+            submods_ok, submod_cache_changed = upload_submods(steam, config, a,
+                                                              version_gate_enabled=upload_only_on_version_change,
+                                                              force_upload=force_upload, version_cache=version_cache,
+                                                              upload_change_notes=upload_change_notes)
             if not submods_ok:
                 return 1
             if upload_only_on_version_change and submod_cache_changed:

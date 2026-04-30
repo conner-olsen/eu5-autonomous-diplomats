@@ -15,16 +15,18 @@
 			visible = "[And(GetPlayer.Exists, GetScriptedGui('atd_should_run').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
 			datacontext = "[GetQuickTemporaryCountryRelations(Player.Self)]"
 
-			# Three-state chain. on_finish actions inside a single state fire
-			# concurrently, so each step that depends on a prior step needs
-			# its own state. iter populates atd_improving_seen; sync_step
-			# reads it and runs mod logic (which may set atd_pending_cancel);
-			# cancel fires the outliner widgets and closes the gate.
-			# _show fires on this vbox when the visible gate above flips
-			# false->true, which is the entry point for the chain.
+			# _show holds 0.5s before atd_hidden_window_iter fires the trigger:
+			# PdxGuiTriggerAllAnimations only reaches widgets visible at call
+			# time, and the iter children below need a tick after the parent
+			# vbox flips visible to evaluate their HasTemporaryRelation and
+			# IsImprovingOpinion gates.
 			state = {
 				name = _show
 				duration = 0.5
+				next = atd_hidden_window_iter
+			}
+			state = {
+				name = atd_hidden_window_iter
 				on_start = "[PdxGuiTriggerAllAnimations('atd_gui_sync_iter')]"
 				next = atd_hidden_window_sync
 			}
