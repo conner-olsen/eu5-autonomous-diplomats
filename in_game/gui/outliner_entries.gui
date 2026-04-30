@@ -6467,46 +6467,7 @@ OutlinerEntryBase = {
 
 	blockoverride "icon_content" {
 		using = diplomacy_icon_content
-
-		# ATD MOD: zero-size hidden widget that fires OutlinerDiplomacyEntry.OnRightClick
-		# when the target country has the atd_pending_cancel variable set.
-		# atd_check_max_opinion_for_cancel (script-side, runs on monthly tick) flips
-		# this variable for mod-initiated targets that have reached +200 opinion of
-		# the player.
-		#
-		# Trigger mechanism: the hidden window's driver state fires
-		# PdxGuiTriggerAllAnimations('atd_do_auto_cancel') every 0.5s, which
-		# reaches every visible widget below with a matching state name.
-		# Visibility is gated by atd_pending_cancel, so on_finish only runs
-		# for entries that need cancelling. We poll rather than rely on the
-		# widget's _show state because _show didn't transition reliably when
-		# the variable flipped (Country.MakeScope.GetVariable updates don't
-		# seem to push reactive visibility re-evaluation to nested widgets).
-		#
-		# Placed in icon_content (not button_setup) because button_setup is
-		# inside a mouse-gated container and only renders when the player
-		# hovers/pins the outliner; icon_content renders unconditionally
-		# while the entry exists.
-		widget = {
-			datacontext = "[OutlinerDiplomacyEntry.GetTargetCountry]"
-			size = { 0 0 }
-			visible = "[And(OutlinerDiplomacyEntry.CanRightClick, Country.MakeScope.GetVariable('atd_pending_cancel').IsSet)]"
-			state = {
-				name = atd_do_auto_cancel
-				on_finish = "[OutlinerDiplomacyEntry.OnRightClick]"
-				# Order matters: atd_clear_pending_cancel sets the global
-				# atd_pending_confirm flag BEFORE we trigger the auto-confirm
-				# animation, so when the popup widget evaluates its visibility,
-				# the flag is already set and the state fires in the same
-				# frame as the popup creation. PdxGuiTriggerAllAnimations only
-				# reaches currently-visible widgets, so any popup that was
-				# rendered synchronously by OnRightClick gets confirmed now;
-				# anything that takes a frame to appear gets caught by the
-				# 0.5s polling fallback in atd_hidden_window.gui.
-				on_finish = "[GetScriptedGui('atd_clear_pending_cancel').Execute(GuiScope.SetRoot(Country.MakeScope).End)]"
-				on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_confirm')]"
-			}
-		}
+		atd_outliner_auto_cancel_widget = {}
 	}
 
 	blockoverride "button_setup" {

@@ -1,0 +1,26 @@
+﻿# Auto-cancel widget for the outliner improve_opinion entry. Instantiated as
+# `atd_outliner_auto_cancel_widget = {}` from this mod's outliner_entries.gui
+# overlay and from EU5.Glorp.UI's overlay, so a load-order conflict between
+# the two outliner_entries.gui copies doesn't drop the widget.
+#
+# Placed in icon_content (not button_setup) because button_setup only renders
+# when the player hovers/pins the outliner; icon_content renders unconditionally
+# while the entry exists. Triggered by PdxGuiTriggerAllAnimations('atd_do_auto_cancel')
+# from the hidden window's driver state.
+types atd_outliner {
+	type atd_outliner_auto_cancel_widget = widget {
+		datacontext = "[OutlinerDiplomacyEntry.GetTargetCountry]"
+		size = { 0 0 }
+		visible = "[And(OutlinerDiplomacyEntry.CanRightClick, Country.MakeScope.GetVariable('atd_pending_cancel').IsSet)]"
+		state = {
+			name = atd_do_auto_cancel
+			on_finish = "[OutlinerDiplomacyEntry.OnRightClick]"
+			# Order: clear_pending_cancel sets atd_pending_confirm before the
+			# auto-confirm trigger, so a popup spawned synchronously by
+			# OnRightClick sees the flag already set. Late-spawning popups
+			# fall back to the 0.5s poll in atd_hidden_window.gui.
+			on_finish = "[GetScriptedGui('atd_clear_pending_cancel').Execute(GuiScope.SetRoot(Country.MakeScope).End)]"
+			on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_confirm')]"
+		}
+	}
+}
