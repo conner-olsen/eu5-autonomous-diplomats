@@ -330,7 +330,7 @@ atd_gui_sync_end = {
 							}
 						}
 						if = {
-							limit = { var:temp_miss >= 2 }
+							limit = { var:temp_miss >= 5 }
 							add_to_variable_list = {
 								name = atd_improving_to_remove
 								target = scope:atd_nation_to_check
