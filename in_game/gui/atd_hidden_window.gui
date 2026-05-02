@@ -13,21 +13,13 @@
 			# Gated by atd_should_run: visible only between atd_on_monthly setting
 			# atd_pending_action and atd_gui_sync_step clearing it.
 			visible = "[And(GetPlayer.Exists, GetScriptedGui('atd_should_run').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
-			datacontext = "[GetQuickTemporaryCountryRelations(Player.Self)]"
 
-			# _show holds 0.5s before atd_hidden_window_iter fires the trigger:
-			# PdxGuiTriggerAllAnimations only reaches widgets visible at call
-			# time, and the iter children below need a tick after the parent
-			# vbox flips visible to evaluate their HasTemporaryRelation and
-			# IsImprovingOpinion gates.
+			# _show holds 0.5s so the outliner sync widgets (whose visibility
+			# is gated on the same atd_should_run) get their own _show fired
+			# and populate atd_improving_seen before atd_gui_sync_step reads it.
 			state = {
 				name = _show
 				duration = 0.5
-				next = atd_hidden_window_iter
-			}
-			state = {
-				name = atd_hidden_window_iter
-				on_start = "[PdxGuiTriggerAllAnimations('atd_gui_sync_iter')]"
 				next = atd_hidden_window_sync
 			}
 			state = {
@@ -39,33 +31,6 @@
 				name = atd_hidden_window_cancel
 				on_start = "[PdxGuiTriggerAllAnimations('atd_do_auto_cancel')]"
 				on_start = "[GetScriptedGui('atd_close_hidden_window').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-			}
-
-			# Iter widgets: one per country in atd_sync_check_list, fire tracking
-			# only if currently IsImprovingOpinion.
-			vbox = {
-				datamodel = "[GetPlayer.MakeScope.GetList('atd_sync_check_list')]"
-				item = {
-					# Scope.GetCountry unwraps the variable_list's generic Scope
-					# wrapper into a Country. Same pattern lsq_hidden_window uses.
-					widget = {
-						datacontext = "[Scope.GetCountry]"
-						# HasTemporaryRelation guard avoids 'FetchData failed' spam
-						# from the inner widget dereferencing a null
-						# OngoingRelationCountry on countries with no ongoing relations.
-						widget = {
-							visible = "[QuickTemporaryCountryRelations.HasTemporaryRelation(Country.Self)]"
-							widget = {
-								datacontext = "[QuickTemporaryCountryRelations.GetTemporaryRelation(Country.Self)]"
-								visible = "[OngoingRelationCountry.IsImprovingOpinion]"
-								state = {
-									name = atd_gui_sync_iter
-									on_finish = "[GetScriptedGui('atd_gui_sync_track').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('country', Country.MakeScope).End)]"
-								}
-							}
-						}
-					}
-				}
 			}
 		}
 	}

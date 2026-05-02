@@ -210,71 +210,23 @@ atd_update_improved_with = {
 	}
 }
 
-# Begin phase of GUI sync. Builds atd_sync_check_list: every country the player
-# could currently be improving with. Iter widgets walk this list and fire only
-# for entries where IsImprovingOpinion is true, which gives us ground truth for
-# both mod-initiated and player-initiated improve_relations actions. Also
-# clears the per-cycle "seen" marker. Called by atd_gui_sync_step (cycle 1).
-# Scope: player country.
-#
-# Scoping note: every_* iterators switch the body scope to the iterated item.
-# Variable list/map operations apply to the current scope, so we have to switch
-# back to the player country (scope:atd_sync_actor) before mutating player-owned
-# storage. Same pattern in atd_gui_sync_end.
+# Clears the per-cycle "seen" marker before atd_gui_sync_iter populates it.
+# Called by atd_on_monthly before the hidden window driver runs. Scope: player country.
 atd_gui_sync_begin = {
-	save_scope_as = atd_sync_actor
 	if = {
 		limit = { has_variable_list = atd_improving_seen }
 		clear_variable_list = atd_improving_seen
 	}
-	if = {
-		limit = { has_variable_list = atd_sync_check_list }
-		clear_variable_list = atd_sync_check_list
-	}
-	# Diplomatic range covers everyone the player can normally start an
-	# improve_relations action against.
-	every_country_in_diplomatic_range = {
-		save_scope_as = atd_iter_country
-		scope:atd_sync_actor = {
-			add_to_variable_list = {
-				name = atd_sync_check_list
-				target = scope:atd_iter_country
-			}
-		}
-	}
-	# Catch tracked entries that may have fallen out of diplomatic range mid-action.
-	if = {
-		limit = { has_variable_map = atd_improving_with }
-		every_key_in_variable_map = {
-			variable = atd_improving_with
-			save_scope_as = atd_tracked_country
-			scope:atd_sync_actor = {
-				if = {
-					limit = {
-						NOT = {
-							is_target_in_variable_list = {
-								name = atd_sync_check_list
-								target = scope:atd_tracked_country
-							}
-						}
-					}
-					add_to_variable_list = {
-						name = atd_sync_check_list
-						target = scope:atd_tracked_country
-					}
-				}
-			}
-		}
-	}
 }
 
-# Reconciles atd_improving_with against atd_improving_seen. Mod-tracked
-# entries (atd_improving_type set) require 2 consecutive iter misses before
-# eviction, tracked via atd_n_misses; player-tracked entries evict on the
-# first miss. Newly seen entries not yet tracked are added as player-tracked
-# (no atd_improving_type, atd_n_misses=0). Stale entries collected into
-# atd_improving_to_remove first to avoid mutating atd_improving_with keys
-# during iteration. Called by atd_gui_sync_step. Scope: player country.
+# Reconciles atd_improving_with against atd_improving_seen (populated by the
+# atd_outliner_sync_widget instances on the outliner's improve_opinion entries).
+# Tracked entries not seen this pass evict immediately - the outliner is
+# engine-managed ground truth, so a missing entry means the action genuinely
+# ended. Newly seen entries not yet tracked are added as player-tracked (no
+# atd_improving_type, so they don't count toward mod budgets). Stale entries
+# collected into atd_improving_to_remove first to avoid mutating atd_improving_with
+# keys during iteration. Called by atd_gui_sync_step. Scope: player country.
 atd_gui_sync_end = {
 	save_scope_as = atd_sync_actor
 	if = {
@@ -299,75 +251,9 @@ atd_gui_sync_end = {
 							}
 						}
 					}
-					# Not seen this sync.
-					if = {
-						limit = {
-							has_variable_map = atd_improving_type
-							is_key_in_variable_map = {
-								name = atd_improving_type
-								target = scope:atd_nation_to_check
-							}
-						}
-						# Mod-tracked: hysteresis.
-						set_variable = {
-							name = temp_miss
-							value = 1
-						}
-						if = {
-							limit = {
-								has_variable_map = atd_n_misses
-								is_key_in_variable_map = {
-									name = atd_n_misses
-									target = scope:atd_nation_to_check
-								}
-							}
-							set_variable = {
-								name = temp_miss
-								value = {
-									value = "variable_map(atd_n_misses|scope:atd_nation_to_check)"
-									add = 1
-								}
-							}
-						}
-						if = {
-							limit = { var:temp_miss >= 5 }
-							add_to_variable_list = {
-								name = atd_improving_to_remove
-								target = scope:atd_nation_to_check
-							}
-						}
-						else = {
-							cmf_change_variable_map = {
-								name = atd_n_misses
-								key = scope:atd_nation_to_check
-								value = var:temp_miss
-							}
-						}
-					}
-					else = {
-						# Player-tracked: evict immediately.
-						add_to_variable_list = {
-							name = atd_improving_to_remove
-							target = scope:atd_nation_to_check
-						}
-					}
-				}
-				else = {
-					# Seen this sync.
-					if = {
-						limit = {
-							has_variable_map = atd_n_misses
-							is_key_in_variable_map = {
-								name = atd_n_misses
-								target = scope:atd_nation_to_check
-							}
-							"variable_map(atd_n_misses|scope:atd_nation_to_check)" > 0
-						}
-						cmf_change_variable_map = {
-							name = atd_n_misses
-							key = scope:atd_nation_to_check
-							value = 0
-						}
+					add_to_variable_list = {
+						name = atd_improving_to_remove
+						target = scope:atd_nation_to_check
 					}
 				}
 			}
@@ -393,19 +279,6 @@ atd_gui_sync_end = {
 					}
 					remove_from_variable_map = {
 						name = atd_improving_type
-						key = scope:atd_nation_to_remove
-					}
-				}
-				if = {
-					limit = {
-						has_variable_map = atd_n_misses
-						is_key_in_variable_map = {
-							name = atd_n_misses
-							target = scope:atd_nation_to_remove
-						}
-					}
-					remove_from_variable_map = {
-						name = atd_n_misses
 						key = scope:atd_nation_to_remove
 					}
 				}
@@ -455,10 +328,6 @@ atd_gui_sync_end = {
 			}
 		}
 		clear_variable_list = atd_improving_seen
-	}
-	if = {
-		limit = { has_variable_list = atd_sync_check_list }
-		clear_variable_list = atd_sync_check_list
 	}
 }
 
@@ -540,11 +409,6 @@ atd_start_improving_with = {
 			name = atd_improving_type
 			key = scope:target_country
 			value = flag:$type$
-		}
-		add_to_variable_map = {
-			name = atd_n_misses
-			key = scope:target_country
-			value = 0
 		}
 		change_variable = { name = $counter$ add = 1 }
 	}

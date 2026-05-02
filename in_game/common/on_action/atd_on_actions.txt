@@ -5,8 +5,9 @@ cmf_monthly_human_country_pulse = {
 	}
 }
 
-# Pre-populates atd_sync_check_list before flipping the hidden window's gate,
-# so iter widgets are instantiated by the time the driver fires.
+# Clears atd_improving_seen before flipping the hidden window's gate, so the
+# outliner sync widgets fire into a fresh marker list when the driver triggers
+# atd_gui_sync_iter.
 atd_on_monthly = {
 	effect = {
 		atd_update_hre_visibility = yes

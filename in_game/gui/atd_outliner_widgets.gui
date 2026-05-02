@@ -23,4 +23,27 @@ types atd_outliner {
 			on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_confirm')]"
 		}
 	}
+
+	# Sync widget for the outliner improve_opinion entry. One instance per
+	# ongoing improve action (engine creates the outliner entry on action
+	# start, removes it on completion/cancel), so iterating these is the
+	# authoritative ground truth for what's actually running.
+	#
+	# Visibility is gated on atd_should_run, which flips false->true when
+	# atd_on_monthly sets atd_pending_action and back to false when
+	# atd_close_hidden_window clears it. _show fires on each false->true
+	# transition, giving exactly one atd_gui_sync_track call per monthly
+	# tick. visible_at_creation=no forces an initial false state so the
+	# transition fires even when the widget is created mid-tick (an action
+	# the mod just started).
+	type atd_outliner_sync_widget = widget {
+		datacontext = "[OutlinerDiplomacyEntry.GetTargetCountry]"
+		size = { 0 0 }
+		visible_at_creation = no
+		visible = "[GetScriptedGui('atd_should_run').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+		state = {
+			name = _show
+			on_start = "[GetScriptedGui('atd_gui_sync_track').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('country', Country.MakeScope).End)]"
+		}
+	}
 }
