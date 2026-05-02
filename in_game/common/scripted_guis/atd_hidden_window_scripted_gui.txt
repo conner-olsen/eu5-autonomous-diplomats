@@ -5,7 +5,6 @@
 # Root: target country (set via SetRoot).
 atd_clear_pending_cancel = {
 	effect = {
-		cmf_log = { action = atd_log_cancel_fired }
 		if = {
 			limit = { has_variable = atd_pending_cancel }
 			remove_variable = atd_pending_cancel

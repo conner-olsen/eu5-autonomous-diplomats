@@ -14,8 +14,7 @@
 			# atd_pending_action and atd_gui_sync_step clearing it.
 			visible = "[And(GetPlayer.Exists, GetScriptedGui('atd_should_run').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
 
-			# _show holds 0.5s so the outliner sync widgets (whose visibility
-			# is gated on the same atd_should_run) get their own _show fired
+			# 0.5s settle: lets the outliner sync widgets fire their _show
 			# and populate atd_improving_seen before atd_gui_sync_step reads it.
 			state = {
 				name = _show

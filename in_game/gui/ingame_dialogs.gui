@@ -38,9 +38,8 @@
 		# ATD MOD: auto-confirm hidden widget. When the popup opens AND the global
 		# atd_pending_confirm flag is set (set by atd_clear_pending_cancel right
 		# after the outliner auto-cancel fired OutlinerDiplomacyEntry.OnRightClick),
-		# this widget polls and fires DialogConfig.OnAccept to confirm the cancel
-		# without the player having to click. Polled by the hidden window driver
-		# via PdxGuiTriggerAllAnimations('atd_do_auto_confirm') every 0.5s.
+		# this widget fires DialogConfig.OnAccept to confirm the cancel without
+		# the player having to click.
 		#
 		# Placed in bottom_buttons (sits inside an hbox that accepts multiple
 		# children) rather than content (whose scrollwidget rejects more than
@@ -75,11 +74,11 @@
 					on_start = "[DialogConfig.OnAccept]"
 					on_start = "[GetScriptedGui('atd_clear_pending_confirm').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 				}
-				# Polled fallback - if trigger_on_create didn't fire (engine
-				# sometimes skips state init under nested visibility gates),
-				# the hidden window driver's
-				# PdxGuiTriggerAllAnimations('atd_do_auto_confirm') still
-				# picks this up within 0.5s.
+				# Fallback for when trigger_on_create didn't fire (engine
+				# sometimes skips state init under nested visibility gates).
+				# The auto-cancel widget fires
+				# PdxGuiTriggerAllAnimations('atd_do_auto_confirm') right after
+				# OnRightClick, which reaches this state.
 				state = {
 					name = atd_do_auto_confirm
 					on_finish = "[DialogConfig.OnAccept]"
