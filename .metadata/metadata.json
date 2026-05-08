@@ -1,9 +1,9 @@
 {
     "name": "Autonomous Diplomats Dev",
     "id": "autonomous_diplomats.dev",
-    "version": "1.1",
+    "version": "1.1.1",
     "game_id": "eu5",
-    "supported_game_version": "1.1.*",
+    "supported_game_version": "1.2.*",
     "short_description": "Automate your diplomatic actions.",
     "tags": [
         "Diplomacy",
