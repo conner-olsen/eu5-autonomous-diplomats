@@ -27,7 +27,7 @@ OutlinerEntryBase = {
 					layoutpolicy_horizontal = expanding
 					autoresize = no
 					align = left
-					fontsize = 13
+					fontsize = 14
 					using = OnlyVisibleWhenOneInLocation
 					text = "[Construction.GetNameWithNoTooltip]"
 				}
@@ -35,7 +35,7 @@ OutlinerEntryBase = {
 					layoutpolicy_horizontal = expanding
 					autoresize = no
 					align = left
-					fontsize = 13
+					fontsize = 14
 					using = OnlyVisibleWhenMultipleInLocation
 					text = "CONSTRUCTION_DURATION_DAYS_PLUS_QUEUE"
 				}

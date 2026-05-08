@@ -203,9 +203,6 @@ OutlinerEntryBase = {
 
 	blockoverride "button_setup" {
 		tooltipwidget = {
-			blockoverride "shift_left_extra" {
-				replacement_shift_item = {}
-			}
 			using = Combat_tooltip
 		}
 		action_tooltip = {
@@ -220,6 +217,7 @@ OutlinerEntryBase = {
 			click_modifier = shift
 			click_type = left
 			title = "ALERT_HINT"
+			click_modifier_description = "OPEN_HINT_TEXT"
 			using = snd_UI_alert_openAndCycle
 			on_action = "[PanToLocation(Combat.GetLocation)]"
 			on_action = "[ShowCombat(Combat.Self)]"
