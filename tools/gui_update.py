@@ -19,8 +19,11 @@ import hashlib
 import json
 import os
 import re
+import shutil
+import stat
 import subprocess
 import sys
+import time
 
 try:
     import tomllib
@@ -644,6 +647,30 @@ def _write_tracking_file(rel_path, content):
     with open(abs_path, "w", encoding="utf-8", newline="\n") as f:
         f.write(content)
 
+
+def _force_rmtree(path):
+    """Remove a directory tree, retrying past Windows read-only files
+    and transient handle locks (OneDrive, antivirus, IDE indexer)."""
+    if not os.path.isdir(path):
+        return
+
+    def _on_exc(func, target, _exc):
+        try:
+            os.chmod(target, stat.S_IWRITE)
+        except OSError:
+            pass
+        for delay in (0.0, 0.25, 1.0):
+            if delay:
+                time.sleep(delay)
+            try:
+                func(target)
+                return
+            except OSError:
+                continue
+        func(target)
+
+    shutil.rmtree(path, onexc=_on_exc)
+
 # ─── Commands ────────────────────────────────────────────────────────────────
 
 def cmd_init(args):
@@ -652,14 +679,36 @@ def cmd_init(args):
     _ensure_clean_worktree()
     _ensure_no_merge()
 
-    if _vanilla_branch_exists():
-        print(f"Error: Branch '{VANILLA_BRANCH}' already exists.")
-        print(f"Delete it first (git branch -D {VANILLA_BRANCH}) "
-              "or use 'refresh' to update tracking.")
-        return 1
-    if os.path.isdir(TRACKING_DIR):
-        print(f"Error: {TRACKING_DIR_NAME}/ already exists.")
-        return 1
+    branch_exists = _vanilla_branch_exists()
+    tracking_exists = os.path.isdir(TRACKING_DIR)
+
+    if branch_exists or tracking_exists:
+        if not args.force:
+            print("Error: GUI tracking is already initialized.")
+            if branch_exists:
+                print(f"  Branch '{VANILLA_BRANCH}' exists.")
+            if tracking_exists:
+                print(f"  {TRACKING_DIR_NAME}/ exists.")
+            print("Use 'refresh' to update existing tracking, "
+                  "or 'init --force' to reset and re-initialize.")
+            return 1
+
+        print("Force re-init: clearing existing tracking state...")
+        if tracking_exists:
+            tracked = run_git(["ls-files", TRACKING_DIR_NAME],
+                              check=False) or ""
+            if tracked.strip():
+                run_git(["rm", "-rf", TRACKING_DIR_NAME])
+                run_git(["commit", "-m",
+                         "Reset GUI tracking before re-initialization"])
+            # Untracked leftovers + empty dirs (git clean is Windows-friendlier
+            # than shutil for OneDrive-synced trees).
+            run_git(["clean", "-fdx", "--", TRACKING_DIR_NAME],
+                    check=False)
+            if os.path.isdir(TRACKING_DIR):
+                _force_rmtree(TRACKING_DIR)
+        if branch_exists:
+            run_git(["branch", "-D", VANILLA_BRANCH])
 
     # Scan
     print("Scanning mod GUI files...")
@@ -1249,8 +1298,14 @@ def main():
     sub = parser.add_subparsers(dest="command")
     sub.required = True
 
-    sub.add_parser("init",
-                   help="Initialize GUI tracking for this mod")
+    init_parser = sub.add_parser(
+        "init", help="Initialize GUI tracking for this mod")
+    init_parser.add_argument(
+        "--force", action="store_true",
+        help="Reset existing tracking state (deletes "
+             f"{TRACKING_DIR_NAME}/ and {VANILLA_BRANCH}) "
+             "before re-initializing.",
+    )
     sub.add_parser("check",
                    help="Check for vanilla GUI changes")
     sub.add_parser("merge",
