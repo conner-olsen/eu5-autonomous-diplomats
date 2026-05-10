@@ -4,61 +4,41 @@ Otonom Diplomatlar / Autonomous Diplomats
 [i]You are on the DeepL-Generated Turkish Page. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=$item-id$&l=english]Click here for the Native English Page.[/url][/i]
 
 [h1]Genel Bakış:[/h1]
-Autonomous Diplomats, EU4'teki otomatik diplomat sistemini geri getiriyor. Boştaki diplomatlarınız her ay hedef ülkelerle ilişkileri geliştirmek üzere gönderilir. Topluluk Mod Menüsü (Community Mod Menu) aracılığıyla öncelik kategorilerini, diplomat sınırlarını ve rezervleri yapılandırın -- artık ilişki geliştirme eylemlerini mikro yönetmekle uğraşmanıza gerek yok.
+EU4'teki otomatik diplomat sistemini, otomatik ilişki geliştirme ve diğer özelliklerle birlikte geri getirir.
 
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Community Mod Framework (CMF)[/url] gerektirir.
 
 [h1]Özellikler:[/h1]
 [olist]
- [*][b]Otomatik Diplomat Gönderimi:[/b] Boştaki diplomatları aylık döngüde hedef ülkelerle ilişkileri geliştirmek üzere gönderir.
- [*][b]7 Hedef Kategorisi:[/b]
+ [*][b]Otomatik İlişki Geliştirme:[/b]
   [list]
-   [*][b]Komşu Ülkeler:[/b] Rastgele sınır komşusu uluslarla ilişkileri geliştirir.
-   [*][b]Kendi Tebaalarınız:[/b] Rastgele tebaa uluslarla ilişkileri geliştirir.
-   [*][b]Öfkeli Ülkeler:[/b] Öncelikle size karşı en yüksek husumete sahip uluslarla ilişkileri geliştirir.
-   [*][b]Müttefikler:[/b] Müttefik uluslar ve savunma birliği üyeleriyle ilişkileri geliştirir.
-   [*][b]Tehditkar Ülkeler:[/b] Öncelikle size karşı en yüksek tehdit seviyesine sahip uluslarla ilişkileri geliştirir.
+   [*][b]Komşu Ülkeler:[/b] Rastgele sınır komşusu olan ülkelerle ilişkileri geliştirir.
+   [*][b]Kendi Tabileri:[/b] Rastgele tabi ülkelerle ilişkileri geliştirir.
+   [*][b]Öfkeli Ülkeler:[/b] Size karşı en yüksek düşmanlığı besleyen ülkelerden başlayarak ilişkileri geliştirir.
+   [*][b]Müttefikler:[/b] Müttefik ülkeler ve savunma birliği üyeleriyle ilişkileri geliştirir.
+   [*][b]Tehditkâr Ülkeler:[/b] Size karşı en yüksek tehdit seviyesini oluşturan ülkelerden başlayarak ilişkileri geliştirir.
    [*][b]KRİ Seçmenleri:[/b] Kutsal Roma İmparatorluğu seçmenleriyle ilişkileri geliştirir. Sadece KRİ üyeleri için görünürdür.
    [*][b]KRİ Üyeleri:[/b] Diğer Kutsal Roma İmparatorluğu üyeleriyle ilişkileri geliştirir. Sadece KRİ üyeleri için görünürdür.
   [/list]
   [list]
-   [*][b]Sürükle-Bırak Öncelik Sıralaması:[/b] Topluluk Mod Menüsü üzerinden hangi kategorilerin önce diplomat alacağını ayarlayın.
-   [*][b]Kategori Başına Diplomat Sınırı:[/b] Her kategorinin kaç diplomat kullanabileceğini kontrol edin (0-10).
+   [*][b]Sürükle-Bırak Öncelik Sıralaması:[/b] Community Mod Menu üzerinden hangi kategorilerin öncelikli olarak diplomat alacağını belirleyin.
+   [*][b]Kategori Başına Diplomat Sınırları:[/b] Her kategorinin kaç diplomat kullanabileceğini kontrol edin (0-10).
   [/list]
- [*][b]Tebaa Etkileşimleri:[/b] Mümkün olduğunda tebaa eylemlerini otomatik olarak gerçekleştirir.
+ [*][b]Tabi Ülke Etkileşimleri:[/b] Mümkün olan her durumda tabi ülke eylemlerini otomatik olarak gerçekleştirir.
   [list]
-   [*][b]Din Dayat:[/b] Tebaalarınıza devlet dininizi dayatın.
-   [*][b]Kültür Dayat:[/b] Tebaalarınıza birincil kültürünüzü dayatın.
+   [*][b]Dini Dayat:[/b] Devlet dininizi tabilerinize dayatın.
+   [*][b]Kültürü Dayat:[/b] Birincil kültürünüzü tabilerinize dayatın.
   [/list]
- [*][b]Diplomat Rezervleri:[/b] Rezervde tutulacak minimum boş diplomat sayısını ve minimum aylık diplomat kazancını belirleyin. Otonom eylemler belirlediğiniz eşiklerin altına düşmeyecektir.
- [*][b]İlerleme Takibi:[/b] Her hedef için ilişki geliştirme ilerlemesini takip eder. İlişkileri zaten +90 olan ülkeleri tekrar hedeflemez. Diplomatlar başka yere atandığında ilerleme zamanla doğal olarak azalır.
+ [*][b]Diplomat Rezervleri:[/b] Yedekte tutulacak minimum boşta diplomat sayısını ve minimum aylık diplomat artışını ayarlayın. Otonom eylemler belirlediğiniz eşiklerin altına düşmeyecektir.
+ [*][b]İlerleme Takibi:[/b] Halihazırda +190 görüşe sahip olan ülkeleri tekrar hedeflemez.
 [/olist]
 
-[h1]Yerel Diller:[/h1]
-[list]
- [*][b]English:[/b] Primary
-[/list]
-
-[h1]DeepL ile Çevrilen Diller:[/h1]
-[list]
- [*][b]Chinese / 中文[/b]
- [*][b]French / Français[/b]
- [*][b]German / Deutsch[/b]
- [*][b]Japanese / 日本語[/b]
- [*][b]Korean / 한국어[/b]
- [*][b]Polish / Polski[/b]
- [*][b]Portuguese (Brazil) / Português (Brasil)[/b]
- [*][b]Russian / Русский[/b]
- [*][b]Spanish / Español[/b]
- [*][b]Turkish / Türkçe[/b]
-[/list]
-
 [h1]Değişiklik Günlüğü:[/h1]
-Workshop sayfasındaki [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]Değişiklik Notlarına[/url] göz atın.
+[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]Workshop sayfasındaki Değişiklik Notlarına[/url] göz atın.
 
 [h1]Bilinen Sorunlar:[/h1]
 [list]
- [*]Mod, hangi diplomatların gönderildiğini takip etmek için kendi dahili sistemini kullanır. Bir ilişki geliştirme eylemini manuel olarak iptal ederseniz, mod iptali anında algılamayacaktır. Ancak en sonunda her zaman kendi kendine yeniden senkronize olacaktır.
+ [*]Bazı diplomatik etkileşimlerde, normalde çıkması gereken onay pencereleri görünmeyebilir. Bu, otomatik iptal özelliği için gereklidir, ancak daha iyi bir çözüm yolu araştıracağım.
 [/list]
 
 [h1]Uyumluluk:[/h1]
@@ -69,7 +49,7 @@ Workshop sayfasındaki [url=https://steamcommunity.com/sharedfiles/filedetails/c
  [*]Talep üzerine uyumluluk yamaları ekleyebilirim.
 [/list]
 
-Yorum bölümüne ek olarak, [url=https://discord.gg/zeQ6x9wrPq]EU5 Topluluğu Discord sunucusunun #utility-mods kanalında[/url] @arealconner kullanıcısını etiketleyerek soru sorabilir, hata bildirebilir veya öneride bulunabilirsiniz. Ayrıca bu veya diğer modlarımdan birinin geliştirilmesine katılmak isterseniz, beni Discord'da @arealconner olarak etiketleyebilir veya ekleyebilirsiniz. Tüm katkılara açığım.
+Yorum bölümüne ek olarak, [url=https://discord.gg/zeQ6x9wrPq]#utility-mods channel of the EU5 Community discord server[/url] kanalında @arealconner kullanıcısını etiketleyerek sorularınızı sorabilir, hata bildirebilir veya önerilerde bulunabilirsiniz. Eğer bu modun veya diğer modlarımdan birinin geliştirilmesine katılmak isterseniz, beni Discord'da @arealconner üzerinden ekleyebilir veya etiketleyebilirsiniz. Tüm katkılara açığım.
 
-Modun kaynak ve geliştirme sürümleri [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub[/url] üzerinde mevcuttur.
+Modun kaynak kodları ve geliştirme sürümleri [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub[/url] üzerinden mevcuttur.
 

@@ -4,72 +4,52 @@ Autonome Diplomaten / Autonomous Diplomats
 [i]You are on the DeepL-Generated German Page. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=$item-id$&l=english]Click here for the Native English Page.[/url][/i]
 
 [h1]Übersicht:[/h1]
-Autonomous Diplomats bringt das System der automatisierten Diplomaten aus EU4 zurück. Deine untätigen Diplomaten werden jeden Monat entsandt, um die Beziehungen zu Zielländern zu verbessern. Konfiguriere Prioritätskategorien, Diplomatenlimits und Reserven über das Community Mod Menu – kein Mikromanagement mehr bei "Beziehungen verbessern"-Aktionen.
+Bringt das automatisierte Diplomatensystem aus EU4 mit automatischer Beziehungsverbesserung und weiteren Funktionen zurück.
 
-Benötigt [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Community Mod Framework (CMF)[/url].
+Erfordert das [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Community Mod Framework (CMF)[/url].
 
-[h1]Features:[/h1]
+[h1]Funktionen:[/h1]
 [olist]
- [*][b]Automatisches Entsenden von Diplomaten:[/b] Entsendet untätige Diplomaten bei jedem Monatswechsel zu Zielländern, um die Beziehungen zu verbessern.
- [*][b]7 Zielkategorien:[/b]
+ [*][b]Automatische Beziehungsverbesserung:[/b]
   [list]
-   [*][b]Nachbarländer:[/b] Verbessert Beziehungen zu zufälligen angrenzenden Nationen.
-   [*][b]Eigene Untertanen:[/b] Verbessert Beziehungen zu zufälligen Untertanennationen.
-   [*][b]Empörte Länder:[/b] Verbessert vorrangig Beziehungen zu Nationen, die die höchste Feindseligkeit gegenüber dir aufweisen.
-   [*][b]Verbündete:[/b] Verbessert Beziehungen zu verbündeten Nationen und Mitgliedern von Verteidigungsbündnissen.
-   [*][b]Bedrohliche Länder:[/b] Verbessert vorrangig Beziehungen zu Nationen, die die größte Bedrohung für dich darstellen.
-   [*][b]Kurfürsten des HRR:[/b] Verbessert Beziehungen zu den Kurfürsten des Heiligen Römischen Reiches. Nur für HRR-Mitglieder sichtbar.
-   [*][b]HRR-Mitglieder:[/b] Verbessert Beziehungen zu anderen Mitgliedern des Heiligen Römischen Reiches. Nur für HRR-Mitglieder sichtbar.
+   [*][b]Nachbarländer:[/b] Verbessert Beziehungen mit zufälligen angrenzenden Nationen.
+   [*][b]Eigene Untertanen:[/b] Verbessert Beziehungen mit zufälligen Untertanennationen.
+   [*][b]Empörte Länder:[/b] Verbessert Beziehungen zuerst mit Nationen, die die höchste Feindseligkeit gegenüber Euch haben.
+   [*][b]Verbündete:[/b] Verbessert Beziehungen mit verbündeten Nationen und Mitgliedern von Verteidigungsbündnissen.
+   [*][b]Bedrohliche Länder:[/b] Verbessert Beziehungen zuerst mit Nationen, die die höchste Bedrohungsstufe für Euch darstellen.
+   [*][b]Kurfürsten des HRR:[/b] Verbessert Beziehungen mit den Kurfürsten des Heiligen Römischen Reiches. Nur sichtbar für HRR-Mitglieder.
+   [*][b]Mitglieder des HRR:[/b] Verbessert Beziehungen mit Mitmitgliedern des Heiligen Römischen Reiches. Nur sichtbar für HRR-Mitglieder.
   [/list]
   [list]
-   [*][b]Priorisierung per Drag-and-Drop:[/b] Lege über das Community Mod Menu fest, welche Kategorien zuerst Diplomaten erhalten.
-   [*][b]Diplomatenlimits pro Kategorie:[/b] Steuere, wie viele Diplomaten jede Kategorie verwenden darf (0-10).
+   [*][b]Priorität per Drag-and-Drop anpassen:[/b] Legt über das Community Mod Menu fest, welche Kategorien zuerst Diplomaten erhalten.
+   [*][b]Diplomatenlimits pro Kategorie:[/b] Steuert, wie viele Diplomaten jede Kategorie verwenden darf (0-10).
   [/list]
- [*][b]Untertanen-Interaktionen:[/b] Führe automatisch Untertanen-Aktionen aus, wann immer möglich.
+ [*][b]Untertanen-Interaktionen:[/b] Führt automatisch Untertanenaktionen durch, wann immer dies möglich ist.
   [list]
-   [*][b]Religion erzwingen:[/b] Erzwinge deine Staatsreligion bei Untertanen.
-   [*][b]Kultur erzwingen:[/b] Erzwinge deine Primärkultur bei Untertanen.
+   [*][b]Religion erzwingen:[/b] Erzwingt Eure Staatsreligion bei Untertanen.
+   [*][b]Kultur erzwingen:[/b] Erzwingt Eure Primärkultur bei Untertanen.
   [/list]
- [*][b]Diplomatenreserven:[/b] Lege eine Mindestanzahl an freien Diplomaten und einen minimalen monatlichen Diplomaten-Zuwachs fest, die in Reserve gehalten werden sollen. Autonome Aktionen werden diese Schwellenwerte nicht unterschreiten.
- [*][b]Fortschrittsverfolgung:[/b] Verfolgt den Fortschritt der Beziehungsverbesserung pro Ziel. Länder, die bereits eine Beziehung von +90 haben, werden nicht erneut anvisiert. Der Fortschritt nimmt mit der Zeit natürlich ab, wenn Diplomaten abgezogen werden.
+ [*][b]Diplomaten-Reserven:[/b] Legt eine Mindestanzahl an freien Diplomaten und einen monatlichen Mindestzuwachs an Diplomaten fest, die als Reserve gehalten werden sollen. Autonome Aktionen werden Eure Schwellenwerte nicht unterschreiten.
+ [*][b]Fortschrittsverfolgung:[/b] Wählt keine Länder erneut aus, die bereits eine Meinung von +190 haben.
 [/olist]
-
-[h1]Native Lokalisierungen:[/h1]
-[list]
- [*][b]Englisch:[/b] Primär
-[/list]
-
-[h1]Per DeepL übersetzte Lokalisierungen:[/h1]
-[list]
- [*][b]Chinesisch / 中文[/b]
- [*][b]Französisch / Français[/b]
- [*][b]Deutsch / Deutsch[/b]
- [*][b]Japanisch / 日本語[/b]
- [*][b]Koreanisch / 한국어[/b]
- [*][b]Polnisch / Polski[/b]
- [*][b]Portugiesisch (Brasilien) / Português (Brasil)[/b]
- [*][b]Russisch / Русский[/b]
- [*][b]Spanisch / Español[/b]
- [*][b]Türkisch / Türkçe[/b]
-[/list]
 
 [h1]Änderungsprotokoll:[/h1]
 Siehe die [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]Änderungshinweise auf der Workshop-Seite[/url].
 
 [h1]Bekannte Probleme:[/h1]
 [list]
- [*]Der Mod verwendet ein eigenes internes Tracking dafür, welche Diplomaten entsandt wurden. Wenn du eine "Beziehungen verbessern"-Aktion manuell abbrichst, erkennt der Mod den Abbruch nicht sofort. Er wird sich jedoch schließlich immer von selbst resynchronisieren.
+ [*]Bei einigen diplomatischen Interaktionen erscheinen keine Bestätigungsfenster, wo dies normalerweise der Fall wäre. Dies ist für den automatischen Abbruch erforderlich, aber ich werde nach einer besseren Lösung suchen.
 [/list]
 
 [h1]Kompatibilität:[/h1]
 [list]
  [*]Nicht kompatibel mit Ironman/Erfolgen.
- [*]Vollständig kompatibel mit Spielständen.
+ [*]Vollständig spielstandkompatibel.
  [*]Sollte mit jedem Mod funktionieren.
- [*]Ich kann auf Anfrage Kompatibilitätspatches hinzufügen.
+ [*]Auf Anfrage füge ich eventuell Kompatitäts-Patches hinzu.
 [/list]
 
-Zusätzlich zum Kommentarbereich kannst du auch Fragen stellen, Bugs melden oder Vorschläge machen, indem du @arealconner im [url=https://discord.gg/zeQ6x9wrPq]#utility-mods-Kanal des EU5 Community Discord-Servers[/url] markierst. Und wenn du daran interessiert bist, an der Entwicklung dieses oder eines meiner anderen Mods mitzuwirken, kannst du mich auf Discord unter @arealconner markieren oder hinzufügen. Alle Beiträge sind willkommen.
+Neben dem Kommentarbereich könnt Ihr auch Fragen stellen, Bugs melden oder Vorschläge machen, indem Ihr @arealconner im [url=https://discord.gg/zeQ6x9wrPq]#utility-mods Kanal des EU5 Community Discord-Servers[/url] markiert. Und falls Ihr daran interessiert seid, an der Entwicklung dieses oder eines meiner anderen Mods mitzuwirken, könnt Ihr mich auf Discord unter @arealconner markieren oder hinzufügen. Alle Beiträge sind willkommen.
 
-Die Quell- und Entwicklungsversionen des Mods sind auf [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub[/url] verfügbar.
+Die Quell- und Entwicklungsversionen des Mods sind auf [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub verfügbar.[/url]
 
