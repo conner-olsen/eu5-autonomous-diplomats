@@ -1,0 +1,642 @@
+{
+  "definitions": {
+    "type:FrontEndNews": {
+      "base_widget": "widget",
+      "mod_file": "main_menu/gui/cmf_dependency_check.gui",
+      "namespace": "cmf_dependency_check",
+      "tracking_path": "tools/dependencies/gui-tracking/types/FrontEndNews.gui",
+      "vanilla_file": "main_menu/gui/frontend_mainview.gui"
+    },
+    "type:playset_create_button": {
+      "base_widget": "vbox",
+      "mod_file": "main_menu/gui/cmf_dependency_check.gui",
+      "namespace": "cmf_dependency_auto_enable",
+      "tracking_path": "tools/dependencies/gui-tracking/types/playset_create_button.gui",
+      "vanilla_file": "main_menu/gui/mods_gui/mods_gui.gui"
+    },
+    "widget:agenda_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/agenda_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:agenda_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "widget",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/agenda_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:alleviate_concerns_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/alleviate_concerns_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:annexation_diplomatic_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/annexation_diplomatic_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:army_combat_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/army_combat_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:army_construction_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/army_construction_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:army_construction_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/army_construction_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:army_unit_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/army_unit_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:assimilate_area_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/assimilate_area_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:casus_belli_creation_diplomatic_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/casus_belli_creation_diplomatic_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:change_societal_values_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/change_societal_values_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:character_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/character_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:charter_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/charter_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:charter_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/charter_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:confirm_diplomatic_action_popup": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/ingame_dialogs.gui",
+      "namespace": "basic_priority_dialog",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/confirm_diplomatic_action_popup.gui",
+      "vanilla_file": "in_game/gui/ingame_dialogs.gui"
+    },
+    "widget:conquistador_construction_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/conquistador_construction_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:conquistador_construction_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/conquistador_construction_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:counter_espionage_action_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/counter_espionage_action_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:country_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/country_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:curry_favors_diplomatic_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/curry_favors_diplomatic_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:develop_province_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/develop_province_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:diplomacy_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/diplomacy_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:diplomatic_endeavors_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/diplomatic_endeavors_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:diplomatic_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/diplomatic_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:empty_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/empty_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:encourage_migration_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/encourage_migration_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:estate_construction_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/estate_construction_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:estate_construction_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/estate_construction_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:expel_people_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/expel_people_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:exploration_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/exploration_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:exploration_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/exploration_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:fav_character_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/fav_character_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:fav_country_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/fav_country_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:fav_goods_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/fav_goods_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:fav_io_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/fav_io_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:fav_location_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/fav_location_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:fav_seazone_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/fav_seazone_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:form_new_culture_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/form_new_culture_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:goods_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/goods_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:gov_reform_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/gov_reform_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:government_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/government_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:improve_opinion_diplomatic_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/improve_opinion_diplomatic_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:increase_control_area_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/increase_control_area_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:increase_control_province_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/increase_control_province_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:integrate_area_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/integrate_area_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:integrate_province_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/integrate_province_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:io_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/io_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:io_law_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/io_law_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:law_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/law_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:location_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/location_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:market_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/market_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:market_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/market_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:merge_culture_group_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/merge_culture_group_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:navy_combat_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/navy_combat_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:navy_construction_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/navy_construction_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:navy_construction_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/navy_construction_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:navy_unit_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/navy_unit_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:pacify_population_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/pacify_population_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:parliament_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/parliament_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:player_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/player_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:player_construction_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/player_construction_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:player_construction_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/player_construction_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:player_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/player_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:pop_promote_action_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/pop_promote_action_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:privateer_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/privateer_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:privateer_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/privateer_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:promote_culture_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/promote_culture_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:promote_religion_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/promote_religion_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:pru_deal_with_robber_barons_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/pru_deal_with_robber_barons_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:rebel_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/rebel_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:rebel_crackdown_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/rebel_crackdown_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:rebel_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/rebel_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:recovery_effort_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/recovery_effort_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:reduce_inflation_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/reduce_inflation_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:reduce_war_exhaustion_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/reduce_war_exhaustion_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:seazone_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/seazone_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:send_people_to_colonial_charter_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/send_people_to_colonial_charter_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:send_people_to_the_colonies_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/send_people_to_the_colonies_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:siege_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/siege_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:siege_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/siege_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:spy_network_diplomatic_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/spy_network_diplomatic_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:stabilize_country_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/stabilize_country_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:strengthen_government_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/strengthen_government_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:study_institutions_cabinet_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/study_institutions_cabinet_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:unit_army_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/unit_army_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:unit_navy_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/unit_navy_category_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:war_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/war_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    }
+  },
+  "version": 1
+}
