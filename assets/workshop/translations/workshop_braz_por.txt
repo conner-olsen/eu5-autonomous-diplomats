@@ -6,31 +6,31 @@ Diplomatas Autônomos / Autonomous Diplomats
 [h1]Visão Geral:[/h1]
 Traz de volta o sistema de diplomatas automatizados do EU4 com melhoria automática de relações e outros recursos.
 
-Requer [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Community Mod Framework (CMF)[/url].
+Requer o [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Community Mod Framework (CMF)[/url].
 
 [h1]Recursos:[/h1]
 [olist]
  [*][b]Melhorar Relações Automaticamente:[/b]
   [list]
-   [*][b]Países Vizinhos:[/b] Melhora relações com nações fronteiriças aleatórias.
-   [*][b]Próprios Súditos:[/b] Melhora relações com nações súditas aleatórias.
-   [*][b]Países Indignados:[/b] Melhora relações primeiro com as nações que possuem o maior nível de antagonismo contra você.
-   [*][b]Aliados:[/b] Melhora relações com nações aliadas e membros de ligas defensivas.
-   [*][b]Países Ameaçadores:[/b] Melhora relações primeiro com as nações que representam o maior nível de ameaça para você.
-   [*][b]Eleitores do SIR:[/b] Melhora relações com os eleitores do Sacro Império Romano Germânico. Visível apenas para membros do SIR.
-   [*][b]Membros do SIR:[/b] Melhora relações com outros membros do Sacro Império Romano Germânico. Visível apenas para membros do SIR.
+   [*][b]Países Vizinhos:[/b] Melhora as relações com nações fronteiriças aleatórias.
+   [*][b]Próprios Súditos:[/b] Melhora as relações com nações súditas aleatórias.
+   [*][b]Países Indignados:[/b] Melhora as relações primeiro com as nações que têm o maior antagonismo em relação a você.
+   [*][b]Aliados:[/b] Melhora as relações com nações aliadas e membros de ligas defensivas.
+   [*][b]Países Ameaçadores:[/b] Melhora as relações primeiro com as nações que representam o maior nível de ameaça para você.
+   [*][b]Eleitores do SIR:[/b] Melhora as relações com os eleitores do Sacro Império Romano. Visível apenas para membros do SIR.
+   [*][b]Membros do SIR:[/b] Melhora as relações com outros membros do Sacro Império Romano. Visível apenas para membros do SIR.
   [/list]
   [list]
-   [*][b]Prioridade de Arrastar e Reordenar:[/b] Defina quais categorias recebem diplomatas primeiro através do Community Mod Menu.
+   [*][b]Arrastar para Reordenar Prioridade:[/b] Defina quais categorias recebem diplomatas primeiro através do Menu do Community Mod.
    [*][b]Limites de Diplomatas por Categoria:[/b] Controle quantos diplomatas cada categoria pode usar (0-10).
   [/list]
  [*][b]Interações com Súditos:[/b] Realiza automaticamente ações de súditos sempre que possível.
   [list]
-   [*][b]Impor Religião:[/b] Impõe sua religião de estado aos súditos.
-   [*][b]Impor Cultura:[/b] Impõe sua cultura primária aos súditos.
+   [*][b]Impor Religião:[/b] Impõe a religião do seu estado aos súditos.
+   [*][b]Impor Cultura:[/b] Impõe a sua cultura primária aos súditos.
   [/list]
- [*][b]Reservas de Diplomatas:[/b] Defina um número mínimo de diplomatas livres e ganho mensal mínimo de diplomatas para manter em reserva. Ações autônomas não ultrapassarão seus limites.
- [*][b]Acompanhamento de Progresso:[/b] Não voltará a visar países que já estejam com +190 de opinião.
+ [*][b]Reservas de Diplomatas:[/b] Defina um número mínimo de diplomatas livres e um ganho mensal mínimo de diplomatas para manter em reserva. Ações autônomas não ficarão abaixo dos seus limites.
+ [*][b]Acompanhamento de Progresso:[/b] Não voltará a visar países que já estão com +190 de opinião.
 [/olist]
 
 [h1]Registro de Alterações:[/h1]
@@ -38,7 +38,7 @@ Veja as [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/369624
 
 [h1]Problemas Conhecidos:[/h1]
 [list]
- [*]Algumas interações diplomáticas não terão confirmações quando normalmente teriam. Isso é necessário para o cancelamento automático, mas procurarei uma solução melhor.
+ [*]Algumas interações diplomáticas não terão confirmações quando normalmente teriam. Isso é necessário para o cancelamento automático, mas buscarei uma solução melhor.
 [/list]
 
 [h1]Compatibilidade:[/h1]
@@ -49,7 +49,7 @@ Veja as [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/369624
  [*]Posso adicionar patches de compatibilidade mediante solicitação.
 [/list]
 
-Além da seção de comentários, você também pode fazer perguntas, relatar bugs ou dar sugestões marcando @arealconner no [url=https://discord.gg/zeQ6x9wrPq]canal #utility-mods do servidor de Discord da Comunidade EU5[/url]. E se estiver interessado em participar do desenvolvimento deste ou de um dos meus outros mods, você pode me marcar ou adicionar no Discord @arealconner. Todas as contribuições são bem-vindas.
+Além da seção de comentários, você também pode tirar dúvidas, relatar bugs ou dar sugestões marcando @arealconner no [url=https://discord.gg/zeQ6x9wrPq]canal #utility-mods do servidor de Discord da Comunidade de EU5[/url]. E se você estiver interessado em participar do desenvolvimento deste ou de um dos meus outros mods, pode me marcar ou me adicionar no Discord @arealconner. Todas as contribuições são bem-vindas.
 
 As versões de código-fonte e de desenvolvimento do mod estão disponíveis no [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub.[/url]
 

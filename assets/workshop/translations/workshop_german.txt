@@ -4,32 +4,32 @@ Autonome Diplomaten / Autonomous Diplomats
 [i]You are on the DeepL-Generated German Page. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=$item-id$&l=english]Click here for the Native English Page.[/url][/i]
 
 [h1]Übersicht:[/h1]
-Bringt das automatisierte Diplomatensystem aus EU4 mit automatischer Beziehungsverbesserung und weiteren Funktionen zurück.
+Bringt das automatisierte Diplomatensystem aus EU4 mit automatischem Verbessern von Beziehungen und weiteren Funktionen zurück.
 
 Erfordert das [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Community Mod Framework (CMF)[/url].
 
-[h1]Funktionen:[/h1]
+[h1]Features:[/h1]
 [olist]
- [*][b]Automatische Beziehungsverbesserung:[/b]
+ [*][b]Beziehungen automatisch verbessern:[/b]
   [list]
-   [*][b]Nachbarländer:[/b] Verbessert Beziehungen mit zufälligen angrenzenden Nationen.
-   [*][b]Eigene Untertanen:[/b] Verbessert Beziehungen mit zufälligen Untertanennationen.
-   [*][b]Empörte Länder:[/b] Verbessert Beziehungen zuerst mit Nationen, die die höchste Feindseligkeit gegenüber Euch haben.
-   [*][b]Verbündete:[/b] Verbessert Beziehungen mit verbündeten Nationen und Mitgliedern von Verteidigungsbündnissen.
-   [*][b]Bedrohliche Länder:[/b] Verbessert Beziehungen zuerst mit Nationen, die die höchste Bedrohungsstufe für Euch darstellen.
-   [*][b]Kurfürsten des HRR:[/b] Verbessert Beziehungen mit den Kurfürsten des Heiligen Römischen Reiches. Nur sichtbar für HRR-Mitglieder.
-   [*][b]Mitglieder des HRR:[/b] Verbessert Beziehungen mit Mitmitgliedern des Heiligen Römischen Reiches. Nur sichtbar für HRR-Mitglieder.
+   [*][b]Nachbarländer:[/b] Verbessert die Beziehungen zu zufälligen angrenzenden Nationen.
+   [*][b]Eigene Untertanen:[/b] Verbessert die Beziehungen zu zufälligen Untertanennationen.
+   [*][b]Empörte Länder:[/b] Verbessert die Beziehungen vorrangig zu den Nationen, die dir gegenüber die höchste Feindseligkeit aufweisen.
+   [*][b]Verbündete:[/b] Verbessert die Beziehungen zu verbündeten Nationen und Mitgliedern von Verteidigungsbündnissen.
+   [*][b]Bedrohliche Länder:[/b] Verbessert die Beziehungen vorrangig zu den Nationen, die die größte Bedrohung für dich darstellen.
+   [*][b]HRR-Kurfürsten:[/b] Verbessert die Beziehungen zu den Kurfürsten des Heiligen Römischen Reiches. Nur für HRR-Mitglieder sichtbar.
+   [*][b]HRR-Mitglieder:[/b] Verbessert die Beziehungen zu anderen Mitgliedern des Heiligen Römischen Reiches. Nur für HRR-Mitglieder sichtbar.
   [/list]
   [list]
-   [*][b]Priorität per Drag-and-Drop anpassen:[/b] Legt über das Community Mod Menu fest, welche Kategorien zuerst Diplomaten erhalten.
-   [*][b]Diplomatenlimits pro Kategorie:[/b] Steuert, wie viele Diplomaten jede Kategorie verwenden darf (0-10).
+   [*][b]Priorität per Drag-and-Drop:[/b] Lege über das Community Mod Menu fest, welche Kategorien zuerst Diplomaten erhalten.
+   [*][b]Diplomatenlimits pro Kategorie:[/b] Steuere, wie viele Diplomaten jede Kategorie verwenden kann (0-10).
   [/list]
- [*][b]Untertanen-Interaktionen:[/b] Führt automatisch Untertanenaktionen durch, wann immer dies möglich ist.
+ [*][b]Untertanen-Interaktionen:[/b] Führt automatisch Untertanen-Aktionen aus, wann immer dies möglich ist.
   [list]
-   [*][b]Religion erzwingen:[/b] Erzwingt Eure Staatsreligion bei Untertanen.
-   [*][b]Kultur erzwingen:[/b] Erzwingt Eure Primärkultur bei Untertanen.
+   [*][b]Religion erzwingen:[/b] Erzwinge deine Staatsreligion bei Untertanen.
+   [*][b]Kultur erzwingen:[/b] Erzwinge deine Primärkultur bei Untertanen.
   [/list]
- [*][b]Diplomaten-Reserven:[/b] Legt eine Mindestanzahl an freien Diplomaten und einen monatlichen Mindestzuwachs an Diplomaten fest, die als Reserve gehalten werden sollen. Autonome Aktionen werden Eure Schwellenwerte nicht unterschreiten.
+ [*][b]Diplomatenreserven:[/b] Lege eine Mindestanzahl an freien Diplomaten und einen monatlichen Mindestzuwachs an Diplomaten fest, die als Reserve gehalten werden sollen. Autonome Aktionen werden diese Schwellenwerte nicht unterschreiten.
  [*][b]Fortschrittsverfolgung:[/b] Wählt keine Länder erneut aus, die bereits eine Meinung von +190 haben.
 [/olist]
 
@@ -38,18 +38,18 @@ Siehe die [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696
 
 [h1]Bekannte Probleme:[/h1]
 [list]
- [*]Bei einigen diplomatischen Interaktionen erscheinen keine Bestätigungsfenster, wo dies normalerweise der Fall wäre. Dies ist für den automatischen Abbruch erforderlich, aber ich werde nach einer besseren Lösung suchen.
+ [*]Einige diplomatische Interaktionen zeigen keine Bestätigungsfenster an, wo sie es normalerweise tun würden. Dies ist für das automatische Abbrechen erforderlich, aber ich werde nach einer besseren Lösung suchen.
 [/list]
 
 [h1]Kompatibilität:[/h1]
 [list]
- [*]Nicht kompatibel mit Ironman/Erfolgen.
+ [*]Nicht Ironman/Achievement-kompatibel.
  [*]Vollständig spielstandkompatibel.
- [*]Sollte mit jedem Mod funktionieren.
- [*]Auf Anfrage füge ich eventuell Kompatitäts-Patches hinzu.
+ [*]Sollte mit jeder Mod funktionieren.
+ [*]Ich kann auf Anfrage Kompatibilitäts-Patches hinzufügen.
 [/list]
 
-Neben dem Kommentarbereich könnt Ihr auch Fragen stellen, Bugs melden oder Vorschläge machen, indem Ihr @arealconner im [url=https://discord.gg/zeQ6x9wrPq]#utility-mods Kanal des EU5 Community Discord-Servers[/url] markiert. Und falls Ihr daran interessiert seid, an der Entwicklung dieses oder eines meiner anderen Mods mitzuwirken, könnt Ihr mich auf Discord unter @arealconner markieren oder hinzufügen. Alle Beiträge sind willkommen.
+Zusätzlich zum Kommentarbereich kannst du auch Fragen stellen, Bugs melden oder Vorschläge machen, indem du @arealconner im [url=https://discord.gg/zeQ6x9wrPq]#utility-mods Kanal des EU5 Community Discord-Servers[/url] anpingst. Und wenn du daran interessiert bist, dich an der Entwicklung dieser oder einer meiner anderen Mods zu beteiligen, kannst du mich auf Discord unter @arealconner anpingen oder hinzufügen. Alle Beiträge sind willkommen.
 
-Die Quell- und Entwicklungsversionen des Mods sind auf [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub verfügbar.[/url]
+Die Quell- und Entwicklungsversionen der Mod sind auf [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub[/url] verfügbar.
 

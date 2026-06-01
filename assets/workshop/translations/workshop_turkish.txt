@@ -12,44 +12,44 @@ EU4'teki otomatik diplomat sistemini, otomatik ilişki geliştirme ve diğer öz
 [olist]
  [*][b]Otomatik İlişki Geliştirme:[/b]
   [list]
-   [*][b]Komşu Ülkeler:[/b] Rastgele sınır komşusu olan ülkelerle ilişkileri geliştirir.
-   [*][b]Kendi Tabileri:[/b] Rastgele tabi ülkelerle ilişkileri geliştirir.
-   [*][b]Öfkeli Ülkeler:[/b] Size karşı en yüksek düşmanlığı besleyen ülkelerden başlayarak ilişkileri geliştirir.
-   [*][b]Müttefikler:[/b] Müttefik ülkeler ve savunma birliği üyeleriyle ilişkileri geliştirir.
-   [*][b]Tehditkâr Ülkeler:[/b] Size karşı en yüksek tehdit seviyesini oluşturan ülkelerden başlayarak ilişkileri geliştirir.
-   [*][b]KRİ Seçmenleri:[/b] Kutsal Roma İmparatorluğu seçmenleriyle ilişkileri geliştirir. Sadece KRİ üyeleri için görünürdür.
-   [*][b]KRİ Üyeleri:[/b] Diğer Kutsal Roma İmparatorluğu üyeleriyle ilişkileri geliştirir. Sadece KRİ üyeleri için görünürdür.
+   [*][b]Komşu Ülkeler:[/b] Rastgele sınır komşusu uluslarla ilişkileri geliştirir.
+   [*][b]Kendi Tabiyetindeki Ülkeler:[/b] Rastgele tabiyetindeki uluslarla ilişkileri geliştirir.
+   [*][b]Öfkeli Ülkeler:[/b] İlişkileri öncelikle size karşı en yüksek düşmanlığa sahip uluslarla geliştirir.
+   [*][b]Müttefikler:[/b] Müttefik uluslar ve savunma birliği üyeleriyle ilişkileri geliştirir.
+   [*][b]Tehditkar Ülkeler:[/b] İlişkileri öncelikle sizin için en yüksek tehdit seviyesini oluşturan uluslarla geliştirir.
+   [*][b]KRİ Seçmenleri:[/b] Kutsal Roma İmparatorluğu seçmenleriyle ilişkileri geliştirir. Sadece KRİ üyeleri için görünür.
+   [*][b]KRİ Üyeleri:[/b] Diğer Kutsal Roma İmparatorluğu üyeleriyle ilişkileri geliştirir. Sadece KRİ üyeleri için görünür.
   [/list]
   [list]
-   [*][b]Sürükle-Bırak Öncelik Sıralaması:[/b] Community Mod Menu üzerinden hangi kategorilerin öncelikli olarak diplomat alacağını belirleyin.
+   [*][b]Sürükle-Bırak ile Öncelik Sıralama:[/b] Hangi kategorilerin önce diplomat alacağını Community Mod Menu aracılığıyla ayarlayın.
    [*][b]Kategori Başına Diplomat Sınırları:[/b] Her kategorinin kaç diplomat kullanabileceğini kontrol edin (0-10).
   [/list]
- [*][b]Tabi Ülke Etkileşimleri:[/b] Mümkün olan her durumda tabi ülke eylemlerini otomatik olarak gerçekleştirir.
+ [*][b]Tabiyet Etkileşimleri:[/b] Mümkün olduğunda tabiyet eylemlerini otomatik olarak gerçekleştirir.
   [list]
-   [*][b]Dini Dayat:[/b] Devlet dininizi tabilerinize dayatın.
-   [*][b]Kültürü Dayat:[/b] Birincil kültürünüzü tabilerinize dayatın.
+   [*][b]Din Dayat:[/b] Devlet dininizi tabiyetinizdeki ülkelere dayatın.
+   [*][b]Kültür Dayat:[/b] Birincil kültürünüzü tabiyetinizdeki ülkelere dayatın.
   [/list]
- [*][b]Diplomat Rezervleri:[/b] Yedekte tutulacak minimum boşta diplomat sayısını ve minimum aylık diplomat artışını ayarlayın. Otonom eylemler belirlediğiniz eşiklerin altına düşmeyecektir.
- [*][b]İlerleme Takibi:[/b] Halihazırda +190 görüşe sahip olan ülkeleri tekrar hedeflemez.
+ [*][b]Diplomat Rezervleri:[/b] Yedekte tutulacak minimum boş diplomat sayısını ve aylık minimum diplomat artışını belirleyin. Otonom eylemler belirlediğiniz eşiklerin altına düşmeyecektir.
+ [*][b]İlerleme Takibi:[/b] Görüşü halihazırda +190 olan ülkeleri tekrar hedeflemez.
 [/olist]
 
-[h1]Değişiklik Günlüğü:[/h1]
-[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]Workshop sayfasındaki Değişiklik Notlarına[/url] göz atın.
+[h1]Değişim Günlüğü:[/h1]
+[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]Workshop sayfasındaki Değişim Notlarına[/url] göz atın.
 
 [h1]Bilinen Sorunlar:[/h1]
 [list]
- [*]Bazı diplomatik etkileşimlerde, normalde çıkması gereken onay pencereleri görünmeyebilir. Bu, otomatik iptal özelliği için gereklidir, ancak daha iyi bir çözüm yolu araştıracağım.
+ [*]Bazı diplomatik etkileşimlerin normalde olması gereken onay pencereleri görünmeyebilir. Bu, otomatik iptal (auto-cancel) için gereklidir, ancak daha iyi bir çözüm üzerinde çalışacağım.
 [/list]
 
 [h1]Uyumluluk:[/h1]
 [list]
  [*]Ironman/Başarım uyumlu değildir.
- [*]Kayıtlı oyunlarla tam uyumludur.
+ [*]Kayıtlı oyunlarla (Save game) tam uyumludur.
  [*]Herhangi bir modla çalışmalıdır.
  [*]Talep üzerine uyumluluk yamaları ekleyebilirim.
 [/list]
 
-Yorum bölümüne ek olarak, [url=https://discord.gg/zeQ6x9wrPq]#utility-mods channel of the EU5 Community discord server[/url] kanalında @arealconner kullanıcısını etiketleyerek sorularınızı sorabilir, hata bildirebilir veya önerilerde bulunabilirsiniz. Eğer bu modun veya diğer modlarımdan birinin geliştirilmesine katılmak isterseniz, beni Discord'da @arealconner üzerinden ekleyebilir veya etiketleyebilirsiniz. Tüm katkılara açığım.
+Yorumlar bölümüne ek olarak, [url=https://discord.gg/zeQ6x9wrPq]EU5 Community discord sunucusundaki #utility-mods kanalında[/url] @arealconner kullanıcısını etiketleyerek soru sorabilir, hata bildirebilir veya öneride bulunabilirsiniz. Bu modun veya diğer modlarımdan birinin geliştirilmesine katılmak isterseniz, Discord üzerinden @arealconner kullanıcı adıyla bana ulaşabilir veya ekleyebilirsiniz. Tüm katkılara açığım.
 
-Modun kaynak kodları ve geliştirme sürümleri [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub[/url] üzerinden mevcuttur.
+Modun kaynak ve geliştirme sürümlerine [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub[/url] üzerinden ulaşılabilir.
 

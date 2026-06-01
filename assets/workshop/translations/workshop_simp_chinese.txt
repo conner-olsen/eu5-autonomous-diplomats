@@ -3,53 +3,53 @@
 ===WORKSHOP_DESCRIPTION===
 [i]You are on the DeepL-Generated Simplified Chinese Page. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=$item-id$&l=english]Click here for the Native English Page.[/url][/i]
 
-[h1]概览：[/h1]
-带回了 EU4 中的外交官自动系统，具有自动改善关系及其他功能。
+[h1]概述：[/h1]
+为游戏带回了 EU4 中的自动化外交官系统，具有自动改善关系及其他功能。
 
 需要 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Community Mod Framework (CMF)[/url]。
 
-[h1]特色：[/h1]
+[h1]功能特点：[/h1]
 [olist]
  [*][b]自动改善关系：[/b]
   [list]
-   [*][b]邻国：[/b]改善与随机接壤国家的关系。
-   [*][b]自己的附属国：[/b]改善与随机附属国的关系。
-   [*][b]愤怒的国家：[/b]优先改善与对你敌意最高的国家的关系。
-   [*][b]盟友：[/b]改善与盟友及防御联盟成员的关系。
-   [*][b]威胁国家：[/b]优先改善与对你威胁等级最高的国家的关系。
-   [*][b]神罗选帝侯：[/b]改善与神圣罗马帝国选帝侯的关系。仅对神罗成员可见。
-   [*][b]神罗成员：[/b]改善与其他神圣罗马帝国成员的关系。仅对神罗成员可见。
+   [*][b]邻国：[/b] 随机改善与边境国家的关系。
+   [*][b]自家附庸：[/b] 随机改善与附庸国的关系。
+   [*][b]愤怒国家：[/b] 优先改善与对你敌意最高的国家的关系。
+   [*][b]盟友：[/b] 改善与盟友及防御联盟成员的关系。
+   [*][b]威胁国家：[/b] 优先改善与对你威胁程度最高的国家的关系。
+   [*][b]神罗选帝侯：[/b] 改善与神圣罗马帝国选帝侯的关系。仅对神罗成员可见。
+   [*][b]神罗成员：[/b] 改善与其他神圣罗马帝国成员的关系。仅对神罗成员可见。
   [/list]
   [list]
-   [*][b]拖拽排序优先级：[/b]通过 Community Mod Menu 设置哪些类别优先分配外交官。
-   [*][b]各类别外交官限制：[/b]控制每个类别可以使用的外交官数量 (0-10)。
+   [*][b]拖拽排序优先级：[/b] 通过社区模组菜单（Community Mod Menu）设置各类别获取外交官的先后顺序。
+   [*][b]各类外交官数量限制：[/b] 控制每个类别可使用的外交官数量 (0-10)。
   [/list]
- [*][b]附属国互动：[/b]尽可能自动执行附属国行动。
+ [*][b]附庸互动：[/b] 只要可行，便自动执行附庸操作。
   [list]
-   [*][b]强迫宗教：[/b]向附属国强推你的国教。
-   [*][b]强迫文化：[/b]向附属国强推你的主流文化。
+   [*][b]强迫宗教：[/b] 向附庸推行你的国教。
+   [*][b]强迫文化：[/b] 向附庸推行你的主流文化。
   [/list]
- [*][b]外交官储备：[/b]设置保留的空闲外交官最低数量和每月外交官最低增长量。自动行动将不会低于你设置的阈值。
- [*][b]进度追踪：[/b]不会重新将关系已达 +190 的国家设为目标。
+ [*][b]外交官预留：[/b] 设置需要预留的空闲外交官最低数量及每月外交官增长最小值。自动化行动不会跌破你设置的阈值。
+ [*][b]进度追踪：[/b] 不会重新针对好感度已达到 +190 的国家。
 [/olist]
 
 [h1]更新日志：[/h1]
-请查看 [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]创意工坊页面上的更新记录[/url]。
+请参阅 [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]创意工坊页面上的更新记录[/url]。
 
 [h1]已知问题：[/h1]
 [list]
- [*]某些外交互动将不再弹出确认框（本应弹出）。这是自动取消功能所必需的，但我会寻找更好的解决方案。
+ [*]某些外交互动在原本应有确认弹窗时不会弹出。这是实现自动取消功能所必需的，但我会尝试寻找更好的解决办法。
 [/list]
 
 [h1]兼容性：[/h1]
 [list]
- [*]不兼容铁人模式/成就。
+ [*]不兼容铁人/成就模式。
  [*]完全兼容存档。
- [*]应可与任何模组共同使用。
- [*]我可能会根据需求添加兼容性补丁。
+ [*]应与任何模组兼容。
+ [*]如有需求，我可以添加兼容性补丁。
 [/list]
 
-除了评论区外，你也可以在 [url=https://discord.gg/zeQ6x9wrPq]EU5 Community Discord 服务器的 #utility-mods 频道[/url] 中通过 @arealconner 提问、报告 Bug 或提出建议。如果你有兴趣参与本模组或其他模组的开发，可以在 Discord 上 ping 我或添加我为好友 @arealconner。欢迎所有贡献。
+除了评论区，你也可以在 [url=https://discord.gg/zeQ6x9wrPq]EU5 社区 Discord 服务器的 #utility-mods 频道[/url] 通过艾特 @arealconner 询问问题、报告 Bug 或提出建议。如果你有兴趣参与本模组或其他模组的开发，可以在 Discord 上通过 @arealconner 联系我。欢迎任何形式的贡献。
 
-该模组的源码和开发版本可在 [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub[/url] 上获取。
+模组的源码及开发版本可在 [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub[/url] 获取。
 
