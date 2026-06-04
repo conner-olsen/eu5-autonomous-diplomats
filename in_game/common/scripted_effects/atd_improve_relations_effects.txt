@@ -34,6 +34,8 @@ atd_check_max_opinion_for_cancel = {
 					if = {
 						limit = { NOT = { has_variable = atd_pending_cancel } }
 						set_variable = atd_pending_cancel
+						# Keeps the mod from re-improving this country until it expires.
+						set_variable = { name = atd_cancel_cooldown value = yes years = 4 }
 					}
 				}
 				else = {
@@ -317,6 +319,8 @@ atd_start_improving_with = {
 			# Skip below 190 opinion.
 			scope:target_country = {
 				NOT = { opinion = { target = scope:actor_scope value >= 190 } }
+				# Skip during the post-auto-cancel cooldown.
+				NOT = { has_variable = atd_cancel_cooldown }
 			}
 		}
 		perform_diplomatic_action = {
