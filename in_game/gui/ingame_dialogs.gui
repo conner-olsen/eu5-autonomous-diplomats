@@ -6,30 +6,49 @@
 		text = "[DialogConfig.GetTitle]"
 	}
 
-	blockoverride "content"  {
-		flowcontainer = {
-			direction = vertical
-			margin = { 20 0 }
+	blockoverride "content_inside" {
+		hbox = {
+			using = message_text_box_background
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
+			minimumsize = { -1 150 }
+			margin = { 10 10 }
 
+			scrollarea = {
+				maximumsize = { -1 250 }
+				autoresizescrollarea = no
+				autoresizeviewport = yes
+				layoutpolicy_horizontal = expanding
+				scrollbarpolicy_horizontal = always_off
 
-			# Description
-			textbox = {
-				text = "[DialogConfig.GetDescription]"
-				max_width = 500
-				autoresize = yes
-				multiline = yes
-				text_selectable = no
-				alwaystransparent = no
-				margin_left = 10
-				margin_right = 10
+				scrollbar_vertical = {
+					using = Scrollbar_Vertical
+				}
 
+				scrollwidget = {
+					vbox = {
+						margin = { 20 0 }
+						layoutpolicy_horizontal = expanding
 
-				using = Font_Type_Standard
-				using = Font_Size_Medium
-				default_format = "#white"
+						textbox = {
+							text = "[DialogConfig.GetDescription]"
+							layoutpolicy_horizontal = expanding
+							autoresize = yes
+							multiline = yes
+							text_selectable = no
+							alwaystransparent = no
+							margin_left = 10
+							margin_right = 10
+							margin_bottom = 5
 
-				align = center
-				margin_bottom = 5
+							using = Font_Type_Standard
+							using = Font_Size_Medium
+							default_format = "#white"
+
+							align = center
+						}
+					}
+				}
 			}
 		}
 	}
@@ -110,13 +129,13 @@
 				framesize = { 46 46 }
 				size = { 23 23 }
 				parentanchor = right|vcenter
-	
+
 				visible = "[ConfirmDiplomaticAction.RequiresAcceptance]"
 				texture = "gfx/interface/icons/diplomatic_status/ai_accept_decline_icon.dds"
 				frame = "[ConfirmDiplomaticAction.GetAcceptanceFrame]"
 				tooltipwidget = {
 					SimpleContextualStringPairTooltipType = {
-						
+
 						blockoverride "title_icon_texture" {
 							frame_grid = { 3 1 }
 							texture = "gfx/interface/icons/diplomatic_status/ai_accept_decline_icon.dds"
