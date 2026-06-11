@@ -48,7 +48,10 @@ atd_gui_sync_step = {
 	effect = {
 		atd_gui_sync_end = yes
 		atd_enforce_on_subjects = yes
-		atd_improve_relations = yes
+		if = {
+			limit = { has_variable = atd_improve_relations_enabled }
+			atd_improve_relations = yes
+		}
 	}
 }
 

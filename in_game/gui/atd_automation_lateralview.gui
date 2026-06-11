@@ -176,7 +176,7 @@ types atd_automation_overrides {
 			action_tooltip = {
 				click_type = left
 				title = "[AutomatedSystemsItem.GetActionTooltipName]"
-				visible = "[Not(AutomatedSystemsItem.IsEnabled)]"
+				visible = "[And(Not(AutomatedSystemsItem.IsEnabled), Not(AutomatedSystemsItem.IsName('diplomacy')))]"
 				using = snd_UI_checkbutton_automation
 				on_action = "[AutomatedSystemsItem.Toggle]"
 				on_action = "[PlayAudioEffect('UI_action_automate_enable')]"
@@ -185,9 +185,29 @@ types atd_automation_overrides {
 			action_tooltip = {
 				click_type = left
 				title = "[AutomatedSystemsItem.GetActionTooltipName]"
-				visible = "[AutomatedSystemsItem.IsEnabled]"
+				visible = "[And(Not(AutomatedSystemsItem.IsEnabled), AutomatedSystemsItem.IsName('diplomacy'))]"
 				using = snd_UI_checkbutton_automation
 				on_action = "[AutomatedSystemsItem.Toggle]"
+				on_action = "[GetScriptedGui('atd_automation_enable_master').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				on_action = "[PlayAudioEffect('UI_action_automate_enable')]"
+			}
+
+			action_tooltip = {
+				click_type = left
+				title = "[AutomatedSystemsItem.GetActionTooltipName]"
+				visible = "[And(AutomatedSystemsItem.IsEnabled, Not(AutomatedSystemsItem.IsName('diplomacy')))]"
+				using = snd_UI_checkbutton_automation
+				on_action = "[AutomatedSystemsItem.Toggle]"
+				on_action = "[PlayAudioEffect('UI_action_automate_disable')]"
+			}
+
+			action_tooltip = {
+				click_type = left
+				title = "[AutomatedSystemsItem.GetActionTooltipName]"
+				visible = "[And(AutomatedSystemsItem.IsEnabled, AutomatedSystemsItem.IsName('diplomacy'))]"
+				using = snd_UI_checkbutton_automation
+				on_action = "[AutomatedSystemsItem.Toggle]"
+				on_action = "[GetScriptedGui('atd_automation_disable_master').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 				on_action = "[PlayAudioEffect('UI_action_automate_disable')]"
 			}
 
@@ -344,9 +364,12 @@ types atd_automation_overrides {
 			}
 			action_tooltip = {
 				click_type = right
-				title = "[AutomatedSystemsItem.GetClickAction]"
+				title = "atd_automation_open_settings"
 				visible = "[AutomatedSystemsItem.IsName('diplomacy')]"
-				on_action = "[OpenLateralView('diplomacy')]"
+				on_action = "[GetScriptedGui(Select_CString(Or(Not(GameIsMultiplayer), IsHost), 'CMM_SetHostAndRegisterCoreMod', 'CMM_RegisterCoreMod')).Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				on_action = "[GetVariableSystem.Set('cmm_window_open', 'true')]"
+				on_action = "[GetVariableSystem.Set('cmm_selected_mod', 'atd')]"
+				on_action = "[GetVariableSystem.Set('cmm_selected_tab', 'atd__improve_relations')]"
 			}
 			action_tooltip = {
 				click_type = right
@@ -680,9 +703,12 @@ types atd_automation_overrides {
 						on_action = "[OpenLateralViewWithParams('unit_overview', 'subtab = navy')]"
 					}
 					action_tooltip = {
-						title = "[AutomatedSystemsItem.GetClickAction]"
+						title = "atd_automation_open_settings"
 						visible = "[AutomatedSystemsItem.IsName('diplomacy')]"
-						on_action = "[OpenLateralView('diplomacy')]"
+						on_action = "[GetScriptedGui(Select_CString(Or(Not(GameIsMultiplayer), IsHost), 'CMM_SetHostAndRegisterCoreMod', 'CMM_RegisterCoreMod')).Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						on_action = "[GetVariableSystem.Set('cmm_window_open', 'true')]"
+						on_action = "[GetVariableSystem.Set('cmm_selected_mod', 'atd')]"
+						on_action = "[GetVariableSystem.Set('cmm_selected_tab', 'atd__improve_relations')]"
 					}
 					action_tooltip = {
 						title = "[AutomatedSystemsItem.GetClickAction]"
@@ -804,27 +830,19 @@ types atd_automation_overrides {
 						checkbox_square_alt = {
 							action_tooltip = {
 								title = "AUTOMATE_DIPLO_IMPROVE_OPINION"
-								visible = "[AutomatedSystemsItem.IsImproveOpinionEnabled]"
-								on_action = "[AutomatedSystemsItem.ToggleImproveOpinion]"
+								visible = "[Not(GetPlayer.MakeScope.GetVariable('atd_improve_relations_enabled').IsSet)]"
+								on_action = "[GetScriptedGui('atd_automation_enable_improve').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 							}
 							action_tooltip = {
-								title = "atd_automation_open_settings"
-								visible = "[Not(AutomatedSystemsItem.IsImproveOpinionEnabled)]"
-								on_action = "[GetScriptedGui(Select_CString(Or(Not(GameIsMultiplayer), IsHost), 'CMM_SetHostAndRegisterCoreMod', 'CMM_RegisterCoreMod')).Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-								on_action = "[GetVariableSystem.Set('cmm_window_open', 'true')]"
-								on_action = "[GetVariableSystem.Set('cmm_selected_mod', 'atd')]"
-								on_action = "[GetVariableSystem.Set('cmm_selected_tab', 'atd__improve_relations')]"
+								title = "AUTOMATE_DIPLO_IMPROVE_OPINION"
+								visible = "[GetPlayer.MakeScope.GetVariable('atd_improve_relations_enabled').IsSet]"
+								on_action = "[GetScriptedGui('atd_automation_disable_improve').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 							}
-							down = "[AutomatedSystemsItem.IsImproveOpinionEnabled]"
+							down = "[GetPlayer.MakeScope.GetVariable('atd_improve_relations_enabled').IsSet]"
 							tooltipwidget = {
 								BasicFunctionalTooltip = {
 									blockoverride "tooltip_content" {
 										TooltipTextBlock = {
-											visible = "[AutomatedSystemsItem.IsImproveOpinionEnabled]"
-											textcontext = "atd_automation_improve_opinion_disable_tooltip"
-										}
-										TooltipTextBlock = {
-											visible = "[Not(AutomatedSystemsItem.IsImproveOpinionEnabled)]"
 											textcontext = "atd_automation_improve_opinion_tooltip"
 										}
 									}
@@ -835,6 +853,18 @@ types atd_automation_overrides {
 							layoutpolicy_horizontal = expanding
 							using = Font_Type_Standard
 							text = "AUTOMATE_DIPLO_IMPROVE_OPINION"
+						}
+					}
+
+					# Clears the engine improve-opinion flag.
+					widget = {
+						size = { 0 0 }
+						visible_at_creation = no
+						visible = "[And(AutomatedSystemsItem.IsImproveOpinionEnabled, Not(GetVariableSystem.Exists('atd_engine_improve_opinion_cleared')))]"
+						state = {
+							name = _show
+							on_start = "[AutomatedSystemsItem.ToggleImproveOpinion]"
+							on_start = "[GetVariableSystem.Set('atd_engine_improve_opinion_cleared', 'true')]"
 						}
 					}
 					hbox = {

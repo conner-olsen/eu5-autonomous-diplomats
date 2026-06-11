@@ -11,7 +11,10 @@ cmf_monthly_human_country_pulse = {
 atd_on_monthly = {
 	effect = {
 		atd_update_hre_visibility = yes
-		atd_gui_sync_begin = yes
-		set_variable = atd_pending_action
+		if = {
+			limit = { has_variable = atd_enabled }
+			atd_gui_sync_begin = yes
+			set_variable = atd_pending_action
+		}
 	}
 }

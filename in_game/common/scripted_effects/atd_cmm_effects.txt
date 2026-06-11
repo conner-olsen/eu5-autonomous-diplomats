@@ -1,6 +1,19 @@
 ﻿# Root scope: country.
 atd_register_cmf_mod = {
 	# Improve Relations (improve_relations) Tab
+	## Automation (automation) Group
+	cmm_register_bool_setting = {
+		mod_id = atd
+		setting_id = improve_relations_enabled
+		tab_id = improve_relations
+		group_id = automation
+		default_value = 1
+	}
+	cmm_sync_bool_alias = {
+		setting = atd__improve_relations_enabled
+		alias = atd_improve_relations_enabled
+	}
+
 	cmm_register_settings_list = {
 		mod_id = atd
 		setting_id = improve_relations
@@ -142,6 +155,19 @@ atd_register_cmf_mod = {
 	}
 
 	# Settings (settings) Tab
+	## Automation (automation) Group
+	cmm_register_bool_setting = {
+		mod_id = atd
+		setting_id = enabled
+		tab_id = settings
+		group_id = automation
+		default_value = 1
+	}
+	cmm_sync_bool_alias = {
+		setting = atd__enabled
+		alias = atd_enabled
+	}
+
 	## Reserve (reserve) Group
 	cmm_register_numeric_setting = {
 		mod_id = atd
@@ -180,7 +206,34 @@ atd_register_cmf_mod = {
 atd_handle_cmf_callback = {
 	switch = {
 		trigger = var:cmf_callback
+		# Improve Relations (improve_relations) Tab
+		## Automation (automation) Group
+		flag:atd__improve_relations_enabled = {
+			cmm_sync_bool_alias = {
+				setting = atd__improve_relations_enabled
+				alias = atd_improve_relations_enabled
+			}
+		}
 		# Settings (settings) Tab
+		## Automation (automation) Group
+		flag:atd__enabled = {
+			cmm_sync_bool_alias = {
+				setting = atd__enabled
+				alias = atd_enabled
+			}
+			if = {
+				limit = { has_variable = atd_enabled }
+				set_automated_system = {
+					system = diplomacy
+				}
+			}
+			else = {
+				set_automated_system = {
+					system = diplomacy
+					activate = no
+				}
+			}
+		}
 		## Reserve (reserve) Group
 		flag:atd__min_diplomats = {
 			cmm_sync_setting_alias = {
@@ -195,4 +248,17 @@ atd_handle_cmf_callback = {
 			}
 		}
 	}
+}
+
+# Sets a CMM bool setting and fires the shared callback.
+# Scope: country
+# Args: setting (key), value (1/0)
+atd_set_bool_setting = {
+	remove_from_variable_map = { name = cmm key = flag:$setting$ }
+	add_to_variable_map = { name = cmm key = flag:$setting$ value = $value$ }
+	set_variable = { name = cmf_callback value = flag:$setting$ }
+	trigger_event_silently = {
+		on_action = cmf_on_callback
+	}
+	remove_variable = cmf_callback
 }

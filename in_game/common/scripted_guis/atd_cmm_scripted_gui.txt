@@ -55,3 +55,37 @@ atd__enforce_on_changed = {
 		}
 	}
 }
+
+# Card controls in atd_automation_lateralview.gui.
+# Root: player country.
+atd_automation_enable_improve = {
+	scope = country
+
+	effect = {
+		atd_set_bool_setting = { setting = atd__improve_relations_enabled value = 1 }
+	}
+}
+
+atd_automation_disable_improve = {
+	scope = country
+
+	effect = {
+		atd_set_bool_setting = { setting = atd__improve_relations_enabled value = 0 }
+	}
+}
+
+atd_automation_enable_master = {
+	scope = country
+
+	effect = {
+		atd_set_bool_setting = { setting = atd__enabled value = 1 }
+	}
+}
+
+atd_automation_disable_master = {
+	scope = country
+
+	effect = {
+		atd_set_bool_setting = { setting = atd__enabled value = 0 }
+	}
+}
