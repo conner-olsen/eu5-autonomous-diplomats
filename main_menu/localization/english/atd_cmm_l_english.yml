@@ -42,6 +42,11 @@
  atd__min_diplomat_gain_name: "Minimum Diplomat Gain"
  atd__min_diplomat_gain_desc: "Minimum monthly diplomat gain to maintain. Autonomous actions will stop sending diplomats if your monthly gain would drop below this value."
 
+ # Automation Panel
+ atd_automation_open_settings: "Open Autonomous Diplomats Settings"
+ atd_automation_improve_opinion_tooltip: "Improving opinions is managed by Autonomous Diplomats. Open its settings to choose which categories of countries to improve relations with."
+ atd_automation_improve_opinion_disable_tooltip: "The game's own Improve Opinion automation is currently enabled and overlaps with Autonomous Diplomats. Click to disable it."
+
  # Optional: self-referencing flag keys to suppress IDE warnings (safe to remove if you want)
  atd: "atd"
  atd__improve_relations: "atd__improve_relations"
