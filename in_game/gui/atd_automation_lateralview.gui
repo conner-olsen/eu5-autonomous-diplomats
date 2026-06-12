@@ -832,15 +832,17 @@ types atd_automation_overrides {
 						}
 					}
 
-					# Pull: writes the slider value into the Minimum Diplomats Reserve setting.
-					# The above-zero check skips the engine's stale zero at card creation.
+					# Pull: samples the slider into the reserve setting on a loop. A
+					# visibility-gated transition goes sticky after a few changes, so the
+					# state retriggers itself and the effect skips the no-op ticks.
 					widget = {
 						size = { 0 0 }
-						visible_at_creation = no
-						visible = "[And3(Not(EqualTo_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSliderScaled, GuiScope.AddScope('country', GetPlayer.MakeScope).ScriptValue('atd_min_diplomats_value'))), Not(GetPlayer.MakeScope.GetVariable('atd_reserve_from_cmm').IsSet), GreaterThan_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSliderScaled, '(CFixedPoint)0'))]"
 						state = {
-							name = _show
-							on_start = "[GetScriptedGui('atd_automation_reserve_changed').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('reserve', MakeScopeValue(AutomatedSystemsItem.GetDiplomatReserveSliderScaled)).End)]"
+							name = atd_reserve_poll
+							trigger_on_create = yes
+							duration = 0.25
+							on_finish = "[GetScriptedGui('atd_automation_reserve_changed').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('reserve', MakeScopeValue(AutomatedSystemsItem.GetDiplomatReserveSliderScaled)).End)]"
+							on_finish = "[PdxGuiWidget.TriggerAnimation('atd_reserve_poll')]"
 						}
 					}
 

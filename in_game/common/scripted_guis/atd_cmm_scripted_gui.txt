@@ -90,8 +90,10 @@ atd_automation_disable_master = {
 	}
 }
 
-# Diplomat reserve pull from the automation panel slider. Writes the CMM value
-# map directly so the settings menu shows the new value without firing the
+# Diplomat reserve pull from the automation panel slider. Polled, so the
+# guards live here: skip while a push is pending, while the slider reads the
+# stale zero, and when the value already matches. Writes the CMM value map
+# directly so the settings menu shows the new value without firing the
 # callback, which would set atd_reserve_from_cmm and push right back.
 # Root: player country. Saved scopes: reserve (value).
 atd_automation_reserve_changed = {
@@ -99,9 +101,17 @@ atd_automation_reserve_changed = {
 	saved_scopes = { reserve }
 
 	effect = {
-		set_variable = { name = atd_min_diplomats value = scope:reserve }
-		remove_from_variable_map = { name = cmm key = flag:atd__min_diplomats }
-		add_to_variable_map = { name = cmm key = flag:atd__min_diplomats value = scope:reserve }
+		set_local_variable = { name = atd_tmp_reserve value = scope:reserve }
+		if = {
+			limit = {
+				NOT = { has_variable = atd_reserve_from_cmm }
+				local_var:atd_tmp_reserve > 0
+				NOT = { var:atd_min_diplomats = local_var:atd_tmp_reserve }
+			}
+			set_variable = { name = atd_min_diplomats value = scope:reserve }
+			remove_from_variable_map = { name = cmm key = flag:atd__min_diplomats }
+			add_to_variable_map = { name = cmm key = flag:atd__min_diplomats value = scope:reserve }
+		}
 	}
 }
 

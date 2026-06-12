@@ -272,6 +272,7 @@ atd_handle_cmf_callback = {
 	if = {
 		limit = { always = no }
 		cmf_suppress = { v = atd_tmp_flag }
+		cmf_suppress = { v = atd_tmp_reserve }
 	}
 }
 
