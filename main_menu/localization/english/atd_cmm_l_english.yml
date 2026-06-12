@@ -47,6 +47,7 @@
  atd__settings__reserve_desc: "Diplomat reserve settings."
  atd__min_diplomats_name: "Minimum Diplomats Reserve"
  atd__min_diplomats_desc: "Minimum number of banked diplomats to keep in reserve. Autonomous actions will not use diplomats below this threshold. Shared with the Minimum Monthly Diplomats slider on the Diplomacy Interactions automation card."
+ atd__min_diplomats_format: "[CMMV('atd__min_diplomats')|1]"
  atd__min_diplomat_gain_name: "Minimum Diplomat Gain"
  atd__min_diplomat_gain_desc: "Minimum monthly diplomat gain to maintain. Autonomous actions will stop sending diplomats if your monthly gain would drop below this value."
 
