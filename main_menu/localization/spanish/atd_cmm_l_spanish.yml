@@ -6,7 +6,7 @@
  # General (general) Tab
  ## Reserve (reserve) Group
  atd__min_diplomats_name: "Reserva mínima de diplomáticos"
- atd__min_diplomats_desc: "Número mínimo de diplomáticos libres que se deben mantener en reserva. Las acciones autónomas no utilizarán diplomáticos por debajo de este umbral."
+ atd__min_diplomats_desc: "Número mínimo de diplomáticos acumulados que mantener en reserva. Las acciones autónomas no usarán diplomáticos por debajo de este umbral. Se comparte con el deslizador de Diplomáticos mensuales mínimos en la tarjeta de automatización de Interacciones diplomáticas."
  atd__min_diplomat_gain_name: "Ganancia mínima de diplomáticos"
  atd__min_diplomat_gain_desc: "Ganancia mensual mínima de diplomáticos a mantener. Las acciones autónomas dejarán de enviar diplomáticos si la ganancia mensual cae por debajo de este valor."
  ## Improve Relations (improve_relations) Group
@@ -52,3 +52,17 @@
  atd__enforce__enabled: "atd__enforce__enabled"
  atd__settings: "atd__settings"
  atd__settings__reserve: "atd__settings__reserve"
+ atd__improve_relations__automation_name: "Automatización"
+ atd__improve_relations_enabled_name: "Mejorar relaciones"
+ atd__improve_relations_enabled_desc: "Envía diplomáticos para mejorar las relaciones con los países de las categorías de abajo."
+ atd__settings__automation_name: "Automatización"
+ atd__enabled_name: "Activado"
+ atd__enabled_desc: "Habilitar diplomáticos autónomos. También activa o desactiva la automatización de las interacciones diplomáticas del juego."
+ atd__min_diplomats_format: "[CMMV('atd__min_diplomats')|1]"
+ atd_automation_open_settings: "Abrir diplomáticos autónomos"
+ atd_automation_improve_opinion_tooltip: "Envía diplomáticos para mejorar las relaciones con los países de las categorías configuradas. Configura las categorías y prioridades en los ajustes de Diplomáticos autónomos."
+ atd_automation_diplomat_reserve_tooltip: "La automatización solo enviará [diplomats|e] cuando la cantidad acumulada actual supere esta reserva, dejando el resto disponible para su uso manual. Esta reserva también se aplica a los diplomáticos autónomos y también se puede cambiar desde sus ajustes."
+ atd__enabled: "atd__enabled"
+ atd__improve_relations_enabled: "atd__improve_relations_enabled"
+ atd__improve_relations__automation: "atd__improve_relations__automation"
+ atd__settings__automation: "atd__settings__automation"

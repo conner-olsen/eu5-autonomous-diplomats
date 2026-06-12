@@ -6,7 +6,7 @@
  # General (general) Tab
  ## Reserve (reserve) Group
  atd__min_diplomats_name: "Minimale Diplomatenreserve"
- atd__min_diplomats_desc: "Mindestanzahl an freien Diplomaten, die in Reserve gehalten werden sollen. Autonome Aktionen werden keine Diplomaten unterhalb dieses Schwellenwerts einsetzen."
+ atd__min_diplomats_desc: "Mindestanzahl an angesparten Diplomaten, die in Reserve gehalten werden sollen. Autonome Aktionen verwenden keine Diplomaten unterhalb dieses Schwellenwerts. Wird mit dem Schieberegler für „Minimale monatliche Diplomaten“ auf der Automatisierungskarte für diplomatische Interaktionen geteilt."
  atd__min_diplomat_gain_name: "Minimaler Diplomatenzuwachs"
  atd__min_diplomat_gain_desc: "Minimaler monatlicher Diplomatenzuwachs. Autonome Aktionen werden keine Diplomaten mehr entsenden, wenn Ihr monatlicher Zuwachs diesen Wert unterschreitet."
  ## Improve Relations (improve_relations) Group
@@ -52,3 +52,17 @@
  atd__enforce__enabled: "atd__enforce__enabled"
  atd__settings: "atd__settings"
  atd__settings__reserve: "atd__settings__reserve"
+ atd__improve_relations__automation_name: "Automatisierung"
+ atd__improve_relations_enabled_name: "Beziehungen verbessern"
+ atd__improve_relations_enabled_desc: "Entsendet Diplomaten, um die Beziehungen zu Ländern in den unten stehenden Kategorien zu verbessern."
+ atd__settings__automation_name: "Automatisierung"
+ atd__enabled_name: "Aktiviert"
+ atd__enabled_desc: "Aktiviert autonome Diplomaten. Schaltet zudem die Automatisierung der Diplomatie-Interaktionen des Spiels um."
+ atd__min_diplomats_format: "[CMMV('atd__min_diplomats')|1]"
+ atd_automation_open_settings: "Autonome Diplomaten öffnen"
+ atd_automation_improve_opinion_tooltip: "Entsendet Diplomaten, um die Beziehungen zu Ländern in den konfigurierten Kategorien zu verbessern. Konfiguriert Kategorien und Prioritäten in den Einstellungen für autonome Diplomaten."
+ atd_automation_diplomat_reserve_tooltip: "Die Automatisierung sendet [diplomats|e] nur dann, wenn die aktuell angesparte Menge diese Reserve überschreitet, sodass der Rest für Eure manuelle Verwendung verfügbar bleibt. Diese Reserve gilt auch für Autonome Diplomaten und kann ebenfalls in deren Einstellungen geändert werden."
+ atd__enabled: "atd__enabled"
+ atd__improve_relations_enabled: "atd__improve_relations_enabled"
+ atd__improve_relations__automation: "atd__improve_relations__automation"
+ atd__settings__automation: "atd__settings__automation"

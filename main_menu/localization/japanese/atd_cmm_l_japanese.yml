@@ -6,7 +6,7 @@
  # General (general) Tab
  ## Reserve (reserve) Group
  atd__min_diplomats_name: "予備外交官の最小数"
- atd__min_diplomats_desc: "予備として残しておく待機外交官の最小数。自律アクションは、この閾値を下回る外交官を使用しません。"
+ atd__min_diplomats_desc: "予備として保持する外交官の最小数です。自律アクションは、この閾値を下回る外交官を使用しません。「外交アクション」自動化カードにある「最小月次外交官」スライダーと共有されます。"
  atd__min_diplomat_gain_name: "最小外交官獲得"
  atd__min_diplomat_gain_desc: "維持すべき最小の月間外交官増加量。月間の増加量がこの値を下回る場合、自動アクションによる外交官の派遣は停止されます。"
  ## Improve Relations (improve_relations) Group
@@ -52,3 +52,17 @@
  atd__enforce__enabled: "atd__enforce__enabled"
  atd__settings: "atd__settings"
  atd__settings__reserve: "atd__settings__reserve"
+ atd__improve_relations__automation_name: "自動化"
+ atd__improve_relations_enabled_name: "関係の改善"
+ atd__improve_relations_enabled_desc: "以下のカテゴリーに属する国々との関係を改善するため、外交官を派遣します。"
+ atd__settings__automation_name: "自動化"
+ atd__enabled_name: "有効"
+ atd__enabled_desc: "自律外交官を有効にします。ゲームの外交アクションの自動化設定も切り替わります。"
+ atd__min_diplomats_format: "[CMMV('atd__min_diplomats')|1]"
+ atd_automation_open_settings: "自律外交官を開く"
+ atd_automation_improve_opinion_tooltip: "設定されたカテゴリー内の諸国との関係を改善するために外交官を派遣します。カテゴリーと優先順位は「自律的外交官」の設定で設定してください。"
+ atd_automation_diplomat_reserve_tooltip: "自動化設定は、現在の蓄積量がこの確保分を超えている場合にのみ[diplomats|e]を送り、残りの分は手動で利用できるように残されます。この確保分は自律外交官にも適用され、その設定から変更することも可能です。"
+ atd__enabled: "atd__enabled"
+ atd__improve_relations_enabled: "atd__improve_relations_enabled"
+ atd__improve_relations__automation: "atd__improve_relations__automation"
+ atd__settings__automation: "atd__settings__automation"

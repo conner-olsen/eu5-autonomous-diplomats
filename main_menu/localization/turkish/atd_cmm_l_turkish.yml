@@ -6,7 +6,7 @@
  # General (general) Tab
  ## Reserve (reserve) Group
  atd__min_diplomats_name: "Minimum Diplomat Rezervi"
- atd__min_diplomats_desc: "Yedekte tutulacak minimum boş diplomat sayısı. Otonom eylemler bu eşiğin altındaki diplomatları kullanmayacaktır."
+ atd__min_diplomats_desc: "Rezervde tutulacak minimum biriktirilmiş diplomat sayısı. Otonom eylemler, bu eşiğin altındaki diplomatları kullanmayacaktır. Diplomasi Etkileşimleri otomasyon kartındaki Minimum Aylık Diplomat kaydırıcısı ile paylaşılır."
  atd__min_diplomat_gain_name: "Minimum Diplomat Artışı"
  atd__min_diplomat_gain_desc: "Sürdürülmesi gereken minimum aylık diplomat artışı. Aylık artışınız bu değerin altına düşerse, otonom eylemler diplomat göndermeyi durduracaktır."
  ## Improve Relations (improve_relations) Group
@@ -52,3 +52,17 @@
  atd__enforce__enabled: "atd__enforce__enabled"
  atd__settings: "atd__settings"
  atd__settings__reserve: "atd__settings__reserve"
+ atd__improve_relations__automation_name: "Otomasyon"
+ atd__improve_relations_enabled_name: "İlişkileri Geliştir"
+ atd__improve_relations_enabled_desc: "Aşağıdaki kategorilerdeki ülkelerle ilişkileri geliştirmek için diplomatlar gönder."
+ atd__settings__automation_name: "Otomasyon"
+ atd__enabled_name: "Etkin"
+ atd__enabled_desc: "Otonom Diplomatları Etkinleştir. Aynı zamanda oyunun Diplomasi Etkileşimleri otomasyonunu açıp kapatır."
+ atd__min_diplomats_format: "[CMMV('atd__min_diplomats')|1]"
+ atd_automation_open_settings: "Otonom Diplomatları Aç"
+ atd_automation_improve_opinion_tooltip: "Yapılandırılmış kategorilerdeki ülkelerle ilişkileri geliştirmek için diplomat gönder. Kategorileri ve öncelikleri Otonom Diplomat ayarlarından yapılandır."
+ atd_automation_diplomat_reserve_tooltip: "Otomasyon, [diplomats|e] kaynağını yalnızca mevcut biriken miktar bu rezervi aştığında gönderir ve geri kalanını manuel kullanımınız için saklı tutar. Bu rezerv Otonom Diplomatlar için de geçerlidir ve ayarlarından değiştirilebilir."
+ atd__enabled: "atd__enabled"
+ atd__improve_relations_enabled: "atd__improve_relations_enabled"
+ atd__improve_relations__automation: "atd__improve_relations__automation"
+ atd__settings__automation: "atd__settings__automation"

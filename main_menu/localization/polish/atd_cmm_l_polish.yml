@@ -6,7 +6,7 @@
  # General (general) Tab
  ## Reserve (reserve) Group
  atd__min_diplomats_name: "Minimalna rezerwa dyplomatów"
- atd__min_diplomats_desc: "Minimalna liczba wolnych dyplomatów do zachowania w rezerwie. Działania autonomiczne nie będą wykorzystywać dyplomatów poniżej tego progu."
+ atd__min_diplomats_desc: "Minimalna liczba dyplomatów przechowywanych w rezerwie. Działania autonomiczne nie będą wykorzystywać dyplomatów poniżej tego progu. Wartość współdzielona z suwakiem minimalnej miesięcznej liczby dyplomatów na karcie automatyzacji interakcji dyplomatycznych."
  atd__min_diplomat_gain_name: "Minimalny przyrost dyplomatów"
  atd__min_diplomat_gain_desc: "Minimalny miesięczny przyrost dyplomatów do utrzymania. Działania autonomiczne przestaną wysyłać dyplomatów, jeśli twój miesięczny przyrost spadnie poniżej tej wartości."
  ## Improve Relations (improve_relations) Group
@@ -52,3 +52,17 @@
  atd__enforce__enabled: "atd__enforce__enabled"
  atd__settings: "atd__settings"
  atd__settings__reserve: "atd__settings__reserve"
+ atd__improve_relations__automation_name: "Automatyzacja"
+ atd__improve_relations_enabled_name: "Popraw relacje"
+ atd__improve_relations_enabled_desc: "Wyślij dyplomatów, aby poprawić relacje z państwami w poniższych kategoriach."
+ atd__settings__automation_name: "Automatyzacja"
+ atd__enabled_name: "Włączone"
+ atd__enabled_desc: "Włącz autonomicznych dyplomatów. Przełącza również automatyzację interakcji dyplomatycznych w grze."
+ atd__min_diplomats_format: "[CMMV('atd__min_diplomats')|1]"
+ atd_automation_open_settings: "Otwórz autonomicznych dyplomatów"
+ atd_automation_improve_opinion_tooltip: "Wysyłaj dyplomatów, aby poprawiać relacje z państwami w skonfigurowanych kategoriach. Skonfiguruj kategorie i priorytety w ustawieniach autonomicznych dyplomatów."
+ atd_automation_diplomat_reserve_tooltip: "Automatyzacja będzie wysyłać [diplomats|e] tylko wtedy, gdy aktualnie zgromadzona ilość przekroczy tę rezerwę, pozostawiając resztę do Twojego ręcznego użytku. Rezerwa ta ma zastosowanie również do autonomicznych dyplomatów i można ją zmienić także w ich ustawieniach."
+ atd__enabled: "atd__enabled"
+ atd__improve_relations_enabled: "atd__improve_relations_enabled"
+ atd__improve_relations__automation: "atd__improve_relations__automation"
+ atd__settings__automation: "atd__settings__automation"

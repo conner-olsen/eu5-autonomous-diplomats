@@ -6,7 +6,7 @@
  # General (general) Tab
  ## Reserve (reserve) Group
  atd__min_diplomats_name: "Reserva Mínima de Diplomatas"
- atd__min_diplomats_desc: "Número mínimo de diplomatas livres para manter em reserva. Ações autônomas não utilizarão diplomatas abaixo deste limite."
+ atd__min_diplomats_desc: "Número mínimo de diplomatas acumulados para manter na reserva. Ações autônomas não usarão diplomatas abaixo deste limite. Compartilhado com o controle deslizante de Mínimo de Diplomatas Mensais no cartão de automação de Interações Diplomáticas."
  atd__min_diplomat_gain_name: "Ganho Mínimo de Diplomata"
  atd__min_diplomat_gain_desc: "Ganho mensal mínimo de diplomatas para manter. As ações autônomas deixarão de enviar diplomatas se o seu ganho mensal ficar abaixo deste valor."
  ## Improve Relations (improve_relations) Group
@@ -52,3 +52,17 @@
  atd__enforce__enabled: "atd__enforce__enabled"
  atd__settings: "atd__settings"
  atd__settings__reserve: "atd__settings__reserve"
+ atd__improve_relations__automation_name: "Automação"
+ atd__improve_relations_enabled_name: "Melhorar Relações"
+ atd__improve_relations_enabled_desc: "Envie diplomatas para melhorar as relações com países nas categorias abaixo."
+ atd__settings__automation_name: "Automação"
+ atd__enabled_name: "Ativado"
+ atd__enabled_desc: "Ativar Diplomatas Autônomos. Também alterna a automação das Interações Diplomáticas do jogo."
+ atd__min_diplomats_format: "[CMMV('atd__min_diplomats')|1]"
+ atd_automation_open_settings: "Abrir Diplomatas Autônomos"
+ atd_automation_improve_opinion_tooltip: "Envie diplomatas para melhorar as relações com países nas categorias configuradas. Configure as categorias e prioridades nas configurações de Diplomatas Autônomos."
+ atd_automation_diplomat_reserve_tooltip: "A automação enviará [diplomats|e] apenas quando a quantia acumulada atual exceder esta reserva, deixando o restante disponível para seu uso manual. Esta reserva também se aplica a Diplomatas Autônomos e também pode ser alterada em suas configurações."
+ atd__enabled: "atd__enabled"
+ atd__improve_relations_enabled: "atd__improve_relations_enabled"
+ atd__improve_relations__automation: "atd__improve_relations__automation"
+ atd__settings__automation: "atd__settings__automation"

@@ -6,7 +6,7 @@
  # General (general) Tab
  ## Reserve (reserve) Group
  atd__min_diplomats_name: "최소 외교관 예비량"
- atd__min_diplomats_desc: "예비로 유지할 최소 가용 외교관 수입니다. 자동 작업 시 이 임계값 미만의 외교관은 사용하지 않습니다."
+ atd__min_diplomats_desc: "예비로 유지할 최소 비축 외교관 수입니다. 자율 행동 시 이 임계값 미만의 외교관은 사용하지 않습니다. 외교 상호작용 자동화 카드의 '최소 월간 외교관' 슬라이더와 설정을 공유합니다."
  atd__min_diplomat_gain_name: "최소 외교관 획득량"
  atd__min_diplomat_gain_desc: "유지할 최소 월간 외교관 획득량입니다. 월간 획득량이 이 수치 미만으로 떨어지면 자율 행동을 통한 외교관 파견이 중단됩니다."
  ## Improve Relations (improve_relations) Group
@@ -52,3 +52,17 @@
  atd__enforce__enabled: "atd__enforce__enabled"
  atd__settings: "atd__settings"
  atd__settings__reserve: "atd__settings__reserve"
+ atd__improve_relations__automation_name: "자동화"
+ atd__improve_relations_enabled_name: "관계 개선"
+ atd__improve_relations_enabled_desc: "아래 범주에 속한 국가들과의 관계를 개선하기 위해 외교관을 파견합니다."
+ atd__settings__automation_name: "자동화"
+ atd__enabled_name: "활성화됨"
+ atd__enabled_desc: "자율 외교관을 활성화합니다. 게임의 외교 상호작용 자동화 여부도 전환합니다."
+ atd__min_diplomats_format: "[CMMV('atd__min_diplomats')|1]"
+ atd_automation_open_settings: "자율 외교관 열기"
+ atd_automation_improve_opinion_tooltip: "설정된 범주의 국가들과 관계를 개선하기 위해 외교관을 파견합니다. 자율 외교관 설정에서 범주와 우선순위를 설정하십시오."
+ atd_automation_diplomat_reserve_tooltip: "자동화 기능은 현재 비축량이 이 보존량을 초과할 때만 [diplomats|e]을(를) 보내며, 남은 잔액은 플레이어가 수동으로 사용할 수 있도록 유지합니다. 이 보존량은 자율 외교관에게도 적용되며, 해당 설정에서 변경할 수 있습니다."
+ atd__enabled: "atd__enabled"
+ atd__improve_relations_enabled: "atd__improve_relations_enabled"
+ atd__improve_relations__automation: "atd__improve_relations__automation"
+ atd__settings__automation: "atd__settings__automation"
