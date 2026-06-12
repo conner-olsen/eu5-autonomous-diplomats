@@ -169,7 +169,7 @@ atd_register_cmf_mod = {
 	}
 
 	## Reserve (reserve) Group
-	cmm_register_numeric_setting = {
+	cmm_register_slider_setting = {
 		mod_id = atd
 		setting_id = min_diplomats
 		tab_id = settings
@@ -177,14 +177,24 @@ atd_register_cmf_mod = {
 		default_value = 0
 		min_value = 0
 		max_value = 10
-		step_value = 1
+		step_value = 0.1
 	}
 	cmm_sync_setting_alias = {
 		setting = atd__min_diplomats
 		alias = atd_min_diplomats
 	}
+	atd_update_reserve_slider_bounds = yes
+	# Migration: a reserve configured before the slider sync existed gets pushed
+	# into the engine slider on the first automation panel visit.
+	if = {
+		limit = {
+			var:atd_min_diplomats > 0
+			NOT = { has_variable = atd_reserve_slider_max }
+		}
+		set_variable = atd_reserve_from_cmm
+	}
 
-	cmm_register_numeric_setting = {
+	cmm_register_slider_setting = {
 		mod_id = atd
 		setting_id = min_diplomat_gain
 		tab_id = settings
@@ -236,9 +246,18 @@ atd_handle_cmf_callback = {
 		}
 		## Reserve (reserve) Group
 		flag:atd__min_diplomats = {
-			cmm_sync_setting_alias = {
-				setting = atd__min_diplomats
-				alias = atd_min_diplomats
+			# The CMM slider fires this callback on hover as well as on change.
+			set_local_variable = { name = atd_tmp_flag value = flag:atd__min_diplomats }
+			if = {
+				limit = {
+					NOT = { "variable_map(cmm|local_var:atd_tmp_flag)" = var:atd_min_diplomats }
+				}
+				cmm_sync_setting_alias = {
+					setting = atd__min_diplomats
+					alias = atd_min_diplomats
+				}
+				# Picked up by the push widgets in atd_automation_lateralview.gui.
+				set_variable = atd_reserve_from_cmm
 			}
 		}
 		flag:atd__min_diplomat_gain = {
@@ -247,6 +266,41 @@ atd_handle_cmf_callback = {
 				alias = atd_min_diplomat_gain
 			}
 		}
+	}
+
+	# Benign warning suppression
+	if = {
+		limit = { always = no }
+		cmf_suppress = { v = atd_tmp_flag }
+	}
+}
+
+# Aligns the CMM reserve slider's range with the observed engine slider scale.
+# Scope: country
+atd_update_reserve_slider_bounds = {
+	if = {
+		limit = { has_variable = atd_reserve_slider_max }
+		remove_from_variable_map = { name = cmm_max key = flag:atd__min_diplomats }
+		add_to_variable_map = { name = cmm_max key = flag:atd__min_diplomats value = var:atd_reserve_slider_max }
+
+		set_variable = { name = atd_tmp_step_count value = var:atd_reserve_slider_max }
+		change_variable = { name = atd_tmp_step_count divide = 0.1 }
+		round_variable = {
+			name = atd_tmp_step_count
+			nearest = 1
+		}
+		change_variable = { name = atd_tmp_step_count add = 1 }
+		if = {
+			limit = { var:atd_tmp_step_count < 2 }
+			set_variable = { name = atd_tmp_step_count value = 2 }
+		}
+		remove_from_variable_map = { name = cmm_slider_actual_step_count key = flag:atd__min_diplomats }
+		add_to_variable_map = { name = cmm_slider_actual_step_count key = flag:atd__min_diplomats value = var:atd_tmp_step_count }
+
+		change_variable = { name = atd_tmp_step_count add = -1 }
+		remove_from_variable_map = { name = cmm_slider_actual_last_index key = flag:atd__min_diplomats }
+		add_to_variable_map = { name = cmm_slider_actual_last_index key = flag:atd__min_diplomats value = var:atd_tmp_step_count }
+		remove_variable = atd_tmp_step_count
 	}
 }
 

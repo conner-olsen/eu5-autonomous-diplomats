@@ -791,7 +791,7 @@ types atd_automation_overrides {
 						layoutpolicy_horizontal = expanding
 						using = Font_Type_Headers
 						text = "AUTOMATE_DIPLO_DIPLOMAT_RESERVE_LABEL"
-						tooltip = "AUTOMATE_DIPLO_DIPLOMAT_RESERVE_TOOLTIP"
+						tooltip = "atd_automation_diplomat_reserve_tooltip"
 					}
 
 					hbox = {
@@ -801,6 +801,10 @@ types atd_automation_overrides {
 							min = 0
 							max = 1
 							value = "[AutomatedSystemsItem.GetDiplomatReserveSlider]"
+							# Pinned to the settings value while a push is pending; the forced
+							# value commits through the callbacks below.
+							mincap = "[Select_CFixedPoint(And(GetPlayer.MakeScope.GetVariable('atd_reserve_from_cmm').IsSet, Not(EqualTo_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSliderScaled, GuiScope.AddScope('country', GetPlayer.MakeScope).ScriptValue('atd_min_diplomats_value')))), GuiScope.AddScope('country', GetPlayer.MakeScope).ScriptValue('atd_reserve_push_target'), '(CFixedPoint)0')]"
+							maxcap = "[Select_CFixedPoint(And(GetPlayer.MakeScope.GetVariable('atd_reserve_from_cmm').IsSet, Not(EqualTo_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSliderScaled, GuiScope.AddScope('country', GetPlayer.MakeScope).ScriptValue('atd_min_diplomats_value')))), GuiScope.AddScope('country', GetPlayer.MakeScope).ScriptValue('atd_reserve_push_target'), '(CFixedPoint)1')]"
 							onvaluechanged = "[AutomatedSystemsItem.OnChangedDiplomatReserveSlider]"
 							onchangefinish = "[AutomatedSystemsItem.PostDiplomatReserveSlider]"
 							blockoverride "economy_slider_inc_button_config"{
@@ -814,6 +818,54 @@ types atd_automation_overrides {
 							layoutpolicy_horizontal = expanding
 							margin = { 15 0 }
 							raw_text = "[AutomatedSystemsItem.GetDiplomatReserveSliderScaled|1]"
+						}
+					}
+
+					# Arms a push on every card creation: the settings value wins the open.
+					widget = {
+						size = { 0 0 }
+						visible_at_creation = no
+						visible = "[GetPlayer.Exists]"
+						state = {
+							name = _show
+							on_start = "[GetScriptedGui('atd_automation_reserve_reconcile').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+						}
+					}
+
+					# Pull: writes the slider value into the Minimum Diplomats Reserve setting.
+					# The above-zero check skips the engine's stale zero at card creation.
+					widget = {
+						size = { 0 0 }
+						visible_at_creation = no
+						visible = "[And3(Not(EqualTo_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSliderScaled, GuiScope.AddScope('country', GetPlayer.MakeScope).ScriptValue('atd_min_diplomats_value'))), Not(GetPlayer.MakeScope.GetVariable('atd_reserve_from_cmm').IsSet), GreaterThan_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSliderScaled, '(CFixedPoint)0'))]"
+						state = {
+							name = _show
+							on_start = "[GetScriptedGui('atd_automation_reserve_changed').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('reserve', MakeScopeValue(AutomatedSystemsItem.GetDiplomatReserveSliderScaled)).End)]"
+						}
+					}
+
+					# Slider scale cache: scaled divided by normalized while the slider is above zero.
+					widget = {
+						size = { 0 0 }
+						visible_at_creation = no
+						visible = "[And(GreaterThan_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSlider, '(CFixedPoint)0'), Not(EqualTo_CFixedPoint(Divide_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSliderScaled, AutomatedSystemsItem.GetDiplomatReserveSlider), GuiScope.AddScope('country', GetPlayer.MakeScope).ScriptValue('atd_reserve_max_value'))))]"
+						state = {
+							name = _show
+							on_start = "[GetScriptedGui('atd_automation_reserve_max_changed').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('max', MakeScopeValue(Divide_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSliderScaled, AutomatedSystemsItem.GetDiplomatReserveSlider))).End)]"
+						}
+					}
+
+					# Push finalize: commits after the caps settle, then clears the pending flag.
+					# The equality branch clears a flag that has nothing to push.
+					widget = {
+						size = { 0 0 }
+						visible_at_creation = no
+						visible = "[And(GetPlayer.MakeScope.GetVariable('atd_reserve_from_cmm').IsSet, Or(GreaterThan_CFixedPoint(GuiScope.AddScope('country', GetPlayer.MakeScope).ScriptValue('atd_reserve_max_value'), '(CFixedPoint)0'), EqualTo_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSliderScaled, GuiScope.AddScope('country', GetPlayer.MakeScope).ScriptValue('atd_min_diplomats_value'))))]"
+						state = {
+							name = _show
+							duration = 0.3
+							on_finish = "[AutomatedSystemsItem.PostDiplomatReserveSlider]"
+							on_finish = "[GetScriptedGui('atd_automation_reserve_pushed').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 						}
 					}
 				}

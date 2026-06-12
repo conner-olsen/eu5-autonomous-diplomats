@@ -89,3 +89,50 @@ atd_automation_disable_master = {
 		atd_set_bool_setting = { setting = atd__enabled value = 0 }
 	}
 }
+
+# Diplomat reserve pull from the automation panel slider. Writes the CMM value
+# map directly so the settings menu shows the new value without firing the
+# callback, which would set atd_reserve_from_cmm and push right back.
+# Root: player country. Saved scopes: reserve (value).
+atd_automation_reserve_changed = {
+	scope = country
+	saved_scopes = { reserve }
+
+	effect = {
+		set_variable = { name = atd_min_diplomats value = scope:reserve }
+		remove_from_variable_map = { name = cmm key = flag:atd__min_diplomats }
+		add_to_variable_map = { name = cmm key = flag:atd__min_diplomats value = scope:reserve }
+	}
+}
+
+# Root: player country. Saved scopes: max (value).
+atd_automation_reserve_max_changed = {
+	scope = country
+	saved_scopes = { max }
+
+	effect = {
+		set_variable = { name = atd_reserve_slider_max value = scope:max }
+		atd_update_reserve_slider_bounds = yes
+	}
+}
+
+# Root: player country.
+atd_automation_reserve_pushed = {
+	scope = country
+
+	effect = {
+		if = {
+			limit = { has_variable = atd_reserve_from_cmm }
+			remove_variable = atd_reserve_from_cmm
+		}
+	}
+}
+
+# Root: player country.
+atd_automation_reserve_reconcile = {
+	scope = country
+
+	effect = {
+		set_variable = atd_reserve_from_cmm
+	}
+}

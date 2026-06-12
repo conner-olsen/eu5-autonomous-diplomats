@@ -46,13 +46,14 @@
  atd__settings__reserve_name: "Reserve"
  atd__settings__reserve_desc: "Diplomat reserve settings."
  atd__min_diplomats_name: "Minimum Diplomats Reserve"
- atd__min_diplomats_desc: "Minimum number of free diplomats to keep in reserve. Autonomous actions will not use diplomats below this threshold."
+ atd__min_diplomats_desc: "Minimum number of banked diplomats to keep in reserve. Autonomous actions will not use diplomats below this threshold. Shared with the Minimum Monthly Diplomats slider on the Diplomacy Interactions automation card."
  atd__min_diplomat_gain_name: "Minimum Diplomat Gain"
  atd__min_diplomat_gain_desc: "Minimum monthly diplomat gain to maintain. Autonomous actions will stop sending diplomats if your monthly gain would drop below this value."
 
  # Automation Panel
  atd_automation_open_settings: "Open Autonomous Diplomats"
  atd_automation_improve_opinion_tooltip: "Send diplomats to improve relations with countries in the configured categories. Configure categories and priorities in the Autonomous Diplomats settings."
+ atd_automation_diplomat_reserve_tooltip: "Automation will only send [diplomats|e] when the current banked amount exceeds this reserve, leaving the remainder available for your manual use. This reserve also applies to Autonomous Diplomats and can be changed from its settings as well."
 
  # Optional: self-referencing flag keys to suppress IDE warnings (safe to remove if you want)
  atd: "atd"
