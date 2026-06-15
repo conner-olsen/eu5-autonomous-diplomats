@@ -212,6 +212,13 @@ atd_gui_sync_end = {
 						name = atd_improving_type
 						key = scope:atd_nation_to_remove
 					}
+					# A mod improve gone below the +200 cap never persisted.
+					scope:atd_nation_to_remove = {
+						if = {
+							limit = { NOT = { has_variable = atd_cancel_cooldown } }
+							set_variable = { name = atd_retarget_cooldown value = yes years = 1 }
+						}
+					}
 				}
 			}
 			# Clear the auto-cancel flag from the target country so a later
@@ -321,6 +328,10 @@ atd_start_improving_with = {
 				NOT = { opinion = { target = scope:actor_scope value >= 190 } }
 				# Skip during the post-auto-cancel cooldown.
 				NOT = { has_variable = atd_cancel_cooldown }
+				# improve_relation is blocked while at war.
+				NOT = { is_at_war_with = scope:actor_scope }
+				# Skip during the anti-churn retarget cooldown.
+				NOT = { has_variable = atd_retarget_cooldown }
 			}
 		}
 		perform_diplomatic_action = {
@@ -405,6 +416,9 @@ atd_improve_outraged = {
 			limit = {
 				is_discovered_by = scope:actor_scope
 				antagonism = { target = scope:actor_scope value > 0 }
+				# At-war candidates can't be improved.
+				NOT = { is_at_war_with = scope:actor_scope }
+				NOT = { has_variable = atd_retarget_cooldown }
 				scope:actor_scope = {
 					OR = {
 						NOT = { has_variable_map = atd_improving_with }
