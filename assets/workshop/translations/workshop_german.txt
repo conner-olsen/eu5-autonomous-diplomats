@@ -8,31 +8,32 @@ Bringt das automatisierte Diplomatensystem aus EU4 mit automatischer Beziehungsv
 
 Benötigt das [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Community Mod Framework (CMF)[/url].
 
-[h1]Features:[/h1]
+[h1]Funktionen:[/h1]
 [olist]
  [*][b]Beziehungen automatisch verbessern:[/b]
   [list]
-   [*][b]Nachbarländer:[/b] Verbessert Beziehungen mit zufälligen angrenzenden Nationen.
-   [*][b]Eigene Untertanen:[/b] Verbessert Beziehungen mit zufälligen Untertanennationen.
-   [*][b]Empörte Länder:[/b] Verbessert Beziehungen zuerst mit Nationen, die die höchste Feindseligkeit gegenüber dir aufweisen.
-   [*][b]Verbündete:[/b] Verbessert Beziehungen mit verbündeten Nationen und Mitgliedern von Verteidigungsbündnissen.
-   [*][b]Bedrohliche Länder:[/b] Verbessert Beziehungen zuerst mit Nationen, die die höchste Bedrohungsstufe für dich darstellen.
-   [*][b]HRR-Kurfürsten:[/b] Verbessert Beziehungen mit Kurfürsten des Heiligen Römischen Reiches. Nur sichtbar für HRR-Mitglieder.
-   [*][b]HRR-Mitglieder:[/b] Verbessert Beziehungen mit anderen Mitgliedern des Heiligen Römischen Reiches. Nur sichtbar für HRR-Mitglieder.
-   [*][b]Marktbesitzer:[/b] Verbessert Beziehungen mit Ländern, die einen Markt besitzen.
-   [*][b]Königreiche+:[/b] Verbessert Beziehungen mit Königreichen und Kaiserreichen.
+   [*][b]Nachbarländer:[/b] Verbessert die Beziehungen zu zufälligen angrenzenden Nationen.
+   [*][b]Eigene Untertanen:[/b] Verbessert die Beziehungen zu zufälligen Untertanenstaaten.
+   [*][b]Empörte Länder:[/b] Verbessert zuerst die Beziehungen zu Nationen, die den höchsten Antagonismus gegen dich hegen.
+   [*][b]Verbündete:[/b] Verbessert die Beziehungen zu verbündeten Nationen und Mitgliedern von Verteidigungsbündnissen.
+   [*][b]Bedrohliche Länder:[/b] Verbessert zuerst die Beziehungen zu Nationen, die die höchste Bedrohung für dich darstellen.
+   [*][b]HRR-Reichskreisführer:[/b] Verbessert die Beziehungen zu den Anführern der Reichskreise im Heiligen Römischen Reich. Nur für HRR-Mitglieder sichtbar.
+   [*][b]HRR-Kurfürsten:[/b] Verbessert die Beziehungen zu den Kurfürsten des Heiligen Römischen Reiches. Nur für HRR-Mitglieder sichtbar.
+   [*][b]HRR-Mitglieder:[/b] Verbessert die Beziehungen zu anderen Mitgliedern des Heiligen Römischen Reiches. Nur für HRR-Mitglieder sichtbar.
+   [*][b]Marktbesitzer:[/b] Verbessert die Beziehungen zu Ländern, die einen Markt besitzen.
+   [*][b]Königreiche und Kaiserreiche:[/b] Verbessert die Beziehungen zu Königreichen und Kaiserreichen.
   [/list]
   [list]
-   [*][b]Priorität per Drag-to-Reorder:[/b] Lege über das Community Mod Menu fest, welche Kategorien zuerst Diplomaten erhalten.
-   [*][b]Diplomatenlimits pro Kategorie:[/b] Steuere, wie viele Diplomaten jede Kategorie verwenden kann (0-10).
+   [*][b]Priorität per Drag-and-Drop:[/b] Lege über das Community Mod Menü fest, welche Kategorien zuerst Diplomaten erhalten.
+   [*][b]Diplomaten-Limits pro Kategorie:[/b] Steuere, wie viele Diplomaten jede Kategorie verwenden kann (0-10).
   [/list]
- [*][b]Untertanen-Interaktionen:[/b] Führt automatisch Untertanenaktionen aus, wann immer möglich.
+ [*][b]Interaktionen mit Untertanen:[/b] Führe Untertanen-Aktionen automatisch aus, wann immer dies möglich ist.
   [list]
    [*][b]Religion erzwingen:[/b] Erzwinge deine Staatsreligion bei Untertanen.
    [*][b]Kultur erzwingen:[/b] Erzwinge deine Primärkultur bei Untertanen.
   [/list]
- [*][b]Diplomatenreserven:[/b] Lege eine Mindestanzahl an freien Diplomaten und einen minimalen monatlichen Diplomatenzuwachs fest, der in Reserve gehalten werden soll. Autonome Aktionen werden deine Schwellenwerte nicht unterschreiten.
- [*][b]Fortschrittsverfolgung:[/b] Zielt nicht erneut auf Länder ab, die bereits eine Meinung von +190 haben.
+ [*][b]Diplomatenreserven:[/b] Lege eine Mindestanzahl an freien Diplomaten und einen monatlichen Mindestzuwachs fest, der in Reserve gehalten werden soll. Autonome Aktionen werden diese Schwellenwerte nicht unterschreiten.
+ [*][b]Fortschrittsverfolgung:[/b] Länder, die bereits eine Meinung von +190 haben, werden nicht erneut anvisiert.
 [/olist]
 
 [h1]Änderungsprotokoll:[/h1]
@@ -40,18 +41,18 @@ Siehe die [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696
 
 [h1]Bekannte Probleme:[/h1]
 [list]
- [*]Einige diplomatische Interaktionen haben keine Bestätigungsfenster, wo sie normalerweise welche hätten. Dies ist für das automatische Abbrechen notwendig, aber ich werde nach einer besseren Lösung suchen.
+ [*]Einige diplomatische Interaktionen haben keine Bestätigungsfenster, wo sie normalerweise welche hätten. Dies ist für die automatische Stornierung notwendig, aber ich werde nach einer besseren Lösung suchen.
 [/list]
 
 [h1]Kompatibilität:[/h1]
 [list]
- [*]Nicht Ironman-/Achievement-kompatibel.
- [*]Vollständig spielstandkompatibel.
+ [*]Nicht Ironman/Achievement-kompatibel.
+ [*]Vollständig kompatibel mit Spielständen.
  [*]Sollte mit jedem Mod funktionieren.
- [*]Auf Anfrage kann ich Kompatibilitätspatches hinzufügen.
+ [*]Auf Anfrage füge ich eventuell Kompatibilitäts-Patches hinzu.
 [/list]
 
-Zusätzlich zum Kommentarbereich kannst du auch Fragen stellen, Bugs melden oder Vorschläge machen, indem du @arealconner im [url=https://discord.gg/zeQ6x9wrPq]#utility-mods-Kanal des EU5-Community-Discord-Servers[/url] anpinst. Und wenn du daran interessiert bist, an der Entwicklung dieses oder eines meiner anderen Mods mitzuwirken, kannst du mich auf Discord unter @arealconner anpingen oder hinzufügen. Alle Beiträge sind willkommen.
+Zusätzlich zum Kommentarbereich kannst du auch Fragen stellen, Bugs melden oder Vorschläge machen, indem du @arealconner im [url=https://discord.gg/zeQ6x9wrPq]#utility-mods-Kanal des EU5 Community Discord-Servers[/url] markierst. Und wenn du daran interessiert bist, an der Entwicklung dieses oder eines meiner anderen Mods mitzuwirken, kannst du mich auf Discord unter @arealconner markieren oder hinzufügen. Alle Beiträge sind willkommen.
 
 Die Quell- und Entwicklerversionen des Mods sind auf [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub verfügbar.[/url]
 
