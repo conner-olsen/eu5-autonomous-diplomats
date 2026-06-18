@@ -4,52 +4,54 @@ Diplomáticos Autónomos / Autonomous Diplomats
 [i]You are on the DeepL-Generated Spanish Page. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=$item-id$&l=english]Click here for the Native English Page.[/url][/i]
 
 [h1]Resumen:[/h1]
-Recupera el sistema de diplomáticos automatizados de EU4 con mejora automática de relaciones y otras funciones.
+Trae de vuelta el sistema de diplomáticos automatizados de EU4 con mejora de relaciones automática y otras funciones.
 
 Requiere [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Community Mod Framework (CMF)[/url].
 
 [h1]Características:[/h1]
 [olist]
- [*][b]Mejorar relaciones automáticamente:[/b]
+ [*][b]Mejora de relaciones automática:[/b]
   [list]
-   [*][b]Países vecinos:[/b] Mejora las relaciones con naciones limítrofes aleatorias.
+   [*][b]Países vecinos:[/b] Mejora las relaciones con naciones fronterizas aleatorias.
    [*][b]Súbditos propios:[/b] Mejora las relaciones con naciones súbditas aleatorias.
-   [*][b]Países indignados:[/b] Mejora primero las relaciones con las naciones que tengan el mayor nivel de antagonismo hacia ti.
+   [*][b]Países indignados:[/b] Mejora las relaciones primero con las naciones que tengan el mayor nivel de antagonismo hacia ti.
    [*][b]Aliados:[/b] Mejora las relaciones con naciones aliadas y miembros de ligas defensivas.
-   [*][b]Países amenazantes:[/b] Mejora primero las relaciones con las naciones que supongan el mayor nivel de amenaza para ti.
-   [*][b]Electores del SIR:[/b] Mejora las relaciones con los electores del Sacro Imperio Romano Germánico. Solo visible para miembros del SIR.
-   [*][b]Miembros del SIR:[/b] Mejora las relaciones con los demás miembros del Sacro Imperio Romano Germánico. Solo visible para miembros del SIR.
+   [*][b]Países amenazantes:[/b] Mejora las relaciones primero con las naciones que representen el mayor nivel de amenaza para ti.
+   [*][b]Electores del SIR:[/b] Mejora las relaciones con los electores del Sacro Imperio Romano. Solo visible para los miembros del SIR.
+   [*][b]Miembros del SIR:[/b] Mejora las relaciones con los demás miembros del Sacro Imperio Romano. Solo visible para los miembros del SIR.
+   [*][b]Dueños de mercados:[/b] Mejora las relaciones con países que poseen un mercado.
+   [*][b]Reinos+:[/b] Mejora las relaciones con reinos e imperios.
   [/list]
   [list]
-   [*][b]Prioridad de arrastrar para reordenar:[/b] Configura qué categorías reciben diplomáticos primero a través del Community Mod Menu.
+   [*][b]Prioridad de arrastrar para reordenar:[/b] Establece qué categorías reciben diplomáticos primero a través del Menú del Mod de la Comunidad.
    [*][b]Límites de diplomáticos por categoría:[/b] Controla cuántos diplomáticos puede usar cada categoría (0-10).
   [/list]
- [*][b]Interacciones con súbditos:[/b] Realiza acciones de súbditos automáticamente siempre que sea posible.
+ [*][b]Interacciones con súbditos:[/b] Realiza automáticamente acciones de súbditos siempre que sea posible.
   [list]
-   [*][b]Imponer religión:[/b] Impón tu religión de estado a los súbditos.
-   [*][b]Imponer cultura:[/b] Impón tu cultura principal a los súbditos.
+   [*][b]Imponer religión:[/b] Impone tu religión de estado a los súbditos.
+   [*][b]Imponer cultura:[/b] Impone tu cultura principal a los súbditos.
   [/list]
  [*][b]Reservas de diplomáticos:[/b] Establece un número mínimo de diplomáticos libres y una ganancia mensual mínima de diplomáticos para mantener en reserva. Las acciones autónomas no bajarán de tus umbrales establecidos.
  [*][b]Seguimiento del progreso:[/b] No volverá a seleccionar como objetivo a países que ya tengan +190 de opinión.
 [/olist]
 
 [h1]Registro de cambios:[/h1]
-Consulta las [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]notas de cambios en la página de la workshop[/url].
+Consulta las [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]Notas de cambios en la página de la workshop[/url].
 
 [h1]Problemas conocidos:[/h1]
 [list]
- [*]Algunas interacciones diplomáticas no tendrán confirmaciones cuando normalmente las tendrían. Esto es necesario para la cancelación automática, pero buscaré una solución mejor.
+ [*]Algunas interacciones diplomáticas no tendrán confirmación cuando normalmente las tendrían. Esto es necesario para la cancelación automática, pero buscaré una mejor solución.
 [/list]
 
 [h1]Compatibilidad:[/h1]
 [list]
- [*]No es compatible con Ironman ni con logros.
+ [*]No es compatible con Ironman ni Logros.
  [*]Totalmente compatible con partidas guardadas.
  [*]Debería funcionar con cualquier mod.
  [*]Puedo añadir parches de compatibilidad bajo petición.
 [/list]
 
-Además de la sección de comentarios, también puedes hacer preguntas, reportar errores o hacer sugerencias mencionando a @arealconner en el [url=https://discord.gg/zeQ6x9wrPq]canal #utility-mods del servidor de Discord de la comunidad de EU5[/url]. Y si estás interesado en participar en el desarrollo de este o de alguno de mis otros mods, puedes mencionarme o añadirme en Discord como @arealconner. Todas las contribuciones son bienvenidas.
+Además de la sección de comentarios, también puedes hacer cualquier pregunta, informar de errores o hacer sugerencias mencionando a @arealconner en el [url=https://discord.gg/zeQ6x9wrPq]canal #utility-mods del servidor de Discord de la comunidad de EU5[/url]. Y si estás interesado en unirte al desarrollo de este o de alguno de mis otros mods, puedes mencionarme o añadirme en Discord @arealconner. Todas las contribuciones son bienvenidas.
 
 El código fuente y las versiones de desarrollo del mod están disponibles en [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub.[/url]
 
