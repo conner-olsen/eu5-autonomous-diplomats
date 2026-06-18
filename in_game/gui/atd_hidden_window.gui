@@ -1,36 +1,28 @@
-﻿basic_dialog = {
+﻿# Hidden window that runs the monthly improve/enforce/auto-cancel chain off atd_pending_action.
+widget = {
 	name = "atd_hidden_window"
-	widgetid = atd_hidden_window
-	layer = top
+	# Keeps descendant visibility gates re-evaluating each frame.
 	visible = "[EqualTo_CFixedPoint('(CFixedPoint)0', '(CFixedPoint)0')]"
-	parentanchor = center
 	position = { -10000 1 }
-	blockoverride "header_text" {
-		raw_text = "ATD: Hidden Window"
-	}
-	blockoverride "content" {
-		vbox = {
-			# Gated by atd_should_run: visible only between atd_on_monthly setting
-			# atd_pending_action and atd_gui_sync_step clearing it.
-			visible = "[And(GetPlayer.Exists, GetScriptedGui('atd_should_run').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
-
-			# 0.5s settle: lets the outliner sync widgets fire their _show
-			# and populate atd_improving_seen before atd_gui_sync_step reads it.
-			state = {
-				name = _show
-				duration = 0.5
-				next = atd_hidden_window_sync
-			}
-			state = {
-				name = atd_hidden_window_sync
-				on_start = "[GetScriptedGui('atd_gui_sync_step').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-				next = atd_hidden_window_cancel
-			}
-			state = {
-				name = atd_hidden_window_cancel
-				on_start = "[PdxGuiTriggerAllAnimations('atd_do_auto_cancel')]"
-				on_start = "[GetScriptedGui('atd_close_hidden_window').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-			}
+	# Per-cycle driver: tears down when atd_pending_action clears and rebuilds next tick, re-firing _show.
+	widget = {
+		size = { 0 0 }
+		visible = "[And(GetPlayer.Exists, GetScriptedGui('atd_should_run').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
+		# 0.5s settle: lets the outliner sync widgets fire their _show and populate atd_improving_seen before atd_gui_sync_step reads it.
+		state = {
+			name = _show
+			duration = 0.5
+			next = atd_hidden_window_sync
+		}
+		state = {
+			name = atd_hidden_window_sync
+			on_start = "[GetScriptedGui('atd_gui_sync_step').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+			next = atd_hidden_window_cancel
+		}
+		state = {
+			name = atd_hidden_window_cancel
+			on_start = "[PdxGuiTriggerAllAnimations('atd_do_auto_cancel')]"
+			on_start = "[GetScriptedGui('atd_close_hidden_window').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 		}
 	}
 }
