@@ -34,6 +34,14 @@ atd__improve_relations_on_changed = {
 			setting = atd__improve_relations_i7_f1
 			alias = atd_improve_hre_members_count
 		}
+		cmm_sync_setting_alias = {
+			setting = atd__improve_relations_i8_f1
+			alias = atd_improve_market_owners_count
+		}
+		cmm_sync_setting_alias = {
+			setting = atd__improve_relations_i9_f1
+			alias = atd_improve_kingdoms_count
+		}
 	}
 }
 

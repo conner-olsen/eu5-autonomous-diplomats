@@ -59,6 +59,8 @@ atd_update_improved_with = {
 	set_variable = { name = atd_n_threatened_improving_with value = 0 }
 	set_variable = { name = atd_n_hre_members_improving_with value = 0 }
 	set_variable = { name = atd_n_hre_electors_improving_with value = 0 }
+	set_variable = { name = atd_n_market_owners_improving_with value = 0 }
+	set_variable = { name = atd_n_kingdoms_improving_with value = 0 }
 
 	if = {
 		limit = {
@@ -90,6 +92,12 @@ atd_update_improved_with = {
 					}
 					flag:hre_elector = {
 						change_variable = { name = atd_n_hre_electors_improving_with add = 1 }
+					}
+					flag:market_owner = {
+						change_variable = { name = atd_n_market_owners_improving_with add = 1 }
+					}
+					flag:kingdom = {
+						change_variable = { name = atd_n_kingdoms_improving_with add = 1 }
 					}
 				}
 			}
@@ -270,7 +278,7 @@ atd_gui_sync_end = {
 }
 
 atd_improve_relations_each_item = {
-	# $i$ is the resolved item number (1-7)
+	# $i$ is the resolved item number (1-9)
 	# scope:cmm_list_current_item_value  (attached game object)
 	# Per-item aliases for count:
 	#   Neighboring Countries: var:atd_improve_neighbors_count
@@ -280,6 +288,8 @@ atd_improve_relations_each_item = {
 	#   Threatening Countries: var:atd_improve_threatened_count
 	#   HRE Members: var:atd_improve_hre_members_count
 	#   HRE Electors: var:atd_improve_hre_electors_count
+	#   Market Owners: var:atd_improve_market_owners_count
+	#   Kingdoms: var:atd_improve_kingdoms_count
 
 	switch = {
 		trigger = scope:cmm_list_current_item_value
@@ -290,6 +300,8 @@ atd_improve_relations_each_item = {
 		flag:threatening = { atd_improve_threatened = yes }
 		flag:hre_members = { atd_improve_hre_members = yes }
 		flag:hre_electors = { atd_improve_hre_electors = yes }
+		flag:market_owners = { atd_improve_market_owners = yes }
+		flag:kingdoms = { atd_improve_kingdoms = yes }
 	}
 
 	cmf_suppress = { v = $i$ }
@@ -367,6 +379,8 @@ atd_start_improving_with = {
 		cmf_suppress = { v = threatened }
 		cmf_suppress = { v = hre_member }
 		cmf_suppress = { v = hre_elector }
+		cmf_suppress = { v = market_owner }
+		cmf_suppress = { v = kingdom }
 	}
 }
 
@@ -586,6 +600,75 @@ atd_improve_hre_electors = {
 				scope:actor_scope = {
 					atd_start_improving_with = { type = hre_elector counter = atd_n_hre_electors_improving_with skip_threshold = 90 }
 				}
+			}
+		}
+	}
+}
+
+atd_improve_market_owners = {
+	while = {
+		limit = {
+			var:atd_n_market_owners_improving_with < var:atd_improve_market_owners_count
+			num_of_diplomats >= var:atd_action_threshold
+			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+		}
+		count = 10
+		ordered_country_in_diplomatic_range = {
+			limit = {
+				has_markets = yes
+				scope:actor_scope = {
+					OR = {
+						NOT = { has_variable_map = atd_improving_with }
+						NOT = {
+							is_key_in_variable_map = {
+								name = atd_improving_with
+								target = PREV
+							}
+						}
+					}
+				}
+			}
+			order_by = { value = 0 }
+			max = 1
+			save_scope_as = target_country
+			scope:actor_scope = {
+				atd_start_improving_with = { type = market_owner counter = atd_n_market_owners_improving_with skip_threshold = 90 }
+			}
+		}
+	}
+}
+
+atd_improve_kingdoms = {
+	while = {
+		limit = {
+			var:atd_n_kingdoms_improving_with < var:atd_improve_kingdoms_count
+			num_of_diplomats >= var:atd_action_threshold
+			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+		}
+		count = 10
+		ordered_country_in_diplomatic_range = {
+			limit = {
+				OR = {
+					country_rank = country_rank:rank_kingdom
+					country_rank = country_rank:rank_empire
+				}
+				scope:actor_scope = {
+					OR = {
+						NOT = { has_variable_map = atd_improving_with }
+						NOT = {
+							is_key_in_variable_map = {
+								name = atd_improving_with
+								target = PREV
+							}
+						}
+					}
+				}
+			}
+			order_by = { value = 0 }
+			max = 1
+			save_scope_as = target_country
+			scope:actor_scope = {
+				atd_start_improving_with = { type = kingdom counter = atd_n_kingdoms_improving_with skip_threshold = 90 }
 			}
 		}
 	}
