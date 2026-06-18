@@ -8,38 +8,42 @@ atd__improve_relations_on_changed = {
 		}
 		cmm_sync_setting_alias = {
 			setting = atd__improve_relations_i1_f1
-			alias = atd_improve_neighbors_count
+			alias = atd_improve_imperial_circle_leaders_count
 		}
 		cmm_sync_setting_alias = {
 			setting = atd__improve_relations_i2_f1
-			alias = atd_improve_relations_count
-		}
-		cmm_sync_setting_alias = {
-			setting = atd__improve_relations_i3_f1
-			alias = atd_improve_outraged_count
-		}
-		cmm_sync_setting_alias = {
-			setting = atd__improve_relations_i4_f1
-			alias = atd_improve_allies_count
-		}
-		cmm_sync_setting_alias = {
-			setting = atd__improve_relations_i5_f1
-			alias = atd_improve_threatened_count
-		}
-		cmm_sync_setting_alias = {
-			setting = atd__improve_relations_i6_f1
 			alias = atd_improve_hre_electors_count
 		}
 		cmm_sync_setting_alias = {
-			setting = atd__improve_relations_i7_f1
+			setting = atd__improve_relations_i3_f1
 			alias = atd_improve_hre_members_count
 		}
 		cmm_sync_setting_alias = {
+			setting = atd__improve_relations_i4_f1
+			alias = atd_improve_neighbors_count
+		}
+		cmm_sync_setting_alias = {
+			setting = atd__improve_relations_i5_f1
+			alias = atd_improve_relations_count
+		}
+		cmm_sync_setting_alias = {
+			setting = atd__improve_relations_i6_f1
+			alias = atd_improve_outraged_count
+		}
+		cmm_sync_setting_alias = {
+			setting = atd__improve_relations_i7_f1
+			alias = atd_improve_allies_count
+		}
+		cmm_sync_setting_alias = {
 			setting = atd__improve_relations_i8_f1
-			alias = atd_improve_market_owners_count
+			alias = atd_improve_threatened_count
 		}
 		cmm_sync_setting_alias = {
 			setting = atd__improve_relations_i9_f1
+			alias = atd_improve_market_owners_count
+		}
+		cmm_sync_setting_alias = {
+			setting = atd__improve_relations_i10_f1
 			alias = atd_improve_kingdoms_count
 		}
 	}

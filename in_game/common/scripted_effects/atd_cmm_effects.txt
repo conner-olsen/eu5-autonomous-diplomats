@@ -18,7 +18,7 @@ atd_register_cmf_mod = {
 		mod_id = atd
 		setting_id = improve_relations
 		tab_id = improve_relations
-		item_count = 9
+		item_count = 10
 		is_ordered = 1
 	}
 
@@ -26,62 +26,69 @@ atd_register_cmf_mod = {
 		mod_id = atd
 		setting_id = improve_relations
 		item = 1
-		value = flag:neighbors
+		value = flag:imperial_circle_leaders
 	}
 
 	cmm_set_list_item_value = {
 		mod_id = atd
 		setting_id = improve_relations
 		item = 2
-		value = flag:subjects
-	}
-
-	cmm_set_list_item_value = {
-		mod_id = atd
-		setting_id = improve_relations
-		item = 3
-		value = flag:outraged
-	}
-
-	cmm_set_list_item_value = {
-		mod_id = atd
-		setting_id = improve_relations
-		item = 4
-		value = flag:allies
-	}
-
-	cmm_set_list_item_value = {
-		mod_id = atd
-		setting_id = improve_relations
-		item = 5
-		value = flag:threatening
-	}
-
-	cmm_set_list_item_value = {
-		mod_id = atd
-		setting_id = improve_relations
-		item = 6
 		value = flag:hre_electors
 	}
 
 	cmm_set_list_item_value = {
 		mod_id = atd
 		setting_id = improve_relations
-		item = 7
+		item = 3
 		value = flag:hre_members
 	}
 
 	cmm_set_list_item_value = {
 		mod_id = atd
 		setting_id = improve_relations
+		item = 4
+		value = flag:neighbors
+	}
+
+	cmm_set_list_item_value = {
+		mod_id = atd
+		setting_id = improve_relations
+		item = 5
+		value = flag:subjects
+	}
+
+	cmm_set_list_item_value = {
+		mod_id = atd
+		setting_id = improve_relations
+		item = 6
+		value = flag:outraged
+	}
+
+	cmm_set_list_item_value = {
+		mod_id = atd
+		setting_id = improve_relations
+		item = 7
+		value = flag:allies
+	}
+
+	cmm_set_list_item_value = {
+		mod_id = atd
+		setting_id = improve_relations
 		item = 8
-		value = flag:market_owners
+		value = flag:threatening
 	}
 
 	cmm_set_list_item_value = {
 		mod_id = atd
 		setting_id = improve_relations
 		item = 9
+		value = flag:market_owners
+	}
+
+	cmm_set_list_item_value = {
+		mod_id = atd
+		setting_id = improve_relations
+		item = 10
 		value = flag:kingdoms
 	}
 
@@ -98,38 +105,42 @@ atd_register_cmf_mod = {
 	# Sync list field alias: count
 	cmm_sync_setting_alias = {
 		setting = atd__improve_relations_i1_f1
-		alias = atd_improve_neighbors_count
+		alias = atd_improve_imperial_circle_leaders_count
 	}
 	cmm_sync_setting_alias = {
 		setting = atd__improve_relations_i2_f1
-		alias = atd_improve_relations_count
-	}
-	cmm_sync_setting_alias = {
-		setting = atd__improve_relations_i3_f1
-		alias = atd_improve_outraged_count
-	}
-	cmm_sync_setting_alias = {
-		setting = atd__improve_relations_i4_f1
-		alias = atd_improve_allies_count
-	}
-	cmm_sync_setting_alias = {
-		setting = atd__improve_relations_i5_f1
-		alias = atd_improve_threatened_count
-	}
-	cmm_sync_setting_alias = {
-		setting = atd__improve_relations_i6_f1
 		alias = atd_improve_hre_electors_count
 	}
 	cmm_sync_setting_alias = {
-		setting = atd__improve_relations_i7_f1
+		setting = atd__improve_relations_i3_f1
 		alias = atd_improve_hre_members_count
 	}
 	cmm_sync_setting_alias = {
+		setting = atd__improve_relations_i4_f1
+		alias = atd_improve_neighbors_count
+	}
+	cmm_sync_setting_alias = {
+		setting = atd__improve_relations_i5_f1
+		alias = atd_improve_relations_count
+	}
+	cmm_sync_setting_alias = {
+		setting = atd__improve_relations_i6_f1
+		alias = atd_improve_outraged_count
+	}
+	cmm_sync_setting_alias = {
+		setting = atd__improve_relations_i7_f1
+		alias = atd_improve_allies_count
+	}
+	cmm_sync_setting_alias = {
 		setting = atd__improve_relations_i8_f1
-		alias = atd_improve_market_owners_count
+		alias = atd_improve_threatened_count
 	}
 	cmm_sync_setting_alias = {
 		setting = atd__improve_relations_i9_f1
+		alias = atd_improve_market_owners_count
+	}
+	cmm_sync_setting_alias = {
+		setting = atd__improve_relations_i10_f1
 		alias = atd_improve_kingdoms_count
 	}
 

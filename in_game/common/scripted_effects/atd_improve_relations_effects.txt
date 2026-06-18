@@ -61,6 +61,7 @@ atd_update_improved_with = {
 	set_variable = { name = atd_n_hre_electors_improving_with value = 0 }
 	set_variable = { name = atd_n_market_owners_improving_with value = 0 }
 	set_variable = { name = atd_n_kingdoms_improving_with value = 0 }
+	set_variable = { name = atd_n_imperial_circle_leaders_improving_with value = 0 }
 
 	if = {
 		limit = {
@@ -98,6 +99,9 @@ atd_update_improved_with = {
 					}
 					flag:kingdom = {
 						change_variable = { name = atd_n_kingdoms_improving_with add = 1 }
+					}
+					flag:imperial_circle_leader = {
+						change_variable = { name = atd_n_imperial_circle_leaders_improving_with add = 1 }
 					}
 				}
 			}
@@ -278,18 +282,19 @@ atd_gui_sync_end = {
 }
 
 atd_improve_relations_each_item = {
-	# $i$ is the resolved item number (1-9)
+	# $i$ is the resolved item number (1-10)
 	# scope:cmm_list_current_item_value  (attached game object)
 	# Per-item aliases for count:
+	#   Imperial Circle Leaders: var:atd_improve_imperial_circle_leaders_count
+	#   HRE Electors: var:atd_improve_hre_electors_count
+	#   HRE Members: var:atd_improve_hre_members_count
 	#   Neighboring Countries: var:atd_improve_neighbors_count
 	#   Own Subject Countries: var:atd_improve_relations_count
 	#   Outraged Countries: var:atd_improve_outraged_count
 	#   Allies: var:atd_improve_allies_count
 	#   Threatening Countries: var:atd_improve_threatened_count
-	#   HRE Members: var:atd_improve_hre_members_count
-	#   HRE Electors: var:atd_improve_hre_electors_count
 	#   Market Owners: var:atd_improve_market_owners_count
-	#   Kingdoms: var:atd_improve_kingdoms_count
+	#   Kingdoms and Empires: var:atd_improve_kingdoms_count
 
 	switch = {
 		trigger = scope:cmm_list_current_item_value
@@ -302,6 +307,7 @@ atd_improve_relations_each_item = {
 		flag:hre_electors = { atd_improve_hre_electors = yes }
 		flag:market_owners = { atd_improve_market_owners = yes }
 		flag:kingdoms = { atd_improve_kingdoms = yes }
+		flag:imperial_circle_leaders = { atd_improve_imperial_circle_leaders = yes }
 	}
 
 	cmf_suppress = { v = $i$ }
@@ -381,6 +387,7 @@ atd_start_improving_with = {
 		cmf_suppress = { v = hre_elector }
 		cmf_suppress = { v = market_owner }
 		cmf_suppress = { v = kingdom }
+		cmf_suppress = { v = imperial_circle_leader }
 	}
 }
 
@@ -605,6 +612,44 @@ atd_improve_hre_electors = {
 	}
 }
 
+atd_improve_imperial_circle_leaders = {
+	if = {
+		limit = {
+			is_member_of_international_organization = international_organization:hre
+		}
+		while = {
+			limit = {
+				var:atd_n_imperial_circle_leaders_improving_with < var:atd_improve_imperial_circle_leaders_count
+				num_of_diplomats >= var:atd_action_threshold
+				modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+			}
+			count = 10
+			ordered_country_in_diplomatic_range = {
+				limit = {
+					is_imperial_circle_leader = yes
+					scope:actor_scope = {
+						OR = {
+							NOT = { has_variable_map = atd_improving_with }
+							NOT = {
+								is_key_in_variable_map = {
+									name = atd_improving_with
+									target = PREV
+								}
+							}
+						}
+					}
+				}
+				order_by = { value = 0 }
+				max = 1
+				save_scope_as = target_country
+				scope:actor_scope = {
+					atd_start_improving_with = { type = imperial_circle_leader counter = atd_n_imperial_circle_leaders_improving_with skip_threshold = 90 }
+				}
+			}
+		}
+	}
+}
+
 atd_improve_market_owners = {
 	while = {
 		limit = {
@@ -676,18 +721,21 @@ atd_improve_kingdoms = {
 	}
 }
 
-# Show/hide HRE Electors (item 6) and HRE Members (item 7) based on eligibility.
+# Show/hide Imperial Circle Leaders (item 1), HRE Electors (item 2), and HRE
+# Members (item 3) based on eligibility.
 # Scope: country
 atd_update_hre_visibility = {
 	if = {
 		limit = {
 			is_member_of_international_organization = international_organization:hre
 		}
-		cmm_show_list_item = { mod_id = atd setting_id = improve_relations item = 6 }
-		cmm_show_list_item = { mod_id = atd setting_id = improve_relations item = 7 }
+		cmm_show_list_item = { mod_id = atd setting_id = improve_relations item = 1 }
+		cmm_show_list_item = { mod_id = atd setting_id = improve_relations item = 2 }
+		cmm_show_list_item = { mod_id = atd setting_id = improve_relations item = 3 }
 	}
 	else = {
-		cmm_hide_list_item = { mod_id = atd setting_id = improve_relations item = 6 }
-		cmm_hide_list_item = { mod_id = atd setting_id = improve_relations item = 7 }
+		cmm_hide_list_item = { mod_id = atd setting_id = improve_relations item = 1 }
+		cmm_hide_list_item = { mod_id = atd setting_id = improve_relations item = 2 }
+		cmm_hide_list_item = { mod_id = atd setting_id = improve_relations item = 3 }
 	}
 }
