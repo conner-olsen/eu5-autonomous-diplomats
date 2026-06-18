@@ -18,3 +18,22 @@ atd_on_monthly = {
 		}
 	}
 }
+
+on_game_start_after_lobby_human_country = {
+	on_actions = {
+		atd_on_init_human_country
+	}
+}
+
+on_game_load_after_lobby_human_country = {
+	on_actions = {
+		atd_on_init_human_country
+	}
+}
+
+atd_on_init_human_country = {
+	effect = {
+		# Clear on load to re-arm the hidden window's visibility edge.
+		remove_variable = atd_pending_action
+	}
+}
