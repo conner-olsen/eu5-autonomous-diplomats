@@ -2,20 +2,20 @@
 # mod: in_game/gui/outliner_entries.gui
 
 OutlinerEntryBase = {
-	name = "charter_category_entry"
+	name = "fav_market_category_entry"
 
 	blockoverride "expanded_big_content"  {
 		using = category_big_template
 		blockoverride "category_icon_texture" {
-			texture = "gfx/interface/icons/flat_icons/geopolitics/available_colonies.dds"
+			texture = "gfx/interface/icons/map_modes/market.dds"
 		}
 	}
-	blockoverride "expanded_small_content" { 
-		using = category_small_template 
+	blockoverride "expanded_small_content" {
+		using = category_small_template
 		blockoverride "small_category_icon_texture" {
-			texture = "gfx/interface/icons/flat_icons/geopolitics/available_colonies.dds"
+			texture = "gfx/interface/icons/map_modes/market.dds"
 		}
-	}
+	 }
 	blockoverride "icon_content" { using = category_icon_template }
 
 	blockoverride "button_setup" {
@@ -27,6 +27,6 @@ OutlinerEntryBase = {
 	}
 
 	blockoverride "category_color" {
-		using = color_geopolitics_texture
+		using = color_economy_texture
 	}
 }

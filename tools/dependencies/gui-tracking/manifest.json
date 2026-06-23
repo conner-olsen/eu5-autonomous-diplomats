@@ -1,5 +1,12 @@
 {
   "definitions": {
+    "type:AutomationSystemStandardCard": {
+      "base_widget": "AutomationCard",
+      "mod_file": "in_game/gui/atd_automation_lateralview.gui",
+      "namespace": "atd_automation_overrides",
+      "tracking_path": "tools/dependencies/gui-tracking/types/AutomationSystemStandardCard.gui",
+      "vanilla_file": "in_game/gui/automation_lateralview.gui"
+    },
     "type:FrontEndNews": {
       "base_widget": "widget",
       "mod_file": "main_menu/gui/cmf_dependency_check.gui",
@@ -278,6 +285,13 @@
       "mod_file": "in_game/gui/outliner_entries.gui",
       "namespace": "OutlinerEntryBase",
       "tracking_path": "tools/dependencies/gui-tracking/widgets/fav_location_entry.gui",
+      "vanilla_file": "in_game/gui/outliner_entries.gui"
+    },
+    "widget:fav_market_category_entry": {
+      "base_widget": null,
+      "mod_file": "in_game/gui/outliner_entries.gui",
+      "namespace": "OutlinerEntryBase",
+      "tracking_path": "tools/dependencies/gui-tracking/widgets/fav_market_category_entry.gui",
       "vanilla_file": "in_game/gui/outliner_entries.gui"
     },
     "widget:fav_seazone_entry": {
