@@ -1,4 +1,4 @@
-# AutomationSystemStandardCard: the diplomacy card's Improve Opinion row opens the Autonomous Diplomats settings.
+﻿# AutomationSystemStandardCard: the diplomacy card's Improve Opinion row opens the Autonomous Diplomats settings.
 types atd_automation_overrides {
 	type AutomationSystemStandardCard = AutomationCard {
 		blockoverride "header_size" {
