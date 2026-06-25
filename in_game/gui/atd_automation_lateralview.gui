@@ -231,10 +231,18 @@ types atd_automation_overrides {
 				on_action = "[OpenLateralView('advances')]"
 			}
 			action_tooltip = {
+				click_type = left
+				enabled = "[Not(AutomatedSystemsItem.IsEnabled)]"
+				title = "AUTOMATE_ALL_MARKETS"
+				conditions = "AUTOMATE_ALL_MARKETS_DISABLED"
+				on_action = "[AutomatedSystemsItem.Toggle]"
+				visible = "[AutomatedSystemsItem.IsName('trade')]"
+			}
+			action_tooltip = {
 				click_type = right
 				title = "[AutomatedSystemsItem.GetClickAction]"
 				visible = "[AutomatedSystemsItem.IsName('trade')]"
-				on_action = "[OpenLateralViewWithParams('trade', 'subtab = trades')]"
+				on_action = "[OpenLateralViewWithParams('trade', 'subtab = markets')]"
 			}
 			action_tooltip = {
 				click_type = right
@@ -478,6 +486,11 @@ types atd_automation_overrides {
 								text = "[AutomatedSystemsItem.GetDescription]"
 							}
 						}
+
+						TooltipBlockList = {
+							visible = "[And(AutomatedSystemsItem.IsName('trade'), Not(AutomatedSystemsItem.IsEnabled))]"
+							textcontext = "AUTOMATE_ALL_MARKETS_TT"
+						}
 					}
 				}
 			}
@@ -493,7 +506,6 @@ types atd_automation_overrides {
 					size = { 22 22 }
 					widget = {
 						size = { 100% 100% }
-						visible = "[Not(AutomatedSystemsItem.IsName('trade'))]"
 						background = {
 							texture = "gfx/interface/buttons/checkbox_auto_bg.dds"
 							texture_density = 2
@@ -1095,41 +1107,6 @@ types atd_automation_overrides {
 							using = Font_Type_Standard
 							text = "AUTOMATE_DIPLO_DECLARE_WAR"
 						}
-					}
-				}
-			}
-			vbox = {
-				visible = "[AutomatedSystemsItem.IsName('trade')]"
-				layoutpolicy_horizontal = expanding
-				margin = { 10 10 }
-				spacing = 5
-
-				hbox = {
-					using = bg_dynasty_header
-					layoutpolicy_horizontal = expanding
-					margin = { 10 10 }
-					spacing = 10
-
-					button_regular = {
-						layoutpolicy_horizontal = expanding
-						text = "AUTOMATE_ALL_MARKETS"
-						action_tooltip = {
-							enabled = "[Not(AutomatedSystemsItem.IsEnabled)]"
-							title = "AUTOMATE_ALL_MARKETS"
-							on_action = "[AutomatedSystemsItem.Toggle]"
-						}
-						tooltipwidget = {
-							BasicFunctionalTooltip = {
-								blockoverride "tooltip_content" {
-									TooltipBlockList = {
-										visible = "[Not(AutomatedSystemsItem.IsEnabled)]"
-										textcontext = "AUTOMATE_ALL_MARKETS_TT"
-									}
-								}
-							}
-						}
-
-						enabled = "[Not(AutomatedSystemsItem.IsEnabled)]"
 					}
 				}
 			}
