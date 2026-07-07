@@ -329,15 +329,6 @@ atd_start_improving_with = {
 			num_of_diplomats >= var:atd_action_threshold
 			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
 			OR = {
-				NOT = { has_variable_map = atd_improving_with }
-				NOT = {
-					is_key_in_variable_map = {
-						name = atd_improving_with
-						target = scope:target_country
-					}
-				}
-			}
-			OR = {
 				NOT = { has_variable_map = atd_improved_with }
 				NOT = {
 					is_key_in_variable_map = {
@@ -347,16 +338,7 @@ atd_start_improving_with = {
 				}
 				"variable_map(atd_improved_with|scope:target_country)" < $skip_threshold$
 			}
-			# Skip below 190 opinion.
-			scope:target_country = {
-				NOT = { opinion = { target = scope:actor_scope value >= 190 } }
-				# Skip during the post-auto-cancel cooldown.
-				NOT = { has_variable = atd_cancel_cooldown }
-				# improve_relation is blocked while at war.
-				NOT = { is_at_war_with = scope:actor_scope }
-				# Skip during the anti-churn retarget cooldown.
-				NOT = { has_variable = atd_retarget_cooldown }
-			}
+			scope:target_country = { atd_is_valid_improve_target = yes }
 		}
 		perform_diplomatic_action = {
 			type = improve_relation
@@ -407,6 +389,9 @@ atd_improve_neighbors = {
 		}
 		count = 10
 		random_neighbor_country = {
+			limit = {
+				atd_is_valid_improve_target = yes
+			}
 			save_scope_as = target_country
 			scope:actor_scope = {
 				atd_start_improving_with = { type = neighbor counter = atd_n_neighbors_improving_with skip_threshold = 90 }
@@ -424,6 +409,9 @@ atd_improve_subjects = {
 		}
 		count = 10
 		random_subject = {
+			limit = {
+				atd_is_valid_improve_target = yes
+			}
 			save_scope_as = target_country
 			scope:actor_scope = {
 				atd_start_improving_with = { type = subject counter = atd_n_subjects_improving_with skip_threshold = 90 }
@@ -442,22 +430,8 @@ atd_improve_outraged = {
 		count = 10
 		ordered_country_in_diplomatic_range = {
 			limit = {
-				is_discovered_by = scope:actor_scope
 				antagonism = { target = scope:actor_scope value > 0 }
-				# At-war candidates can't be improved.
-				NOT = { is_at_war_with = scope:actor_scope }
-				NOT = { has_variable = atd_retarget_cooldown }
-				scope:actor_scope = {
-					OR = {
-						NOT = { has_variable_map = atd_improving_with }
-						NOT = {
-							is_key_in_variable_map = {
-								name = atd_improving_with
-								target = PREV
-							}
-						}
-					}
-				}
+				atd_is_valid_improve_target = yes
 			}
 			order_by = this_antagonism_towards_prev
 			max = 1
@@ -488,17 +462,7 @@ atd_improve_allies = {
 						}
 					}
 				}
-				scope:actor_scope = {
-					OR = {
-						NOT = { has_variable_map = atd_improving_with }
-						NOT = {
-							is_key_in_variable_map = {
-								name = atd_improving_with
-								target = PREV
-							}
-						}
-					}
-				}
+				atd_is_valid_improve_target = yes
 			}
 			order_by = { value = 0 }
 			max = 1
@@ -521,17 +485,7 @@ atd_improve_threatened = {
 		ordered_country_in_diplomatic_range = {
 			limit = {
 				scope:actor_scope = { is_a_threat_for_us = PREV }
-				scope:actor_scope = {
-					OR = {
-						NOT = { has_variable_map = atd_improving_with }
-						NOT = {
-							is_key_in_variable_map = {
-								name = atd_improving_with
-								target = PREV
-							}
-						}
-					}
-				}
+				atd_is_valid_improve_target = yes
 			}
 			order_by = "threat_level_to(scope:actor_scope)"
 			max = 1
@@ -558,17 +512,7 @@ atd_improve_hre_members = {
 			ordered_country_in_diplomatic_range = {
 				limit = {
 					is_member_of_international_organization = international_organization:hre
-					scope:actor_scope = {
-						OR = {
-							NOT = { has_variable_map = atd_improving_with }
-							NOT = {
-								is_key_in_variable_map = {
-									name = atd_improving_with
-									target = PREV
-								}
-							}
-						}
-					}
+					atd_is_valid_improve_target = yes
 				}
 				order_by = { value = 0 }
 				max = 1
@@ -596,17 +540,7 @@ atd_improve_hre_electors = {
 			ordered_country_in_diplomatic_range = {
 				limit = {
 					is_elector = yes
-					scope:actor_scope = {
-						OR = {
-							NOT = { has_variable_map = atd_improving_with }
-							NOT = {
-								is_key_in_variable_map = {
-									name = atd_improving_with
-									target = PREV
-								}
-							}
-						}
-					}
+					atd_is_valid_improve_target = yes
 				}
 				order_by = { value = 0 }
 				max = 1
@@ -634,17 +568,7 @@ atd_improve_imperial_circle_leaders = {
 			ordered_country_in_diplomatic_range = {
 				limit = {
 					is_imperial_circle_leader = yes
-					scope:actor_scope = {
-						OR = {
-							NOT = { has_variable_map = atd_improving_with }
-							NOT = {
-								is_key_in_variable_map = {
-									name = atd_improving_with
-									target = PREV
-								}
-							}
-						}
-					}
+					atd_is_valid_improve_target = yes
 				}
 				order_by = { value = 0 }
 				max = 1
@@ -667,19 +591,8 @@ atd_improve_market_owners = {
 		count = 10
 		ordered_country_in_diplomatic_range = {
 			limit = {
-				is_discovered_by = scope:actor_scope
 				has_markets = yes
-				scope:actor_scope = {
-					OR = {
-						NOT = { has_variable_map = atd_improving_with }
-						NOT = {
-							is_key_in_variable_map = {
-								name = atd_improving_with
-								target = PREV
-							}
-						}
-					}
-				}
+				atd_is_valid_improve_target = yes
 			}
 			order_by = { value = 0 }
 			max = 1
@@ -701,22 +614,11 @@ atd_improve_kingdoms = {
 		count = 10
 		ordered_country_in_diplomatic_range = {
 			limit = {
-				is_discovered_by = scope:actor_scope
 				OR = {
 					country_rank = country_rank:rank_kingdom
 					country_rank = country_rank:rank_empire
 				}
-				scope:actor_scope = {
-					OR = {
-						NOT = { has_variable_map = atd_improving_with }
-						NOT = {
-							is_key_in_variable_map = {
-								name = atd_improving_with
-								target = PREV
-							}
-						}
-					}
-				}
+				atd_is_valid_improve_target = yes
 			}
 			order_by = { value = 0 }
 			max = 1
@@ -738,18 +640,7 @@ atd_improve_largest = {
 		count = 10
 		ordered_country_in_diplomatic_range = {
 			limit = {
-				is_discovered_by = scope:actor_scope
-				scope:actor_scope = {
-					OR = {
-						NOT = { has_variable_map = atd_improving_with }
-						NOT = {
-							is_key_in_variable_map = {
-								name = atd_improving_with
-								target = PREV
-							}
-						}
-					}
-				}
+				atd_is_valid_improve_target = yes
 			}
 			order_by = num_locations
 			max = 1

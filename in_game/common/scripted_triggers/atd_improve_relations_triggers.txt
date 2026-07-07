@@ -1,0 +1,20 @@
+﻿# True when this country is a valid new improve-relations target for scope:actor_scope.
+# Scope: candidate/target country. Reads scope:actor_scope (saved by atd_improve_relations).
+atd_is_valid_improve_target = {
+	is_discovered_by = scope:actor_scope
+	NOT = { is_at_war_with = scope:actor_scope }
+	NOT = { opinion = { target = scope:actor_scope value >= 190 } }
+	NOT = { has_variable = atd_cancel_cooldown }
+	NOT = { has_variable = atd_retarget_cooldown }
+	scope:actor_scope = {
+		OR = {
+			NOT = { has_variable_map = atd_improving_with }
+			NOT = {
+				is_key_in_variable_map = {
+					name = atd_improving_with
+					target = PREV
+				}
+			}
+		}
+	}
+}
