@@ -62,6 +62,7 @@ atd_update_improved_with = {
 	set_variable = { name = atd_n_market_owners_improving_with value = 0 }
 	set_variable = { name = atd_n_kingdoms_improving_with value = 0 }
 	set_variable = { name = atd_n_imperial_circle_leaders_improving_with value = 0 }
+	set_variable = { name = atd_n_largest_improving_with value = 0 }
 
 	if = {
 		limit = {
@@ -102,6 +103,9 @@ atd_update_improved_with = {
 					}
 					flag:imperial_circle_leader = {
 						change_variable = { name = atd_n_imperial_circle_leaders_improving_with add = 1 }
+					}
+					flag:largest = {
+						change_variable = { name = atd_n_largest_improving_with add = 1 }
 					}
 				}
 			}
@@ -282,7 +286,7 @@ atd_gui_sync_end = {
 }
 
 atd_improve_relations_each_item = {
-	# $i$ is the resolved item number (1-10)
+	# $i$ is the resolved item number (1-11)
 	# scope:cmm_list_current_item_value  (attached game object)
 	# Per-item aliases for count:
 	#   Imperial Circle Leaders: var:atd_improve_imperial_circle_leaders_count
@@ -295,6 +299,7 @@ atd_improve_relations_each_item = {
 	#   Threatening Countries: var:atd_improve_threatened_count
 	#   Market Owners: var:atd_improve_market_owners_count
 	#   Kingdoms and Empires: var:atd_improve_kingdoms_count
+	#   Largest Nations: var:atd_improve_largest_count
 
 	switch = {
 		trigger = scope:cmm_list_current_item_value
@@ -308,6 +313,7 @@ atd_improve_relations_each_item = {
 		flag:market_owners = { atd_improve_market_owners = yes }
 		flag:kingdoms = { atd_improve_kingdoms = yes }
 		flag:imperial_circle_leaders = { atd_improve_imperial_circle_leaders = yes }
+		flag:largest = { atd_improve_largest = yes }
 	}
 
 	cmf_suppress = { v = $i$ }
@@ -388,6 +394,7 @@ atd_start_improving_with = {
 		cmf_suppress = { v = market_owner }
 		cmf_suppress = { v = kingdom }
 		cmf_suppress = { v = imperial_circle_leader }
+		cmf_suppress = { v = largest }
 	}
 }
 
@@ -716,6 +723,39 @@ atd_improve_kingdoms = {
 			save_scope_as = target_country
 			scope:actor_scope = {
 				atd_start_improving_with = { type = kingdom counter = atd_n_kingdoms_improving_with skip_threshold = 90 }
+			}
+		}
+	}
+}
+
+atd_improve_largest = {
+	while = {
+		limit = {
+			var:atd_n_largest_improving_with < var:atd_improve_largest_count
+			num_of_diplomats >= var:atd_action_threshold
+			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+		}
+		count = 10
+		ordered_country_in_diplomatic_range = {
+			limit = {
+				is_discovered_by = scope:actor_scope
+				scope:actor_scope = {
+					OR = {
+						NOT = { has_variable_map = atd_improving_with }
+						NOT = {
+							is_key_in_variable_map = {
+								name = atd_improving_with
+								target = PREV
+							}
+						}
+					}
+				}
+			}
+			order_by = num_locations
+			max = 1
+			save_scope_as = target_country
+			scope:actor_scope = {
+				atd_start_improving_with = { type = largest counter = atd_n_largest_improving_with skip_threshold = 90 }
 			}
 		}
 	}

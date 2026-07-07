@@ -32,6 +32,8 @@
  atd__improve_relations_i9_desc: "Improve relations with countries that own a market."
  atd__improve_relations_i10_name: "Kingdoms and Empires"
  atd__improve_relations_i10_desc: "Improve relations with kingdoms and empires."
+ atd__improve_relations_i11_name: "Largest Nations"
+ atd__improve_relations_i11_desc: "Improve relations with the largest nations within your diplomatic range that you have discovered, starting with the biggest."
  atd__improve_relations__count_name: "Diplomats"
 
  # Subjects (subjects) Tab

@@ -18,7 +18,7 @@ atd_register_cmf_mod = {
 		mod_id = atd
 		setting_id = improve_relations
 		tab_id = improve_relations
-		item_count = 10
+		item_count = 11
 		is_ordered = 1
 	}
 
@@ -92,6 +92,13 @@ atd_register_cmf_mod = {
 		value = flag:kingdoms
 	}
 
+	cmm_set_list_item_value = {
+		mod_id = atd
+		setting_id = improve_relations
+		item = 11
+		value = flag:largest
+	}
+
 	cmm_register_list_slider_field = {
 		mod_id = atd
 		setting_id = improve_relations
@@ -142,6 +149,10 @@ atd_register_cmf_mod = {
 	cmm_sync_setting_alias = {
 		setting = atd__improve_relations_i10_f1
 		alias = atd_improve_kingdoms_count
+	}
+	cmm_sync_setting_alias = {
+		setting = atd__improve_relations_i11_f1
+		alias = atd_improve_largest_count
 	}
 
 	# Hide HRE items based on eligibility
