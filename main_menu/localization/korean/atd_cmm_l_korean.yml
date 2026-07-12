@@ -72,3 +72,5 @@
  atd__improve_relations_i9_desc: "시장을 보유한 국가들과 관계 개선"
  atd__improve_relations_i10_name: "왕국과 제국"
  atd__improve_relations_i10_desc: "왕국 및 제국들과의 관계를 개선합니다."
+ atd__improve_relations_i11_name: "최대 국가들"
+ atd__improve_relations_i11_desc: "발견한 외교 범위 내의 국가 중 규모가 가장 큰 국가부터 관계를 개선합니다."

@@ -3,34 +3,34 @@ Diplomates autonomes / Autonomous Diplomats
 ===WORKSHOP_DESCRIPTION===
 [i]You are on the DeepL-Generated French Page. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=$item-id$&l=english]Click here for the Native English Page.[/url][/i]
 
-[h1]Vue d'ensemble :[/h1]
-Réintroduit le système de diplomates automatisés d'EU4 avec l'amélioration automatique des relations et d'autres fonctionnalités.
+[h1]Aperçu :[/h1]
+Restaure le système de diplomates automatisés d'EU4 avec l'amélioration automatique des relations et d'autres fonctionnalités.
 
 Nécessite [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Community Mod Framework (CMF)[/url].
 
-[h1]Fonctionnalités :[/h1]
+[h1]Caractéristiques :[/h1]
 [olist]
  [*][b]Amélioration automatique des relations :[/b]
   [list]
    [*][b]Pays voisins :[/b] Améliore les relations avec des nations frontalières aléatoires.
-   [*][b]Propres sujets :[/b] Améliore les relations avec des nations sujets aléatoires.
-   [*][b]Pays outragés :[/b] Améliore les relations en priorité avec les nations ayant le plus haut niveau d'antagonisme envers vous.
+   [*][b]Vos propres sujets :[/b] Améliore les relations avec des nations sujettes aléatoires.
+   [*][b]Pays outragés :[/b] Améliore en priorité les relations avec les nations ayant le plus haut niveau d'antagonisme envers vous.
    [*][b]Alliés :[/b] Améliore les relations avec les nations alliées et les membres de ligues défensives.
-   [*][b]Pays menaçants :[/b] Améliore les relations en priorité avec les nations représentant le plus haut niveau de menace pour vous.
-   [*][b]Dirigeants des cercles impériaux du Saint-Empire :[/b] Améliore les relations avec les dirigeants des cercles impériaux du Saint-Empire romain germanique. Uniquement visible pour les membres du Saint-Empire.
+   [*][b]Pays menaçants :[/b] Améliore en priorité les relations avec les nations qui représentent le plus haut niveau de menace pour vous.
+   [*][b]Chefs des Cercles Impériaux du Saint-Empire :[/b] Améliore les relations avec les chefs des Cercles Impériaux du Saint-Empire romain germanique. Uniquement visible pour les membres du Saint-Empire.
    [*][b]Électeurs du Saint-Empire :[/b] Améliore les relations avec les électeurs du Saint-Empire romain germanique. Uniquement visible pour les membres du Saint-Empire.
    [*][b]Membres du Saint-Empire :[/b] Améliore les relations avec les autres membres du Saint-Empire romain germanique. Uniquement visible pour les membres du Saint-Empire.
    [*][b]Propriétaires de marchés :[/b] Améliore les relations avec les pays possédant un marché.
    [*][b]Royaumes et empires :[/b] Améliore les relations avec les royaumes et les empires.
   [/list]
   [list]
-   [*][b]Priorité par glisser-déposer :[/b] Définissez quelles catégories reçoivent les diplomates en premier via le Community Mod Menu.
+   [*][b]Priorité par glisser-déposer :[/b] Définissez quelles catégories reçoivent les diplomates en priorité via le Community Mod Menu.
    [*][b]Limites de diplomates par catégorie :[/b] Contrôlez combien de diplomates chaque catégorie peut utiliser (0-10).
   [/list]
- [*][b]Interactions avec les sujets :[/b] Effectue automatiquement des actions de sujet dès que possible.
+ [*][b]Interactions avec les sujets :[/b] Effectue automatiquement les actions de sujet dès que possible.
   [list]
    [*][b]Imposer la religion :[/b] Impose votre religion d'État à vos sujets.
-   [*][b]Imposer la culture :[/b] Impose votre culture primaire à vos sujets.
+   [*][b]Imposer la culture :[/b] Impose votre culture principale à vos sujets.
   [/list]
  [*][b]Réserves de diplomates :[/b] Définissez un nombre minimum de diplomates libres et un gain mensuel minimum de diplomates à garder en réserve. Les actions autonomes ne descendront pas en dessous de vos seuils.
  [*][b]Suivi de la progression :[/b] Ne ciblera pas à nouveau les pays ayant déjà une opinion de +190.
@@ -41,18 +41,18 @@ Consultez les [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/
 
 [h1]Problèmes connus :[/h1]
 [list]
- [*]Certaines interactions diplomatiques n'auront pas de confirmation alors qu'elles le devraient normalement. C'est nécessaire pour l'annulation automatique, mais je chercherai une meilleure solution de contournement.
+ [*]Certaines interactions diplomatiques n'auront pas de confirmation alors qu'elles le devraient normalement. C'est nécessaire pour l'annulation automatique, mais je chercherai une meilleure solution.
 [/list]
 
 [h1]Compatibilité :[/h1]
 [list]
- [*]Non compatible avec le mode Ironman / les Succès.
+ [*]Compatible avec le mode Ironman et les succès.
  [*]Entièrement compatible avec les sauvegardes en cours.
  [*]Devrait fonctionner avec n'importe quel mod.
- [*]Je peux ajouter des patchs de compatibilité sur demande.
+ [*]Je pourrais ajouter des patchs de compatibilité sur demande.
 [/list]
 
-En plus de la section des commentaires, vous pouvez également poser vos questions, signaler des bugs ou faire des suggestions en mentionnant @arealconner dans le [url=https://discord.gg/zeQ6x9wrPq]#utility-mods channel of the EU5 Community discord server[/url]. Et si vous êtes intéressé par le développement de ce mod ou de l'un de mes autres mods, vous pouvez me mentionner ou m'ajouter sur Discord @arealconner. Toutes les contributions sont les bienvenues.
+En plus de la section des commentaires, vous pouvez également poser des questions, signaler des bugs ou faire des suggestions en mentionnant @arealconner dans le [url=https://discord.gg/zeQ6x9wrPq]canal #utility-mods du serveur Discord de la communauté EU5[/url]. Et si vous souhaitez participer au développement de ce mod ou de l'un de mes autres projets, vous pouvez me contacter ou m'ajouter sur Discord @arealconner. Toutes les contributions sont les bienvenues.
 
-La source et les versions de développement du mod sont disponibles sur [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub.[/url]
+Les versions source et de développement du mod sont disponibles sur [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub.[/url]
 

@@ -4,7 +4,7 @@ Autonomiczni Dyplomaci / Autonomous Diplomats
 [i]You are on the DeepL-Generated Polish Page. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=$item-id$&l=english]Click here for the Native English Page.[/url][/i]
 
 [h1]Overview:[/h1]
-Przywraca system automatycznych dyplomatów z EU4 wraz z funkcją automatycznej poprawy relacji i innymi udogodnieniami.
+Przywraca system zautomatyzowanych dyplomatów z EU4 z funkcją automatycznego poprawiania relacji i innymi funkcjami.
 
 Wymaga [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Community Mod Framework (CMF)[/url].
 
@@ -12,47 +12,47 @@ Wymaga [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Co
 [olist]
  [*][b]Auto-Improve Relations:[/b]
   [list]
-   [*][b]Neighboring Countries:[/b] Poprawia relacje z losowymi narodami graniczącymi.
-   [*][b]Own Subjects:[/b] Poprawia relacje z losowymi państwami podległymi.
-   [*][b]Outraged Countries:[/b] Poprawia relacje w pierwszej kolejności z narodami o najwyższym poziomie antagonizmu wobec ciebie.
-   [*][b]Allies:[/b] Poprawia relacje z sojusznikami i członkami lig obronnych.
-   [*][b]Threatening Countries:[/b] Poprawia relacje w pierwszej kolejności z narodami stanowiącymi dla ciebie największe zagrożenie.
-   [*][b]HRE Imperial Circle Leaders:[/b] Poprawia relacje z liderami Cyrkułów Cesarskich w Świętym Cesarstwie Rzymskim. Widoczne tylko dla członków HRE.
+   [*][b]Neighboring Countries:[/b] Poprawia relacje z losowymi państwami sąsiadującymi.
+   [*][b]Own Subjects:[/b] Poprawia relacje z losowymi państwami poddanymi.
+   [*][b]Outraged Countries:[/b] W pierwszej kolejności poprawia relacje z państwami o najwyższym poziomie antagonizmu wobec ciebie.
+   [*][b]Allies:[/b] Poprawia relacje z sojusznikami i członkami lig defensywnych.
+   [*][b]Threatening Countries:[/b] W pierwszej kolejności poprawia relacje z państwami stanowiącymi dla ciebie największe zagrożenie.
+   [*][b]HRE Imperial Circle Leaders:[/b] Poprawia relacje z liderami Cyrkułów Rzeszy w Świętym Cesarstwie Rzymskim. Widoczne tylko dla członków HRE.
    [*][b]HRE Electors:[/b] Poprawia relacje z elektorami Świętego Cesarstwa Rzymskiego. Widoczne tylko dla członków HRE.
    [*][b]HRE Members:[/b] Poprawia relacje z pozostałymi członkami Świętego Cesarstwa Rzymskiego. Widoczne tylko dla członków HRE.
    [*][b]Market Owners:[/b] Poprawia relacje z krajami posiadającymi rynek.
-   [*][b]Kingdoms and Empires:[/b] Poprawia relacje z królestwami i cesarstwami.
+   [*][b]Kingdoms and Empires:[/b] Poprawia relacje z królestwami i imperiami.
   [/list]
   [list]
-   [*][b]Drag-to-Reorder Priority:[/b] Ustawiaj kolejność priorytetów przydzielania dyplomatów kategoriom poprzez Community Mod Menu.
+   [*][b]Drag-to-Reorder Priority:[/b] Ustawiaj, które kategorie otrzymują dyplomatów w pierwszej kolejności za pomocą Community Mod Menu.
    [*][b]Per-Category Diplomat Limits:[/b] Kontroluj, ilu dyplomatów może używać każda kategoria (0-10).
   [/list]
  [*][b]Subject Interactions:[/b] Automatycznie wykonuj akcje wobec poddanych, gdy tylko jest to możliwe.
   [list]
-   [*][b]Enforce Religion:[/b] Wymuszaj religię państwową na poddanych.
-   [*][b]Enforce Culture:[/b] Wymuszaj kulturę podstawową na poddanych.
+   [*][b]Enforce Religion:[/b] Narzuć religię państwową poddanym.
+   [*][b]Enforce Culture:[/b] Narzuć kulturę podstawową poddanym.
   [/list]
- [*][b]Diplomat Reserves:[/b] Ustaw minimalną liczbę wolnych dyplomatów oraz minimalny miesięczny przyrost dyplomatów do zachowania w rezerwie. Autonomiczne działania nie spadną poniżej twoich progów.
- [*][b]Progress Tracking:[/b] System nie będzie ponownie brał na cel krajów, które mają już opinię +190.
+ [*][b]Diplomat Reserves:[/b] Ustaw minimalną liczbę wolnych dyplomatów oraz minimalny miesięczny przyrost dyplomatów do zachowania w rezerwie. Autonomiczne działania nie spadną poniżej wyznaczonych progów.
+ [*][b]Progress Tracking:[/b] System nie będzie ponownie wybierać krajów, które mają już +190 opinii.
 [/olist]
 
 [h1]Change Log:[/h1]
-Zobacz [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]Change Notes na stronie warsztatu[/url].
+Zobacz [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]listę zmian na stronie warsztatu[/url].
 
 [h1]Known Issues:[/h1]
 [list]
- [*]Niektóre interakcje dyplomatyczne nie będą wyświetlać okien potwierdzenia, które normalnie by się pojawiały. Jest to konieczne dla funkcji automatycznego anulowania, ale poszukam lepszego rozwiązania.
+ [*]Niektóre interakcje dyplomatyczne nie będą wyświetlać potwierdzeń, które normalnie by się pojawiły. Jest to niezbędne dla funkcji automatycznego anulowania, ale będę szukać lepszego rozwiązania.
 [/list]
 
 [h1]Compatibility:[/h1]
 [list]
- [*]Niekompatybilny z trybem Ironman i osiągnięciami.
+ [*]Kompatybilny z trybem Ironman i osiągnięciami.
  [*]W pełni kompatybilny z zapisami gier.
  [*]Powinien działać z każdym modem.
  [*]Mogę dodać patche kompatybilności na prośbę użytkowników.
 [/list]
 
-Oprócz sekcji komentarzy, możesz również zadawać pytania, zgłaszać błędy lub sugerować zmiany, oznaczając @arealconner na kanale [url=https://discord.gg/zeQ6x9wrPq]#utility-mods na serwerze Discord EU5 Community[/url]. Jeśli jesteś zainteresowany udziałem w pracach nad tym lub innym z moich modów, możesz mnie oznaczyć lub dodać na Discordzie @arealconner. Wszelka pomoc jest mile widziana.
+Oprócz sekcji komentarzy, możesz również zadawać pytania, zgłaszać błędy lub przesyłać sugestie, oznaczając @arealconner na [url=https://discord.gg/zeQ6x9wrPq]kanale #utility-mods serwera Discord społeczności EU5[/url]. A jeśli jesteś zainteresowany dołączeniem do prac nad tym lub innym z moich modów, możesz mnie oznaczyć lub dodać na Discordzie @arealconner. Wszelka pomoc jest mile widziana.
 
-Wersje źródłowe i deweloperskie moda są dostępne na [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHubie.[/url]
+Wersja źródłowa i deweloperska moda są dostępne na [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHubie.[/url]
 

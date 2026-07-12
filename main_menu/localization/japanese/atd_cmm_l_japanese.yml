@@ -72,3 +72,5 @@
  atd__improve_relations_i9_desc: "市場を所有する国々との関係を改善する。"
  atd__improve_relations_i10_name: "王国と帝国"
  atd__improve_relations_i10_desc: "王国や帝国との関係を改善する。"
+ atd__improve_relations_i11_name: "最大の国家"
+ atd__improve_relations_i11_desc: "発見済みの外交距離内にある国家のうち、最大の国家から順に関係を改善します。"

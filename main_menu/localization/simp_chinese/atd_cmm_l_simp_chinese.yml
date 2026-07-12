@@ -72,3 +72,5 @@
  atd__improve_relations_i9_desc: "与拥有市场的国家改善关系。"
  atd__improve_relations_i10_name: "王国与帝国"
  atd__improve_relations_i10_desc: "改善与各王国和帝国的关系。"
+ atd__improve_relations_i11_name: "最大的国家"
+ atd__improve_relations_i11_desc: "改善你已发现且在外交距离内的最大国家的关系，从最大的国家开始。"
