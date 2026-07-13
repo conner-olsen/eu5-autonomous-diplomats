@@ -73,10 +73,19 @@
  atd_automation_diplomat_reserve_tooltip: "Automation will only send [diplomats|e] when the current banked amount exceeds this reserve, leaving the remainder available for your manual use. This reserve also applies to Autonomous Diplomats and can be changed from its settings as well."
 
  # Country Interactions
- atd_block_autonomous_improving: "Block Autonomous Improving"
+ # Note to translators: the "#B #!" prefix on the interaction names only orders them at the top of the category; leave it as is.
+ atd_block_autonomous_improving: "#B #!Block Autonomous Improving"
+ atd_block_autonomous_improving_act: "Block Autonomous Improving with [SCOPE.sCountry('recipient').GetName]"
  atd_block_autonomous_improving_desc: "Stop automatically improving relations with [SCOPE.sCountry('recipient').GetName]. Any improvement already in progress will finish on its own."
- atd_allow_autonomous_improving: "Allow Autonomous Improving"
+ atd_block_autonomous_improving_effect_text: "Stop automatically improving relations with [SCOPE.sCountry('recipient').GetName]"
+ atd_block_autonomous_improving_effect_text_past: "Stopped automatically improving relations with [SCOPE.sCountry('recipient').GetName]"
+ PROPOSE_atd_block_autonomous_improving: "Block autonomous improving with $RECIPIENT$?"
+ atd_allow_autonomous_improving: "#B #!Allow Autonomous Improving"
+ atd_allow_autonomous_improving_act: "Allow Autonomous Improving with [SCOPE.sCountry('recipient').GetName]"
  atd_allow_autonomous_improving_desc: "Resume automatically improving relations with [SCOPE.sCountry('recipient').GetName]."
+ atd_allow_autonomous_improving_effect_text: "Resume automatically improving relations with [SCOPE.sCountry('recipient').GetName]"
+ atd_allow_autonomous_improving_effect_text_past: "Resumed automatically improving relations with [SCOPE.sCountry('recipient').GetName]"
+ PROPOSE_atd_allow_autonomous_improving: "Allow autonomous improving with $RECIPIENT$?"
 
  # Optional: self-referencing flag keys to suppress IDE warnings (safe to remove if you want)
  atd: "atd"

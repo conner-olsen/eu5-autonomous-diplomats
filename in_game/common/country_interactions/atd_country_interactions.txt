@@ -7,6 +7,7 @@ atd_block_autonomous_improving = {
 	use_enroute = no
 	ai_tick = never
 	show_message = no
+	show_message_to_target = no
 
 	potential = {}
 	allow = {}
@@ -37,6 +38,7 @@ atd_allow_autonomous_improving = {
 	use_enroute = no
 	ai_tick = never
 	show_message = no
+	show_message_to_target = no
 
 	potential = {}
 	allow = {}

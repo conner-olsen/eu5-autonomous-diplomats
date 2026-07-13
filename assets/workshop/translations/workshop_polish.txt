@@ -3,56 +3,58 @@ Autonomiczni Dyplomaci / Autonomous Diplomats
 ===WORKSHOP_DESCRIPTION===
 [i]You are on the DeepL-Generated Polish Page. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=$item-id$&l=english]Click here for the Native English Page.[/url][/i]
 
-[h1]Overview:[/h1]
-Przywraca system zautomatyzowanych dyplomatów z EU4 z funkcją automatycznego poprawiania relacji i innymi funkcjami.
+[h1]Przegląd:[/h1]
+Przywraca system automatycznych dyplomatów z EU4 wraz z funkcją automatycznej poprawy relacji i innymi udogodnieniami.
 
 Wymaga [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Community Mod Framework (CMF)[/url].
 
-[h1]Features:[/h1]
+[h1]Funkcje:[/h1]
 [olist]
- [*][b]Auto-Improve Relations:[/b]
+ [*][b]Automatyczna poprawa relacji:[/b]
   [list]
-   [*][b]Neighboring Countries:[/b] Poprawia relacje z losowymi państwami sąsiadującymi.
-   [*][b]Own Subjects:[/b] Poprawia relacje z losowymi państwami poddanymi.
-   [*][b]Outraged Countries:[/b] W pierwszej kolejności poprawia relacje z państwami o najwyższym poziomie antagonizmu wobec ciebie.
-   [*][b]Allies:[/b] Poprawia relacje z sojusznikami i członkami lig defensywnych.
-   [*][b]Threatening Countries:[/b] W pierwszej kolejności poprawia relacje z państwami stanowiącymi dla ciebie największe zagrożenie.
-   [*][b]HRE Imperial Circle Leaders:[/b] Poprawia relacje z liderami Cyrkułów Rzeszy w Świętym Cesarstwie Rzymskim. Widoczne tylko dla członków HRE.
-   [*][b]HRE Electors:[/b] Poprawia relacje z elektorami Świętego Cesarstwa Rzymskiego. Widoczne tylko dla członków HRE.
-   [*][b]HRE Members:[/b] Poprawia relacje z pozostałymi członkami Świętego Cesarstwa Rzymskiego. Widoczne tylko dla członków HRE.
-   [*][b]Market Owners:[/b] Poprawia relacje z krajami posiadającymi rynek.
-   [*][b]Kingdoms and Empires:[/b] Poprawia relacje z królestwami i imperiami.
+   [*][b]Kraje sąsiednie:[/b] Poprawia relacje z losowymi narodami graniczącymi.
+   [*][b]Własne kraje podległe:[/b] Poprawia relacje z losowymi państwami podległymi.
+   [*][b]Oburzone kraje:[/b] Poprawia relacje z narodami, które mają co najmniej 10 punktów antagonizmu wobec ciebie, zaczynając od najbardziej antagonistycznych; przerywa poprawę, gdy ich antagonizm spadnie poniżej 5.
+   [*][b]Sojusznicy:[/b] Poprawia relacje z sojusznikami i członkami lig obronnych.
+   [*][b]Zagrażające kraje:[/b] Poprawia relacje z narodami o najwyższym poziomie zagrożenia.
+   [*][b]Liderzy Cyrkułów Rzeszy:[/b] Poprawia relacje z liderami Cyrkułów Cesarskich w HRE. Widoczne tylko dla członków HRE.
+   [*][b]Elektorzy HRE:[/b] Poprawia relacje z elektorami Świętego Cesarstwa Rzymskiego. Widoczne tylko dla członków HRE.
+   [*][b]Członkowie HRE:[/b] Poprawia relacje z pozostałymi członkami Świętego Cesarstwa Rzymskiego. Widoczne tylko dla członków HRE.
+   [*][b]Właściciele rynków:[/b] Poprawia relacje z krajami posiadającymi rynek.
+   [*][b]Królestwa i imperia:[/b] Poprawia relacje z królestwami i imperiami.
+   [*][b]Największe narody:[/b] Poprawia relacje z największymi odkrytymi narodami w twoim zasięgu dyplomatycznym, zaczynając od największych.
   [/list]
   [list]
-   [*][b]Drag-to-Reorder Priority:[/b] Ustawiaj, które kategorie otrzymują dyplomatów w pierwszej kolejności za pomocą Community Mod Menu.
-   [*][b]Per-Category Diplomat Limits:[/b] Kontroluj, ilu dyplomatów może używać każda kategoria (0-10).
+   [*][b]Priorytety przeciągnij-i-upuść:[/b] Ustaw, które kategorie otrzymują dyplomatów w pierwszej kolejności za pomocą menu Community Mod Menu.
+   [*][b]Limity dyplomatów na kategorię:[/b] Kontroluj, ilu dyplomatów może używać każda kategoria (0-10).
   [/list]
- [*][b]Subject Interactions:[/b] Automatycznie wykonuj akcje wobec poddanych, gdy tylko jest to możliwe.
+ [*][b]Interakcje z poddanymi:[/b] Automatycznie wykonuje akcje wobec poddanych, gdy tylko jest to możliwe.
   [list]
-   [*][b]Enforce Religion:[/b] Narzuć religię państwową poddanym.
-   [*][b]Enforce Culture:[/b] Narzuć kulturę podstawową poddanym.
+   [*][b]Narzucenie religii:[/b] Narzuca twoją religię państwową poddanym.
+   [*][b]Narzucenie kultury:[/b] Narzuca twoją kulturę podstawową poddanym.
   [/list]
- [*][b]Diplomat Reserves:[/b] Ustaw minimalną liczbę wolnych dyplomatów oraz minimalny miesięczny przyrost dyplomatów do zachowania w rezerwie. Autonomiczne działania nie spadną poniżej wyznaczonych progów.
- [*][b]Progress Tracking:[/b] System nie będzie ponownie wybierać krajów, które mają już +190 opinii.
+ [*][b]Rezerwy dyplomatów:[/b] Ustaw minimalną liczbę wolnych dyplomatów oraz minimalny miesięczny przyrost dyplomatów, które mają pozostać w rezerwie. Autonomiczne akcje nie spowodują spadku poniżej tych progów.
+ [*][b]Limity poprawy relacji:[/b] Ustaw maksymalną wartość relacji, przy której poprawa zostanie przerwana, a trwające akcje anulowane, oraz maksymalny poziom antagonizmu, powyżej którego kraje będą pomijane.
+ [*][b]Blokowanie konkretnych krajów:[/b] Zatrzymaj automatyczną poprawę relacji z wybranym krajem za pomocą akcji dyplomatycznej „Block Autonomous Improving” i wznów ją za pomocą „Allow Autonomous Improving”.
 [/olist]
 
-[h1]Change Log:[/h1]
-Zobacz [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]listę zmian na stronie warsztatu[/url].
+[h1]Lista zmian:[/h1]
+Zobacz [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]Change Notes na stronie warsztatu[/url].
 
-[h1]Known Issues:[/h1]
+[h1]Znane problemy:[/h1]
 [list]
- [*]Niektóre interakcje dyplomatyczne nie będą wyświetlać potwierdzeń, które normalnie by się pojawiły. Jest to niezbędne dla funkcji automatycznego anulowania, ale będę szukać lepszego rozwiązania.
+ [*]Niektóre interakcje dyplomatyczne nie będą wyświetlać potwierdzeń, mimo że normalnie by się pojawiły. Jest to niezbędne dla funkcji automatycznego anulowania, ale poszukam lepszego rozwiązania.
 [/list]
 
-[h1]Compatibility:[/h1]
+[h1]Kompatybilność:[/h1]
 [list]
  [*]Kompatybilny z trybem Ironman i osiągnięciami.
- [*]W pełni kompatybilny z zapisami gier.
+ [*]W pełni kompatybilny z zapisami gier (Save Game).
  [*]Powinien działać z każdym modem.
  [*]Mogę dodać patche kompatybilności na prośbę użytkowników.
 [/list]
 
-Oprócz sekcji komentarzy, możesz również zadawać pytania, zgłaszać błędy lub przesyłać sugestie, oznaczając @arealconner na [url=https://discord.gg/zeQ6x9wrPq]kanale #utility-mods serwera Discord społeczności EU5[/url]. A jeśli jesteś zainteresowany dołączeniem do prac nad tym lub innym z moich modów, możesz mnie oznaczyć lub dodać na Discordzie @arealconner. Wszelka pomoc jest mile widziana.
+Oprócz sekcji komentarzy, możesz również zadawać pytania, zgłaszać błędy lub przesyłać sugestie, oznaczając @arealconner na kanale [url=https://discord.gg/zeQ6x9wrPq]#utility-mods na serwerze Discord EU5 Community[/url]. Jeśli jesteś zainteresowany udziałem w pracach nad tym lub innymi moimi modami, możesz oznaczyć mnie lub dodać na Discordzie: @arealconner. Każdy wkład jest mile widziany.
 
-Wersja źródłowa i deweloperska moda są dostępne na [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHubie.[/url]
+Wersja źródłowa i deweloperska moda dostępna jest na [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub.[/url]
 

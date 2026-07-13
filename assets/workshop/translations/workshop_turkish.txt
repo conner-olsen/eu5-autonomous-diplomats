@@ -12,28 +12,30 @@ EU4'teki otomatik diplomat sistemini, otomatik ilişki geliştirme ve diğer öz
 [olist]
  [*][b]Otomatik İlişki Geliştirme:[/b]
   [list]
-   [*][b]Komşu Ülkeler:[/b] Rastgele sınır komşusu olan ülkelerle ilişkileri geliştirir.
-   [*][b]Kendi Tabiyetindekiler:[/b] Rastgele tabi devletlerle ilişkileri geliştirir.
-   [*][b]Öfkeli Ülkeler:[/b] Öncelikle size karşı en yüksek düşmanlığa sahip ülkelerle ilişkileri geliştirir.
-   [*][b]Müttefikler:[/b] Müttefik ülkelerle ve savunma paktı üyeleriyle ilişkileri geliştirir.
-   [*][b]Tehditkar Ülkeler:[/b] Öncelikle size karşı en yüksek tehdit seviyesini oluşturan ülkelerle ilişkileri geliştirir.
-   [*][b]KRİ İmparatorluk Çemberi Liderleri:[/b] Kutsal Roma İmparatorluğu'ndaki İmparatorluk Çemberlerinin liderleriyle ilişkileri geliştirir. Yalnızca KRİ üyeleri için görünürdür.
-   [*][b]KRİ Elektörleri:[/b] Kutsal Roma İmparatorluğu elektörleriyle ilişkileri geliştirir. Yalnızca KRİ üyeleri için görünürdür.
-   [*][b]KRİ Üyeleri:[/b] Diğer Kutsal Roma İmparatorluğu üyeleriyle ilişkileri geliştirir. Yalnızca KRİ üyeleri için görünürdür.
+   [*][b]Komşu Ülkeler:[/b] Rastgele sınır komşusu olan uluslarla ilişkileri geliştirir.
+   [*][b]Kendi Tabileriniz:[/b] Rastgele tabi uluslarınızla ilişkileri geliştirir.
+   [*][b]Öfkeli Ülkeler:[/b] Size karşı en az 10 düşmanlığı (antagonism) olan uluslarla, en düşmancıl olandan başlayarak ilişkileri geliştirir ve düşmanlıkları 5'in altına düştüğünde geliştirmeyi iptal eder.
+   [*][b]Müttefikler:[/b] Müttefik uluslar ve savunma birliği üyeleri ile ilişkileri geliştirir.
+   [*][b]Tehditkar Ülkeler:[/b] Size karşı en yüksek tehdit seviyesini oluşturan uluslardan başlayarak ilişkileri geliştirir.
+   [*][b]KRİ İmparatorluk Dairesi Liderleri:[/b] Kutsal Roma İmparatorluğu'ndaki İmparatorluk Dairelerinin liderleriyle ilişkileri geliştirir. Sadece KRİ üyeleri için görünürdür.
+   [*][b]KRİ Seçmen Prensleri:[/b] Kutsal Roma İmparatorluğu seçmen prensleri ile ilişkileri geliştirir. Sadece KRİ üyeleri için görünürdür.
+   [*][b]KRİ Üyeleri:[/b] Diğer Kutsal Roma İmparatorluğu üyeleriyle ilişkileri geliştirir. Sadece KRİ üyeleri için görünürdür.
    [*][b]Pazar Sahipleri:[/b] Bir pazara sahip olan ülkelerle ilişkileri geliştirir.
    [*][b]Krallıklar ve İmparatorluklar:[/b] Krallıklar ve imparatorluklarla ilişkileri geliştirir.
+   [*][b]En Büyük Uluslar:[/b] Diplomatik menziliniz içindeki keşfettiğiniz en büyük uluslarla, en büyüğünden başlayarak ilişkileri geliştirir.
   [/list]
   [list]
-   [*][b]Sürükle-Bırak Öncelik Sıralaması:[/b] Community Mod Menu aracılığıyla hangi kategorilerin önce diplomat alacağını belirleyin.
+   [*][b]Sürükle-Bırak Öncelik Sıralaması:[/b] Community Mod Menüsü üzerinden hangi kategorilerin önce diplomat alacağını belirleyin.
    [*][b]Kategori Başına Diplomat Sınırları:[/b] Her kategorinin kaç diplomat kullanabileceğini kontrol edin (0-10).
   [/list]
- [*][b]Tabi Devlet Etkileşimleri:[/b] Mümkün olan her an tabi devlet eylemlerini otomatik olarak gerçekleştirir.
+ [*][b]Tabi Etkileşimleri:[/b] Mümkün olduğunda tabi eylemlerini otomatik olarak gerçekleştirin.
   [list]
-   [*][b]Din Dayat:[/b] Devlet dininizi tabi devletlere dayatın.
-   [*][b]Kültür Dayat:[/b] Birincil kültürünüzü tabi devletlere dayatın.
+   [*][b]Din Dayat:[/b] Devlet dininizi tabilerinize dayatın.
+   [*][b]Kültür Dayat:[/b] Birincil kültürünüzü tabilerinize dayatın.
   [/list]
- [*][b]Diplomat Rezervleri:[/b] Rezervde tutulacak minimum boş diplomat sayısını ve aylık minimum diplomat artışını belirleyin. Otonom eylemler belirlediğiniz eşiklerin altına düşmeyecektir.
- [*][b]İlerleme Takibi:[/b] Görüşü zaten +190 olan ülkeleri tekrar hedeflemez.
+ [*][b]Diplomat Rezervleri:[/b] Rezervde tutulacak minimum boş diplomat sayısını ve minimum aylık diplomat artışını belirleyin. Otonom eylemler bu eşiklerin altına düşmeyecektir.
+ [*][b]Geliştirme Sınırları:[/b] İlişki geliştirmenin duracağı ve devam eden geliştirmelerin iptal edileceği maksimum ilişki değerini ve ülkelerin atlanacağı maksimum düşmanlık (antagonism) değerini belirleyin.
+ [*][b]Belirli Ülkeleri Engelle:[/b] "Otonom Geliştirmeyi Engelle" diplomatik eylemini kullanarak seçilen bir ülkeyle otomatik ilişki geliştirmeyi durdurun ve "Otonom Geliştirmeye İzin Ver" ile devam edin.
 [/olist]
 
 [h1]Değişiklik Günlüğü:[/h1]
@@ -41,18 +43,18 @@ EU4'teki otomatik diplomat sistemini, otomatik ilişki geliştirme ve diğer öz
 
 [h1]Bilinen Sorunlar:[/h1]
 [list]
- [*]Bazı diplomatik etkileşimlerde normalde olması gereken onay pencereleri çıkmayacaktır. Bu, otomatik iptal için gereklidir; ancak daha iyi bir çözüm yolu arayacağım.
+ [*]Bazı diplomatik etkileşimler, normalde onay gerektirse de onay penceresi çıkarmayacaktır. Bu, otomatik iptal için gereklidir ancak daha iyi bir çözüm yolu araştıracağım.
 [/list]
 
 [h1]Uyumluluk:[/h1]
 [list]
  [*]Ironman ve Başarım uyumludur.
- [*]Kayıtlı oyunlarla tam uyumludur.
+ [*]Kayıtlı dosyalarla (save game) tam uyumludur.
  [*]Herhangi bir modla çalışmalıdır.
  [*]İstek üzerine uyumluluk yamaları ekleyebilirim.
 [/list]
 
-Yorumlar bölümüne ek olarak, [url=https://discord.gg/zeQ6x9wrPq]EU5 Topluluk discord sunucusundaki #utility-mods kanalında[/url] @arealconner kullanıcısını etiketleyerek soru sorabilir, hata bildirebilir veya öneride bulunabilirsiniz. Ve eğer bu veya diğer modlarımdan birinin geliştirilmesine katılmakla ilgileniyorsanız, Discord üzerinden @arealconner kullanıcı adıyla bana ulaşabilir veya ekleyebilirsiniz. Tüm katkılara açığım.
+Yorumlar bölümüne ek olarak, [url=https://discord.gg/zeQ6x9wrPq]EU5 Community Discord sunucusunun #utility-mods kanalında[/url] @arealconner'ı etiketleyerek sorularınızı sorabilir, hataları bildirebilir veya önerilerde bulunabilirsiniz. Ayrıca bu veya diğer modlarımdan birinin geliştirilmesine katılmak isterseniz, Discord üzerinden @arealconner kullanıcı adıyla beni ekleyebilir veya etiketleyebilirsiniz. Tüm katkılara açığım.
 
-Modun kaynak ve geliştirme sürümleri [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub'da[/url] mevcuttur.
+Modun kaynak ve geliştirme sürümleri [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub[/url] üzerinde mevcuttur.
 
