@@ -1,0 +1,62 @@
+﻿# Player toggles that block or allow this mod auto-improving relations with a country.
+# atd_improve_blocked is read by atd_is_valid_improve_target.
+
+atd_block_autonomous_improving = {
+	type = diplomacy
+	category = CATEGORY_FRIENDLY_ACTIONS
+	use_enroute = no
+	ai_tick = never
+	show_message = no
+
+	potential = {}
+	allow = {}
+
+	select_trigger = {
+		looking_for_a = country
+		target_flag = recipient
+		name = "choose_country"
+		column = {
+			data = name
+		}
+		visible = {
+			NOT = { has_variable = atd_improve_blocked }
+		}
+		enabled = {}
+	}
+
+	effect = {
+		scope:recipient = {
+			set_variable = atd_improve_blocked
+		}
+	}
+}
+
+atd_allow_autonomous_improving = {
+	type = diplomacy
+	category = CATEGORY_FRIENDLY_ACTIONS
+	use_enroute = no
+	ai_tick = never
+	show_message = no
+
+	potential = {}
+	allow = {}
+
+	select_trigger = {
+		looking_for_a = country
+		target_flag = recipient
+		name = "choose_country"
+		column = {
+			data = name
+		}
+		visible = {
+			has_variable = atd_improve_blocked
+		}
+		enabled = {}
+	}
+
+	effect = {
+		scope:recipient = {
+			remove_variable = atd_improve_blocked
+		}
+	}
+}

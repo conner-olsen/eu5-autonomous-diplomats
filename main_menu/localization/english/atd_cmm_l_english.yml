@@ -23,7 +23,7 @@
  atd__improve_relations_i5_name: "Own Subject Countries"
  atd__improve_relations_i5_desc: "Improve relations with your subject countries."
  atd__improve_relations_i6_name: "Outraged Countries"
- atd__improve_relations_i6_desc: "Improve relations with countries that have a negative opinion of you, targeting the most outraged first."
+ atd__improve_relations_i6_desc: "Improve relations with countries that have at least 10 antagonism towards you, targeting the most outraged first. Cancels the improvement once their antagonism drops below 5."
  atd__improve_relations_i7_name: "Allies"
  atd__improve_relations_i7_desc: "Improve relations with your allies and defensive league members."
  atd__improve_relations_i8_name: "Threatening Countries"
@@ -63,6 +63,12 @@
  atd_automation_open_settings: "Open Autonomous Diplomats"
  atd_automation_improve_opinion_tooltip: "Send diplomats to improve relations with countries in the configured categories. Configure categories and priorities in the Autonomous Diplomats settings."
  atd_automation_diplomat_reserve_tooltip: "Automation will only send [diplomats|e] when the current banked amount exceeds this reserve, leaving the remainder available for your manual use. This reserve also applies to Autonomous Diplomats and can be changed from its settings as well."
+
+ # Country Interactions
+ atd_block_autonomous_improving: "Block Autonomous Improving"
+ atd_block_autonomous_improving_desc: "Stop automatically improving relations with [SCOPE.sCountry('recipient').GetName]. Any improvement already in progress will finish on its own."
+ atd_allow_autonomous_improving: "Allow Autonomous Improving"
+ atd_allow_autonomous_improving_desc: "Resume automatically improving relations with [SCOPE.sCountry('recipient').GetName]."
 
  # Optional: self-referencing flag keys to suppress IDE warnings (safe to remove if you want)
  atd: "atd"

@@ -81,7 +81,7 @@ atd_should_run = {
 # in the on_finish chain made the GUI engine error with "Promote 'AddScope'
 # returned nullptr". The skip_threshold cooldown that depended on progress is
 # now redundant anyway - atd_start_improving_with unconditionally skips
-# targets at opinion >= 200, which covers the only case we actually needed
+# targets at opinion >= 190, which covers the only case we actually needed
 # the cooldown for (the auto-cancel-at-+200 retarget loop).
 # Root: player country. Saved scopes: country (target).
 atd_gui_sync_track = {

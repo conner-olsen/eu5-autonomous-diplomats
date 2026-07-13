@@ -3,7 +3,16 @@
 atd_is_valid_improve_target = {
 	is_discovered_by = scope:actor_scope
 	NOT = { is_at_war_with = scope:actor_scope }
-	NOT = { opinion = { target = scope:actor_scope value >= 190 } }
+	# A cap of 200, the slider max, means no limit.
+	trigger_if = {
+		limit = { scope:actor_scope = { var:atd_max_relations < 200 } }
+		NOT = { opinion = { target = scope:actor_scope value >= scope:actor_scope.var:atd_max_relations } }
+	}
+	trigger_if = {
+		limit = { scope:actor_scope = { var:atd_max_antagonism < 200 } }
+		NOT = { antagonism = { target = scope:actor_scope value > scope:actor_scope.var:atd_max_antagonism } }
+	}
+	NOT = { has_variable = atd_improve_blocked }
 	NOT = { has_variable = atd_cancel_cooldown }
 	NOT = { has_variable = atd_retarget_cooldown }
 	scope:actor_scope = {

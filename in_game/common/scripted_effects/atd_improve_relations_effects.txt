@@ -1,7 +1,7 @@
 ﻿atd_improve_relations = {
 	save_scope_as = actor_scope
 	set_variable = { name = atd_action_threshold value = { value = var:atd_min_diplomats add = 1 } }
-	atd_check_max_opinion_for_cancel = yes
+	atd_check_for_cancel = yes
 	if = {
 		limit = {
 			num_of_diplomats >= var:atd_action_threshold
@@ -16,26 +16,43 @@
 }
 
 # Sets atd_pending_cancel on each tracked improve target whose opinion of the
-# player is >= 200, clears it otherwise. Read by the auto-cancel widget in
-# atd_outliner_widgets.gui.
+# player has reached var:atd_max_relations, and on each target claimed by the
+# outraged category whose antagonism towards the player is below 5; clears it
+# otherwise. Read by the auto-cancel widget in atd_outliner_widgets.gui.
 # Scope: player country (atd_improve_relations saves actor_scope).
-atd_check_max_opinion_for_cancel = {
+atd_check_for_cancel = {
 	if = {
 		limit = { has_variable_map = atd_improving_with }
 		every_key_in_variable_map = {
 			variable = atd_improving_with
-			save_scope_as = atd_max_opinion_target
-			scope:atd_max_opinion_target = {
-				# Cancel at 200 (opinion cap).
+			save_scope_as = atd_cancel_target
+			scope:atd_cancel_target = {
+				# A cap of 200, the slider max, means no limit.
 				if = {
 					limit = {
-						opinion = { target = scope:actor_scope value >= 200 }
+						scope:actor_scope = { var:atd_max_relations < 200 }
+						opinion = { target = scope:actor_scope value >= scope:actor_scope.var:atd_max_relations }
 					}
 					if = {
 						limit = { NOT = { has_variable = atd_pending_cancel } }
 						set_variable = atd_pending_cancel
 						# Keeps the mod from re-improving this country until it expires.
 						set_variable = { name = atd_cancel_cooldown value = yes years = 4 }
+					}
+				}
+				# Cancel outraged targets below 5 antagonism.
+				else_if = {
+					limit = {
+						scope:actor_scope = {
+							has_variable_map = atd_improving_type
+							is_key_in_variable_map = { name = atd_improving_type target = scope:atd_cancel_target }
+							"variable_map(atd_improving_type|scope:atd_cancel_target)" = flag:outraged
+						}
+						antagonism = { target = scope:actor_scope value < 5 }
+					}
+					if = {
+						limit = { NOT = { has_variable = atd_pending_cancel } }
+						set_variable = atd_pending_cancel
 					}
 				}
 				else = {
@@ -239,9 +256,9 @@ atd_gui_sync_end = {
 			}
 			# Clear the auto-cancel flag from the target country so a later
 			# re-targeting doesn't get cancelled immediately by stale state.
-			# atd_check_max_opinion_for_cancel can't clean these up after the
-			# country leaves atd_improving_type because it only iterates
-			# entries that ARE in atd_improving_type. (atd_pending_confirm is
+			# atd_check_for_cancel can't clean these up after the
+			# country leaves atd_improving_with because it only iterates
+			# entries that ARE in atd_improving_with. (atd_pending_confirm is
 			# a GLOBAL variable now, not per-country, so it doesn't need
 			# per-country cleanup here.)
 			scope:atd_nation_to_remove = {
@@ -430,7 +447,8 @@ atd_improve_outraged = {
 		count = 10
 		ordered_country_in_diplomatic_range = {
 			limit = {
-				antagonism = { target = scope:actor_scope value > 0 }
+				# Outraged at 10+ antagonism.
+				antagonism = { target = scope:actor_scope value >= 10 }
 				atd_is_valid_improve_target = yes
 			}
 			order_by = this_antagonism_towards_prev
