@@ -14,6 +14,37 @@ atd_register_cmf_mod = {
 		alias = atd_improve_relations_enabled
 	}
 
+	## Limits (limits) Group
+	cmm_register_slider_setting = {
+		mod_id = atd
+		setting_id = max_relations
+		tab_id = improve_relations
+		group_id = limits
+		default_value = 190
+		min_value = 0
+		max_value = 200
+		step_value = 5
+	}
+	cmm_sync_setting_alias = {
+		setting = atd__max_relations
+		alias = atd_max_relations
+	}
+
+	cmm_register_slider_setting = {
+		mod_id = atd
+		setting_id = max_antagonism
+		tab_id = improve_relations
+		group_id = limits
+		default_value = 200
+		min_value = 0
+		max_value = 200
+		step_value = 5
+	}
+	cmm_sync_setting_alias = {
+		setting = atd__max_antagonism
+		alias = atd_max_antagonism
+	}
+
 	cmm_register_settings_list = {
 		mod_id = atd
 		setting_id = improve_relations
@@ -266,6 +297,19 @@ atd_handle_cmf_callback = {
 			cmm_sync_bool_alias = {
 				setting = atd__improve_relations_enabled
 				alias = atd_improve_relations_enabled
+			}
+		}
+		## Limits (limits) Group
+		flag:atd__max_relations = {
+			cmm_sync_setting_alias = {
+				setting = atd__max_relations
+				alias = atd_max_relations
+			}
+		}
+		flag:atd__max_antagonism = {
+			cmm_sync_setting_alias = {
+				setting = atd__max_antagonism
+				alias = atd_max_antagonism
 			}
 		}
 		# Settings (settings) Tab
