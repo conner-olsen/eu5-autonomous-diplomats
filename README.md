@@ -1,6 +1,6 @@
 # Autonomous Diplomats
 
-An EU5 mod that automates diplomatic relation improvement. Configure priority categories and diplomat limits, and the mod handles sending your diplomats to improve relations each month.
+Brings back the automated diplomat system from EU4 with auto-improve relations and other features.
 
 Requires [Community Mod Framework (CMF)](https://github.com/conner-olsen/community-mod-framework).
 
@@ -8,7 +8,7 @@ Requires [Community Mod Framework (CMF)](https://github.com/conner-olsen/communi
 
 ### Steam Workshop (Recommended)
 
-Subscribe on the Steam Workshop (link coming soon).
+[![Steam Workshop](https://img.shields.io/badge/Steam%20Workshop-Subscribe-blue)](https://steamcommunity.com/sharedfiles/filedetails/?id=3696243603)
 
 ### Manual Installation
 
