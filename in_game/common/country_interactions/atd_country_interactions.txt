@@ -3,7 +3,7 @@
 
 atd_block_autonomous_improving = {
 	type = diplomacy
-	category = CATEGORY_FRIENDLY_ACTIONS
+	category = CATEGORY_ATD_ACTIONS
 	use_enroute = no
 	ai_tick = never
 	show_message = no
@@ -34,7 +34,7 @@ atd_block_autonomous_improving = {
 
 atd_allow_autonomous_improving = {
 	type = diplomacy
-	category = CATEGORY_FRIENDLY_ACTIONS
+	category = CATEGORY_ATD_ACTIONS
 	use_enroute = no
 	ai_tick = never
 	show_message = no

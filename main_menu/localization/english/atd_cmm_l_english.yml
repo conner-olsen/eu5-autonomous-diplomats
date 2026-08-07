@@ -73,6 +73,8 @@
  atd_automation_diplomat_reserve_tooltip: "Automation will only send [diplomats|e] when the current banked amount exceeds this reserve, leaving the remainder available for your manual use. This reserve also applies to Autonomous Diplomats and can be changed from its settings as well."
 
  # Country Interactions
+ # Note to translators: keep the @CATEGORY_ATD_ACTIONS! icon reference at the start of the category name.
+ CATEGORY_ATD_ACTIONS: "@CATEGORY_ATD_ACTIONS! Autonomous Diplomats"
  # Note to translators: the "#B #!" prefix on the interaction names only orders them at the top of the category; leave it as is.
  atd_block_autonomous_improving: "#B #!Block Autonomous Improving"
  atd_block_autonomous_improving_act: "Block Autonomous Improving with [SCOPE.sCountry('recipient').GetName]"
