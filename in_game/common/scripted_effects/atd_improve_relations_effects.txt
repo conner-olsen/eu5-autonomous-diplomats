@@ -447,8 +447,8 @@ atd_improve_outraged = {
 		count = 10
 		ordered_country_in_diplomatic_range = {
 			limit = {
-				# Outraged at 10+ antagonism.
-				antagonism = { target = scope:actor_scope value >= 10 }
+				# Outraged at 25+ antagonism.
+				antagonism = { target = scope:actor_scope value >= 25 }
 				atd_is_valid_improve_target = yes
 			}
 			order_by = this_antagonism_towards_prev

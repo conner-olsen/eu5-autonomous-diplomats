@@ -31,7 +31,7 @@
  atd__improve_relations_i5_name: "Own Subject Countries"
  atd__improve_relations_i5_desc: "Improve relations with your subject countries."
  atd__improve_relations_i6_name: "Outraged Countries"
- atd__improve_relations_i6_desc: "Improve relations with countries that have at least 10 antagonism towards you, targeting the most outraged first. Cancels the improvement once their antagonism drops below 5."
+ atd__improve_relations_i6_desc: "Improve relations with countries that have at least 25 antagonism towards you, targeting the most outraged first. Cancels the improvement once their antagonism drops below 5."
  atd__improve_relations_i7_name: "Allies"
  atd__improve_relations_i7_desc: "Improve relations with your allies and defensive league members."
  atd__improve_relations_i8_name: "Threatening Countries"
