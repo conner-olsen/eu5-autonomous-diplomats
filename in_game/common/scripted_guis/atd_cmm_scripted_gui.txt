@@ -53,6 +53,24 @@ atd__improve_relations_on_changed = {
 	}
 }
 
+# Interactions (interactions) Tab
+atd__auto_interactions_on_changed = {
+	scope = country
+
+	effect = {
+		cmm_apply_list_change = {
+			setting = atd__auto_interactions
+		}
+		# The cancel button (f2) is the list's only button field.
+		if = {
+			limit = { has_variable = cmm_list_button_item }
+			atd_queue_clear_slot_by_number = { slot_value = var:cmm_list_button_item }
+			remove_variable = cmm_list_button_item
+			remove_variable = cmm_list_button_slot
+		}
+	}
+}
+
 # Subjects (subjects) Tab
 atd__enforce_on_changed = {
 	scope = country

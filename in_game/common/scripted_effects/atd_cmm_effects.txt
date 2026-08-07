@@ -189,6 +189,57 @@ atd_register_cmf_mod = {
 	# Hide HRE items based on eligibility
 	atd_update_hre_visibility = yes
 
+	# Interactions (interactions) Tab
+	cmm_register_settings_list = {
+		mod_id = atd
+		setting_id = auto_interactions
+		tab_id = interactions
+		item_count = 50
+		is_ordered = 1
+	}
+
+	cmm_register_list_bool_field = {
+		mod_id = atd
+		setting_id = auto_interactions
+		field_id = paused
+		default_value = 0
+	}
+
+	cmm_register_list_button_field = {
+		mod_id = atd
+		setting_id = auto_interactions
+		field_id = cancel
+	}
+
+	cmm_register_list_text_field = {
+		mod_id = atd
+		setting_id = auto_interactions
+		field_id = status
+	}
+
+	if = {
+		limit = { NOT = { has_variable = atd_queue_count } }
+		set_variable = { name = atd_queue_count value = 0 }
+	}
+	# Hide unoccupied queue slots
+	atd_update_queue_visibility = yes
+
+	## Reserve (reserve) Group
+	cmm_register_numeric_setting = {
+		mod_id = atd
+		setting_id = min_gold
+		tab_id = interactions
+		group_id = reserve
+		default_value = 100
+		min_value = 0
+		max_value = 100000
+		step_value = 25
+	}
+	cmm_sync_setting_alias = {
+		setting = atd__min_gold
+		alias = atd_min_gold
+	}
+
 	# Subjects (subjects) Tab
 	cmm_register_settings_list = {
 		mod_id = atd
@@ -310,6 +361,13 @@ atd_handle_cmf_callback = {
 			cmm_sync_setting_alias = {
 				setting = atd__max_antagonism
 				alias = atd_max_antagonism
+			}
+		}
+		# Interactions (interactions) Tab
+		flag:atd__min_gold = {
+			cmm_sync_setting_alias = {
+				setting = atd__min_gold
+				alias = atd_min_gold
 			}
 		}
 		# Settings (settings) Tab
