@@ -76,18 +76,18 @@
  # Note to translators: keep the @CATEGORY_ATD_ACTIONS! icon reference at the start of the category name.
  CATEGORY_ATD_ACTIONS: "@CATEGORY_ATD_ACTIONS! Autonomous Diplomats"
  # Note to translators: the "#B #!" prefix on the interaction names only orders them at the top of the category; leave it as is.
- atd_block_autonomous_improving: "#B #!Block Autonomous Improving"
- atd_block_autonomous_improving_act: "Block Autonomous Improving with [SCOPE.sCountry('recipient').GetName]"
+ atd_block_autonomous_improving: "#B #!Block Auto-Improve"
+ atd_block_autonomous_improving_act: "Block Auto-Improve with [SCOPE.sCountry('recipient').GetName]"
  atd_block_autonomous_improving_desc: "Stop automatically improving relations with [SCOPE.sCountry('recipient').GetName]. Any improvement already in progress will finish on its own."
  atd_block_autonomous_improving_effect_text: "Stop automatically improving relations with [SCOPE.sCountry('recipient').GetName]"
  atd_block_autonomous_improving_effect_text_past: "Stopped automatically improving relations with [SCOPE.sCountry('recipient').GetName]"
- PROPOSE_atd_block_autonomous_improving: "Block autonomous improving with $RECIPIENT$?"
- atd_allow_autonomous_improving: "#B #!Allow Autonomous Improving"
- atd_allow_autonomous_improving_act: "Allow Autonomous Improving with [SCOPE.sCountry('recipient').GetName]"
+ PROPOSE_atd_block_autonomous_improving: "Block auto-improve with $RECIPIENT$?"
+ atd_allow_autonomous_improving: "#B #!Allow Auto-Improve"
+ atd_allow_autonomous_improving_act: "Allow Auto-Improve with [SCOPE.sCountry('recipient').GetName]"
  atd_allow_autonomous_improving_desc: "Resume automatically improving relations with [SCOPE.sCountry('recipient').GetName]."
  atd_allow_autonomous_improving_effect_text: "Resume automatically improving relations with [SCOPE.sCountry('recipient').GetName]"
  atd_allow_autonomous_improving_effect_text_past: "Resumed automatically improving relations with [SCOPE.sCountry('recipient').GetName]"
- PROPOSE_atd_allow_autonomous_improving: "Allow autonomous improving with $RECIPIENT$?"
+ PROPOSE_atd_allow_autonomous_improving: "Allow auto-improve with $RECIPIENT$?"
 
  # Optional: self-referencing flag keys to suppress IDE warnings (safe to remove if you want)
  atd: "atd"
