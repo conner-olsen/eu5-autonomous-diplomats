@@ -2,12 +2,19 @@
 # the auto-cancel widget's state in atd_outliner_widgets.gui right after firing
 # OutlinerDiplomacyEntry.OnRightClick, so the same widget doesn't keep firing
 # the cancel during the window before sync removes the entry from tracking.
-# Root: target country (set via SetRoot).
+# Root: player country. Saved scopes: atd_cancel_target.
 atd_clear_pending_cancel = {
+	saved_scopes = { atd_cancel_target }
 	effect = {
 		if = {
-			limit = { has_variable = atd_pending_cancel }
-			remove_variable = atd_pending_cancel
+			limit = { has_variable_map = atd_cancel_requests }
+			remove_from_variable_map = { name = atd_cancel_requests key = scope:atd_cancel_target }
+		}
+		scope:atd_cancel_target = {
+			if = {
+				limit = { has_variable = atd_pending_cancel }
+				remove_variable = atd_pending_cancel
+			}
 		}
 		# Global rather than per-country: the popup OnRightClick raises,
 		# confirm_diplomatic_action_popup in in_game/gui/ingame_dialogs.gui,

@@ -11,13 +11,17 @@ types atd_outliner {
 	type atd_outliner_auto_cancel_widget = widget {
 		datacontext = "[OutlinerDiplomacyEntry.GetTargetCountry]"
 		size = { 0 0 }
-		visible = "[And(OutlinerDiplomacyEntry.CanRightClick, Country.MakeScope.GetVariable('atd_pending_cancel').IsSet)]"
+		# The map read is what keeps one human player's cancel off another's
+		# improve on the same target. GetVariableFromVariableMap is the accessor
+		# that reads a country map from GUI; VariableMapContainsKey rejects the
+		# const chain GetPlayer gives.
+		visible = "[And4(OutlinerDiplomacyEntry.CanRightClick, GetPlayer.Exists, Country.MakeScope.GetVariable('atd_pending_cancel').IsSet, GetPlayer.MakeScope.GetVariableFromVariableMap('atd_cancel_requests', Country.MakeScope).IsSet)]"
 		state = {
 			name = atd_do_auto_cancel
 			on_finish = "[OutlinerDiplomacyEntry.OnRightClick]"
 			# These fire concurrently, so the popup's auto-confirm arms off
 			# atd_pending_confirm turning true rather than off the trigger below.
-			on_finish = "[GetScriptedGui('atd_clear_pending_cancel').Execute(GuiScope.SetRoot(Country.MakeScope).End)]"
+			on_finish = "[GetScriptedGui('atd_clear_pending_cancel').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('atd_cancel_target', Country.MakeScope).End)]"
 			on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_confirm')]"
 		}
 	}
