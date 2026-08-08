@@ -18,7 +18,7 @@
  atd__max_antagonism_desc: "Do not improve relations with countries that have more antagonism towards you than this. At 200+ there is no limit."
  atd__max_antagonism_format: "[Select_CString(GreaterThanOrEqualTo_CFixedPoint(CMMV('atd__max_antagonism'), '(CFixedPoint)200'), '200+', ToString_int32(FixedPointToInt(CMMV('atd__max_antagonism'))))]"
  atd__improve_relations__improve_relations_name: "Improve Relations"
- atd__improve_relations__improve_relations_desc: "Automatically send diplomats to improve relations with countries in each category. Categories higher in the list are prioritized first."
+ atd__improve_relations__improve_relations_desc: "Categories higher in the list are prioritized first."
  atd__improve_relations_item_column_name: "Category"
  atd__improve_relations_i1_name: "HRE Imperial Circle Leaders"
  atd__improve_relations_i1_desc: "Improve relations with the leaders of Imperial Circles in the Holy Roman Empire."
@@ -47,7 +47,7 @@
  # Interactions (interactions) Tab
  atd__interactions_name: "Auto Interactions"
  atd__interactions__auto_interactions_name: "Auto Interactions"
- atd__interactions__auto_interactions_desc: "Automatically performed interactions, run each month from the top of the list down. Entries higher in the list get diplomats and gold first."
+ atd__interactions__auto_interactions_desc: "Automatically performed interactions, run each month from the top of the list down."
  atd__auto_interactions_item_column_name: "Interaction"
  atd__auto_interactions__paused_name: "Paused"
  atd__auto_interactions__paused_desc: "Pause this entry without removing it from the queue."
@@ -55,7 +55,7 @@
  atd__auto_interactions__cancel_text: "Cancel"
  atd__auto_interactions__cancel_desc: "Remove this entry from the queue."
  atd__auto_interactions__status_name: "Status"
- atd__auto_interactions__status_desc: "What this entry is currently waiting on or doing. Updates each month."
+ atd__auto_interactions__status_desc: "What this entry is currently waiting on or doing."
  # Note to translators: only translate the "Send Gift" text in the row labels below; the bracketed part must stay as is.
  atd__auto_interactions_i1_name: "Send Gift - [Player.MakeScope.GetVariable('atd_queue_target_1').GetCountry.GetName]"
  atd__auto_interactions_i2_name: "Send Gift - [Player.MakeScope.GetVariable('atd_queue_target_2').GetCountry.GetName]"
@@ -167,7 +167,6 @@
  atd_cmm_status_cooldown_50: "In cooldown: [Divide_CFixedPoint(Player.MakeScope.GetVariable('atd_queue_cd_50').GetValue, '(CFixedPoint)12')|1] years left"
  ## Reserve (reserve) Group
  atd__interactions__reserve_name: "Reserve"
- atd__interactions__reserve_desc: "Gold reserve settings."
  atd__min_gold_name: "Minimum Gold"
  atd__min_gold_desc: "Keep at least this much gold in the treasury. An auto-interaction is skipped when paying for it would drop your treasury below this."
 
@@ -187,17 +186,16 @@
  atd__enabled_desc: "Enable Autonomous Diplomats. Also toggles the game's Diplomacy Interactions automation."
  ## Reserve (reserve) Group
  atd__settings__reserve_name: "Reserve"
- atd__settings__reserve_desc: "Diplomat reserve settings."
  atd__min_diplomats_name: "Minimum Diplomats Reserve"
- atd__min_diplomats_desc: "Minimum number of banked diplomats to keep in reserve. Autonomous actions will not use diplomats below this threshold. Shared with the Minimum Monthly Diplomats slider on the Diplomacy Interactions automation card."
+ atd__min_diplomats_desc: "Minimum number of banked diplomats to keep in reserve. Shared with the Minimum Monthly Diplomats slider on the Diplomacy Interactions automation card."
  atd__min_diplomats_format: "[CMMV('atd__min_diplomats')|1]"
  atd__min_diplomat_gain_name: "Minimum Diplomat Gain"
- atd__min_diplomat_gain_desc: "Minimum monthly diplomat gain to maintain. Autonomous actions will stop sending diplomats if your monthly gain would drop below this value."
+ atd__min_diplomat_gain_desc: "Improving relations is paused while your monthly diplomat gain is below this value. It does not apply to enforcing on subjects or to auto-gifting."
 
  # Automation Panel
  atd_automation_open_settings: "Open Autonomous Diplomats"
  atd_automation_improve_opinion_tooltip: "Send diplomats to improve relations with countries in the configured categories. Configure categories and priorities in the Autonomous Diplomats settings."
- atd_automation_diplomat_reserve_tooltip: "Automation will only send [diplomats|e] when the current banked amount exceeds this reserve, leaving the remainder available for your manual use. This reserve also applies to Autonomous Diplomats and can be changed from its settings as well."
+ atd_automation_diplomat_reserve_tooltip: "Automation will only send [diplomats|e] when the current banked amount exceeds this reserve, leaving the remainder available for your manual use. This reserve also applies to Autonomous Diplomats."
 
  # Country Interactions
  # Note to translators: keep the @CATEGORY_ATD_ACTIONS! icon reference at the start of the category name.
