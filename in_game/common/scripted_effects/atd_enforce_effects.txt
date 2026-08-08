@@ -78,7 +78,6 @@ atd_enforce_religion_on_subjects = {
 			add_liberty_desire = liberty_desire_ultimate_plus
 		}
 		add_diplomats = -1
-		change_variable = { name = atd_enforce_threshold add = 1 }
 	}
 }
 
@@ -107,6 +106,5 @@ atd_enforce_culture_on_subjects = {
 			add_liberty_desire = liberty_desire_ultimate_plus
 		}
 		add_diplomats = -1
-		change_variable = { name = atd_enforce_threshold add = 1 }
 	}
 }

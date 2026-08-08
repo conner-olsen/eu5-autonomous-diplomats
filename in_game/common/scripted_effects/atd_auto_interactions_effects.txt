@@ -191,7 +191,10 @@ atd_send_gift = {
 				actor = scope:atd_actor_scope
 				recipient = scope:atd_gift_target
 			}
-			change_variable = { name = atd_gift_threshold add = 2 }
+			# The pair costs two diplomats; refund one so a queue entry costs
+			# the same single diplomat a manual gift does.
+			add_diplomats = 1
+			change_variable = { name = atd_gift_threshold add = 1 }
 			# SEND_GIFT_COOLDOWN months (game loading_screen/common/defines/00_defines.txt:1994).
 			set_variable = { name = atd_queue_cd_$slot$ value = 120 }
 			cmm_set_list_text_value = { mod_id = atd setting_id = auto_interactions field_id = status item = $slot$ value = flag:atd_cmm_status_cooldown_$slot$ }
