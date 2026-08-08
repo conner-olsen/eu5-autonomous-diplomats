@@ -227,7 +227,7 @@ atd_queue_assign_slot = {
 # Frees slot $slot$, hides its row, and parks it at the bottom of the display order.
 atd_queue_clear_slot = {
 	if = {
-		limit = { exists = var:atd_queue_target_$slot$ }
+		limit = { has_variable = atd_queue_target_$slot$ }
 		remove_list_variable = { name = atd_queue_members target = var:atd_queue_target_$slot$ }
 	}
 	remove_variable = atd_queue_target_$slot$

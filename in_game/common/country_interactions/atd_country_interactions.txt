@@ -95,11 +95,15 @@ atd_start_auto_gifting = {
 		scope:recipient = { save_scope_as = atd_queue_add_target }
 		scope:actor = {
 			atd_queue_find_free_slot = yes
+			# Hovering the interaction evaluates these limits without running the finder above.
 			if = {
-				limit = { var:atd_queue_free_slot > 0 }
-				atd_queue_assign_slot_by_number = { slot_value = var:atd_queue_free_slot type = send_gifts }
+				limit = { has_variable = atd_queue_free_slot }
+				if = {
+					limit = { var:atd_queue_free_slot > 0 }
+					atd_queue_assign_slot_by_number = { slot_value = var:atd_queue_free_slot type = send_gifts }
+				}
+				remove_variable = atd_queue_free_slot
 			}
-			remove_variable = atd_queue_free_slot
 		}
 	}
 }
