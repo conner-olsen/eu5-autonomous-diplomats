@@ -76,14 +76,6 @@ atd_should_run = {
 # Per-country tracking call. Fired once per ongoing improve_opinion country
 # during the begin phase via PdxGuiTriggerAllAnimations. Adds the country to
 # the seen list so the end phase knows this entry is still active.
-#
-# We don't pull GUI progress into atd_improved_with anymore: passing
-# OngoingRelationCountry.GetOpinionImprovementProgress through MakeScopeValue
-# in the on_finish chain made the GUI engine error with "Promote 'AddScope'
-# returned nullptr". The skip_threshold cooldown that depended on progress is
-# now redundant anyway - an opinion-cap cancel sets a 4-year
-# atd_cancel_cooldown, which covers the only case the cooldown was needed
-# for (the auto-cancel retarget loop).
 # Root: player country. Saved scopes: country (target).
 atd_gui_sync_track = {
 	saved_scopes = { atd_country }
