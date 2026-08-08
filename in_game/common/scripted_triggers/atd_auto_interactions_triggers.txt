@@ -1,10 +1,10 @@
-﻿# True when this country can receive an auto-sent gift from scope:actor_scope.
+﻿# True when this country can receive an auto-sent gift from scope:atd_actor_scope.
 # Opt-in queueing is explicit, so the improve-relations block flag and opinion
 # caps deliberately do not apply here.
-# Scope: candidate/target country. Reads scope:actor_scope.
+# Scope: candidate/target country. Reads scope:atd_actor_scope.
 atd_is_valid_gift_target = {
-	is_discovered_by = scope:actor_scope
-	NOT = { is_at_war_with = scope:actor_scope }
+	is_discovered_by = scope:atd_actor_scope
+	NOT = { is_at_war_with = scope:atd_actor_scope }
 }
 
 # True when scope:actor already queued this country for auto-interactions.

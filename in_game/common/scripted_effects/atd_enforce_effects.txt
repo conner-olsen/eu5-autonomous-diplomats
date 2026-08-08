@@ -1,5 +1,5 @@
 ﻿atd_enforce_on_subjects = {
-	save_scope_as = actor_scope
+	save_scope_as = atd_actor_scope
 	set_variable = { name = atd_enforce_threshold value = { value = var:atd_min_diplomats add = 1 } }
 	if = {
 		limit = {
@@ -38,7 +38,7 @@ atd_enforce_religion_on_subjects = {
 		limit = {
 			num_of_diplomats >= var:atd_enforce_threshold
 			any_subject = {
-				NOT = { religion = scope:actor_scope.religion }
+				NOT = { religion = scope:atd_actor_scope.religion }
 				subject_loyalty >= 50
 				liberty_desire < 50
 				trigger_if = {
@@ -46,7 +46,7 @@ atd_enforce_religion_on_subjects = {
 						modifier:blocked_from_conversion = yes
 						has_reform = government_reform:military_order_reform
 					}
-					scope:actor_scope = { has_reform = government_reform:military_order_reform }
+					scope:atd_actor_scope = { has_reform = government_reform:military_order_reform }
 				}
 				trigger_else = {
 					modifier:blocked_from_conversion = no
@@ -56,7 +56,7 @@ atd_enforce_religion_on_subjects = {
 		count = 10
 		random_subject = {
 			limit = {
-				NOT = { religion = scope:actor_scope.religion }
+				NOT = { religion = scope:atd_actor_scope.religion }
 				subject_loyalty >= 50
 				liberty_desire < 50
 				trigger_if = {
@@ -64,7 +64,7 @@ atd_enforce_religion_on_subjects = {
 						modifier:blocked_from_conversion = yes
 						has_reform = government_reform:military_order_reform
 					}
-					scope:actor_scope = { has_reform = government_reform:military_order_reform }
+					scope:atd_actor_scope = { has_reform = government_reform:military_order_reform }
 				}
 				trigger_else = {
 					modifier:blocked_from_conversion = no
@@ -72,7 +72,7 @@ atd_enforce_religion_on_subjects = {
 			}
 			save_scope_as = atd_target_subject
 			enforce_religion_effect = {
-				actor = scope:actor_scope
+				actor = scope:atd_actor_scope
 				target = scope:atd_target_subject
 			}
 			add_liberty_desire = liberty_desire_ultimate_plus
@@ -87,7 +87,7 @@ atd_enforce_culture_on_subjects = {
 		limit = {
 			num_of_diplomats >= var:atd_enforce_threshold
 			any_subject = {
-				NOT = { culture = scope:actor_scope.culture }
+				NOT = { culture = scope:atd_actor_scope.culture }
 				subject_loyalty >= 50
 				liberty_desire < 50
 			}
@@ -95,13 +95,13 @@ atd_enforce_culture_on_subjects = {
 		count = 10
 		random_subject = {
 			limit = {
-				NOT = { culture = scope:actor_scope.culture }
+				NOT = { culture = scope:atd_actor_scope.culture }
 				subject_loyalty >= 50
 				liberty_desire < 50
 			}
 			save_scope_as = atd_target_subject
 			enforce_culture_effect = {
-				actor = scope:actor_scope
+				actor = scope:atd_actor_scope
 				target = scope:atd_target_subject
 			}
 			add_liberty_desire = liberty_desire_ultimate_plus

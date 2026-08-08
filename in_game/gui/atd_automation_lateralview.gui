@@ -834,8 +834,8 @@ types atd_automation_overrides {
 							value = "[AutomatedSystemsItem.GetDiplomatReserveSlider]"
 							# Pinned to the settings value while a push is pending; the forced
 							# value commits through the callbacks below.
-							mincap = "[Select_CFixedPoint(And(GetPlayer.MakeScope.GetVariable('atd_reserve_from_cmm').IsSet, Not(EqualTo_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSliderScaled, GuiScope.AddScope('country', GetPlayer.MakeScope).ScriptValue('atd_min_diplomats_value')))), GuiScope.AddScope('country', GetPlayer.MakeScope).ScriptValue('atd_reserve_push_target'), '(CFixedPoint)0')]"
-							maxcap = "[Select_CFixedPoint(And(GetPlayer.MakeScope.GetVariable('atd_reserve_from_cmm').IsSet, Not(EqualTo_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSliderScaled, GuiScope.AddScope('country', GetPlayer.MakeScope).ScriptValue('atd_min_diplomats_value')))), GuiScope.AddScope('country', GetPlayer.MakeScope).ScriptValue('atd_reserve_push_target'), '(CFixedPoint)1')]"
+							mincap = "[Select_CFixedPoint(And(GetPlayer.MakeScope.GetVariable('atd_reserve_from_cmm').IsSet, Not(EqualTo_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSliderScaled, GuiScope.AddScope('atd_country', GetPlayer.MakeScope).ScriptValue('atd_min_diplomats_value')))), GuiScope.AddScope('atd_country', GetPlayer.MakeScope).ScriptValue('atd_reserve_push_target'), '(CFixedPoint)0')]"
+							maxcap = "[Select_CFixedPoint(And(GetPlayer.MakeScope.GetVariable('atd_reserve_from_cmm').IsSet, Not(EqualTo_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSliderScaled, GuiScope.AddScope('atd_country', GetPlayer.MakeScope).ScriptValue('atd_min_diplomats_value')))), GuiScope.AddScope('atd_country', GetPlayer.MakeScope).ScriptValue('atd_reserve_push_target'), '(CFixedPoint)1')]"
 							onvaluechanged = "[AutomatedSystemsItem.OnChangedDiplomatReserveSlider]"
 							onchangefinish = "[AutomatedSystemsItem.PostDiplomatReserveSlider]"
 							blockoverride "economy_slider_inc_button_config"{
@@ -872,7 +872,7 @@ types atd_automation_overrides {
 							name = atd_reserve_poll
 							trigger_on_create = yes
 							duration = 0.25
-							on_finish = "[GetScriptedGui('atd_automation_reserve_changed').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('reserve', MakeScopeValue(AutomatedSystemsItem.GetDiplomatReserveSliderScaled)).End)]"
+							on_finish = "[GetScriptedGui('atd_automation_reserve_changed').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('atd_reserve', MakeScopeValue(AutomatedSystemsItem.GetDiplomatReserveSliderScaled)).End)]"
 							on_finish = "[PdxGuiWidget.TriggerAnimation('atd_reserve_poll')]"
 						}
 					}
@@ -881,10 +881,10 @@ types atd_automation_overrides {
 					widget = {
 						size = { 0 0 }
 						visible_at_creation = no
-						visible = "[And(GreaterThan_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSlider, '(CFixedPoint)0'), Not(EqualTo_CFixedPoint(Divide_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSliderScaled, AutomatedSystemsItem.GetDiplomatReserveSlider), GuiScope.AddScope('country', GetPlayer.MakeScope).ScriptValue('atd_reserve_max_value'))))]"
+						visible = "[And(GreaterThan_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSlider, '(CFixedPoint)0'), Not(EqualTo_CFixedPoint(Divide_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSliderScaled, AutomatedSystemsItem.GetDiplomatReserveSlider), GuiScope.AddScope('atd_country', GetPlayer.MakeScope).ScriptValue('atd_reserve_max_value'))))]"
 						state = {
 							name = _show
-							on_start = "[GetScriptedGui('atd_automation_reserve_max_changed').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('max', MakeScopeValue(Divide_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSliderScaled, AutomatedSystemsItem.GetDiplomatReserveSlider))).End)]"
+							on_start = "[GetScriptedGui('atd_automation_reserve_max_changed').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('atd_max', MakeScopeValue(Divide_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSliderScaled, AutomatedSystemsItem.GetDiplomatReserveSlider))).End)]"
 						}
 					}
 
@@ -893,7 +893,7 @@ types atd_automation_overrides {
 					widget = {
 						size = { 0 0 }
 						visible_at_creation = no
-						visible = "[And(GetPlayer.MakeScope.GetVariable('atd_reserve_from_cmm').IsSet, Or(GreaterThan_CFixedPoint(GuiScope.AddScope('country', GetPlayer.MakeScope).ScriptValue('atd_reserve_max_value'), '(CFixedPoint)0'), EqualTo_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSliderScaled, GuiScope.AddScope('country', GetPlayer.MakeScope).ScriptValue('atd_min_diplomats_value'))))]"
+						visible = "[And(GetPlayer.MakeScope.GetVariable('atd_reserve_from_cmm').IsSet, Or(GreaterThan_CFixedPoint(GuiScope.AddScope('atd_country', GetPlayer.MakeScope).ScriptValue('atd_reserve_max_value'), '(CFixedPoint)0'), EqualTo_CFixedPoint(AutomatedSystemsItem.GetDiplomatReserveSliderScaled, GuiScope.AddScope('atd_country', GetPlayer.MakeScope).ScriptValue('atd_min_diplomats_value'))))]"
 						state = {
 							name = _show
 							duration = 0.3

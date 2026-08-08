@@ -1,5 +1,5 @@
 ﻿atd_improve_relations = {
-	save_scope_as = actor_scope
+	save_scope_as = atd_actor_scope
 	set_variable = { name = atd_action_threshold value = { value = var:atd_min_diplomats add = 1 } }
 	atd_check_for_cancel = yes
 	if = {
@@ -19,7 +19,7 @@
 # player has reached var:atd_max_relations, and on each target claimed by the
 # outraged category whose antagonism towards the player is below 5; clears it
 # otherwise. Read by the auto-cancel widget in atd_outliner_widgets.gui.
-# Scope: player country (atd_improve_relations saves actor_scope).
+# Scope: player country (atd_improve_relations saves atd_actor_scope).
 atd_check_for_cancel = {
 	if = {
 		limit = { has_variable_map = atd_improving_with }
@@ -30,8 +30,8 @@ atd_check_for_cancel = {
 				# A cap of 200, the slider max, means no limit.
 				if = {
 					limit = {
-						scope:actor_scope = { var:atd_max_relations < 200 }
-						opinion = { target = scope:actor_scope value >= scope:actor_scope.var:atd_max_relations }
+						scope:atd_actor_scope = { var:atd_max_relations < 200 }
+						opinion = { target = scope:atd_actor_scope value >= scope:atd_actor_scope.var:atd_max_relations }
 					}
 					if = {
 						limit = { NOT = { has_variable = atd_pending_cancel } }
@@ -43,12 +43,12 @@ atd_check_for_cancel = {
 				# Cancel outraged targets below 5 antagonism.
 				else_if = {
 					limit = {
-						scope:actor_scope = {
+						scope:atd_actor_scope = {
 							has_variable_map = atd_improving_type
 							is_key_in_variable_map = { name = atd_improving_type target = scope:atd_cancel_target }
 							"variable_map(atd_improving_type|scope:atd_cancel_target)" = flag:outraged
 						}
-						antagonism = { target = scope:actor_scope value < 5 }
+						antagonism = { target = scope:atd_actor_scope value < 5 }
 					}
 					if = {
 						limit = { NOT = { has_variable = atd_pending_cancel } }
@@ -87,10 +87,10 @@ atd_update_improved_with = {
 		}
 		every_key_in_variable_map = {
 			variable = atd_improving_type
-			save_scope_as = nation_improving
-			scope:actor_scope = {
+			save_scope_as = atd_nation_improving
+			scope:atd_actor_scope = {
 				switch = {
-					trigger = "variable_map(atd_improving_type|scope:nation_improving)"
+					trigger = "variable_map(atd_improving_type|scope:atd_nation_improving)"
 					flag:neighbor = {
 						change_variable = { name = atd_n_neighbors_improving_with add = 1 }
 					}
@@ -137,7 +137,7 @@ atd_update_improved_with = {
 		every_key_in_variable_map = {
 			variable = atd_improved_with
 			save_scope_as = nation_improved_with
-			scope:actor_scope = {
+			scope:atd_actor_scope = {
 				if = {
 					limit = {
 						OR = {
@@ -337,8 +337,8 @@ atd_improve_relations_each_item = {
 	cmf_suppress = { v = $setting$ }
 }
 
-# Starts improving relations with scope:target_country if not already improving.
-# Must be called inside scope:actor_scope.
+# Starts improving relations with scope:atd_target_country if not already improving.
+# Must be called inside scope:atd_actor_scope.
 # Params: type (type flag name), counter (counter variable name), skip_threshold (max progress to skip at)
 atd_start_improving_with = {
 	if = {
@@ -350,31 +350,31 @@ atd_start_improving_with = {
 				NOT = {
 					is_key_in_variable_map = {
 						name = atd_improved_with
-						target = scope:target_country
+						target = scope:atd_target_country
 					}
 				}
-				"variable_map(atd_improved_with|scope:target_country)" < $skip_threshold$
+				"variable_map(atd_improved_with|scope:atd_target_country)" < $skip_threshold$
 			}
-			scope:target_country = { atd_is_valid_improve_target = yes }
+			scope:atd_target_country = { atd_is_valid_improve_target = yes }
 		}
 		perform_diplomatic_action = {
 			type = improve_relation
-			actor = scope:actor_scope
-			recipient = scope:target_country
+			actor = scope:atd_actor_scope
+			recipient = scope:atd_target_country
 		}
 		add_to_variable_map = {
 			name = atd_improving_with
-			key = scope:target_country
+			key = scope:atd_target_country
 			value = 1
 		}
 		add_to_variable_map = {
 			name = atd_improved_with
-			key = scope:target_country
+			key = scope:atd_target_country
 			value = 1
 		}
 		add_to_variable_map = {
 			name = atd_improving_type
-			key = scope:target_country
+			key = scope:atd_target_country
 			value = flag:$type$
 		}
 		change_variable = { name = $counter$ add = 1 }
@@ -409,8 +409,8 @@ atd_improve_neighbors = {
 			limit = {
 				atd_is_valid_improve_target = yes
 			}
-			save_scope_as = target_country
-			scope:actor_scope = {
+			save_scope_as = atd_target_country
+			scope:atd_actor_scope = {
 				atd_start_improving_with = { type = neighbor counter = atd_n_neighbors_improving_with skip_threshold = 90 }
 			}
 		}
@@ -429,8 +429,8 @@ atd_improve_subjects = {
 			limit = {
 				atd_is_valid_improve_target = yes
 			}
-			save_scope_as = target_country
-			scope:actor_scope = {
+			save_scope_as = atd_target_country
+			scope:atd_actor_scope = {
 				atd_start_improving_with = { type = subject counter = atd_n_subjects_improving_with skip_threshold = 90 }
 			}
 		}
@@ -448,13 +448,13 @@ atd_improve_outraged = {
 		ordered_country_in_diplomatic_range = {
 			limit = {
 				# Outraged at 25+ antagonism.
-				antagonism = { target = scope:actor_scope value >= 25 }
+				antagonism = { target = scope:atd_actor_scope value >= 25 }
 				atd_is_valid_improve_target = yes
 			}
 			order_by = this_antagonism_towards_prev
 			max = 1
-			save_scope_as = target_country
-			scope:actor_scope = {
+			save_scope_as = atd_target_country
+			scope:atd_actor_scope = {
 				atd_start_improving_with = { type = outraged counter = atd_n_outraged_improving_with skip_threshold = 90 }
 			}
 		}
@@ -472,10 +472,10 @@ atd_improve_allies = {
 		ordered_country_in_diplomatic_range = {
 			limit = {
 				OR = {
-					is_allied_with = { target = scope:actor_scope }
+					is_allied_with = { target = scope:atd_actor_scope }
 					any_international_organizations_member_of = {
 						international_organization_type = international_organization_type:defensive_league
-						scope:actor_scope = {
+						scope:atd_actor_scope = {
 							is_member_of_international_organization = PREV
 						}
 					}
@@ -484,8 +484,8 @@ atd_improve_allies = {
 			}
 			order_by = { value = 0 }
 			max = 1
-			save_scope_as = target_country
-			scope:actor_scope = {
+			save_scope_as = atd_target_country
+			scope:atd_actor_scope = {
 				atd_start_improving_with = { type = ally counter = atd_n_allies_improving_with skip_threshold = 90 }
 			}
 		}
@@ -502,13 +502,13 @@ atd_improve_threatened = {
 		count = 10
 		ordered_country_in_diplomatic_range = {
 			limit = {
-				scope:actor_scope = { is_a_threat_for_us = PREV }
+				scope:atd_actor_scope = { is_a_threat_for_us = PREV }
 				atd_is_valid_improve_target = yes
 			}
-			order_by = "threat_level_to(scope:actor_scope)"
+			order_by = "threat_level_to(scope:atd_actor_scope)"
 			max = 1
-			save_scope_as = target_country
-			scope:actor_scope = {
+			save_scope_as = atd_target_country
+			scope:atd_actor_scope = {
 				atd_start_improving_with = { type = threatened counter = atd_n_threatened_improving_with skip_threshold = 90 }
 			}
 		}
@@ -534,8 +534,8 @@ atd_improve_hre_members = {
 				}
 				order_by = { value = 0 }
 				max = 1
-				save_scope_as = target_country
-				scope:actor_scope = {
+				save_scope_as = atd_target_country
+				scope:atd_actor_scope = {
 					atd_start_improving_with = { type = hre_member counter = atd_n_hre_members_improving_with skip_threshold = 90 }
 				}
 			}
@@ -562,8 +562,8 @@ atd_improve_hre_electors = {
 				}
 				order_by = { value = 0 }
 				max = 1
-				save_scope_as = target_country
-				scope:actor_scope = {
+				save_scope_as = atd_target_country
+				scope:atd_actor_scope = {
 					atd_start_improving_with = { type = hre_elector counter = atd_n_hre_electors_improving_with skip_threshold = 90 }
 				}
 			}
@@ -590,8 +590,8 @@ atd_improve_imperial_circle_leaders = {
 				}
 				order_by = { value = 0 }
 				max = 1
-				save_scope_as = target_country
-				scope:actor_scope = {
+				save_scope_as = atd_target_country
+				scope:atd_actor_scope = {
 					atd_start_improving_with = { type = imperial_circle_leader counter = atd_n_imperial_circle_leaders_improving_with skip_threshold = 90 }
 				}
 			}
@@ -614,8 +614,8 @@ atd_improve_market_owners = {
 			}
 			order_by = { value = 0 }
 			max = 1
-			save_scope_as = target_country
-			scope:actor_scope = {
+			save_scope_as = atd_target_country
+			scope:atd_actor_scope = {
 				atd_start_improving_with = { type = market_owner counter = atd_n_market_owners_improving_with skip_threshold = 90 }
 			}
 		}
@@ -640,8 +640,8 @@ atd_improve_kingdoms = {
 			}
 			order_by = { value = 0 }
 			max = 1
-			save_scope_as = target_country
-			scope:actor_scope = {
+			save_scope_as = atd_target_country
+			scope:atd_actor_scope = {
 				atd_start_improving_with = { type = kingdom counter = atd_n_kingdoms_improving_with skip_threshold = 90 }
 			}
 		}
@@ -662,8 +662,8 @@ atd_improve_largest = {
 			}
 			order_by = num_locations
 			max = 1
-			save_scope_as = target_country
-			scope:actor_scope = {
+			save_scope_as = atd_target_country
+			scope:atd_actor_scope = {
 				atd_start_improving_with = { type = largest counter = atd_n_largest_improving_with skip_threshold = 90 }
 			}
 		}

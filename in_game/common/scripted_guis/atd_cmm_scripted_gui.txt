@@ -132,19 +132,19 @@ atd_automation_disable_master = {
 # Root: player country. Saved scopes: reserve (value).
 atd_automation_reserve_changed = {
 	scope = country
-	saved_scopes = { reserve }
+	saved_scopes = { atd_reserve }
 
 	effect = {
-		set_local_variable = { name = atd_tmp_reserve value = scope:reserve }
+		set_local_variable = { name = atd_tmp_reserve value = scope:atd_reserve }
 		if = {
 			limit = {
 				NOT = { has_variable = atd_reserve_from_cmm }
 				local_var:atd_tmp_reserve > 0
 				NOT = { var:atd_min_diplomats = local_var:atd_tmp_reserve }
 			}
-			set_variable = { name = atd_min_diplomats value = scope:reserve }
+			set_variable = { name = atd_min_diplomats value = scope:atd_reserve }
 			remove_from_variable_map = { name = cmm key = flag:atd__min_diplomats }
-			add_to_variable_map = { name = cmm key = flag:atd__min_diplomats value = scope:reserve }
+			add_to_variable_map = { name = cmm key = flag:atd__min_diplomats value = scope:atd_reserve }
 		}
 	}
 }
@@ -152,10 +152,10 @@ atd_automation_reserve_changed = {
 # Root: player country. Saved scopes: max (value).
 atd_automation_reserve_max_changed = {
 	scope = country
-	saved_scopes = { max }
+	saved_scopes = { atd_max }
 
 	effect = {
-		set_variable = { name = atd_reserve_slider_max value = scope:max }
+		set_variable = { name = atd_reserve_slider_max value = scope:atd_max }
 		atd_update_reserve_slider_bounds = yes
 	}
 }

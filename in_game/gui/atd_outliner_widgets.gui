@@ -35,7 +35,7 @@ types atd_outliner {
 		visible = "[GetScriptedGui('atd_should_run').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 		state = {
 			name = _show
-			on_start = "[GetScriptedGui('atd_gui_sync_track').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('country', Country.MakeScope).End)]"
+			on_start = "[GetScriptedGui('atd_gui_sync_track').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('atd_country', Country.MakeScope).End)]"
 		}
 	}
 }

@@ -4,7 +4,7 @@
 # a one-time diplomat cost, not a continuous drain like improving.
 # Scope: player country.
 atd_process_auto_interactions = {
-	save_scope_as = actor_scope
+	save_scope_as = atd_actor_scope
 	set_variable = { name = atd_gift_threshold value = { value = var:atd_min_diplomats add = 1 } }
 	cmm_for_each_list_item = {
 		setting = atd__auto_interactions
@@ -183,12 +183,12 @@ atd_send_gift = {
 			# full 40 opinion.
 			perform_diplomatic_action = {
 				type = giftaction
-				actor = scope:actor_scope
+				actor = scope:atd_actor_scope
 				recipient = scope:atd_gift_target
 			}
 			perform_diplomatic_action = {
 				type = giftaction
-				actor = scope:actor_scope
+				actor = scope:atd_actor_scope
 				recipient = scope:atd_gift_target
 			}
 			change_variable = { name = atd_gift_threshold add = 2 }

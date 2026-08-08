@@ -86,7 +86,7 @@ atd_should_run = {
 # for (the auto-cancel retarget loop).
 # Root: player country. Saved scopes: country (target).
 atd_gui_sync_track = {
-	saved_scopes = { country }
+	saved_scopes = { atd_country }
 	effect = {
 		if = {
 			limit = {
@@ -95,14 +95,14 @@ atd_gui_sync_track = {
 					NOT = {
 						is_target_in_variable_list = {
 							name = atd_improving_seen
-							target = scope:country
+							target = scope:atd_country
 						}
 					}
 				}
 			}
 			add_to_variable_list = {
 				name = atd_improving_seen
-				target = scope:country
+				target = scope:atd_country
 			}
 		}
 	}

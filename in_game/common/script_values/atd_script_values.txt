@@ -1,14 +1,14 @@
 ﻿# Read by the diplomat reserve sync widgets in atd_automation_lateralview.gui.
 atd_min_diplomats_value = {
-	value = scope:country.var:atd_min_diplomats
+	value = scope:atd_country.var:atd_min_diplomats
 }
 
 # 0 until the slider scale has been observed.
 atd_reserve_max_value = {
 	value = 0
 	if = {
-		limit = { scope:country = { has_variable = atd_reserve_slider_max } }
-		add = scope:country.var:atd_reserve_slider_max
+		limit = { scope:atd_country = { has_variable = atd_reserve_slider_max } }
+		add = scope:atd_country.var:atd_reserve_slider_max
 	}
 }
 
@@ -17,9 +17,9 @@ atd_reserve_max_value = {
 atd_reserve_push_target = {
 	value = 1
 	if = {
-		limit = { scope:country = { has_variable = atd_reserve_slider_max } }
-		multiply = scope:country.var:atd_min_diplomats
-		divide = scope:country.var:atd_reserve_slider_max
+		limit = { scope:atd_country = { has_variable = atd_reserve_slider_max } }
+		multiply = scope:atd_country.var:atd_min_diplomats
+		divide = scope:atd_country.var:atd_reserve_slider_max
 		min = 0
 		max = 1
 	}
