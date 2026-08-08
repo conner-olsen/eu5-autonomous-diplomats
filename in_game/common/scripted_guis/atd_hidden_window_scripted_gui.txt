@@ -1,5 +1,5 @@
-﻿# Clears the atd_pending_cancel variable on the country in scope. Called from
-# the auto-cancel widget's state in outliner_entries.gui right after firing
+﻿# Clears the atd_pending_cancel request on the country in scope. Called from
+# the auto-cancel widget's state in atd_outliner_widgets.gui right after firing
 # OutlinerDiplomacyEntry.OnRightClick, so the same widget doesn't keep firing
 # the cancel during the window before sync removes the entry from tracking.
 # Root: target country (set via SetRoot).
@@ -9,16 +9,9 @@ atd_clear_pending_cancel = {
 			limit = { has_variable = atd_pending_cancel }
 			remove_variable = atd_pending_cancel
 		}
-		# Set the auto-confirm flag as a GLOBAL variable. The popup that
-		# OutlinerDiplomacyEntry.OnRightClick puts up is confirm_diplomatic_action_popup
-		# (in_game/gui/ingame_dialogs.gui), whose DialogConfig context doesn't
-		# expose the target country - so we can't gate per-country anyway.
-		# A single global flag is sufficient: at most one cancel is pending at
-		# a time, and the popup's auto-confirm widget clears the flag the
-		# moment it fires DialogConfig.OnAccept.
-		# Global also dodges the "what scope are we in" issue here - root is
-		# the target country (from SetRoot in the outliner widget call), and
-		# scope-switching to player from script effects is awkward.
+		# Global rather than per-country: the popup OnRightClick raises,
+		# confirm_diplomatic_action_popup in in_game/gui/ingame_dialogs.gui,
+		# has a DialogConfig context that does not expose the target country.
 		if = {
 			limit = { NOT = { has_global_variable = atd_pending_confirm } }
 			set_global_variable = atd_pending_confirm

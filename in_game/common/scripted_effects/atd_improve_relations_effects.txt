@@ -213,9 +213,7 @@ atd_gui_sync_end = {
 			# re-targeting doesn't get cancelled immediately by stale state.
 			# atd_check_for_cancel can't clean these up after the
 			# country leaves atd_improving_with because it only iterates
-			# entries that ARE in atd_improving_with. (atd_pending_confirm is
-			# a GLOBAL variable now, not per-country, so it doesn't need
-			# per-country cleanup here.)
+			# entries that ARE in atd_improving_with.
 			scope:atd_nation_to_remove = {
 				if = {
 					limit = { has_variable = atd_pending_cancel }

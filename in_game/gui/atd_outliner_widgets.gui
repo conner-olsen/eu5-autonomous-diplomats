@@ -15,10 +15,8 @@ types atd_outliner {
 		state = {
 			name = atd_do_auto_cancel
 			on_finish = "[OutlinerDiplomacyEntry.OnRightClick]"
-			# Order: clear_pending_cancel sets atd_pending_confirm before the
-			# auto-confirm trigger fires, so a popup spawned synchronously by
-			# OnRightClick sees the flag already set when it evaluates its own
-			# trigger_on_create state.
+			# These fire concurrently, so the popup's auto-confirm arms off
+			# atd_pending_confirm turning true rather than off the trigger below.
 			on_finish = "[GetScriptedGui('atd_clear_pending_cancel').Execute(GuiScope.SetRoot(Country.MakeScope).End)]"
 			on_finish = "[PdxGuiTriggerAllAnimations('atd_do_auto_confirm')]"
 		}

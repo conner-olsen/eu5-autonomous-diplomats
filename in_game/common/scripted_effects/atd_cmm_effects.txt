@@ -186,7 +186,6 @@ atd_register_cmf_mod = {
 		alias = atd_improve_largest_count
 	}
 
-	# Hide HRE items based on eligibility
 	atd_update_hre_visibility = yes
 
 	# Interactions (interactions) Tab
