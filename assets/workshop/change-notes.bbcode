@@ -1,4 +1,13 @@
-﻿# v1.4.0:
+﻿# v1.5.0:
+- Add Auto-Gifting: queue countries with the Start Auto-Gifting diplomatic action, and each one is sent the largest possible gift whenever its ten-year cooldown ends, earning favors and opinion
+- Add Auto Interactions tab: reorder the queue to set which countries get gold and diplomats first, pause or cancel an entry, and see what each one is waiting on
+- Add Minimum Gold reserve (Auto Interactions tab): an auto-interaction is skipped when paying for it would drop your treasury below it
+- Move the mod's diplomatic actions into their own Autonomous Diplomats category
+- Rename Block/Allow Autonomous Improving to Block/Allow Auto-Improve
+- Outraged Countries: now only targets nations with at least 25 antagonism
+- Minimum Diplomats Reserve now defaults to 1
+
+# v1.4.0:
 - Add Largest Nations category: improve relations with the largest nations in your diplomatic range, starting with the biggest
 - Add Maximum Relations and Maximum Antagonism limits (Improve Relations tab): stop improving a country once its opinion of you reaches the maximum, cancelling any improvement in progress, and skip countries whose antagonism towards you is above the maximum
 - Add Block/Allow Autonomous Improving diplomatic actions to stop or resume auto-improving relations with a specific country
@@ -18,7 +27,7 @@
 - Fix automations not working in some cases when loading a save game
 
 # v1.2.4:
-- Skip nations you are at war with when improving relations.
+- Skip nations you are at war with when improving relations
 - Prevent immediately retargeting a nation after an improve ends without reaching the +200 cap (1-year cooldown)
 
 # v1.2.3:
@@ -39,15 +48,15 @@
 
 # v1.2:
 - Update for game version 1.2+
-- New way of tracking relations progress, so it is now able to keep in sync even when manually cancelling a improve.
+- New way of tracking relations progress, so it is now able to keep in sync even when manually cancelling an improve.
 - Will now auto-cancel when improving once the target opinion reaches 200.
-- Known Issue: Some diplomatic action will not auto-confirm even when you manually do them.
+- Known Issue: Some diplomatic actions will not auto-confirm even when you manually do them.
 
 # v1.1:
-- New: Enforce Religion automation -- automatically enforce your state religion on eligible subjects
-- New: Enforce Culture automation -- automatically enforce your primary culture on eligible subjects
-- New: HRE Electors improve relations category -- send diplomats to improve relations with HRE electors
-- New: HRE Members improve relations category -- send diplomats to improve relations with fellow HRE members
+- New: Enforce Religion automation - automatically enforce your state religion on eligible subjects
+- New: Enforce Culture automation - automatically enforce your primary culture on eligible subjects
+- New: HRE Electors improve relations category - send diplomats to improve relations with HRE electors
+- New: HRE Members improve relations category - send diplomats to improve relations with fellow HRE members
 - HRE categories are only visible when your capital is in Europe and you are an HRE member
 - Reorganized settings into 3 tabs: Improve Relations, Subjects, and Settings
 

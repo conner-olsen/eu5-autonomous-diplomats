@@ -4,3 +4,5 @@
 l_braz_por:
  dip_atd_block_autonomous_improving_CATEGORY: "dummy"
  dip_atd_allow_autonomous_improving_CATEGORY: "dummy"
+ dip_atd_start_auto_gifting_CATEGORY: "dummy"
+ dip_atd_stop_auto_gifting_CATEGORY: "dummy"

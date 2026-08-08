@@ -4,57 +4,62 @@ Otonom Diplomatlar / Autonomous Diplomats
 [i]You are on the DeepL-Generated Turkish Page. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=$item-id$&l=english]Click here for the Native English Page.[/url][/i]
 
 [h1]Genel Bakış:[/h1]
-EU4'teki otomatik diplomat sistemini, otomatik ilişki geliştirme ve diğer özelliklerle birlikte geri getirir.
+EU4'teki otomatik diplomat sistemini, ilişkileri otomatik geliştirme ve diğer özelliklerle birlikte geri getirir.
 
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Community Mod Framework (CMF)[/url] gerektirir.
 
 [h1]Özellikler:[/h1]
 [olist]
- [*][b]Otomatik İlişki Geliştirme:[/b]
+ [*][b]İlişkileri Otomatik Geliştir:[/b]
   [list]
-   [*][b]Komşu Ülkeler:[/b] Rastgele sınır komşusu olan uluslarla ilişkileri geliştirir.
-   [*][b]Kendi Tabileriniz:[/b] Rastgele tabi uluslarınızla ilişkileri geliştirir.
-   [*][b]Öfkeli Ülkeler:[/b] Size karşı en az 10 düşmanlığı (antagonism) olan uluslarla, en düşmancıl olandan başlayarak ilişkileri geliştirir ve düşmanlıkları 5'in altına düştüğünde geliştirmeyi iptal eder.
-   [*][b]Müttefikler:[/b] Müttefik uluslar ve savunma birliği üyeleri ile ilişkileri geliştirir.
-   [*][b]Tehditkar Ülkeler:[/b] Size karşı en yüksek tehdit seviyesini oluşturan uluslardan başlayarak ilişkileri geliştirir.
-   [*][b]KRİ İmparatorluk Dairesi Liderleri:[/b] Kutsal Roma İmparatorluğu'ndaki İmparatorluk Dairelerinin liderleriyle ilişkileri geliştirir. Sadece KRİ üyeleri için görünürdür.
-   [*][b]KRİ Seçmen Prensleri:[/b] Kutsal Roma İmparatorluğu seçmen prensleri ile ilişkileri geliştirir. Sadece KRİ üyeleri için görünürdür.
-   [*][b]KRİ Üyeleri:[/b] Diğer Kutsal Roma İmparatorluğu üyeleriyle ilişkileri geliştirir. Sadece KRİ üyeleri için görünürdür.
-   [*][b]Pazar Sahipleri:[/b] Bir pazara sahip olan ülkelerle ilişkileri geliştirir.
+   [*][b]Komşu Ülkeler:[/b] Rastgele sınırdaş ülkelerle ilişkileri geliştirir.
+   [*][b]Kendi Tabileriniz:[/b] Rastgele tabi devletlerle ilişkileri geliştirir.
+   [*][b]Öfkeli Ülkeler:[/b] Size karşı en az 25 düşmanlığı (antagonism) olan ülkelerle ilişkileri geliştirir; en düşmanca olandan başlar ve düşmanlık 5'in altına düştüğünde işlemi iptal eder.
+   [*][b]Müttefikler:[/b] Müttefik ülkeler ve savunma paktı üyeleriyle ilişkileri geliştirir.
+   [*][b]Tehditkâr Ülkeler:[/b] Öncelikle size en yüksek tehdit seviyesini oluşturan ülkelerle ilişkileri geliştirir.
+   [*][b]KRİ İmparatorluk Çevresi Liderleri:[/b] Kutsal Roma İmparatorluğu'ndaki İmparatorluk Çevrelerinin liderleriyle ilişkileri geliştirir. Sadece KRİ üyeleri için görünür.
+   [*][b]KRİ Seçmen Prensleri:[/b] Kutsal Roma İmparatorluğu seçmenleriyle ilişkileri geliştirir. Sadece KRİ üyeleri için görünür.
+   [*][b]KRİ Üyeleri:[/b] Diğer Kutsal Roma İmparatorluğu üyeleriyle ilişkileri geliştirir. Sadece KRİ üyeleri için görünür.
+   [*][b]Pazar Sahipleri:[/b] Bir pazara (market) sahip olan ülkelerle ilişkileri geliştirir.
    [*][b]Krallıklar ve İmparatorluklar:[/b] Krallıklar ve imparatorluklarla ilişkileri geliştirir.
-   [*][b]En Büyük Uluslar:[/b] Diplomatik menziliniz içindeki keşfettiğiniz en büyük uluslarla, en büyüğünden başlayarak ilişkileri geliştirir.
+   [*][b]En Büyük Uluslar:[/b] Diplomatik menzilinizdeki keşfettiğiniz en büyük uluslarla, en büyüğünden başlayarak ilişkileri geliştirir.
   [/list]
   [list]
-   [*][b]Sürükle-Bırak Öncelik Sıralaması:[/b] Community Mod Menüsü üzerinden hangi kategorilerin önce diplomat alacağını belirleyin.
+   [*][b]Sürükle-Bırak Öncelik Sıralaması:[/b] Hangi kategorilerin diplomatları önce alacağını Community Mod Menüsü üzerinden ayarlayın.
    [*][b]Kategori Başına Diplomat Sınırları:[/b] Her kategorinin kaç diplomat kullanabileceğini kontrol edin (0-10).
   [/list]
- [*][b]Tabi Etkileşimleri:[/b] Mümkün olduğunda tabi eylemlerini otomatik olarak gerçekleştirin.
+ [*][b]Tabi Etkileşimleri:[/b] Mümkün olduğunda tabi eylemlerini otomatik olarak gerçekleştirir.
   [list]
    [*][b]Din Dayat:[/b] Devlet dininizi tabilerinize dayatın.
    [*][b]Kültür Dayat:[/b] Birincil kültürünüzü tabilerinize dayatın.
   [/list]
- [*][b]Diplomat Rezervleri:[/b] Rezervde tutulacak minimum boş diplomat sayısını ve minimum aylık diplomat artışını belirleyin. Otonom eylemler bu eşiklerin altına düşmeyecektir.
- [*][b]Geliştirme Sınırları:[/b] İlişki geliştirmenin duracağı ve devam eden geliştirmelerin iptal edileceği maksimum ilişki değerini ve ülkelerin atlanacağı maksimum düşmanlık (antagonism) değerini belirleyin.
- [*][b]Belirli Ülkeleri Engelle:[/b] "Otonom Geliştirmeyi Engelle" diplomatik eylemini kullanarak seçilen bir ülkeyle otomatik ilişki geliştirmeyi durdurun ve "Otonom Geliştirmeye İzin Ver" ile devam edin.
+ [*][b]Otomatik Hediye Gönderme:[/b] "Otomatik Hediyeyi Başlat" diplomatik eylemiyle ülkeleri sıraya koyun; her birine on yıllık bekleme süresi dolduğunda, size güven (favors) ve görüş (opinion) kazandıracak mümkün olan en büyük hediye gönderilir.
+  [list]
+   [*][b]Öncelik Sırası:[/b] Altın ve diplomatları hangi ülkelerin önce alacağını belirlemek için sırayı yeniden düzenleyin, herhangi bir girişi istediğiniz zaman duraklatın veya iptal edin.
+   [*][b]Altın Rezervi:[/b] Saklanacak minimum hazine miktarını belirleyin. Hediye ödemesi sizi bu sınırın altına düşürecekse gönderim atlanır.
+  [/list]
+ [*][b]Diplomat Rezervleri:[/b] Yedekte tutulacak minimum boş diplomat sayısını ve minimum aylık diplomat artışını ayarlayın.
+ [*][b]Geliştirme Sınırları:[/b] İlişki geliştirmenin duracağı ve devam eden geliştirmelerin iptal edileceği maksimum ilişki değerini ve ülkelerin atlanacağı maksimum düşmanlık değerini ayarlayın.
+ [*][b]Belirli Ülkeleri Engelle:[/b] "İlişki Geliştirmeyi Engelle" diplomatik eylemini kullanarak seçilen bir ülke ile otomatik ilişki geliştirmeyi durdurun ve "İlişki Geliştirmeye İzin Ver" ile devam edin.
 [/olist]
 
 [h1]Değişiklik Günlüğü:[/h1]
-[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]Atölye sayfasındaki Değişiklik Notlarına[/url] göz atın.
+Atölye sayfasındaki [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]Değişiklik Notlarına[/url] göz atın.
 
 [h1]Bilinen Sorunlar:[/h1]
 [list]
- [*]Bazı diplomatik etkileşimler, normalde onay gerektirse de onay penceresi çıkarmayacaktır. Bu, otomatik iptal için gereklidir ancak daha iyi bir çözüm yolu araştıracağım.
+ [*]Bazı diplomatik etkileşimlerde, normalde olması gereken onay pencereleri çıkmayabilir. Bu, otomatik iptal özelliği için gereklidir ancak daha iyi bir çözüm yolu araştıracağım.
 [/list]
 
 [h1]Uyumluluk:[/h1]
 [list]
- [*]Ironman ve Başarım uyumludur.
- [*]Kayıtlı dosyalarla (save game) tam uyumludur.
+ [*]Ironman ve Başarım (Achievement) uyumlu.
+ [*]Kayıtlı oyunlarla (save game) tamamen uyumlu.
  [*]Herhangi bir modla çalışmalıdır.
  [*]İstek üzerine uyumluluk yamaları ekleyebilirim.
 [/list]
 
-Yorumlar bölümüne ek olarak, [url=https://discord.gg/zeQ6x9wrPq]EU5 Community Discord sunucusunun #utility-mods kanalında[/url] @arealconner'ı etiketleyerek sorularınızı sorabilir, hataları bildirebilir veya önerilerde bulunabilirsiniz. Ayrıca bu veya diğer modlarımdan birinin geliştirilmesine katılmak isterseniz, Discord üzerinden @arealconner kullanıcı adıyla beni ekleyebilir veya etiketleyebilirsiniz. Tüm katkılara açığım.
+Yorum bölümüne ek olarak, [url=https://discord.gg/zeQ6x9wrPq]EU5 Community Discord sunucusunun #utility-mods kanalında[/url] @arealconner etiketini kullanarak soru sorabilir, hata bildirebilir veya öneride bulunabilirsiniz. Bu modun veya diğer modlarımdan birinin geliştirilmesine katılmak isterseniz, Discord üzerinden @arealconner kullanıcı adına mesaj atabilir veya ekleyebilirsiniz. Tüm katkılar memnuniyetle karşılanır.
 
-Modun kaynak ve geliştirme sürümleri [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub[/url] üzerinde mevcuttur.
+Modun kaynak ve geliştirme sürümleri [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub'da[/url] mevcuttur.
 

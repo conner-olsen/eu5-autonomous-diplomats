@@ -3,47 +3,52 @@ Diplomáticos Autónomos / Autonomous Diplomats
 ===WORKSHOP_DESCRIPTION===
 [i]You are on the DeepL-Generated Spanish Page. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=$item-id$&l=english]Click here for the Native English Page.[/url][/i]
 
-[h1]Resumen:[/h1]
-Recupera el sistema de diplomáticos automatizados de EU4 con mejora de relaciones automática y otras funciones.
+[h1]Visión general:[/h1]
+Trae de vuelta el sistema de diplomáticos automáticos de EU4 con la mejora de relaciones automática y otras funciones.
 
 Requiere [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Community Mod Framework (CMF)[/url].
 
 [h1]Características:[/h1]
 [olist]
- [*][b]Mejora de relaciones automática:[/b]
+ [*][b]Mejorar relaciones automáticamente:[/b]
   [list]
    [*][b]Países vecinos:[/b] Mejora las relaciones con naciones fronterizas aleatorias.
    [*][b]Súbditos propios:[/b] Mejora las relaciones con naciones súbditas aleatorias.
-   [*][b]Países indignados:[/b] Mejora las relaciones con las naciones que tengan al menos 10 de antagonismo hacia ti, primero con las más antagónicas, y cancela la mejora una vez que su antagonismo baje de 5.
+   [*][b]Países indignados:[/b] Mejora las relaciones con naciones que tengan al menos 25 de antagonismo hacia ti, empezando por las más antagónicas, y cancela la mejora una vez que su antagonismo caiga por debajo de 5.
    [*][b]Aliados:[/b] Mejora las relaciones con naciones aliadas y miembros de ligas defensivas.
-   [*][b]Países amenazantes:[/b] Mejora las relaciones con las naciones que representen el mayor nivel de amenaza para ti primero.
-   [*][b]Líderes de los Círculos Imperiales del SIR:[/b] Mejora las relaciones con los líderes de los Círculos Imperiales en el Sacro Imperio Romano. Solo visible para los miembros del SIR.
-   [*][b]Electores del SIR:[/b] Mejora las relaciones con los electores del Sacro Imperio Romano. Solo visible para los miembros del SIR.
-   [*][b]Miembros del SIR:[/b] Mejora las relaciones con otros miembros del Sacro Imperio Romano. Solo visible para los miembros del SIR.
-   [*][b]Dueños de mercados:[/b] Mejora las relaciones con países que poseen un mercado.
-   [*][b]Reinos e imperios:[/b] Mejora las relaciones con reinos e imperios.
-   [*][b]Naciones más grandes:[/b] Mejora las relaciones con las naciones más grandes dentro de tu alcance diplomático que hayas descubierto, empezando por la mayor.
+   [*][b]Países amenazantes:[/b] Mejora las relaciones primero con las naciones que representen el nivel de amenaza más alto para ti.
+   [*][b]Líderes de Círculos Imperiales del SIR:[/b] Mejora las relaciones con los líderes de los Círculos Imperiales en el Sacro Imperio Romano Germánico. Solo visible para miembros del SIR.
+   [*][b]Electores del SIR:[/b] Mejora las relaciones con los electores del Sacro Imperio Romano Germánico. Solo visible para miembros del SIR.
+   [*][b]Miembros del SIR:[/b] Mejora las relaciones con otros miembros del Sacro Imperio Romano Germánico. Solo visible para miembros del SIR.
+   [*][b]Propietarios de mercados:[/b] Mejora las relaciones con países que poseen un mercado.
+   [*][b]Reinos e Imperios:[/b] Mejora las relaciones con reinos e imperios.
+   [*][b]Naciones más grandes:[/b] Mejora las relaciones con las naciones más grandes dentro de tu alcance diplomático que hayas descubierto, comenzando por la más grande.
   [/list]
   [list]
-   [*][b]Prioridad de arrastrar para reordenar:[/b] Establece qué categorías reciben diplomáticos primero a través del Community Mod Menu.
+   [*][b]Prioridad de arrastrar para reordenar:[/b] Establece qué categorías reciben diplomáticos primero a través del Menú de Mods de la Comunidad.
    [*][b]Límites de diplomáticos por categoría:[/b] Controla cuántos diplomáticos puede usar cada categoría (0-10).
   [/list]
- [*][b]Interacciones con súbditos:[/b] Realiza automáticamente acciones de súbdito siempre que sea posible.
+ [*][b]Interacciones con súbditos:[/b] Realiza automáticamente acciones de súbditos siempre que sea posible.
   [list]
    [*][b]Imponer religión:[/b] Impone tu religión de estado a los súbditos.
    [*][b]Imponer cultura:[/b] Impone tu cultura principal a los súbditos.
   [/list]
- [*][b]Reservas de diplomáticos:[/b] Establece un número mínimo de diplomáticos libres y una ganancia mensual mínima de diplomáticos para mantener en reserva. Las acciones autónomas no bajarán de tus umbrales establecidos.
- [*][b]Límites de mejora:[/b] Establece un valor máximo de relaciones en el que la mejora se detiene y las mejoras en curso se cancelan, y un antagonismo máximo por encima del cual se omiten los países.
- [*][b]Bloquear países específicos:[/b] Deja de mejorar automáticamente las relaciones con un país elegido mediante la acción diplomática Bloquear mejora autónoma, y reanuda con Permitir mejora autónoma.
+ [*][b]Envío de regalos automático:[/b] Pon países en cola con la acción diplomática "Iniciar envío de regalos automático", y a cada uno se le enviará el regalo más grande posible cada vez que termine su tiempo de recarga de diez años, ganando favores y opinión.
+  [list]
+   [*][b]Cola de prioridad:[/b] Reordena la cola para establecer qué países reciben oro y diplomáticos primero, y pausa o cancela una entrada en cualquier momento.
+   [*][b]Reserva de oro:[/b] Establece un tesoro mínimo a mantener. Se omitirá un regalo si pagarlo te hiciera caer por debajo de ese límite.
+  [/list]
+ [*][b]Reservas de diplomáticos:[/b] Establece un número mínimo de diplomáticos libres y una ganancia mensual mínima de diplomáticos para mantener en reserva.
+ [*][b]Límites de mejora:[/b] Establece un valor máximo de relaciones en el cual la mejora se detiene y las mejoras en curso se cancelan, y un antagonismo máximo por encima del cual se omiten los países.
+ [*][b]Bloquear países específicos:[/b] Deja de mejorar relaciones automáticamente con un país elegido usando la acción diplomática "Bloquear mejora automática", y reanuda con "Permitir mejora automática".
 [/olist]
 
-[h1]Registro de cambios:[/h1]
-Consulta las [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]notas de cambios en la página de la workshop[/url].
+[h1]Historial de cambios:[/h1]
+Consulta las [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]Notas de cambios en la página de la workshop[/url].
 
 [h1]Problemas conocidos:[/h1]
 [list]
- [*]Algunas interacciones diplomáticas no tendrán confirmaciones cuando normalmente deberían tenerlas. Esto es necesario para la autocancelación, pero buscaré una mejor solución alternativa.
+ [*]Algunas interacciones diplomáticas no tendrán confirmaciones cuando normalmente las tendrían. Esto es necesario para la autocancelación, pero buscaré una solución mejor.
 [/list]
 
 [h1]Compatibilidad:[/h1]
@@ -54,7 +59,7 @@ Consulta las [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3
  [*]Puedo añadir parches de compatibilidad bajo petición.
 [/list]
 
-Además de la sección de comentarios, también puedes hacer preguntas, reportar errores o hacer sugerencias mencionando a @arealconner en el [url=https://discord.gg/zeQ6x9wrPq]canal #utility-mods del servidor de Discord de la comunidad de EU5[/url]. Y si estás interesado en participar en el desarrollo de este o de alguno de mis otros mods, puedes mencionarme o añadirme en Discord @arealconner. Todas las contribuciones son bienvenidas.
+Además de la sección de comentarios, también puedes hacer preguntas, informar de errores o hacer sugerencias mencionando a @arealconner en el [url=https://discord.gg/zeQ6x9wrPq]#utility-mods channel of the EU5 Community discord server[/url]. Y si estás interesado en participar en el desarrollo de este o de alguno de mis otros mods, puedes mencionarme o añadirme en Discord @arealconner. Todas las contribuciones son bienvenidas.
 
-Las versiones de código fuente y de desarrollo del mod están disponibles en [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub.[/url]
+La fuente y las versiones de desarrollo del mod están disponibles en [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub.[/url]
 

@@ -13,48 +13,53 @@ Wymaga [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3692202776]Co
  [*][b]Automatyczna poprawa relacji:[/b]
   [list]
    [*][b]Kraje sąsiednie:[/b] Poprawia relacje z losowymi narodami graniczącymi.
-   [*][b]Własne kraje podległe:[/b] Poprawia relacje z losowymi państwami podległymi.
-   [*][b]Oburzone kraje:[/b] Poprawia relacje z narodami, które mają co najmniej 10 punktów antagonizmu wobec ciebie, zaczynając od najbardziej antagonistycznych; przerywa poprawę, gdy ich antagonizm spadnie poniżej 5.
+   [*][b]Własne podmioty:[/b] Poprawia relacje z losowymi podległymi narodami.
+   [*][b]Oburzone kraje:[/b] Poprawia relacje z narodami, które wykazują co najmniej 25 antagonizmu wobec ciebie, zaczynając od najbardziej wrogich, i przerywa poprawę, gdy ich antagonizm spadnie poniżej 5.
    [*][b]Sojusznicy:[/b] Poprawia relacje z sojusznikami i członkami lig obronnych.
-   [*][b]Zagrażające kraje:[/b] Poprawia relacje z narodami o najwyższym poziomie zagrożenia.
-   [*][b]Liderzy Cyrkułów Rzeszy:[/b] Poprawia relacje z liderami Cyrkułów Cesarskich w HRE. Widoczne tylko dla członków HRE.
-   [*][b]Elektorzy HRE:[/b] Poprawia relacje z elektorami Świętego Cesarstwa Rzymskiego. Widoczne tylko dla członków HRE.
-   [*][b]Członkowie HRE:[/b] Poprawia relacje z pozostałymi członkami Świętego Cesarstwa Rzymskiego. Widoczne tylko dla członków HRE.
-   [*][b]Właściciele rynków:[/b] Poprawia relacje z krajami posiadającymi rynek.
-   [*][b]Królestwa i imperia:[/b] Poprawia relacje z królestwami i imperiami.
+   [*][b]Zagrażające kraje:[/b] Poprawia relacje z narodami stanowiącymi najwyższy poziom zagrożenia.
+   [*][b]Liderzy Kręgów Cesarskich ŚRI:[/b] Poprawia relacje z liderami Kręgów Cesarskich w Świętym Cesarstwie Rzymskim. Widoczne tylko dla członków ŚRI.
+   [*][b]Elektorzy ŚRI:[/b] Poprawia relacje z elektorami Świętego Cesarstwa Rzymskiego. Widoczne tylko dla członków ŚRI.
+   [*][b]Członkowie ŚRI:[/b] Poprawia relacje z pozostałymi członkami Świętego Cesarstwa Rzymskiego. Widoczne tylko dla członków ŚRI.
+   [*][b]Właściciele rynków:[/b] Poprawia relacje z krajami, które posiadają rynek.
+   [*][b]Królestwa i cesarstwa:[/b] Poprawia relacje z królestwami i cesarstwami.
    [*][b]Największe narody:[/b] Poprawia relacje z największymi odkrytymi narodami w twoim zasięgu dyplomatycznym, zaczynając od największych.
   [/list]
   [list]
-   [*][b]Priorytety przeciągnij-i-upuść:[/b] Ustaw, które kategorie otrzymują dyplomatów w pierwszej kolejności za pomocą menu Community Mod Menu.
+   [*][b]Priorytetyzacja poprzez przeciąganie:[/b] Ustaw, które kategorie otrzymują dyplomatów jako pierwsze, korzystając z Community Mod Menu.
    [*][b]Limity dyplomatów na kategorię:[/b] Kontroluj, ilu dyplomatów może używać każda kategoria (0-10).
   [/list]
- [*][b]Interakcje z poddanymi:[/b] Automatycznie wykonuje akcje wobec poddanych, gdy tylko jest to możliwe.
+ [*][b]Interakcje z poddanymi:[/b] Automatycznie wykonuj akcje wobec poddanych, gdy tylko jest to możliwe.
   [list]
-   [*][b]Narzucenie religii:[/b] Narzuca twoją religię państwową poddanym.
-   [*][b]Narzucenie kultury:[/b] Narzuca twoją kulturę podstawową poddanym.
+   [*][b]Wymuś religię:[/b] Wymusza religię państwową na poddanych.
+   [*][b]Wymuś kulturę:[/b] Wymusza kulturę podstawową na poddanych.
   [/list]
- [*][b]Rezerwy dyplomatów:[/b] Ustaw minimalną liczbę wolnych dyplomatów oraz minimalny miesięczny przyrost dyplomatów, które mają pozostać w rezerwie. Autonomiczne akcje nie spowodują spadku poniżej tych progów.
- [*][b]Limity poprawy relacji:[/b] Ustaw maksymalną wartość relacji, przy której poprawa zostanie przerwana, a trwające akcje anulowane, oraz maksymalny poziom antagonizmu, powyżej którego kraje będą pomijane.
- [*][b]Blokowanie konkretnych krajów:[/b] Zatrzymaj automatyczną poprawę relacji z wybranym krajem za pomocą akcji dyplomatycznej „Block Autonomous Improving” i wznów ją za pomocą „Allow Autonomous Improving”.
+ [*][b]Automatyczne podarki:[/b] Dodaj kraje do kolejki za pomocą akcji dyplomatycznej „Zacznij automatyczne wysyłanie podarków”. Każdy z nich otrzyma największy możliwy prezent po zakończeniu dziesięcioletniego czasu odnowienia, co pozwala zdobywać przysługi i poprawiać opinię.
+  [list]
+   [*][b]Kolejka priorytetowa:[/b] Zmieniaj kolejność w kolejce, aby ustalić, które kraje otrzymają złoto i dyplomatów jako pierwsze; w dowolnym momencie możesz wstrzymać lub anulować wpis.
+   [*][b]Rezerwa złota:[/b] Ustaw minimalny stan skarbca. Podarek zostanie pominięty, jeśli jego wysłanie spowodowałoby spadek poniżej tego limitu.
+  [/list]
+ [*][b]Rezerwy dyplomatów:[/b] Ustaw minimalną liczbę wolnych dyplomatów oraz minimalny miesięczny przyrost dyplomatów, którzy mają pozostać w rezerwie.
+ [*][b]Limity poprawy:[/b] Ustaw maksymalną wartość relacji, przy której poprawa zostaje przerwana (a trwające akcje anulowane), oraz maksymalny poziom antagonizmu, powyżej którego kraje są pomijane.
+ [*][b]Blokowanie konkretnych krajów:[/b] Zatrzymaj automatyczną poprawę relacji z wybranym krajem za pomocą akcji dyplomatycznej „Zablokuj automatyczną poprawę” i wznów ją za pomocą „Zezwól na automatyczną poprawę”.
 [/olist]
 
-[h1]Lista zmian:[/h1]
-Zobacz [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]Change Notes na stronie warsztatu[/url].
+[h1]Dziennik zmian:[/h1]
+Zobacz [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3696243603]Uwagi do zmian na stronie warsztatu[/url].
 
 [h1]Znane problemy:[/h1]
 [list]
- [*]Niektóre interakcje dyplomatyczne nie będą wyświetlać potwierdzeń, mimo że normalnie by się pojawiły. Jest to niezbędne dla funkcji automatycznego anulowania, ale poszukam lepszego rozwiązania.
+ [*]Niektóre interakcje dyplomatyczne nie wyświetlają potwierdzeń, mimo że powinny. Jest to niezbędne dla funkcji automatycznego anulowania, ale poszukam lepszego rozwiązania.
 [/list]
 
 [h1]Kompatybilność:[/h1]
 [list]
  [*]Kompatybilny z trybem Ironman i osiągnięciami.
- [*]W pełni kompatybilny z zapisami gier (Save Game).
+ [*]W pełni kompatybilny z zapisami gry.
  [*]Powinien działać z każdym modem.
- [*]Mogę dodać patche kompatybilności na prośbę użytkowników.
+ [*]Na prośbę mogę dodać patche kompatybilności.
 [/list]
 
 Oprócz sekcji komentarzy, możesz również zadawać pytania, zgłaszać błędy lub przesyłać sugestie, oznaczając @arealconner na kanale [url=https://discord.gg/zeQ6x9wrPq]#utility-mods na serwerze Discord EU5 Community[/url]. Jeśli jesteś zainteresowany udziałem w pracach nad tym lub innymi moimi modami, możesz oznaczyć mnie lub dodać na Discordzie: @arealconner. Każdy wkład jest mile widziany.
 
-Wersja źródłowa i deweloperska moda dostępna jest na [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHub.[/url]
+Wersje źródłowe i deweloperskie moda są dostępne na [url=https://github.com/conner-olsen/eu5-autonomous-diplomats]GitHubie.[/url]
 
