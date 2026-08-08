@@ -180,3 +180,22 @@ atd_automation_reserve_reconcile = {
 		set_variable = atd_reserve_from_cmm
 	}
 }
+
+# Marks the engine's improve-opinion sub-flag as cleared for this save. Stored on
+# the country rather than in GetVariableSystem, whose variables outlive the game
+# they were set in and so would suppress the clear in every later game of the
+# same session.
+# Root: player country.
+atd_automation_engine_improve_cleared = {
+	scope = country
+
+	effect = {
+		set_variable = atd_engine_improve_opinion_cleared
+
+		# Only the card's visibility gate reads it, and a GUI read doesn't count.
+		if = {
+			limit = { always = no }
+			cmf_suppress = { v = atd_engine_improve_opinion_cleared }
+		}
+	}
+}

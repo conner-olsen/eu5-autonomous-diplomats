@@ -945,11 +945,11 @@ types atd_automation_overrides {
 					widget = {
 						size = { 0 0 }
 						visible_at_creation = no
-						visible = "[And(AutomatedSystemsItem.IsImproveOpinionEnabled, Not(GetVariableSystem.Exists('atd_engine_improve_opinion_cleared')))]"
+						visible = "[And(AutomatedSystemsItem.IsImproveOpinionEnabled, Not(GetPlayer.MakeScope.GetVariable('atd_engine_improve_opinion_cleared').IsSet))]"
 						state = {
 							name = _show
 							on_start = "[AutomatedSystemsItem.ToggleImproveOpinion]"
-							on_start = "[GetVariableSystem.Set('atd_engine_improve_opinion_cleared', 'true')]"
+							on_start = "[GetScriptedGui('atd_automation_engine_improve_cleared').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 						}
 					}
 					hbox = {
