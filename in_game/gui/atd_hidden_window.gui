@@ -26,6 +26,15 @@ widget = {
 		state = {
 			name = atd_hidden_window_cancel
 			on_start = "[PdxGuiTriggerAllAnimations('atd_do_auto_cancel')]"
+			duration = 0.5
+			next = atd_hidden_window_finish
+		}
+		# A cancel that raised no popup leaves atd_pending_confirm set, which would
+		# arm the next diplomatic confirmation the player opens. Dropping it here
+		# bounds the flag to this cycle.
+		state = {
+			name = atd_hidden_window_finish
+			on_start = "[GetScriptedGui('atd_clear_pending_confirm').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 			on_start = "[GetScriptedGui('atd_close_hidden_window').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 		}
 	}
