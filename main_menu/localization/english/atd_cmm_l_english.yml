@@ -202,7 +202,7 @@
  # Country Interactions
  # Note to translators: keep the @CATEGORY_ATD_ACTIONS! icon reference at the start of the category name.
  CATEGORY_ATD_ACTIONS: "@CATEGORY_ATD_ACTIONS! Autonomous Diplomats"
- # Note to translators: the "#B #!" prefix on the interaction names only orders them at the top of the category; leave it as is.
+ # Note to translators: the "#B #!" and "#D #!" prefixes on the interaction names only order them at the top of the category; leave them as is.
  atd_block_autonomous_improving: "#B #!Block Auto-Improve"
  atd_block_autonomous_improving_act: "Block Auto-Improve with [SCOPE.sCountry('recipient').GetName]"
  atd_block_autonomous_improving_desc: "Stop automatically improving relations with [SCOPE.sCountry('recipient').GetName]. Any improvement already in progress will finish on its own."
@@ -215,13 +215,13 @@
  atd_allow_autonomous_improving_effect_text: "Resume automatically improving relations with [SCOPE.sCountry('recipient').GetName]"
  atd_allow_autonomous_improving_effect_text_past: "Resumed automatically improving relations with [SCOPE.sCountry('recipient').GetName]"
  PROPOSE_atd_allow_autonomous_improving: "Allow auto-improve with $RECIPIENT$?"
- atd_start_auto_gifting: "#C #!Start Auto-Gifting"
+ atd_start_auto_gifting: "#D #!Start Auto-Gifting"
  atd_start_auto_gifting_act: "Start Auto-Gifting [SCOPE.sCountry('recipient').GetName]"
  atd_start_auto_gifting_desc: "Automatically send [SCOPE.sCountry('recipient').GetName] the largest possible gift whenever the ten-year cooldown ends, earning favors and opinion. Manage and prioritize queued countries in the Autonomous Diplomats settings."
  atd_start_auto_gifting_effect_text: "Start automatically sending gifts to [SCOPE.sCountry('recipient').GetName]"
  atd_start_auto_gifting_effect_text_past: "Started automatically sending gifts to [SCOPE.sCountry('recipient').GetName]"
  PROPOSE_atd_start_auto_gifting: "Start auto-gifting $RECIPIENT$?"
- atd_stop_auto_gifting: "#C #!Stop Auto-Gifting"
+ atd_stop_auto_gifting: "#D #!Stop Auto-Gifting"
  atd_stop_auto_gifting_act: "Stop Auto-Gifting [SCOPE.sCountry('recipient').GetName]"
  atd_stop_auto_gifting_desc: "Stop automatically sending gifts to [SCOPE.sCountry('recipient').GetName]."
  atd_stop_auto_gifting_effect_text: "Stop automatically sending gifts to [SCOPE.sCountry('recipient').GetName]"
