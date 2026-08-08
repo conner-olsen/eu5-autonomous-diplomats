@@ -129,7 +129,7 @@ atd_automation_disable_master = {
 # stale zero, and when the value already matches. Writes the CMM value map
 # directly so the settings menu shows the new value without firing the
 # callback, which would set atd_reserve_from_cmm and push right back.
-# Root: player country. Saved scopes: reserve (value).
+# Root: player country. Saved scopes: atd_reserve (value).
 atd_automation_reserve_changed = {
 	scope = country
 	saved_scopes = { atd_reserve }
@@ -149,7 +149,7 @@ atd_automation_reserve_changed = {
 	}
 }
 
-# Root: player country. Saved scopes: max (value).
+# Root: player country. Saved scopes: atd_max (value).
 atd_automation_reserve_max_changed = {
 	scope = country
 	saved_scopes = { atd_max }

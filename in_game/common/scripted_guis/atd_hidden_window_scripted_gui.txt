@@ -69,7 +69,7 @@ atd_should_run = {
 # Per-country tracking call. Fired once per ongoing improve_opinion country
 # during the begin phase via PdxGuiTriggerAllAnimations. Adds the country to
 # the seen list so the end phase knows this entry is still active.
-# Root: player country. Saved scopes: country (target).
+# Root: player country. Saved scopes: atd_country (target).
 atd_gui_sync_track = {
 	saved_scopes = { atd_country }
 	effect = {
