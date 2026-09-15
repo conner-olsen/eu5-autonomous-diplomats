@@ -5,7 +5,7 @@
 	if = {
 		limit = {
 			num_of_diplomats >= var:atd_action_threshold
-			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+			atd_meets_min_diplomat_gain = yes
 		}
 		atd_update_type_counters = yes
 		cmm_for_each_list_item = {
@@ -320,7 +320,7 @@ atd_start_improving_with = {
 	if = {
 		limit = {
 			num_of_diplomats >= var:atd_action_threshold
-			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+			atd_meets_min_diplomat_gain = yes
 			scope:atd_target_country = { atd_is_valid_improve_target = yes }
 		}
 		perform_diplomatic_action = {
@@ -363,7 +363,7 @@ atd_improve_neighbors = {
 		limit = {
 			var:atd_n_neighbors_improving_with < var:atd_improve_neighbors_count
 			num_of_diplomats >= var:atd_action_threshold
-			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+			atd_meets_min_diplomat_gain = yes
 		}
 		count = 10
 		random_neighbor_country = {
@@ -383,7 +383,7 @@ atd_improve_subjects = {
 		limit = {
 			var:atd_n_subjects_improving_with < var:atd_improve_relations_count
 			num_of_diplomats >= var:atd_action_threshold
-			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+			atd_meets_min_diplomat_gain = yes
 		}
 		count = 10
 		random_subject = {
@@ -403,7 +403,7 @@ atd_improve_outraged = {
 		limit = {
 			var:atd_n_outraged_improving_with < var:atd_improve_outraged_count
 			num_of_diplomats >= var:atd_action_threshold
-			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+			atd_meets_min_diplomat_gain = yes
 		}
 		count = 10
 		ordered_country_in_diplomatic_range = {
@@ -427,7 +427,7 @@ atd_improve_allies = {
 		limit = {
 			var:atd_n_allies_improving_with < var:atd_improve_allies_count
 			num_of_diplomats >= var:atd_action_threshold
-			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+			atd_meets_min_diplomat_gain = yes
 		}
 		count = 10
 		ordered_country_in_diplomatic_range = {
@@ -458,7 +458,7 @@ atd_improve_threatened = {
 		limit = {
 			var:atd_n_threatened_improving_with < var:atd_improve_threatened_count
 			num_of_diplomats >= var:atd_action_threshold
-			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+			atd_meets_min_diplomat_gain = yes
 		}
 		count = 10
 		ordered_country_in_diplomatic_range = {
@@ -485,7 +485,7 @@ atd_improve_hre_members = {
 			limit = {
 				var:atd_n_hre_members_improving_with < var:atd_improve_hre_members_count
 				num_of_diplomats >= var:atd_action_threshold
-				modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+				atd_meets_min_diplomat_gain = yes
 			}
 			count = 10
 			ordered_country_in_diplomatic_range = {
@@ -513,7 +513,7 @@ atd_improve_hre_electors = {
 			limit = {
 				var:atd_n_hre_electors_improving_with < var:atd_improve_hre_electors_count
 				num_of_diplomats >= var:atd_action_threshold
-				modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+				atd_meets_min_diplomat_gain = yes
 			}
 			count = 10
 			ordered_country_in_diplomatic_range = {
@@ -541,7 +541,7 @@ atd_improve_imperial_circle_leaders = {
 			limit = {
 				var:atd_n_imperial_circle_leaders_improving_with < var:atd_improve_imperial_circle_leaders_count
 				num_of_diplomats >= var:atd_action_threshold
-				modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+				atd_meets_min_diplomat_gain = yes
 			}
 			count = 10
 			ordered_country_in_diplomatic_range = {
@@ -565,7 +565,7 @@ atd_improve_market_owners = {
 		limit = {
 			var:atd_n_market_owners_improving_with < var:atd_improve_market_owners_count
 			num_of_diplomats >= var:atd_action_threshold
-			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+			atd_meets_min_diplomat_gain = yes
 		}
 		count = 10
 		ordered_country_in_diplomatic_range = {
@@ -588,7 +588,7 @@ atd_improve_kingdoms = {
 		limit = {
 			var:atd_n_kingdoms_improving_with < var:atd_improve_kingdoms_count
 			num_of_diplomats >= var:atd_action_threshold
-			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+			atd_meets_min_diplomat_gain = yes
 		}
 		count = 10
 		ordered_country_in_diplomatic_range = {
@@ -614,7 +614,7 @@ atd_improve_largest = {
 		limit = {
 			var:atd_n_largest_improving_with < var:atd_improve_largest_count
 			num_of_diplomats >= var:atd_action_threshold
-			modifier:monthly_diplomats >= var:atd_min_diplomat_gain
+			atd_meets_min_diplomat_gain = yes
 		}
 		count = 10
 		ordered_country_in_diplomatic_range = {
